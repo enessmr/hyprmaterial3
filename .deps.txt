@@ -12,3 +12,6 @@ cargo
 nautilus
 adwaita-icon-theme
 adw-gtk3-dark
+astal-io
+astal3
+astal4
