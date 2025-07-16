@@ -1,14 +1,13 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+@use "styles/colors" as *;
 
 window.Bar {
   background: transparent;
-  color: $fg-color;
+  color: $onSecondaryContainer;
   font-weight: bold;
 
   > centerbox {
-    background: $bg-color;
+    background: $secondaryContainer;
     border-radius: 10px;
     margin: 8px;
   }
