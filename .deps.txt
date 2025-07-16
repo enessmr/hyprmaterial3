@@ -15,3 +15,4 @@ adw-gtk3-dark
 astal-io
 astal3
 astal4
+rofi-wayland or wofi
