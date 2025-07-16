@@ -6,7 +6,6 @@ import Gdk from "gi://Gdk?version=4.0"
 import AstalBattery from "gi://AstalBattery"
 import AstalPowerProfiles from "gi://AstalPowerProfiles"
 import AstalNetwork from "gi://AstalNetwork"
-import { Utils } from 'resource:///com/github/Aylur/ags/utils.js';
 import { For, With, createBinding } from "ags"
 import { createPoll } from "ags/time"
 import { execAsync } from "ags/process"
@@ -14,6 +13,7 @@ import { execAsync } from "ags/process"
 function Wireless() {
   const network = AstalNetwork.get_default()
   const wifi = createBinding(network, "wifi")
+  const lan = createBinding(network, "wired")
 
   const sorted = (arr: Array<AstalNetwork.AccessPoint>) => {
     return arr.filter((ap) => !!ap.ssid).sort((a, b) => b.strength - a.strength)
@@ -31,34 +31,30 @@ function Wireless() {
   }
 
   return (
-    <box visible={wifi(Boolean)}>
+    <box>
       <With value={wifi}>
         {(wifi) =>
           wifi && (
-            <menubutton>
-              <image iconName={createBinding(wifi, "iconName")} />
-              <popover>
-                <box orientation={Gtk.Orientation.VERTICAL}>
-                  <For each={createBinding(wifi, "accessPoints")(sorted)}>
-                    {(ap: AstalNetwork.AccessPoint) => (
-                      <button onClicked={() => connect(ap)}>
-                        <box spacing={4}>
-                          <image iconName={createBinding(ap, "iconName")} />
-                          <label label={createBinding(ap, "ssid")} />
-                          <image
-                            iconName="object-select-symbolic"
-                            visible={createBinding(
-                              wifi,
-                              "activeAccessPoint",
-                            )((active) => active === ap)}
-                          />
-                        </box>
-                      </button>
-                    )}
-                  </For>
-                </box>
-              </popover>
-            </menubutton>
+            <box>
+              <label
+                name="material-symbols"
+                label="wifi"
+              />
+              <label
+                name="roboto"
+                label="Not implemented yet% on signal strength"
+              />
+            </box>
+          )
+        }
+      </With>
+      <With value={lan}>
+        {(lan) =>
+          lan && (
+            <label
+              name="material-symbols-unfilled-lan"
+              label="lan"
+            />
           )
         }
       </With>
