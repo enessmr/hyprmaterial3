@@ -1,0 +1,14 @@
+agsv2
+cairo
+pango
+hyprland
+hyprlock
+hypridle
+gtk4
+gtk3
+swww
+rustc
+cargo
+nautilus
+adwaita-icon-theme
+adw-gtk3-dark
