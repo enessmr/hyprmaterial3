@@ -1,7 +1,7 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
 @use "styles/colors" as *;
 
-window.Bar {
+/* window.Bar {
   //background-color: rgba(0, 0, 255, 0);
   background: none;
   color: $onSecondaryContainer;
@@ -35,7 +35,7 @@ window#Bar {
     border-radius: 8px;
     margin: 2px;
   }
-}
+} */
 
 window#bar {
   //background-color: rgba(0, 0, 255, 0);
@@ -43,8 +43,7 @@ window#bar {
   color: $onSecondaryContainer;
   margin-left: 10px;
   margin-top: 5px;
-  font-family: "Roboto";
-
+  
   > centerbox {
     background: $secondaryContainer;
     border-radius: 10px;
@@ -56,6 +55,21 @@ window#bar {
     margin: 2px;
   }
 }
+
 #clock {
+  color: #FFF;
+  font-family: Roboto;
+}
+
+#battery-percent {
+  color: #FFF;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#battery-icon {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 24px;
   color: #FFF;
 }
