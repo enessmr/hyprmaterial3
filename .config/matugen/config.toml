@@ -1,0 +1,10 @@
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "center"]
+set = true
+
+
+[templates.ags]
+input_path = './templates/ags/colors.scss'
+output_path = '~/.config/ags/colors.scss'
+post_hook = 'pkill -SIGUSR2 ags'
