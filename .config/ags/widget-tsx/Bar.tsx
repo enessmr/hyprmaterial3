@@ -103,7 +103,7 @@ function Clock({ format = "%H:%M" }) {
   })
 
   return (
-    <label label={time} />
+    <label label={time} name="clock" />
   )
 }
 
