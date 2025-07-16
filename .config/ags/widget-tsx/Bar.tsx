@@ -6,7 +6,6 @@ import Gdk from "gi://Gdk?version=4.0"
 import AstalBattery from "gi://AstalBattery"
 import AstalPowerProfiles from "gi://AstalPowerProfiles"
 import AstalNetwork from "gi://AstalNetwork"
-
 import { For, With, createBinding } from "ags"
 import { createPoll } from "ags/time"
 import { execAsync } from "ags/process"
@@ -104,12 +103,7 @@ function Clock({ format = "%H:%M" }) {
   })
 
   return (
-    <menubutton>
-      <label label={time} />
-      <popover>
-        <Gtk.Calendar />
-      </popover>
-    </menubutton>
+    <label label={time} />
   )
 }
 

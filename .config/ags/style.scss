@@ -2,9 +2,48 @@
 @use "styles/colors" as *;
 
 window.Bar {
-  background: transparent;
+  //background-color: rgba(0, 0, 255, 0);
+  background: none;
   color: $onSecondaryContainer;
   font-weight: bold;
+
+  > centerbox {
+    background: $secondaryContainer;
+    border-radius: 10px;
+    margin: 8px;
+  }
+
+  button {
+    border-radius: 8px;
+    margin: 2px;
+  }
+}
+
+window#Bar {
+  //background-color: rgba(0, 0, 255, 0);
+  background: none;
+  color: $onSecondaryContainer;
+  font-weight: bold;
+
+  > centerbox {
+    background: $secondaryContainer;
+    border-radius: 10px;
+    margin: 8px;
+  }
+
+  button {
+    border-radius: 8px;
+    margin: 2px;
+  }
+}
+
+window#bar {
+  //background-color: rgba(0, 0, 255, 0);
+  background: none;
+  color: $onSecondaryContainer;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-family: "Roboto";
 
   > centerbox {
     background: $secondaryContainer;
