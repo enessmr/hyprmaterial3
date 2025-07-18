@@ -1,0 +1,7 @@
+{
+  "EDITOR": "code",
+  "BROWSER": "brave",
+  "FILES": "nautilus",
+  "LAUNCHER": "rofi -show drun",
+  "TERMINAL": "kitty"
+}
