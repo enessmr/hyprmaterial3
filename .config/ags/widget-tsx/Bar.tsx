@@ -10,6 +10,65 @@ import { For, With, createBinding } from "ags"
 import { createPoll } from "ags/time"
 import { execAsync } from "ags/process"
 
+const adwaitaToMaterial: Record<string, string> = {
+  // System
+  "system-shutdown": "power_settings_new",
+  "system-reboot": "restart_alt",
+  "dialog-error": "error",
+  "dialog-warning": "warning",
+  "dialog-information": "info",
+
+  // Media
+  "media-playback-start": "play_arrow",
+  "media-playback-pause": "pause",
+  "media-playback-stop": "stop",
+  "media-skip-forward": "skip_next",
+  "media-skip-backward": "skip_previous",
+  "audio-volume-muted": "volume_off",
+  "audio-volume-low": "volume_down",
+  "audio-volume-high": "volume_up",
+
+  // Network
+  "network-wireless-signal-excellent": "wifi",
+  "network-wired": "lan",
+  "network-offline": "wifi_off",
+
+  // Power / Battery
+  "battery-full": "battery_full",
+  "battery-good": "battery_5_bar",
+  "battery-medium": "battery_4_bar",
+  "battery-low": "battery_2_bar",
+  "battery-empty": "battery_alert",
+  "battery-caution": "battery_unknown",
+  "battery-missing": "battery_unknown",
+
+  // Devices
+  "computer": "devices",
+  "smartphone": "smartphone",
+  "input-keyboard": "keyboard",
+  "input-mouse": "mouse",
+  "video-display": "monitor",
+  "camera-photo": "photo_camera",
+  "camera-video": "videocam",
+
+  // Folders
+  "folder": "folder",
+  "folder-download": "folder",
+  "folder-documents": "folder",
+  "folder-pictures": "folder",
+  "user-home": "home",
+  "user-trash": "delete",
+
+  // Apps
+  "utilities-terminal": "terminal",
+  "internet-web-browser": "language",
+  "emblem-default": "check_circle",
+};
+
+export function convertAdwaitaIcon(adwaita: string): string {
+  return adwaitaToMaterial[adwaita] ?? "help"; // fallback icon
+}
+
 function Wireless() {
   const network = AstalNetwork.get_default()
   const wifi = createBinding(network, "wifi")
@@ -63,22 +122,30 @@ function Wireless() {
 }
 
 function Battery() {
-  const battery = AstalBattery.get_default()
+  const battery = AstalBattery.get_default();
 
   const percent = createBinding(
     battery,
     "percentage",
-  )((p) => `${Math.floor(p * 100)}%`)
+  )((p) => `${Math.floor(p * 100)}%`);
+
+  const icon = createBinding(battery, "icon-name");
+  const material = createBinding(battery, "icon-name")(convertAdwaitaIcon);
 
   return (
     <box>
-      {/*<image iconName={createBinding(battery, "iconName")} name="battery" />
-      <label label={percent} name="icon" />*/}
-      <label name="battery-icon" label="battery_android_question" />
-      <label label="Not implemented yet%" name="battery-percent" />
+      <label
+        name="battery-icon"
+        label={icon}
+      />
+      <label
+        name="roboto"
+        label={material}
+      />
     </box>
-  )
+  );
 }
+
 
 function Clock({ format = "%H:%M" }) {
   const time = createPoll("", 1000, () => {
