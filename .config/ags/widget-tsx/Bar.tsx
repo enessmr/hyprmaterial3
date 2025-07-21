@@ -4,7 +4,6 @@ import Astal from "gi://Astal?version=4.0"
 import Gtk from "gi://Gtk?version=4.0"
 import Gdk from "gi://Gdk?version=4.0"
 import AstalBattery from "gi://AstalBattery"
-import AstalPowerProfiles from "gi://AstalPowerProfiles"
 import AstalNetwork from "gi://AstalNetwork"
 import { For, With, createBinding } from "ags"
 import { createPoll } from "ags/time"
@@ -40,7 +39,7 @@ const adwaitaToMaterial: Record<string, string> = {
   "battery-low": "battery_2_bar",
   "battery-empty": "battery_alert",
   "battery-caution": "battery_unknown",
-  "battery-missing": "battery_unknown",
+  "battery-missing-symbolic": "battery_unknown",
 
   // Devices
   "computer": "devices",
@@ -136,11 +135,11 @@ function Battery() {
     <box>
       <label
         name="battery-icon"
-        label={icon}
+        label={material}
       />
       <label
         name="roboto"
-        label={material}
+        label={percent}
       />
     </box>
   );
