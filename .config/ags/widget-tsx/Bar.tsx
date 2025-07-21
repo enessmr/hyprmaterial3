@@ -33,12 +33,12 @@ const adwaitaToMaterial: Record<string, string> = {
   "network-offline": "wifi_off",
 
   // Power / Battery
-  "battery-full": "battery_full",
-  "battery-good": "battery_5_bar",
-  "battery-medium": "battery_4_bar",
-  "battery-low": "battery_2_bar",
-  "battery-empty": "battery_alert",
-  "battery-caution": "battery_unknown",
+  "battery-full-symbolic": "battery_full",
+  "battery-good-symbolic": "battery_5_bar",
+  "battery-medium-symbolic": "battery_4_bar",
+  "battery-low-symbolic": "battery_2_bar",
+  "battery-empty-symbolic": "battery_alert",
+  "battery-caution-symbolic": "battery_unknown",
   "battery-missing-symbolic": "battery_unknown",
 
   // Devices
