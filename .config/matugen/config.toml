@@ -4,6 +4,6 @@ arguments = ["query"]
 set = true
 
 [templates.waybar]
-input_path = "./templates/ags/colors.scss"
-output_path = "~/.config/ags/colors.scss"
+input_path = "./templates/waybar/ags/colors.scss"
+output_path = "~/.config/ags/styles/colors.scss"
 post_hook = "pkill -SIGUSR2 ags"
