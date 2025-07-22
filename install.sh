@@ -52,7 +52,7 @@ else
   exit 1
 fi
 
-echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps.txt,\nthen compile all the pkgs at the list here. Show it? BTW : then q is exit for less"
+echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps.txt,\nthen compile all the pkgs at the list here. Show it? BTW : + q is exit for less"
 show_deps
 echo -e "Thank you for checking,\nInstall now?"
 install_dots
