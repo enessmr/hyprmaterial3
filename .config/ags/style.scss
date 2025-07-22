@@ -61,9 +61,8 @@ window#bar {
   font-family: Roboto;
 }
 
-#battery-percent {
+.battery-percent {
   color: #FFF;
-  margin-left: 10px;
   margin-right: 10px;
 }
 
@@ -106,11 +105,11 @@ window#bar {
   color: #FFF;
 }
 
-#wifi-label {
+.wifi-label {
   margin-right: 10px;
 }
 
-#wifi-icon {
+.wifi-icon {
   margin-right: 10px;
 }
 
