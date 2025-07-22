@@ -18,3 +18,4 @@ astal4
 rofi
 brave
 Astal's EVERY component in lib folder of Astal source
+matugen

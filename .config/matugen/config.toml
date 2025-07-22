@@ -1,9 +1,14 @@
-[config.wallpaper]
-command = "swww"
-arguments = ["query"]
+[config]
+command = "sh"
+arguments = ["-c", "swww query | awk -F'image: ' '{print $2}'"]
 set = true
 
 [templates.waybar]
 input_path = "./templates/waybar/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
 post_hook = "pkill -SIGUSR2 ags"
+
+[templates.kitty]
+input_path = './templates/kitty/colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'pkill -SIGUSR1 kitty'
