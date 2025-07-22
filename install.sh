@@ -58,4 +58,4 @@ echo -e "Thank you for checking,\nInstall now?"
 install_dots
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?"
 set_los_wallpaper
-echo -e "Thank you for using my dotfiles!"
+echo -e "Done!"
