@@ -1,52 +1,43 @@
-// Matugen SCSS Template - Material Design 3 Dark Theme
-// Primary Colors
 $primary: #83d3e3;
-$on-primary: #00363e;
-$primary-container: #004e59;
-$on-primary-container: #a1efff;
+$onPrimary: #00363e;
+$primaryContainer: #004e59;
+$onPrimaryContainer: #a1efff;
 
-// Secondary Colors
 $secondary: #b1cbd1;
-$on-secondary: #1c3439;
-$secondary-container: #334a50;
-$on-secondary-container: #cde7ed;
+$onSecondary: #1c3439;
+$secondaryContainer: #334a50;
+$onSecondaryContainer: #cde7ed;
 
-// Tertiary Colors
 $tertiary: #bcc5eb;
-$on-tertiary: #262f4d;
-$tertiary-container: #3c4665;
-$on-tertiary-container: #dbe1ff;
+$onTertiary: #262f4d;
+$tertiaryContainer: #3c4665;
+$onTertiaryContainer: #dbe1ff;
 
-// Error Colors
 $error: #ffb4ab;
-$on-error: #690005;
-$error-container: #93000a;
-$on-error-container: #ffdad6;
+$onError: #690005;
+$errorContainer: #93000a;
+$onErrorContainer: #ffdad6;
 
-// Surface Colors
-$surface-dim: #0e1416;
+$surfaceDim: #0e1416;
 $surface: #0e1416;
-$surface-bright: #343a3c;
-$surface-container-lowest: #090f10;
-$surface-container-low: #171d1e;
-$surface-container: #1b2122;
-$surface-container-high: #252b2c;
-$surface-container-highest: #303637;
+$surfaceBright: #343a3c;
+$surfaceContainerLowest: #090f10;
+$surfaceContainerLow: #171d1e;
+$surfaceContainer: #1b2122;
+$surfaceContainerHigh: #252b2c;
+$surfaceContainerHighest: #303637;
 
-// Surface Variant & Background
-$surface-variant: #3f484a;
-$surface-tint: #83d3e3;
+$surfaceVariant: #3f484a;
+$surfaceTint: #83d3e3;
 $background: #0e1416;
-$on-background: #dee3e5;
-$on-surface: #dee3e5;
-$on-surface-variant: #bfc8ca;
+$onBackground: #dee3e5;
+$onSurface: #dee3e5;
+$onSurfaceVariant: #bfc8ca;
 
-// Inverse Colors
-$inverse-surface: #dee3e5;
-$inverse-on-surface: #2b3133;
-$inverse-primary: #006876;
+$inverseSurface: #dee3e5;
+$inverseOnSurface: #2b3133;
+$inversePrimary: #006876;
 
-// Fixed Colors
 $primary-fixed: #a1efff;
 $primary-fixed-dim: #83d3e3;
 $on-primary-fixed: #001f25;
@@ -62,13 +53,10 @@ $tertiary-fixed-dim: #bcc5eb;
 $on-tertiary-fixed: #101a37;
 $on-tertiary-fixed-variant: #3c4665;
 
-// Outline Colors
 $outline: #899295;
 $outline-variant: #3f484a;
 
-// Utility Colors
 $scrim: #000000;
 $shadow: #000000;
 
-// Source Color
 $source-color: #6fa8b4;
