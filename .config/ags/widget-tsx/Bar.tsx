@@ -95,11 +95,11 @@ function Wireless() {
           wifi && (
             <box>
               <label
-                name="material-symbols"
+                name="material-symbols wifi-icon"
                 label="wifi"
               />
               <label
-                name="roboto"
+                name="roboto wifi-label"
                 label="Not implemented yet% on signal strength"
               />
             </box>
@@ -138,7 +138,7 @@ function Battery() {
         label={material}
       />
       <label
-        name="roboto"
+        name="roboto battery-percent"
         label={percent}
       />
     </box>
