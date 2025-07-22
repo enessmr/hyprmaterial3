@@ -32,14 +32,14 @@ show_deps() {
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") ;; #cp -r ".config" "$HOME/" ;; # currently dummy.
+        "Yes") rm -rf .config/{ags,hypr,matugen,rofi} && cp -r ".config" "$HOME/" ;; # i did it
         "No") echo "Thank you for having a look." && exit 1;;
     esac
 }
 set_los_wallpaper() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") ;; # cp -r .wallpaper "$HOME/Pictures/.Wallpapers" && swww img $HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg ;; # currently dummy.
+        "Yes") cp -r .wallpaper "$HOME/Pictures/.Wallpapers" && swww img $HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg ;; # yay
         "No") echo -e "For the best experience,\nwe reccomend using the LOS wallpaper";;
     esac
 }
