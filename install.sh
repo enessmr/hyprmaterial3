@@ -32,7 +32,7 @@ show_deps() {
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") rm -rf .config/{ags,hypr,matugen,rofi} && cp -r ".config" "$HOME/" ;; # i did it
+        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi} && cp -r ".config" "$HOME/" ;; # i did it
         "No") echo "Thank you for having a look." && exit 1;;
     esac
 }
