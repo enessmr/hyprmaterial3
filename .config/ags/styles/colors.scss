@@ -1,33 +1,74 @@
-$primary: #ddb9f8;
-$onPrimary: #573a6f;
-$primaryContainer: #573a6f;
-$onPrimaryContainer: #f2daff;
-$secondary: #d1c1d9;
-$onSecondary: #372c3f;
-$secondaryContainer: #4e4256;
-$onSecondaryContainer: #eeddf6;
-$tertiary: #f3b7bc;
-$onTertiary: #4c2529;
-$tertiaryContainer: #663a3f;
-$onTertiaryContainer: #ffdadb;
+// Matugen SCSS Template - Material Design 3 Dark Theme
+// Primary Colors
+$primary: #83d3e3;
+$on-primary: #00363e;
+$primary-container: #004e59;
+$on-primary-container: #a1efff;
+
+// Secondary Colors
+$secondary: #b1cbd1;
+$on-secondary: #1c3439;
+$secondary-container: #334a50;
+$on-secondary-container: #cde7ed;
+
+// Tertiary Colors
+$tertiary: #bcc5eb;
+$on-tertiary: #262f4d;
+$tertiary-container: #3c4665;
+$on-tertiary-container: #dbe1ff;
+
+// Error Colors
 $error: #ffb4ab;
-$onError: #690005;
-$errorContainer: #93000a;
-$onErrorContainer: #ffdad6;
-$surfaceDim: #151217;
-$surface: #151217;
-$surfaceBright: #3c383e;
-$inverseSurface: #e8e0e8;
-$inverseOnSurface: #332f35;
-$surfaceContainerLowest: #100d12;
-$surfaceContainerLow: #1e1a20;
-$surfaceContainer: #221e24;
-$surfaceContainerHigh: #2d292e;
-$surfaceContainerHighest: #383339;
-$inversePrimary: #705289;
-$onSurface: #e8e0e8;
-$onSurfaceVariable: #cdc4ce;
-$outline: #968e98;
-$outlineVariant: #4b454d;
+$on-error: #690005;
+$error-container: #93000a;
+$on-error-container: #ffdad6;
+
+// Surface Colors
+$surface-dim: #0e1416;
+$surface: #0e1416;
+$surface-bright: #343a3c;
+$surface-container-lowest: #090f10;
+$surface-container-low: #171d1e;
+$surface-container: #1b2122;
+$surface-container-high: #252b2c;
+$surface-container-highest: #303637;
+
+// Surface Variant & Background
+$surface-variant: #3f484a;
+$surface-tint: #83d3e3;
+$background: #0e1416;
+$on-background: #dee3e5;
+$on-surface: #dee3e5;
+$on-surface-variant: #bfc8ca;
+
+// Inverse Colors
+$inverse-surface: #dee3e5;
+$inverse-on-surface: #2b3133;
+$inverse-primary: #006876;
+
+// Fixed Colors
+$primary-fixed: #a1efff;
+$primary-fixed-dim: #83d3e3;
+$on-primary-fixed: #001f25;
+$on-primary-fixed-variant: #004e59;
+
+$secondary-fixed: #cde7ed;
+$secondary-fixed-dim: #b1cbd1;
+$on-secondary-fixed: #051f23;
+$on-secondary-fixed-variant: #334a50;
+
+$tertiary-fixed: #dbe1ff;
+$tertiary-fixed-dim: #bcc5eb;
+$on-tertiary-fixed: #101a37;
+$on-tertiary-fixed-variant: #3c4665;
+
+// Outline Colors
+$outline: #899295;
+$outline-variant: #3f484a;
+
+// Utility Colors
 $scrim: #000000;
 $shadow: #000000;
+
+// Source Color
+$source-color: #6fa8b4;
