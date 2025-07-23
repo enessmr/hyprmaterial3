@@ -20,3 +20,4 @@ brave
 Astal's EVERY component in lib folder of Astal source
 matugen
 kitty
+cat-fetch
