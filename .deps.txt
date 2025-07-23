@@ -21,3 +21,6 @@ Astal's EVERY component in lib folder of Astal source
 matugen
 kitty
 pfetch-with-kitties
+Noto fonts
+Material Symbols fonts
+Noto Color Emoji
