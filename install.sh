@@ -12,7 +12,7 @@ fi
 echo "Does Gum work?"
 
 sudo chown root:root .deps.txt
-sudo chmod 555 .deps.txt
+sudo chmod 444 .deps.txt
 
 # some voids, i call it cuz im learn c :)
 gum_work_check() {
@@ -59,5 +59,6 @@ install_dots
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?"
 set_los_wallpaper
 ags &
-echo "PF_ASCII="Catppuccin"" >> ~/.bashrc
-echo -e "Done! (close the terminal and do a keybind to restart ags"
+echo -e 'PF_ASCII="Catppuccin"\npfetch' >> ~/.bashrc
+source ~/.bashrc
+echo -e "Done! (close the terminal and do a keybind to restart ags)"
