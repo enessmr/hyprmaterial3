@@ -6,6 +6,17 @@ labels: [
   "bug"
 ]
 body:
+  - type: checkboxes
+    attributes:
+      label: "Step 1. Before you submit"
+      description: "Hint: The 1st and 2nd checkbox is **not** forcely required as you may have failed to do so."
+      options:
+        - label: I've successfully updated to the latest version following the [guidance](https://end-4.github.io/dots-hyprland-wiki/en/ii-qs/01setup/#updating).
+          required: false # Nah not req
+        - label: I've successfully updated the system packages to the latest.
+          required: false # Idc
+        - label: I've ticked the checkboxes without reading their contents
+          required: false # Obviously
   - type: textarea
     id: description
     attributes:
