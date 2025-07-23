@@ -1,0 +1,11 @@
+configuration {
+  modes: [ window, drun, run, filebrowser, ssh ];
+}
+
+entry {
+    placeholder: "Type here";
+}
+
+@theme "android"
+
+/* Insert theme mods here */
