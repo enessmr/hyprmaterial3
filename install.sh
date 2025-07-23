@@ -4,7 +4,7 @@
 # WILL BASED ON AGSV2!!!!!!
 
 if [ $EUID -eq 0 ]; then
-    echo -e "FBI OPEN UP"
+    echo -e "FBI OPEN UP U AINT GOD"
     exit 1
 fi
 
@@ -32,7 +32,7 @@ show_deps() {
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi} && cp -r ".config" "$HOME/" ;; # i did it
+        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty} && cp -r ".config" "$HOME/" ;; # i did it
         "No") echo "Thank you for using my real dots!" && exit 1;;
     esac
 }
