@@ -41,6 +41,7 @@ body:
     attributes:
       label: "Screenshots"
       description: Add screenshots if you can.
+      value: ""
       render: bash
     validations:
       required: false
