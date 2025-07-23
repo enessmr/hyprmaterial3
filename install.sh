@@ -59,4 +59,5 @@ install_dots
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?"
 set_los_wallpaper
 ags &
+echo "PF_ASCII="Catppuccin"" >> ~/.bashrc
 echo -e "Done! (close the terminal and do a keybind to restart ags"
