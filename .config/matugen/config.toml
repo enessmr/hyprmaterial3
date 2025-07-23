@@ -10,5 +10,5 @@ post_hook = "pkill -SIGUSR1 ags"
 
 [templates.kitty]
 input_path = './templates/kitty/colors.conf'
-output_path = '~/.config/kitty/colors.conf'
-post_hook = 'pkill -SIGUSR1 kitty'
+output_path = '~/.config/kitty/themes/templates-matugen.conf'
+post_hook = 'kitty +kitten themes --reload-in=all templates-matugen && pkill -SIGUSR1 kitty'
