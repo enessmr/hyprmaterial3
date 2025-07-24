@@ -1,5 +1,5 @@
 configuration{
-    modi: "run,drun,window,filebrowser";
+    modi: "run,drun,window,filebrowser,emoji";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "alacritty";
@@ -10,8 +10,9 @@ configuration{
     display-drun: "   Apps ";
     display-run: "   Run ";
     display-window: " 󰕰  Window";
-    display-Network: " 󰤨  Network";
-    display-filebrowser: " 📁  File Browser ";
+    display-network: " 󰤨  Network";
+    display-filebrowser: "   File Browser ";
+    display-emoji: " 󰞅 Emoji ";
     sidebar-mode: true;
 }
 
