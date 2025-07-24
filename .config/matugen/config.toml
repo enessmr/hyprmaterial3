@@ -17,3 +17,12 @@ post_hook = 'kitty +kitten themes --reload-in=all templates-matugen && pkill -SI
 input_path = './templates/hyprland/colors.conf'
 output_path = '~/.config/hypr/hyprland/colors.conf'
 post_hook = 'hyprctl reload'
+
+[templates.gtk3]
+input_path = './templates/gtk/colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = './templates/gtk/colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
