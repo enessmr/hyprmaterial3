@@ -16,8 +16,13 @@ window {
 	fullscreen:       true;
 	background-color: #030E14  ;
 	padding:          4em;
-	children:         [ wrap, listview-split];
+	children:         [ mainbox ];
 	spacing:          1em;
+}
+
+mainbox {
+  spacing: 0px;
+  children: [wrap, listview-split, wrapper-mode-switcher];
 }
 
 
@@ -36,6 +41,37 @@ wrap {
 	border-color: lightblue;
 	border: 3px;
 	border-radius: 0.4em;
+}
+
+wrapper-mode-switcher {
+    orientation: horizontal;
+    expand:     false;
+    spacing:    0.5em;
+    children: [ mode-switcher ];
+    padding: 1em;
+    margin: 2em 4em 2em 4em;
+}
+
+mode-switcher {
+    border:  0px;
+    spacing: 0.5em;
+    expand: true;
+}
+
+button {
+    padding: 0.8em 1.5em;
+    border-radius: 0.8em;
+    background-color: transparent;
+    border-color: lightblue /15%;
+    border: 2px;
+    text-color: white;
+    margin: 0em 0.2em;
+}
+
+button selected {
+    border-color: lightblue;
+    border: 3px;
+    background-color: lightblue /10%;
 }
 
 icon-ib {
@@ -68,6 +104,7 @@ listview {
 	columns: 7;
 	lines: 5;
 	spacing: 1.0em;
+	margin: 2em 4em 2em 4em;
 }
 
 element {
