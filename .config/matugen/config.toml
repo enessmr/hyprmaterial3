@@ -12,3 +12,8 @@ post_hook = "pkill -SIGUSR1 ags"
 input_path = './templates/kitty/colors.conf'
 output_path = '~/.config/kitty/themes/templates-matugen.conf'
 post_hook = 'kitty +kitten themes --reload-in=all templates-matugen && pkill -SIGUSR1 kitty'
+
+[templates.hyprland]
+input_path = './templates/hyprland/colors.conf'
+output_path = '~/.config/hypr/hyprland/colors.conf'
+post_hook = 'hyprctl reload'
