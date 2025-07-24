@@ -16,6 +16,7 @@ astal-io
 astal3
 astal4
 rofi
+rofi-emoji
 brave
 Astal's EVERY component in lib folder of Astal source
 matugen
