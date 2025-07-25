@@ -47,3 +47,7 @@ output_path = '~/.config/fish/themes/Matugen.theme'
 [templates.starship]
 input_path = './templates/starship/colors.toml'
 output_path = '~/.config/starship.toml'
+
+[templates.material-discord]
+input_path = './templates/material-dc/theme.css'
+output_path = '~/.config/BetterDiscord/themes/Material-Discord.theme.css'
