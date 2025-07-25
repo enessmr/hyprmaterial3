@@ -30,3 +30,16 @@ output_path = '~/.config/gtk-4.0/colors.css'
 [templates.rofi]
 input_path = './templates/rofi/colors.rasi'
 output_path = '~/.config/rofi/colors.rasi'
+
+[templates.cava]
+input_path = './templates/cava/colors.ini'
+output_path = '~/.config/cava/themes/matugen'
+post_hook = "pkill -USR1 cava"
+
+[templates.vesktop]
+input_path = './templates/midnight-dc/midnight-dc.css'
+output_path = '~/.config/vesktop/themes/midnight-discord.css'
+
+[templates.fish]
+input_path = './templates/fish/fish_colors.theme'
+output_path = '~/.config/fish/themes/Matugen.theme'
