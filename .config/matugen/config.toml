@@ -43,3 +43,7 @@ output_path = '~/.config/vesktop/themes/midnight-discord.css'
 [templates.fish]
 input_path = './templates/fish/fish_colors.theme'
 output_path = '~/.config/fish/themes/Matugen.theme'
+
+[templates.starship]
+input_path = './templates/starship/colors.toml'
+output_path = '~/.config/starship.toml'
