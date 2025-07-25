@@ -55,3 +55,8 @@ output_path = '~/.config/BetterDiscord/themes/Material-Discord.theme.css'
 [templates.material-discord-2]
 input_path = './templates/material-dc/theme.css'
 output_path = '~/.config/vesktop/themes/Material-Discord.theme.css'
+
+[templates.pywalfox]
+input_path = './templates/pywalfox/colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
