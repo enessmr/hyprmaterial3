@@ -25,3 +25,9 @@ pfetch-with-kitties
 Noto fonts
 Material Symbols fonts
 Noto Color Emoji
+
+--- OPTIONAL ---
+
+Materialgram
+Discord (having it is reccomended due to matugen config making themes)
+Material forks of pkgs

@@ -12,7 +12,6 @@ app.start({
   main() {
     // Create bars per monitor (you probably do this already)
     app.get_monitors().forEach(monitor => new Bar(monitor));
-    execAsync("matugen image ~/Pictures/.Wallpapers/wallpaper.jpg")
     print("Loaded apps:", JSON.stringify(parseApps, null, 2));
   },
 });
