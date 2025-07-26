@@ -17,3 +17,5 @@ If matugen gives an error on pkill post hook dont worry  it may be not running
 
 
 if you get command not found dont worry if the pkg is in optional, AGS and wlogout and Discord (if u want so optional) and kitty and Hyprlock (handled at hyprland dir) and GTK MUST be themed
+
+GITLAB MIRROR TEST!!!!11!!!
