@@ -104,9 +104,10 @@ output_path = '~/.config/fuzzel/colors.ini'
 input_path = './templates/television/television.toml'
 output_path = '~/.config/television/themes/matugen.toml'
 
-[templates.helix]
-input_path = './templates/helix/helix.toml'
-output_path = '~/.config/helix/themes/matugen.toml'
+# helix has a theme problem
+# [templates.helix]
+# input_path = './templates/helix/helix.toml'
+# output_path = '~/.config/helix/themes/matugen.toml'
 
 [templates.btop]
 input_path = './templates/btop/btop.theme'
