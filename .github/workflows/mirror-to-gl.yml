@@ -14,5 +14,7 @@ jobs:
 
       - name: Push to GitLab
         run: |
-          git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/enessmr/hyprmaterial3.git
-          git push --mirror gitlab
+          git clone --mirror https://github.com/enessmr/hyprmaterial3.git
+          cd hyprmaterial3.git
+          git remote set-url --push origin https://gitlab.com/enessmr/hyprmaterial3.git
+          git push --mirror
