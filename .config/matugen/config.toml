@@ -60,3 +60,54 @@ output_path = '~/.config/vesktop/themes/Material-Discord.theme.css'
 input_path = './templates/pywalfox/colors.json'
 output_path = '~/.cache/wal/colors.json'
 post_hook = 'pywalfox update'
+
+# If you have sway
+[templates.sway]
+input_path = './templates/sway/colors.conf'
+output_path = '~/.config/sway/colors.conf'
+post_hook = 'swaymsg reload'
+
+[templates.wlogout]
+input_path = './templates/waybar/colors.css'
+output_path = '~/.config/wlogout/colors.css'
+
+[templates.dunst]
+input_path = './templates/dunst/colors-rc'
+output_path = '~/.config/dunst/dunstrc'
+post_hook = 'pkill -SIGUSR2 dunst
+
+[templates.qt5ct]
+input_path = './templates/qt/colors.conf'
+output_path = '~/.config/qt5ct/colors/matugen.conf'
+
+[templates.qt6ct]
+input_path = './templates/qt/colors.conf'
+output_path = '~/.config/qt6ct/colors/matugen.conf'
+
+[templates.alacritty]
+input_path = './templates/alacritty/colors.toml'
+output_path = '~/.config/alacritty/colors.toml'
+
+[templates.yazi]
+input_path = './templates/yazi/theme.toml'
+output_path = '~/.config/yazi/theme.toml'
+
+[templates.zathura]
+input_path = './templates/zathura/colors'
+output_path = '~/.config/zathura/zathurarc'
+
+[templates.fuzzel]
+input_path = './templates/fuzzel/colors.ini'
+output_path = '~/.config/fuzzel/colors.ini'
+
+[templates.television]
+input_path = './templates/television/television.toml'
+output_path = '~/.config/television/themes/matugen.toml'
+
+[templates.helix]
+input_path = './templates/helix/helix.toml'
+output_path = '~/.config/helix/themes/matugen.toml'
+
+[templates.btop]
+input_path = './templates/btop/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
