@@ -31,3 +31,13 @@ Noto Color Emoji
 Materialgram
 Discord (having it is reccomended due to matugen config making themes)
 Material forks of pkgs
+
+
+--- EXTREMELY OPTIONAL ---
+
+yt-music-desktop-bin
+
+
+
+--- DISCLAIMER ---
+I won't provide .sh scripts for installing. That will be later on this repo
