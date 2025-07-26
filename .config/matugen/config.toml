@@ -97,7 +97,7 @@ input_path = './templates/zathura/colors'
 output_path = '~/.config/zathura/zathurarc'
 
 [templates.fuzzel]
-input_path = './templates/fuzzel/colors.ini'
+input_path = './templates/fuzzel/fuzzel.ini'
 output_path = '~/.config/fuzzel/colors.ini'
 
 [templates.television]
