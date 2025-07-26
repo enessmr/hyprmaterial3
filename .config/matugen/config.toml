@@ -3,7 +3,7 @@ command = "sh"
 arguments = ["-c", "swww query | awk -F'image: ' '{print $2}'"]
 set = true
 
-[templates.waybar]
+[templates.ags]
 input_path = "./templates/waybar/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
 post_hook = "pkill -SIGUSR1 ags"
