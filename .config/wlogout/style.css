@@ -7,7 +7,7 @@ button {
   margin-right: 10px;         /* Space between buttons */
   min-width: 64px;          /* Material minimum touch target width */
   padding: 0 16px;          /* Horizontal padding */
-  border-radius: 48px;    /* Half the height for pill shape */
+  border-radius: 50px;    /* Half the height for pill shape */
   font-size: 14px;          /* Material default button font size */
   border: @outline_variant 1px solid; /* Outline variant border */
   color: @on_surface;       /* Text color */
