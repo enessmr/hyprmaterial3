@@ -3,6 +3,10 @@ command = "sh"
 arguments = ["-c", "swww query | awk -F'image: ' '{print $2}'"]
 set = true
 
+[config.custom_colors.yellow]
+color = "#FFFF00"
+blend = true
+
 [templates.ags]
 input_path = "./templates/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
@@ -104,10 +108,9 @@ output_path = '~/.config/fuzzel/colors.ini'
 input_path = './templates/television/television.toml'
 output_path = '~/.config/television/themes/matugen.toml'
 
-# helix has a theme problem
-# [templates.helix]
-# input_path = './templates/helix/helix.toml'
-# output_path = '~/.config/helix/themes/matugen.toml'
+[templates.helix]
+input_path = './templates/helix/helix.toml'
+output_path = '~/.config/helix/themes/matugen.toml'
 
 [templates.btop]
 input_path = './templates/btop/btop.theme'
