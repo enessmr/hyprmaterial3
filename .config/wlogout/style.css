@@ -14,6 +14,15 @@ button {
   text-shadow: none;
 }
 
+button:hover {
+  background: @surface_container_highest; /* Hover background */
+}
+
+button:active {
+  background: @primary; /* Hover + active background */
+  color: @surface_container_lowest;
+}
+
 window {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 }
