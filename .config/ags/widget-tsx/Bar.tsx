@@ -72,6 +72,18 @@ function Wireless() {
   const network = AstalNetwork.get_default()
   const wifi = createBinding(network, "wifi")
   const lan = createBinding(network, "wired")
+  const signalStrength = createBinding(network, "wifi")((wifi: AstalNetwork.Wifi | null) => {
+    if (!wifi) return "No Wi-Fi";
+
+    const bestAP = wifi.access_points?.reduce(
+      (a: AstalNetwork.AccessPoint, b: AstalNetwork.AccessPoint) =>
+        a.strength > b.strength ? a : b
+      );
+
+    return bestAP ? `${bestAP.ssid} (${bestAP.strength}%)` : "No APs";
+  });
+
+
 
   const sorted = (arr: Array<AstalNetwork.AccessPoint>) => {
     return arr.filter((ap) => !!ap.ssid).sort((a, b) => b.strength - a.strength)
