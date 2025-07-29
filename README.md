@@ -10,6 +10,19 @@ demo:
 https://github.com/user-attachments/assets/fdffb4be-59b6-495b-b470-0a410b44b3ca
 
 
+
+### How to install
+
+Install deps first!!!
+
+```bash
+git clone https://github.com/enessmr/hyprmaterial3.git
+cd hyprmaterial3
+./install.sh
+```
+
+# info
+
 If you use discord then install vesktop (for 2 themes) and betterdiscord (for materialdiscord) then select the theme so dont ask me these questions
 
 
