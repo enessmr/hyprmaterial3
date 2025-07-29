@@ -63,6 +63,7 @@ if ! command -v pfetch >/dev/null 2>&1; then
 fi
 read -p "Enter something: " userinput
 mkdir -p ~/.local/share/hyprmaterial3
+cp -r .local ~/
 echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt
 grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
 grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
