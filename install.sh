@@ -53,12 +53,12 @@ echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps
 show_deps
 echo -e "Thank you for checking,\nInstall now?"
 install_dots
-echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?"
+echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?\n"
 set_los_wallpaper
 ags run &
 if ! command -v pfetch >/dev/null 2>&1; then
-    echo "🖕 fuck you 🖕"
-    echo "🖕 🖕"
+    echo -e "🖕 fuck you 🖕\n"
+    echo -e "🖕 🖕\n"
     exit 1
 fi
 read -p "Enter something: " userinput
@@ -67,4 +67,4 @@ echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt
 grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
 grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
 source ~/.bashrc
-echo -e "Done! Please restart Hyprland."
+echo -e "Done! Please restart Hyprland.\n"
