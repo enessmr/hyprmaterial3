@@ -19,7 +19,7 @@
 {
     "label" : "reboot",
     "action" : "reboot",
-    "text" : "Restart",
+    "text" : "Reboot",
     "keybind" : "r"
 }
 {
