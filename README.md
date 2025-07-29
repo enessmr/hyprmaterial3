@@ -21,7 +21,7 @@ cd hyprmaterial3
 ./install.sh
 ```
 
-# info
+#### info
 
 If you use discord then install vesktop (for 2 themes) and betterdiscord (for materialdiscord) then select the theme so dont ask me these questions
 
@@ -32,3 +32,7 @@ If matugen gives an error on pkill post hook dont worry  it may be not running
 if you get command not found dont worry if the pkg is in optional, AGS and wlogout and Discord (if u want so optional) and kitty and Hyprlock (handled at hyprland dir) and GTK MUST be themed
 
 Ig i will use AGS only for bar... sorry :(
+
+## Technical Support
+
+email me to enessmr22@proton.me or open an issue
