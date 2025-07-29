@@ -61,4 +61,4 @@ set_los_wallpaper
 ags &
 echo -e 'PF_ASCII="Catppuccin"\npfetch' >> ~/.bashrc
 source ~/.bashrc
-echo -e "Done! (close the terminal and do a keybind to restart ags)"
+echo -e "Done! Please restart Hyprland."
