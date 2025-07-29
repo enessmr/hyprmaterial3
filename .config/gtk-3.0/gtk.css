@@ -249,3 +249,4 @@ switch:checked:hover {
 
 switch:checked:hover slider {
     background-color: @primaryContainer;
+}
