@@ -32,7 +32,7 @@ show_deps() {
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0} && cp -r ".config" "$HOME/" ;; # i did it
+        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout} && cp -r ".config" "$HOME/" ;; # i did it
         "No") echo "Thank you for using my real dots!" && exit 1;;
     esac
 }
