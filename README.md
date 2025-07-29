@@ -15,6 +15,8 @@ https://github.com/user-attachments/assets/fdffb4be-59b6-495b-b470-0a410b44b3ca
 
 Install deps first!!!
 
+Then dots!!!
+
 ```bash
 git clone https://github.com/enessmr/hyprmaterial3.git
 cd hyprmaterial3

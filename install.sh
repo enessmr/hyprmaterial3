@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# first script. Just dummy
-# WILL BASED ON AGSV2!!!!!!
-
 if [ $EUID -eq 0 ]; then
     echo -e "FBI OPEN UP U AINT GOD"
     exit 1
@@ -58,7 +55,16 @@ echo -e "Thank you for checking,\nInstall now?"
 install_dots
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?"
 set_los_wallpaper
-ags &
-echo -e 'PF_ASCII="Catppuccin"\npfetch' >> ~/.bashrc
+ags run &
+if ! command -v pfetch >/dev/null 2>&1; then
+    echo "🖕 fuck you 🖕"
+    echo "🖕 🖕"
+    exit 1
+fi
+read -p "Enter something: " userinput
+mkdir -p ~/.local/share/hyprmaterial3
+echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt
+grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
+grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
 source ~/.bashrc
 echo -e "Done! Please restart Hyprland."
