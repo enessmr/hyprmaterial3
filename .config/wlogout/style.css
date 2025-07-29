@@ -31,35 +31,43 @@ window {
 	margin: 10px;
 	border-radius: 20px;
 	background-image: image(url("icons/lock.png"));
+  background-repeat: no-repeat;
 }
 
 #logout {
 	margin: 10px;
 	border-radius: 20px;
 	background-image: image(url("icons/logout.png"));
+  background-repeat: no-repeat;
 }
 
 #suspend {
 	margin: 10px;
 	border-radius: 20px;
 	background-image: image(url("icons/suspend.png"));
+  background-repeat: no-repeat;
 }
 
 #hibernate {
 	margin: 10px;
 	border-radius: 20px;
 	background-image: image(url("icons/hibernate.png"));
+  background-repeat: no-repeat;
 }
 
 #shutdown {
 	margin: 10px;
 	border-radius: 20px;
-	background-image: image(url("icons/shutdown.png"));
+	background-image: image(url("icons/shutdown.svg"));
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #FFFFFF;
 }
 
 #reboot {
 	margin: 10px;
 	border-radius: 20px;
-	background-image: image(url("icons/reboot.png"));
+	background-image: image(url("icons/restart_alt.svg"));
   background-repeat: no-repeat;
 }
