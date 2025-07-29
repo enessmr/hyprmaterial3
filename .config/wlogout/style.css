@@ -30,29 +30,37 @@ window {
 #lock {
 	margin: 10px;
 	border-radius: 20px;
-	background-image: image(url("icons/lock.png"));
+	background-image: image(url("icons/lock.svg"));
+  background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 #logout {
 	margin: 10px;
 	border-radius: 20px;
-	background-image: image(url("icons/logout.png"));
+	background-image: image(url("icons/logout.svg"));
+  background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 #suspend {
 	margin: 10px;
 	border-radius: 20px;
-	background-image: image(url("icons/suspend.png"));
+	background-image: image(url("icons/suspend.svg"));
+  background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 #hibernate {
 	margin: 10px;
 	border-radius: 20px;
-	background-image: image(url("icons/hibernate.png"));
+	background-image: image(url("icons/hibernate.svg"));
+  background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 #shutdown {
@@ -69,5 +77,7 @@ window {
 	margin: 10px;
 	border-radius: 20px;
 	background-image: image(url("icons/restart_alt.svg"));
+  background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
 }
