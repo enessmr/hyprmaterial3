@@ -4,6 +4,11 @@ if [ $EUID -eq 0 ]; then
     echo -e "FBI OPEN UP U AINT GOD"
     exit 1
 fi
+if ! command -v pfetch >/dev/null 2>&1; then
+    echo -e "🖕 fuck you 🖕\n"
+    echo -e "🖕 🖕\n"
+    exit 1
+fi
 
 # Gum check
 echo "Does Gum work?"
@@ -40,6 +45,27 @@ set_los_wallpaper() {
         "No") echo -e "For the best experience,\nwe reccomend using the LOS wallpaper";;
     esac
 }
+want_to_install_bscode() {
+    choice=$(gum choose "Yes" "No")
+    case $choice in
+        "Yes") sudo ./installer/install-bscode.sh ;;
+        "No") exit 1 ;;
+    esac
+}
+want_to_install_vesktop() {
+    choice=$(gum choose "Yes" "No")
+    case $choice in
+        "Yes") sudo ./installer/install_vesktop.sh ;;
+        "No") exit 1 ;;
+    esac
+}
+want_to_install_ytmusic() {
+    choice=$(gum choose "Yes" "No")
+    case $choice in
+        "Yes") sudo ./installer/install-ytmusic.sh ;;
+        "No") exit 1 ;;
+    esac
+}
 gum_work_check
 
 if [ $? -eq 0 ]; then
@@ -55,10 +81,11 @@ echo -e "Thank you for checking,\nInstall now?"
 install_dots
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?\n"
 set_los_wallpaper
+echo -e "Want to install BSCode (aka VSCode)? (requires sudo btw)\n"
+want_to_install_bscode
+echo -e "Want to install a loaded SPAS 12 (I mean Vesktop)?\n"
+want_to_install_vesktop
+echo -e "Want to install a double propelled flamethrower (I mean YT Music. dont worry it has an adblocker)?\n"
+want_to_install_ytmusic
 ags run &
-if ! command -v pfetch >/dev/null 2>&1; then
-    echo -e "🖕 fuck you 🖕\n"
-    echo -e "🖕 🖕\n"
-    exit 1
-fi
 echo -e "Done! Please restart Hyprland.\n"
