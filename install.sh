@@ -34,7 +34,7 @@ gum_work_check() {
 show_deps() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") less .deps.txt ;;
+        "Yes") less .deps.txt && echo -e "Thank you for checking.\nInstall now?" ;;
         "No") echo -e "🖕 fuck you you stupid ni**a motherfucker loser lolll 🖕\n" ;;
     esac
 }
@@ -84,12 +84,17 @@ fi
 
 echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps.txt,\nthen compile all the pkgs at the list here. Show it? BTW : + q is exit for less"
 show_deps
-echo -e "Thank you for checking,\nInstall now?"
+trap '' SIGINT  # Disable Ctrl+C
 install_dots
 if [[ "$userinput" == *"loser"* ]]; then
     echo -e "\033[31mget uno reverse you loser fucking shitty asshole motherfucker.\033[0m"
+    sleep 2
+    echo -e "Fucking up now."
+    sleep 1
+    poweroff
     exit 1
 fi
+trap - SIGINT
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?\n"
 set_los_wallpaper
 echo -e "Want to install BSCode (aka VSCode)? (requires sudo btw)\n"
