@@ -35,6 +35,8 @@ if you get command not found dont worry if the pkg is in optional, AGS and wlogo
 
 Ig i will use AGS only for bar... sorry :(
 
+<h6>edit: i will use ags for notify too</h6>
+
 ## Technical Support
 
 open an issue
