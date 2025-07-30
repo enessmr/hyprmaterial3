@@ -87,10 +87,13 @@ show_deps
 trap '' SIGINT  # Disable Ctrl+C
 install_dots
 if [[ "$userinput" == *"loser"* ]]; then
-    echo -e "\033[31mget uno reverse you loser fucking shitty asshole motherfucker.\033[0m"
+    echo -e "\033[31mget uno reverse you loser fucking shitty asshole motherfucker.\033[0m\n"
     sleep 2
-    echo -e "Fucking up now."
-    sleep 1
+    echo -e "Fucking up now.\n"
+    sleep 10
+    echo -e "SIKE\n"
+    sleep 20
+    echo -e "GET SIKED AGAIN LOSERRRRRR\n"
     poweroff
     exit 1
 fi
