@@ -29,7 +29,7 @@ show_deps() {
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout} && cp -r ".config" "$HOME/" ;; # i did it
+        "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout} && cp -r ".config" "$HOME/" && read -p "Enter something: " userinput && mkdir -p ~/.local/share/hyprmaterial3 && cp -r .local ~/ && echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt && grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc && grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc && source ~/.bashrc ;; # i did it
         "No") echo "Thank you for using my real dots!" && exit 1;;
     esac
 }
@@ -61,11 +61,4 @@ if ! command -v pfetch >/dev/null 2>&1; then
     echo -e "🖕 🖕\n"
     exit 1
 fi
-read -p "Enter something: " userinput
-mkdir -p ~/.local/share/hyprmaterial3
-cp -r .local ~/
-echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt
-grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
-grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
-source ~/.bashrc
 echo -e "Done! Please restart Hyprland.\n"
