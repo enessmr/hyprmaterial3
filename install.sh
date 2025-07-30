@@ -94,6 +94,7 @@ if [[ "$userinput" == *"loser"* ]]; then
     echo -e "SIKE\n"
     sleep 20
     echo -e "GET SIKED AGAIN LOSERRRRRR\n"
+    sleep 0.5
     poweroff
     exit 1
 fi
