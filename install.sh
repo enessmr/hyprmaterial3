@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo -e "  _____ _____  ________   _________     ________ \n"
+echo -e " / ____|  __ \|  ____\ \ / /  __ \ \   / /  ____|\n"
+echo -e "| |  __| |__) | |__   \ V /| |__) \ \_/ /| |__   \n"
+echo -e "| | |_ |  _  /|  __|   > < |  ___/ \   / |  __|  \n"
+echo -e "| |__| | | \ \| |____ / . \| |      | |  | |____ \n"
+echo -e " \_____|_|  \_\______/_/ \_\_|      |_|  |______| - DeepSeek (ai will never take over the world)\n"
+
 if [ $EUID -eq 0 ]; then
     echo -e "FBI OPEN UP U AINT GOD"
     exit 1
