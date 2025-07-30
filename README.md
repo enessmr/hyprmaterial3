@@ -37,4 +37,5 @@ Ig i will use AGS only for bar... sorry :(
 
 ## Technical Support
 
-email me to enessmr22@proton.me or open an issue
+open an issue
+Dont have a GH account? Go f&%k yourself
