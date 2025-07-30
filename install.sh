@@ -28,7 +28,7 @@ show_deps() {
     choice=$(gum choose "Yes" "No")
     case $choice in
         "Yes") less .deps.txt ;;
-        "No") ;;
+        "No") echo -e "🖕 fuck you you stupid ni**a motherfucker loser lolll 🖕\n" ;;
     esac
 }
 install_dots() {
