@@ -42,4 +42,4 @@ Ig i will use AGS only for bar... sorry :(
 open an issue
 
 
-Dont have a GH account? Go f&%k yourself
+Dont have a GH account? then don't use these dots 😤
