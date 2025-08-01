@@ -1,3 +1,5 @@
+export {};
+
 declare const SRC: string
 
 declare module "inline:*" {
@@ -19,3 +21,11 @@ declare module "*.css" {
   const content: string
   export default content
 }
+
+declare global {
+  var userOptionsDefaults: any;
+  var userOptions: any;
+  function getString(key: string): string;
+}
+
+declare const imports: any;
