@@ -14,36 +14,42 @@ function getLanguageCode(): string {
     return langCode;
 }
 
-function loadLanguage(lang: string): void {
-    if (!translations[lang]) {
-        try {
-            let filePath = `~/.config/ags/i18n/locales/${lang}.json`;
-            filePath = filePath.replace(/^~/, GLib.get_home_dir());
-            let file = Gio.File.new_for_path(filePath);
-            let [success, contents] = file.load_contents(null);
-            if (success) {
-                let decoder = new TextDecoder('utf-8');
-                let jsonString = decoder.decode(contents);
-                translations[lang] = JSON.parse(jsonString);
-            }
-        } catch (error) {
-            if (Extra_logs || lang === "Default")
-                console.warn(`Failed to load language file, language code: ${lang}:\n`, error);
+function loadLanguageAsync(lang: string): Promise<void> {
+    return new Promise((resolve) => {
+        if (translations[lang]) {
+            // Already loaded
+            resolve();
             return;
         }
-    }
-    currentLanguage = currentLanguage || lang;
+
+        let filePath = `~/.config/ags/i18n/locales/${lang}.json`;
+        filePath = filePath.replace(/^~/, GLib.get_home_dir());
+        let file = Gio.File.new_for_path(filePath);
+
+        file.load_contents_async(null, (source, result) => {
+            try {
+                let [success, contents] = source.load_contents_finish(result);
+                if (success) {
+                    let decoder = new TextDecoder('utf-8');
+                    let jsonString = decoder.decode(contents);
+                    translations[lang] = JSON.parse(jsonString);
+                } else if (Extra_logs || lang === "Default") {
+                    console.warn(`Failed to load language file for ${lang}, success=false`);
+                }
+            } catch (error) {
+                if (Extra_logs || lang === "Default")
+                    console.warn(`Failed to load language file, language code: ${lang}:\n`, error);
+            }
+            resolve();
+        });
+    });
 }
 
-function init(): void {
-    try {
-        loadLanguage(currentLanguage);
-        if (Extra_logs)
-            console.log(getString("Initialization complete!") || "Initialization complete!");
-        loadLanguage("Default");
-    } catch (error) {
-        console.error('Failed to initialize default language:', error);
-    }
+async function init(): Promise<void> {
+    await loadLanguageAsync(currentLanguage);
+    if (Extra_logs)
+        console.log(getString("Initialization complete!") || "Initialization complete!");
+    await loadLanguageAsync("Default");
 }
 
 function getString(key: string): string {
