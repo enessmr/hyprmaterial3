@@ -11,7 +11,6 @@ globalThis['getString'] = getString
 app.start({
   css: style,
   main() {
-    // Create bars per monitor (you probably do this already)
     NotificationPopups()
     app.get_monitors().forEach(monitor => new Bar(monitor));
     print("Loaded apps:", JSON.stringify(parseApps, null, 2));
