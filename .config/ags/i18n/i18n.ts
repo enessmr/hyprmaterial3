@@ -14,7 +14,7 @@ function getLanguageCode(): string {
     return langCode;
 }
 
-function loadLanguageAsync(lang: string): Promise<void> {
+async function loadLanguageAsync(lang: string): Promise<void> {
     return new Promise((resolve) => {
         if (translations[lang]) {
             // Already loaded

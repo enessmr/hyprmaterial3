@@ -7,6 +7,8 @@
  * Copyright: enessmr
  */
 
+@import "../colors.rasi"
+
 * {
 	background-color: transparent;
 	text-color:       white;
@@ -14,7 +16,7 @@
 
 window {
 	fullscreen:       true;
-	background-color: #030E14  ;
+	background-color: @background  ;
 	padding:          4em;
 	children:         [ mainbox ];
 	spacing:          1em;

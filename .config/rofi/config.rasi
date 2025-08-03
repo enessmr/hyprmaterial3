@@ -1,3 +1,5 @@
+@import "colors.rasi"
+
 configuration{
     modi: "run,drun,window,filebrowser,emoji";
     icon-theme: "Oranchelo";

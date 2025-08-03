@@ -34,6 +34,7 @@
     outline-variant: {{colors.outline_variant.default.hex}};
     shadow: {{colors.shadow.default.hex}};
     scrim: {{colors.scrim.default.hex}};
+    background: {{colors.background.default.hex}};
     inverse-surface: {{colors.inverse_surface.default.hex}};
     inverse-on-surface: {{colors.inverse_on_surface.default.hex}};
     inverse-primary: {{colors.inverse_primary.default.hex}};
