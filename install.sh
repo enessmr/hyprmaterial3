@@ -1,12 +1,4 @@
 #!/bin/bash
-
-echo -e "  _____ _____  ________   _________     ________ "
-echo -e " / ____|  __ \|  ____\ \ / /  __ \ \   / /  ____|"
-echo -e "| |  __| |__) | |__   \ V /| |__) \ \_/ /| |__   "
-echo -e "| | |_ |  _  /|  __|   > < |  ___/ \   / |  __|  "
-echo -e "| |__| | | \ \| |____ / . \| |      | |  | |____ "
-echo -e " \_____|_|  \_\______/_/ \_\_|      |_|  |______| - DeepSeek (ai will never take over the world)\n"
-
 if [ $EUID -eq 0 ]; then
     echo -e "FBI OPEN UP U AINT GOD"
     exit 1
@@ -17,7 +9,7 @@ if ! command -v pfetch >/dev/null 2>&1; then
     exit 1
 fi
 
-zenity --warning --text="DON'T YOU EVEN DARE TYPE OFFENSIVE WORDS." --width=400 --height=100
+zenity --warning --text "If you know, you know." --width=400 --height=100
 
 # Gum check
 echo "Does Gum work?"
