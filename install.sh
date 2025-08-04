@@ -151,6 +151,13 @@ want_to_install_ytmusic() {
         "No") ;;
     esac
 }
+want_to_install_icon_theme() {
+    choice=$(gum choose "Yes" "No")
+    case $choice in
+        "Yes") git clone https://github.com/enessmr/hyprmaterial3-los-icon-theme.git -b canary extras-git/icon-theme && sudo extras-git/icon-theme/install.sh && gsettings set org.gnome.desktop.interface icon-theme 'hyprmaterial3-icon-theme' ;;
+        "No") echo -e "Fine." ;;
+    esac
+}
 
 echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps.txt,\nthen compile all the pkgs at the list here. Show it? BTW : + q is exit for less"
 show_deps
@@ -170,5 +177,8 @@ want_to_install_vesktop
 
 echo -e "Want to install a double propelled flamethrower (I mean YT Music. dont worry it has an adblocker)?\n"
 want_to_install_ytmusic
+
+echo -e "Want to install an Husqvarna 440 gas powered Chainsaw 40 CC 2.4 HP (I mean icon theme)"
+want_to_install_icon_theme
 
 echo -e "Done! Please restart Hyprland.\n"
