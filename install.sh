@@ -4,7 +4,7 @@ if [ $EUID -eq 0 ]; then
     exit 1
 fi
 if ! command -v pfetch >/dev/null 2>&1; then
-    echo -e "go away \n"
+    echo -e ":)\n"
     echo -e "\n"
     exit 1
 fi
