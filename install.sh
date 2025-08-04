@@ -178,7 +178,7 @@ want_to_install_vesktop
 echo -e "Want to install a double propelled flamethrower (I mean YT Music. dont worry it has an adblocker)?\n"
 want_to_install_ytmusic
 
-echo -e "Want to install an Husqvarna 440 gas powered Chainsaw 40 CC 2.4 HP (I mean icon theme)"
+echo -e "Want to install a Husqvarna 440 gas powered Chainsaw 40 CC 2.4 HP (I mean icon theme)"
 want_to_install_icon_theme
 
 echo -e "Done! Please restart Hyprland.\n"
