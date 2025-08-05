@@ -207,6 +207,8 @@ window#launcher {
   }
   button#list-contentbtn {
     background: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   button#list-contentbtn:hover {
     background: $secondaryContainer;
