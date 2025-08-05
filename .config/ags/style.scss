@@ -106,7 +106,7 @@ window.NotificationPopups {
 
 .Notification {
   border-radius: 13px;
-  background-color: $background;
+  background-color: $onSecondary;
   margin: 0.5rem 1rem 0.5rem 1rem;
   box-shadow: 2px 3px 8px 0 gtkalpha($shadow, 0.4);
   border: 1pt solid gtkalpha($onSurface, 0.03);
@@ -188,15 +188,10 @@ window.NotificationPopups {
 
     button {
       margin: 0 0.3rem;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
     }
+  }
+  #list-contentbtn {
+    background-color: $secondaryContainer;
   }
 }
 

@@ -63,7 +63,7 @@ export default function Notification({ notification: n }: NotificationProps) {
             halign={Gtk.Align.END}
             label={time(n.time)}
           />
-          <button onClicked={() => n.dismiss()}>
+          <button onClicked={() => n.dismiss()} name="close-btn">
             <image iconName="window-close-symbolic" />
           </button>
         </box>
