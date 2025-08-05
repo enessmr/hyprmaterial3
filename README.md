@@ -9,6 +9,9 @@ demo:
 
 https://github.com/user-attachments/assets/fdffb4be-59b6-495b-b470-0a410b44b3ca
 
+Pics:
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b576ed4f-002d-4385-aa25-cec71bc3a2e4" />
+Eyecandy colors.
 
 
 ### How to install
