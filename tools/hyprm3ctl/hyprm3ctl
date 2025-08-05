@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+cd "$SCRIPT_DIR"
+
+COMMIT_HASH=$(git -C ../../ rev-parse --short HEAD)
+
+show_help() {
+    cat <<EOF
+        Usage:
+         |
+         |
+         |-- -v              \\
+         |                   |
+         |   --version       |
+         |                   |
+         |   /v              |
+         |                   |
+         L__ /version        / show version
+EOF
+}
+
+case "$1" in
+    -v|--version|/v|/version)
+        COMMIT_HASH=$(git -C ../../ rev-parse --short HEAD)
+        echo "hyprmaterial3 cloned/pulled at commit $COMMIT_HASH"
+        exit 0
+        ;;
+esac
+
+if [ -z "$1" ]; then
+    show_help
+fi
+
