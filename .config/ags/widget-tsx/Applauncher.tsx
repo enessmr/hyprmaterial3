@@ -88,7 +88,7 @@ export default function Applauncher() {
         <box orientation={Gtk.Orientation.VERTICAL}>
           <For each={list}>
             {(app, index) => (
-              <button onClicked={() => launch(app)}>
+              <button onClicked={() => launch(app)} name="list-contentbtn">
                 <box>
                   <image iconName={app.iconName} />
                   <label label={app.name} maxWidthChars={40} wrap />

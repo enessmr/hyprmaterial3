@@ -205,9 +205,15 @@ window#launcher {
   color: $onSurface;
 
   box#launcher-content {
-    background: $background;
+    background: $onSecondary;
     min-width: 400px;
     border-radius: 12px;
     padding: 6px;
+  }
+  button#list-contentbtn {
+    background: none;
+  }
+  button#list-contentbtn:hover {
+    background: $secondaryContainer;
   }
 }

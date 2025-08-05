@@ -28,7 +28,7 @@ app.start({
     NotificationPopups()
     applauncher = Applauncher() as Gtk.Window
     app.add_window(applauncher)
-    applauncher.present()
+    applauncher.hide()
     app.get_monitors().forEach(monitor => new Bar(monitor));
     app.get_monitors().forEach(monitor => new applauncher(monitor));
     doEverythingAsVarAsync()
