@@ -198,12 +198,12 @@ window.NotificationPopups {
 window#launcher {
   background: transparent;
   color: $onSurface;
-
   box#launcher-content {
     background: $onSecondary;
     min-width: 400px;
+    min-height: 200px;
     border-radius: 12px;
-    padding: 6px;
+    padding: 6px; 
   }
   button#list-contentbtn {
     background: none;
