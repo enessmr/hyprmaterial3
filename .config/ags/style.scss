@@ -190,9 +190,6 @@ window.NotificationPopups {
       margin: 0 0.3rem;
     }
   }
-  #list-contentbtn {
-    background-color: $secondaryContainer;
-  }
 }
 
 window#launcher {
@@ -201,7 +198,6 @@ window#launcher {
   box#launcher-content {
     background: $onSecondary;
     min-width: 400px;
-    min-height: 200px;
     border-radius: 12px;
     padding: 6px; 
   }
