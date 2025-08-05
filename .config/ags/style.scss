@@ -41,6 +41,7 @@ window#bar {
 #clock {
   color: $onSurface;
   font-family: Roboto;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -81,6 +82,7 @@ window#bar {
 
 #roboto {
   font-family: Roboto;
+  font-size: 17px;
   font-weight: 600;
   color: $onSurface;
 }
@@ -195,5 +197,17 @@ window.NotificationPopups {
         margin-right: 0;
       }
     }
+  }
+}
+
+window#launcher {
+  background: transparent;
+  color: $onSurface;
+
+  box#launcher-content {
+    background: $background;
+    min-width: 400px;
+    border-radius: 12px;
+    padding: 6px;
   }
 }
