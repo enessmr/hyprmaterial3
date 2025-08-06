@@ -8,16 +8,11 @@ COMMIT_HASH=$(git -C ../../ rev-parse --short HEAD)
 
 show_help() {
     cat <<EOF
-        Usage:
-         |
-         |
-         |-- -v              \\
-         |                   |
-         |   --version       |
-         |                   |
-         |   /v              |
-         |                   |
-         L__ /version        / show version
+Usage:
+  $0 [options]
+
+Options:
+  -v, --version, /v, /version   Show version (Git commit hash)
 EOF
 }
 
