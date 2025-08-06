@@ -9,7 +9,7 @@ You will need to check with hyprm3ctl
 
 | Version | Supported          |
 | ------- | ------------------ |
-| the latest "bah bah 🕺" commit   | :white_check_mark: |
+| commit 1a53dbe   | :white_check_mark: |
 | Any other commit   | :x:                |
 
 ## Reporting a Vulnerability
