@@ -16,15 +16,19 @@ Options:
 EOF
 }
 
+if [ -z "$1" ]; then
+    show_help
+    exit 0
+fi
+
 case "$1" in
     -v|--version|/v|/version)
-        COMMIT_HASH=$(git -C ../../ rev-parse --short HEAD)
         echo "hyprmaterial3 cloned/pulled at commit $COMMIT_HASH"
         exit 0
         ;;
+    *)
+        echo "Unknown argument: $1"
+        show_help
+        exit 1
+        ;;
 esac
-
-if [ -z "$1" ]; then
-    show_help
-fi
-
