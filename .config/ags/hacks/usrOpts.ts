@@ -1,8 +1,4 @@
-import app from "ags/gtk4/app";
-import { exec } from "ags/process"
 import { readFile } from "ags/file"
-import { timeout } from "ags/time"
-import { fetch } from "ags/fetch"
 import { parseJSONC } from './parseConfig';
 const configDir = "/home/lfsuser/.config/ags";
 function overrideConfigRecursive(
