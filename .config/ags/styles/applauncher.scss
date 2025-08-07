@@ -1,0 +1,20 @@
+@use "colors" as *;
+
+window#launcher {
+  background: transparent;
+  color: $onSurface;
+  box#launcher-content {
+    background: $onSecondary;
+    min-width: 400px;
+    border-radius: 12px;
+    padding: 6px; 
+  }
+  button#list-contentbtn {
+    background: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  button#list-contentbtn:hover {
+    background: $secondaryContainer;
+  }
+}
