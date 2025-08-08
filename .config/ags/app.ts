@@ -1,12 +1,12 @@
 import app from "ags/gtk4/app";
 import style from "./style.scss";
-import NotificationPopups from "./widget-tsx/NotifyPopups"
-import Applauncher from "./widget-tsx/Applauncher"
+import NotificationPopups from "./widget-tsx/NotifyPopups";
+import Applauncher from "./widget-tsx/Applauncher";
 import Bar from "./widget-tsx/Bar";
 import { doOptionalAsVar, doEverythingAsVarAsync } from "./variable";
 import Var from "./variable";
-import GLib from "gi://GLib"
-import Gtk from "gi://Gtk?version=4.0"
+import GLib from "gi://GLib";
+import Gtk from "gi://Gtk?version=4.0";
 
 let applauncher: Gtk.Window
 
