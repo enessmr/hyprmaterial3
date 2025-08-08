@@ -194,17 +194,21 @@ button, combobox, entry {
     transition: all 0.2s ease-in-out;
 }
 
-
 switch {
-	border: 2px solid;
+    min-height: 28px; /* smaller track height */
     border-radius: 100px;
-    border-color: @outline;
+    border: 2px solid @outline;
     background-color: @surfaceContainerHighest;
+    padding: 0; /* reset padding */
 }
 
 switch slider {
-    border-radius: 100px;
+    min-width: 20px;  /* smaller handle width */
+    min-height: 20px; /* smaller handle height */
+    border-radius: 50%; /* perfect circle */
     background-color: @outline;
+    margin: 8px; /* adjust to center */
+    box-sizing: border-box;
 }
 
 switch:disabled {
