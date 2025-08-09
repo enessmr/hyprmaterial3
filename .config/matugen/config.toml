@@ -104,7 +104,3 @@ output_path = '~/.config/helix/themes/matugen.toml'
 [templates.btop]
 input_path = './templates/btop/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
-
-[templates.webcssyt]
-input_path = './templates/webcss/yt/yt.user.less'
-output_path = '~/.local/share/hyprmaterial3/webcss/yt/yt.user.less'
