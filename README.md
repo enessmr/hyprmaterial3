@@ -46,3 +46,7 @@ open an issue
 
 
 Dont have a GH account? then don't use these dots 😤
+
+
+
+> I got some code from [https://github.com/end-4](end-4), thanks to him.
