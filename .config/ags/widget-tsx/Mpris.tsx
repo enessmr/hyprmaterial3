@@ -18,13 +18,14 @@ function Mpris() {
       name="mprisbox"
       hexpand={false}
       vexpand={false}
+      widthRequest={250}
       valign={Gtk.Align.START}
     >
       <For each={players}>
         {(player) => (
           <box
             spacing={4}
-            widthRequest={200}
+            widthRequest={250}
             hexpand={false}
             vexpand={false}
             valign={Gtk.Align.START}
@@ -54,7 +55,7 @@ function Mpris() {
             >
               <button
                 name="pbbtns"
-                widthRequest={40}
+                widthRequest={44}
                 heightRequest={40}
                 hexpand={false}
                 vexpand={false}
@@ -67,7 +68,7 @@ function Mpris() {
               </button>
               <button
                 name="pbbtns"
-                widthRequest={40}
+                widthRequest={44}
                 heightRequest={40}
                 hexpand={false}
                 vexpand={false}
@@ -100,7 +101,7 @@ function Mpris() {
               </button>
               <button
                 name="pbbtns"
-                widthRequest={40}
+                widthRequest={44}
                 heightRequest={40}
                 hexpand={false}
                 vexpand={false}

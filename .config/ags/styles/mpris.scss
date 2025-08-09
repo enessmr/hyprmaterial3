@@ -1,8 +1,13 @@
+@use "colors" as *;
+
 #mpris {
     border-radius: 20px;
+    background-color: $onSecondary;
+    color: $onSurface;
 }
 
 #image {
+    margin-left: 4px;
     border-radius: 20px;
 }
 
@@ -10,6 +15,8 @@
   border-radius: 9999px;
   padding: 0;
   margin: 2px;
+  margin-right: 6px;
   min-width: 0;
   min-height: 0;
+  background: $secondaryContainer
 }
