@@ -2,6 +2,7 @@ import app from "ags/gtk4/app";
 import style from "./style.scss";
 import NotificationPopups from "./widget-tsx/NotifyPopups";
 import Applauncher from "./widget-tsx/Applauncher";
+import Mpris from "./widget-tsx/Mpris";
 import Bar from "./widget-tsx/Bar";
 import { doOptionalAsVar, doEverythingAsVarAsync } from "./variable";
 import Var from "./variable";
@@ -30,6 +31,7 @@ app.start({
     app.add_window(applauncher)
     applauncher.hide()
     app.get_monitors().forEach(monitor => new Bar(monitor));
+    app.get_monitors().forEach(monitor => new Mpris(monitor));
     app.get_monitors().forEach(monitor => new applauncher(monitor));
     doEverythingAsVarAsync()
     doOptionalAsVar()
