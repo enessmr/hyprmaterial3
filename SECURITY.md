@@ -9,8 +9,8 @@ You will need to check with hyprm3ctl
 
 | Version | Supported          |
 | ------- | ------------------ |
-| any new commit | :white_check_mark: |
-| commit 1a53dbe   | :white_check_mark: |
+| any newer commit than 0.0.0.0.0.2 | :white_check_mark: |
+| commit 1a53dbe   | :x: |
 | Any other commit   | :x:                |
 
 ## Reporting a Vulnerability
