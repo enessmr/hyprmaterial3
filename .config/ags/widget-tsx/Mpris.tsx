@@ -12,91 +12,125 @@ function Mpris() {
   const players = createBinding(mpris, "players")
 
   return (
-    <menubutton>
-      <box>
-        <For each={players}>
-          {(player) => {
-            const [app] = apps.exact_query(player.entry)
-            return <image visible={!!app.iconName} iconName={app?.iconName} />
-          }}
-        </For>
-      </box>
-      <popover>
-        <box spacing={4} orientation={Gtk.Orientation.VERTICAL}>
-          <For each={players}>
-            {(player) => (
-              <box spacing={4} widthRequest={200}>
-                <box overflow={Gtk.Overflow.HIDDEN} css="border-radius: 8px;">
-                  <image
-                    pixelSize={64}
-                    file={createBinding(player, "coverArt")}
-                  />
-                </box>
+    <box
+      spacing={4}
+      orientation={Gtk.Orientation.VERTICAL}
+      name="mprisbox"
+      hexpand={false}
+      vexpand={false}
+      valign={Gtk.Align.START}
+    >
+      <For each={players}>
+        {(player) => (
+          <box
+            spacing={4}
+            widthRequest={200}
+            hexpand={false}
+            vexpand={false}
+            valign={Gtk.Align.START}
+          >
+            <box overflow={Gtk.Overflow.HIDDEN} css="border-radius: 8px;">
+              <image
+                pixelSize={64}
+                file={createBinding(player, "coverArt")}
+                name="image"
+              />
+            </box>
+            <box
+              valign={Gtk.Align.CENTER}
+              orientation={Gtk.Orientation.VERTICAL}
+              hexpand={false}
+              vexpand={false}
+            >
+              <label xalign={0} label={createBinding(player, "title")} />
+              <label xalign={0} label={createBinding(player, "artist")} />
+            </box>
+            <box
+              hexpand={false}
+              vexpand={false}
+              halign={Gtk.Align.END}
+              valign={Gtk.Align.CENTER}
+              spacing={4}
+            >
+              <button
+                name="pbbtns"
+                widthRequest={40}
+                heightRequest={40}
+                hexpand={false}
+                vexpand={false}
+                valign={Gtk.Align.CENTER}
+                halign={Gtk.Align.CENTER}
+                onClicked={() => player.previous()}
+                visible={createBinding(player, "canGoPrevious")}
+              >
+                <image iconName="media-seek-backward-symbolic" />
+              </button>
+              <button
+                name="pbbtns"
+                widthRequest={40}
+                heightRequest={40}
+                hexpand={false}
+                vexpand={false}
+                valign={Gtk.Align.CENTER}
+                halign={Gtk.Align.CENTER}
+                onClicked={() => player.play_pause()}
+                visible={createBinding(player, "canControl")}
+              >
                 <box
-                  valign={Gtk.Align.CENTER}
-                  orientation={Gtk.Orientation.VERTICAL}
+                    css="
+                        margin-left: 11px;
+                        /*           ⬆ PERFECTLY MAKE IT IN THE CENTER AWAHAHAHAHA */
+                    "
                 >
-                  <label xalign={0} label={createBinding(player, "title")} />
-                  <label xalign={0} label={createBinding(player, "artist")} />
-                </box>
-                <box hexpand halign={Gtk.Align.END}>
-                  <button
-                    onClicked={() => player.previous()}
-                    visible={createBinding(player, "canGoPrevious")}
-                  >
-                    <image iconName="media-seek-backward-symbolic" />
-                  </button>
-                  <button
-                    onClicked={() => player.play_pause()}
-                    visible={createBinding(player, "canControl")}
-                  >
-                    <box>
-                      <image
+                    <image
                         iconName="media-playback-start-symbolic"
                         visible={createBinding(
-                          player,
-                          "playbackStatus",
+                            player,
+                            "playbackStatus",
                         )((s) => s === AstalMpris.PlaybackStatus.PLAYING)}
-                      />
-                      <image
+                    />
+                    <image
                         iconName="media-playback-pause-symbolic"
                         visible={createBinding(
-                          player,
-                          "playbackStatus",
+                            player,
+                            "playbackStatus",
                         )((s) => s !== AstalMpris.PlaybackStatus.PLAYING)}
-                      />
-                    </box>
-                  </button>
-                  <button
-                    onClicked={() => player.next()}
-                    visible={createBinding(player, "canGoNext")}
-                  >
-                    <image iconName="media-seek-forward-symbolic" />
-                  </button>
+                    />
                 </box>
-              </box>
-            )}
-          </For>
-        </box>
-      </popover>
-    </menubutton>
+              </button>
+              <button
+                name="pbbtns"
+                widthRequest={40}
+                heightRequest={40}
+                hexpand={false}
+                vexpand={false}
+                valign={Gtk.Align.CENTER}
+                halign={Gtk.Align.CENTER}
+                onClicked={() => player.next()}
+                visible={createBinding(player, "canGoNext")}
+              >
+                <image iconName="media-seek-forward-symbolic" />
+              </button>
+            </box>
+          </box>
+        )}
+      </For>
+    </box>
   )
 }
 
-
 export default function Bar(gdkmonitor: Gdk.Monitor) {
-  const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
+  const { TOP } = Astal.WindowAnchor
 
   return (
     <window
-      visible
       name="mpris"
       gdkmonitor={gdkmonitor}
-      exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      anchor={TOP | LEFT | RIGHT}
+      anchor={TOP}
       application={app}
+      layer={Astal.Layer.OVERLAY}
     >
-        <Mpris />
+      <Mpris />
     </window>
   )
 }
