@@ -94,5 +94,5 @@ Widget system: AGS | Support: Yes
     <h3></h3>
 </div>
 
- - Inspiration: end-4, Material Design 3, koeqaife
+ - Inspiration: end-4, Material Design 3, koeqaife, LineageOS
 
