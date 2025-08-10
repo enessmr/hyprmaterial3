@@ -12,7 +12,7 @@ Usage:
   $0 [options]
 
 Options:
-  -v, --version, /v, /version   Show version (Git commit hash)
+  -v, --version, /v, /version, v, version   Show version (Git commit hash)
 EOF
 }
 
@@ -22,7 +22,7 @@ if [ -z "$1" ]; then
 fi
 
 case "$1" in
-    -v|--version|/v|/version)
+    -v|--version|/v|/version|version|v)
         echo "hyprmaterial3 cloned/pulled at commit $COMMIT_HASH"
         exit 0
         ;;
