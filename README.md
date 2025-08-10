@@ -73,6 +73,7 @@ Widget system: AGS | Support: Yes
 
  - [@end-4](https://github.com/end-4) for i18n
  - [@koeqaife](https://github.com/koeqaife) for gum
+ - [@KSeeker5](https://github.com/KSeeker5) for providing SMO wallpapers
  - AGS: [Aylur's AGS examples](https://github.com/Aylur/ags/tree/main/examples/gtk4) for providing working TSX code
  - AI bots for... idk
 
