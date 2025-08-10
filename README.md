@@ -85,7 +85,7 @@ Widget system: AGS | Support: Yes
 
 - Funny useful number:
 
-[![Stargazers over time](https://starchart.cc/end-4/dots-hyprland.svg?variant=adaptive)](https://starchart.cc/end-4/dots-hyprland)
+[![Stargazers over time](https://starchart.cc/enessmr/hyprmaterial3.svg?variant=adaptive)](https://starchart.cc/end-4/dots-hyprland)
 
 
 
