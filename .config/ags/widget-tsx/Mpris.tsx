@@ -88,14 +88,14 @@ function Mpris() {
                         visible={createBinding(
                             player,
                             "playbackStatus",
-                        )((s) => s === AstalMpris.PlaybackStatus.PLAYING)}
+                        )((s) => s !== AstalMpris.PlaybackStatus.PLAYING)}
                     />
                     <image
                         iconName="media-playback-pause-symbolic"
                         visible={createBinding(
                             player,
                             "playbackStatus",
-                        )((s) => s !== AstalMpris.PlaybackStatus.PLAYING)}
+                        )((s) => s === AstalMpris.PlaybackStatus.PLAYING)}
                     />
                 </box>
               </button>
