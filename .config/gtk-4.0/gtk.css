@@ -203,8 +203,6 @@ switch slider {
     background: @outlineVariant;
     min-width: 16px;
     min-height: 16px;
-    max-width: 16px;
-    max-height: 16px;
     margin: 8px 6px;
     transition: all 200ms ease-out;
     box-sizing: border-box;
@@ -220,8 +218,6 @@ switch:hover slider {
     background-color: @onSurfaceVariant;
     min-width: 16px;
     min-height: 16px;
-    max-width: 16px;
-    max-height: 16px;
     margin: 8px 6px;
 }
 
@@ -235,8 +231,6 @@ switch:checked slider {
     background: @onSurface;
     min-width: 19px;
     min-height: 19px;
-    max-width: 19px;
-    max-height: 19px;
 }
 
 /* Icon for checked state (using Unicode checkmark) */
