@@ -43,8 +43,8 @@ function Mpris() {
               hexpand={false}
               vexpand={false}
             >
-              <label xalign={0} label={createBinding(player, "title")} />
-              <label xalign={0} label={createBinding(player, "artist")} />
+              <label xalign={0} label={createBinding(player, "title")} name="roboto" />
+              <label xalign={0} label={createBinding(player, "artist")} name="roboto" />
             </box>
             <box
               hexpand={false}
