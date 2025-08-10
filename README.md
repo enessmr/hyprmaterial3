@@ -96,4 +96,3 @@ Widget system: AGS | Support: Yes
 
  - Inspiration: end-4, Material Design 3, koeqaife
 
-> I got some code from <a href="https://github.com/end-4">end-4</a>, thanks to him.
