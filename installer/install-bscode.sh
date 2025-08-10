@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-pkgver="1.101.2"
+pkgver="1.103.0"
 _pkgname="visual-studio-code"
 pkgname="visual-studio-code-bin"
 install_dir="/opt/${_pkgname}"
