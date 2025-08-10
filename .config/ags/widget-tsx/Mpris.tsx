@@ -79,7 +79,7 @@ function Mpris() {
               >
                 <box
                     css="
-                        margin-left: 11px;
+                        margin-left: 10px;
                         /*           ⬆ PERFECTLY MAKE IT IN THE CENTER AWAHAHAHAHA */
                     "
                 >
