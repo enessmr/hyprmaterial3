@@ -205,7 +205,6 @@ switch slider {
     min-height: 16px;
     margin: 8px 6px;
     transition: all 200ms ease-out;
-    box-sizing: border-box;
 }
 
 /* Unchecked hover state */
@@ -233,19 +232,6 @@ switch:checked slider {
     min-height: 19px;
 }
 
-/* Icon for checked state (using Unicode checkmark) */
-switch:checked slider::before {
-    content: "✓";
-    color: @onSurface;
-    font-size: 12px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
 /* Checked hover state */
 switch:checked:hover {
     background-color: @primary;
@@ -253,10 +239,6 @@ switch:checked:hover {
 
 switch:checked:hover slider {
     background: @onSurface;
-}
-
-switch:checked:hover slider::before {
-    color: @onPrimaryContainer;
 }
 
 /* Disabled states */
@@ -277,8 +259,4 @@ switch:checked:disabled {
 
 switch:checked:disabled slider {
     background-color: mix(@surface, transparent, 0.38);
-}
-
-switch:checked:disabled slider::before {
-    color: transparent;
 }

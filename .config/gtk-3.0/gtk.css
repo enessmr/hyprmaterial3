@@ -1,5 +1,7 @@
 @import "colors.css";
-/* */
+
+/* Color definitions assumed from your colors.css */
+
 @define-color theme_fg_color #AEE5FA;
 @define-color theme_text_color #AEE5FA;
 @define-color theme_bg_color #1a1b26;
@@ -123,6 +125,8 @@
 @define-color sidebar_border_color @sidebar_bg_color;
 @define-color sidebar_backdrop_color @sidebar_bg_color;
 
+/* Styles */
+
 .navigation-sidebar {
     background-color: @sidebar_bg_color;
 }
@@ -157,24 +161,21 @@ tooltip {
     background-color: @surfaceContainer;
     color: @foreground;
     border-radius: 11px;
-    border: 0px solid;
+    border: none;
 }
 
 menu * {
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 menu separator {
     color: @outline;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding: 0px;
+    margin: 8px 0;
+    padding: 0;
 }
 
 menu {
-    padding: 8px 0px 8px 0px;
+    padding: 8px 0;
     background-color: @surfaceContainer;
 }
 
@@ -184,73 +185,78 @@ separator {
 
 button, combobox, entry {
     border-radius: 100px;
-    margin-left: 2px;
-    margin-right: 2px;
-    margin-bottom: 0px;
-}
-
-* {
+    margin: 0 2px 0 2px;
     box-shadow: none;
     transition: all 0.2s ease-in-out;
 }
 
 switch {
-    min-height: 28px; /* smaller track height */
-    border-radius: 100px;
     border: 2px solid @outline;
-    background-color: @surfaceContainerHighest;
-    padding: 0; /* reset padding */
+    border-radius: 100px;
+    /*background-color: @surfaceContainerHighest;*/
+    min-width: 52px;
+    min-height: 32px;
 }
 
 switch slider {
-    min-width: 20px;  /* smaller handle width */
-    min-height: 20px; /* smaller handle height */
-    border-radius: 50%; /* perfect circle */
-    background-color: @outline;
-    margin: 8px; /* adjust to center */
-    box-sizing: border-box;
+    border-radius: 50%;
+    background: @outlineVariant;
+    min-width: 16px;
+    min-height: 16px;
+    margin: 8px 6px;
+    transition: all 200ms ease-out;
 }
 
+/* Unchecked hover state */
+switch:hover {
+    /* background-color: mix(@surfaceContainerHighest, @onSurface, 0.08); */
+    background: @outline;
+}
+
+switch:hover slider {
+    background-color: @onSurfaceVariant;
+    min-width: 16px;
+    min-height: 16px;
+    margin: 8px 6px;
+}
+
+/* Checked state */
+switch:checked {
+    background-color: @primary;
+    border-color: @primary;
+}
+
+switch:checked slider {
+    background: @onSurface;
+    min-width: 19px;
+    min-height: 19px;
+}
+
+/* Checked hover state */
+switch:checked:hover {
+    background-color: @primary;
+}
+
+switch:checked:hover slider {
+    background: @onSurface;
+}
+
+/* Disabled states */
 switch:disabled {
-	background-color: mix(@surfaceContainerHighest, transparent, 0.38);
+    /* background-color: mix(@surfaceContainerHighest, transparent, 0.38); */
     border-color: mix(@onSurface, transparent, 0.38);
+    background-color: @outline;
 }
 
 switch:disabled slider {
     background-color: mix(@onSurface, transparent, 0.38);
 }
 
-switch:hover {
-    background-color: mix(@surfaceContainerHighest, @onSurface, 0.08);
-}
-
-switch:hover slider {
-    background-color: @onSurfaceVariant;
-}
-
-switch:checked {
-	background-color: @primary;
-    border-color: transparent;
-}
-
-switch:checked slider {
-    background-color: @onPrimary;
-    border-color: transparent;
-}
-
 switch:checked:disabled {
-	background-color: mix(@onSurface, transparent, 0.38);
+    background-color: mix(@onSurface, transparent, 0.38);
     border-color: transparent;
 }
 
 switch:checked:disabled slider {
     background-color: mix(@surface, transparent, 0.38);
-}
-
-switch:checked:hover {
-	background-color: @primary;
-}
-
-switch:checked:hover slider {
-    background-color: @primaryContainer;
 }
