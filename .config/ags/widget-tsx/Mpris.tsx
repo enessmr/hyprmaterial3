@@ -91,6 +91,7 @@ function Mpris() {
               >
                 <box
                     css="margin-left: 10px;"
+                    //                ⬆⬆ PERFECTLY MAKE IT IN THE CENTER AWAHAHAHAHA
                 >
                     <image
                         iconName="media-playback-start-symbolic"
@@ -127,7 +128,7 @@ function Mpris() {
   )
 }
 
-export default function Bar(gdkmonitor: Gdk.Monitor) {
+export default function MprisWindow(gdkmonitor: Gdk.Monitor) {
   const { TOP } = Astal.WindowAnchor
 
   return (

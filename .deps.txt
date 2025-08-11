@@ -25,6 +25,7 @@ pfetch-with-kitties
 Noto fonts
 Material Symbols fonts
 Noto Color Emoji
+Smile
 
 --- OPTIONAL ---
 
