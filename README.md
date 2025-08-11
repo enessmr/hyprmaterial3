@@ -60,7 +60,7 @@ _Note: **THERE IS NO FUCKING WAYBAR**_
 
 Widget system: AGS | Support: Yes
 
-[Showcase video](https://www.youtube.com/watch?v=RPwovTInagE)
+// [Showcase video](https://www.youtube.com/watch?v=RPwovTInagE)
 
 | MPRIS and notification + app launcher | 
 |:---|
