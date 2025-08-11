@@ -7,7 +7,7 @@
 
 ![](https://img.shields.io/github/last-commit/enessmr/hyprmaterial3?&style=for-the-badge&color=8ad7eb&logo=git&logoColor=D9E0EE&labelColor=1E202B)
 ![](https://img.shields.io/github/stars/enessmr/hyprmaterial3?style=for-the-badge&logo=andela&color=86dbd7&logoColor=D9E0EE&labelColor=1E202B)
-![](https://img.shields.io/github/repo-size/enessmr/hyprmaterial3?color=8ad7eb&label=SIZE&logo=protondrive&style=for-the-badge&logoColor=D9E0EE&labelColor=26230e)
+![](https://img.shields.io/github/repo-size/enessmr/hyprmaterial3?color=8ad7eb&label=SIZE&logo=protondrive&style=for-the-badge&logoColor=D9E0EE&labelColor=1E202B)
 </div>
 
 <div align="center">
