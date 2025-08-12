@@ -68,6 +68,10 @@ Widget system: AGS | Support: Yes
 |:---|
 | <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85d96f90-b4fa-4400-87b5-529b35e0c0ab" /> | 
 
+### hyprmaterial3<sup>QS</sup>
+
+Widget system: Quickshell | Support: Developing...
+
 <div align="center">
     <h2>• thank you •</h2>
     <h3></h3>
