@@ -48,6 +48,7 @@
 </details>
 
 _Note: **THERE IS NO FUCKING WAYBAR**_
+
 _Note 2: **YOU MUST READ CONTRIBUTING.MD IF QUICKSHELL**_
 
 
