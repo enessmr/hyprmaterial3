@@ -1,12 +1,12 @@
 import app from "ags/gtk4/app";
 import style from "./style.scss";
 import NotificationPopups from "./widget-tsx/NotifyPopups";
-import Applauncher from "./widget-tsx/Applauncher";
-import Mpris from "./widget-tsx/Mpris";
+// import Applauncher from "./widget-tsx/Applauncher";
+// import Mpris from "./widget-tsx/Mpris";
 // import Emoji from "./widget-tsx/Emoji";
-import Bar from "./widget-tsx/Bar";
-import { doOptionalAsVar, doEverythingAsVarAsync } from "./variable";
-import Var from "./variable";
+// import Bar from "./widget-tsx/Bar";
+// import { doOptionalAsVar, doEverythingAsVarAsync } from "./variable";
+// import Var from "./variable";
 import GLib from "gi://GLib";
 import Gtk from "gi://Gtk?version=4.0";
 
@@ -28,14 +28,14 @@ app.start({
   },
   main() {
     NotificationPopups()
-    applauncher = Applauncher() as Gtk.Window
-    app.add_window(applauncher)
-    applauncher.hide()
-    app.get_monitors().forEach(monitor => new Bar(monitor));
-    app.get_monitors().forEach(monitor => new Mpris(monitor));
-    //app.get_monitors().forEach(monitor => new Emoji(monitor));
-    app.get_monitors().forEach(monitor => new applauncher(monitor));
-    doEverythingAsVarAsync()
-    doOptionalAsVar()
+    // applauncher = Applauncher() as Gtk.Window
+    // app.add_window(applauncher)
+    // applauncher.hide()
+    // app.get_monitors().forEach(monitor => new Bar(monitor));
+    // app.get_monitors().forEach(monitor => new Mpris(monitor));
+    // app.get_monitors().forEach(monitor => new Emoji(monitor));
+    // app.get_monitors().forEach(monitor => new applauncher(monitor));
+    // doEverythingAsVarAsync()
+    // doOptionalAsVar()
   },
 });
