@@ -14,7 +14,7 @@ let applauncher: Gtk.Window
 
 app.start({
   css: style,
-  requestHandler(request, res) {
+  /* requestHandler(request, res) {
     const [, argv] = GLib.shell_parse_argv(request)
     if (!argv) return res("argv parse error")
 
@@ -25,7 +25,7 @@ app.start({
       default:
         return res("unknown command")
     }
-  },
+  }, */
   main() {
     NotificationPopups()
     // applauncher = Applauncher() as Gtk.Window
