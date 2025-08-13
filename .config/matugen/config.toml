@@ -12,6 +12,11 @@ input_path = "./templates/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
 post_hook = "pkill -SIGUSR1 ags"
 
+[templates.quickshell]
+input_path = "./templates/quickshell/colors.qss"
+output_path = "~/.config/quickshell/styles/colors.qss"
+post_hook = "pkill quickshell && quickshell &"
+
 [templates.kitty]
 input_path = './templates/kitty/colors.conf'
 output_path = '~/.config/kitty/themes/templates-matugen.conf'

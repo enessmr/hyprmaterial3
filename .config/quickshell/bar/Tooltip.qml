@@ -163,8 +163,14 @@ Scope {
 				// bkg
 				BarWidgetInner {
 					anchors.fill: parent
-					color: ShellGlobals.colors.bar
+					color: Qt.rgba(
+    					ShellGlobals.colors.bar.r * 0.8,  // 20% darker
+    					ShellGlobals.colors.bar.g * 0.8,
+    					ShellGlobals.colors.bar.b * 0.8,
+    					1.0  // fully opaque
+					)
 				}
+
 
 				readonly property var targetWidth: shownItem?.implicitWidth ?? 0;
 				readonly property var targetHeight: shownItem?.implicitHeight ?? 0;
