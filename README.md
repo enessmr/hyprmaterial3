@@ -101,4 +101,4 @@ Widget system: Quickshell | Support: Developing...
     <h3></h3>
 </div>
 
- - Inspiration: end-4, Material Design 3, koeqaife, [LineageOS](https://github.com/LineageOS), [AOSP (kinda)](https://github.com/aosp-mirror)
+ - Inspiration: end-4, Material Design 3, koeqaife, [LineageOS](https://github.com/LineageOS)
