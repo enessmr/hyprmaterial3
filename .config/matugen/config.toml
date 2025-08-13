@@ -13,9 +13,8 @@ output_path = "~/.config/ags/styles/colors.scss"
 post_hook = "pkill -SIGUSR1 ags"
 
 [templates.quickshell]
-input_path = "./templates/quickshell/colors.qss"
-output_path = "~/.config/quickshell/styles/colors.qss"
-post_hook = "pkill quickshell && quickshell &"
+input_path = "./templates/quickshell/colors.js"
+output_path = "~/.config/quickshell/resources/colors.js"
 
 [templates.kitty]
 input_path = './templates/kitty/colors.conf'

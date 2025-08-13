@@ -11,6 +11,9 @@ import "lock" as Lock
 import "notifications" as Notifs
 import "launcher" as Launcher
 import "background"
+import "resources/colors.js" as Palette
+import "resources/components/DialogService.js" as DialogService
+import "views/Shell.qml" as AppShell
 
 ShellRoot {
 	Component.onCompleted: [Lock.Controller, Launcher.Controller.init()]
