@@ -7,10 +7,9 @@ import NotificationPopups from "./widget-tsx/NotifyPopups";
 // import Bar from "./widget-tsx/Bar";
 // import { doOptionalAsVar, doEverythingAsVarAsync } from "./variable";
 // import Var from "./variable";
-import GLib from "gi://GLib";
-import Gtk from "gi://Gtk?version=4.0";
+// import Gtk from "gi://Gtk?version=4.0";
 
-let applauncher: Gtk.Window
+// let applauncher: Gtk.Window
 
 app.start({
   css: style,
