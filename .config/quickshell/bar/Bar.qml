@@ -43,12 +43,12 @@ BarContainment {
 					}
 				}
 
-				Workspaces {
+				/* Workspaces {
 					bar: root
 					Layout.fillWidth: true
 					wsBaseIndex: root.screen.name == "eDP-1" ? 11 : 1;
 					hideWhenEmpty: root.isSoleBar
-				}
+				} */
 			}
 		}
 	}
