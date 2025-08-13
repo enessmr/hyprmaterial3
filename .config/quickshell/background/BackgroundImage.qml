@@ -12,8 +12,10 @@ Item {
 	readonly property real remainingSize: image.sourceSize.height - root.height
 
 	Image {
-		id: image
-		source: Qt.resolvedUrl((screen?.name == "DP-1" ?? false) ? "5120x1728.png" : "1920x1296.png")
-		y: -(root.slideAmount * root.remainingSize)
+    	id: image
+    	source: Qt.resolvedUrl("pics-default-mod/wallpaper.jpg")
+    	fillMode: Image.PreserveAspectCrop
+    	anchors.fill: parent
+    	asynchronous: true
 	}
 }

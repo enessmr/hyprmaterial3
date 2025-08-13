@@ -1,4 +1,4 @@
-agsv2
+Quickshell
 cairo
 pango
 hyprland
@@ -6,6 +6,7 @@ hyprlock
 hypridle
 gtk4
 gtk3
+qt
 swww
 rustc
 cargo
