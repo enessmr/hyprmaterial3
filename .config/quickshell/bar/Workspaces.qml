@@ -1,32 +1,32 @@
-pragma ComponentBehavior: Bound;
-
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import qs
 import qs.bar
-import "../resources/components/actions"
+import "../resources/colors.js" as Pallete
 
 FullwidthMouseArea {
     id: root
+
     required property var bar;
     required property int wsBaseIndex;
     property int wsCount: 10;
     property bool hideWhenEmpty: false;
+    property bool alwaysShowNumbers: false;
+    property bool showNumbers: false;
+    property bool showAppIcons: false;
 
     implicitHeight: column.implicitHeight + 10;
+    fillWindowWidth: true;
+    acceptedButtons: Qt.NoButton;
 
-    fillWindowWidth: true
-    acceptedButtons: Qt.NoButton
-
-    property int scrollAccumulator: 0
-
+    property int scrollAccumulator: 0;
     onWheel: event => {
         event.accepted = true;
         let acc = scrollAccumulator - event.angleDelta.y;
         const sign = Math.sign(acc);
         acc = Math.abs(acc);
-
         const offset = sign * Math.floor(acc / 120);
         scrollAccumulator = sign * (acc % 120);
 
@@ -40,7 +40,6 @@ FullwidthMouseArea {
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen);
     property int currentIndex: 0;
     property int existsCount: 0;
-    /* visible: !hideWhenEmpty || existsCount > 0; */
 
     signal workspaceAdded(workspace: HyprlandWorkspace);
 
@@ -60,14 +59,15 @@ FullwidthMouseArea {
                 id: wsItem
                 onPressed: Hyprland.dispatch(`workspace ${wsIndex}`);
 
-                Layout.fillWidth: true
-                implicitHeight: 32 // IconButton-friendly height
+                Layout.fillWidth: true;
+                implicitHeight: 32;
 
                 required property int index;
                 property int wsIndex: root.wsBaseIndex + index;
                 property HyprlandWorkspace workspace: null;
-                property bool exists: workspace != null;
-                property bool active: workspace?.active ?? false
+                property bool exists: workspace !== null;
+                property bool active: workspace?.active ?? false;
+                property bool hasWindows: (workspace?.windows?.length > 0);
 
                 onActiveChanged: {
                     if (active) root.currentIndex = wsIndex;
@@ -79,29 +79,100 @@ FullwidthMouseArea {
 
                 Connections {
                     target: root
-
-                    function onWorkspaceAdded(workspace: HyprlandWorkspace) {
-                        if (workspace.id == wsItem.wsIndex) {
+                    function onWorkspaceAdded(workspace) {
+                        if (workspace.id === wsItem.wsIndex) {
                             wsItem.workspace = workspace;
                         }
                     }
                 }
 
-                property real animActive: active ? 1 : 0
-                Behavior on animActive { NumberAnimation { duration: 150 } }
+                property real animActive: active ? 1 : 0;
+                Behavior on animActive {
+                    NumberAnimation { duration: 150 }
+                }
 
-                property real animExists: exists ? 1 : 0
-                Behavior on animExists { NumberAnimation { duration: 100 } }
+                property real animExists: exists ? 1 : 0;
+                Behavior on animExists {
+                    NumberAnimation { duration: 100 }
+                }
 
-                // <<< IconButton replacing the rectangle >>>
-                IconButton {
+                Item {
+                    id: button
                     anchors.centerIn: parent
                     width: 24
                     height: 24
-                    iconSource: active ? "qrc:/icons/ws-active.png" : "qrc:/icons/ws-inactive.png"
-                    scale: 1 + wsItem.animActive * 0.3
-                    property bool hoverEnabled: mouseArea.hoverEnabled
-                    onClicked: Hyprland.dispatch(`workspace ${wsIndex}`)
+
+                    // Background circle
+                    Rectangle {
+                        id: bg
+                        anchors.fill: parent
+                        radius: width / 2
+                        color: wsItem.active ? Pallete.palette().primary : Pallete.palette().surface
+                        opacity: 1
+                        antialiasing: true
+                    }
+
+                    // Dot for occupied workspaces
+                    Rectangle {
+                        id: wsDot
+                        anchors.centerIn: parent
+                        width: parent.width * 0.18
+                        height: width
+                        radius: width / 2
+
+                        // Show dot only if workspace has windows and numbers/icons are not shown
+                        opacity: (!root.alwaysShowNumbers && !root.showNumbers && wsItem.hasWindows && !root.showAppIcons) ? 1 : 0
+                        visible: opacity > 0
+
+                        color: wsItem.active ? Pallete.palette().onPrimary :
+                               Pallete.palette().onSecondaryContainer
+
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 150
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+                    }
+
+                    // Number for workspaces when showing numbers or when workspace is empty
+                    Text {
+                        id: numberText
+                        anchors.centerIn: parent
+                        text: wsIndex
+                        color: wsItem.active ? Pallete.palette().onPrimary : Pallete.palette().onSurface
+
+                        // Show number if numbers are forced/shown or workspace is empty
+                        opacity: (root.alwaysShowNumbers || root.showNumbers || !wsItem.hasWindows) ? 1 : 0
+
+                        font.pixelSize: 12
+                        font.bold: true
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 150
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+                    }
+
+                    // Hover/press effect
+                    Rectangle {
+                        anchors.fill: bg
+                        radius: bg.radius
+                        color: Pallete.palette().onSurface
+                        opacity: wsItem.containsPress ? 0.14 : (wsItem.containsMouse ? 0.06 : 0.0)
+                        visible: true
+
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 110
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -109,7 +180,6 @@ FullwidthMouseArea {
 
     Connections {
         target: Hyprland.workspaces
-
         function onObjectInsertedPost(workspace) {
             root.workspaceAdded(workspace);
         }
