@@ -112,7 +112,7 @@ FullwidthMouseArea {
                         antialiasing: true
                     }
 
-                    // Dot for occupied workspaces
+                    // Dot for all workspaces - always visible
                     Rectangle {
                         id: wsDot
                         anchors.centerIn: parent
@@ -120,12 +120,12 @@ FullwidthMouseArea {
                         height: width
                         radius: width / 2
 
-                        // Show dot only if workspace has windows and numbers/icons are not shown
-                        opacity: (!root.alwaysShowNumbers && !root.showNumbers && wsItem.hasWindows && !root.showAppIcons) ? 1 : 0
-                        visible: opacity > 0
+                        // Always visible and fully opaque for every workspace
+                        opacity: 1
+                        visible: true
 
-                        color: wsItem.active ? Pallete.palette().onPrimary :
-                               Pallete.palette().onSecondaryContainer
+                        // Color changes based on active workspace status
+                        color: wsItem.active ? Pallete.palette().onPrimary : Pallete.palette().onSecondaryContainer
 
                         Behavior on opacity {
                             NumberAnimation {
@@ -135,27 +135,17 @@ FullwidthMouseArea {
                         }
                     }
 
-                    // Number for workspaces when showing numbers or when workspace is empty
+                    // Number text hidden (opacity=0)
                     Text {
                         id: numberText
                         anchors.centerIn: parent
                         text: wsIndex
                         color: wsItem.active ? Pallete.palette().onPrimary : Pallete.palette().onSurface
-
-                        // Show number if numbers are forced/shown or workspace is empty
-                        opacity: (root.alwaysShowNumbers || root.showNumbers || !wsItem.hasWindows) ? 1 : 0
-
+                        opacity: 0
                         font.pixelSize: 12
                         font.bold: true
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-
-                        Behavior on opacity {
-                            NumberAnimation {
-                                duration: 150
-                                easing.type: Easing.InOutQuad
-                            }
-                        }
                     }
 
                     // Hover/press effect
@@ -179,7 +169,7 @@ FullwidthMouseArea {
     }
 
     Connections {
-        target: Hyprland.workspaces
+        target: Hyprland.workspaces;
         function onObjectInsertedPost(workspace) {
             root.workspaceAdded(workspace);
         }
@@ -187,7 +177,7 @@ FullwidthMouseArea {
 
     Component.onCompleted: {
         Hyprland.workspaces.values.forEach(workspace => {
-            root.workspaceAdded(workspace)
+            root.workspaceAdded(workspace);
         });
     }
 }
