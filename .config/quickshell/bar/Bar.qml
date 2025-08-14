@@ -9,6 +9,7 @@ import qs.bar.mpris as Mpris
 import qs.bar.connections as Connections
 import qs.bar.power as Power
 import qs.notifications as Notifs
+// import "../resources/components/layout"
 
 BarContainment {
 	id: root
@@ -75,15 +76,22 @@ BarContainment {
 			Layout.fillWidth: true
 		}
 
-		Connections.Connections {
-			bar: root
-			Layout.fillWidth: true
-		}
+		//CardBar {
+		//	implicitHeight: 100;
+		//	implicitWidth: 45
 
-		Power.Power {
-			bar: root
-			Layout.fillWidth: true
-		}
+		//	ColumnLayout {
+				Connections.Connections {
+					bar: root
+					Layout.fillWidth: true
+				}
+
+				Power.Power {
+					bar: root
+					Layout.fillWidth: true
+				}
+		//	}
+		// }
 
 		ClockWidget {
 			bar: root
