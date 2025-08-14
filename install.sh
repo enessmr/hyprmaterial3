@@ -100,7 +100,7 @@ install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
         "Yes")
-            rm -rf ~/.config/{ags,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout}
+            rm -rf ~/.config/{quickshell,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout}
             cp -r ".config" "$HOME/"
             mkdir -p ~/.local/share/hyprmaterial3
             cp -r .local ~/
