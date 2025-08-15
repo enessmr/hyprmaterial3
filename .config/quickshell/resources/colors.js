@@ -142,3 +142,5 @@ function isDarkMode() { return isDark; }
 // Optional direct tokens (static snapshot at load)
 var primary = palette().primary;
 var onPrimary = palette().onPrimary;
+var error = palette().error;
+var onError = palette().onError;

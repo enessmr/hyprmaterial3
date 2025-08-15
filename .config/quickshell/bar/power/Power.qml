@@ -7,6 +7,7 @@ import Quickshell.Widgets
 import qs
 import qs.bar
 import qs.components
+import "../../resources/colors.js" as Pallete
 
 BarWidgetInner {
 	id: root
@@ -29,7 +30,12 @@ BarWidgetInner {
 	property bool showMenu: false;
 
 	implicitHeight: width
-	color: isLow ? "#45ff6060" : ShellGlobals.colors.widget
+	color: isLow ? Pallete.palette().onError : ShellGlobals.colors.widget
+
+	// color: "transparent"    // no background
+    border.width: 0         // no border
+
+	radius: 9999
 
 	BarButton {
 		id: button
