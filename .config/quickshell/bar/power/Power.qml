@@ -103,7 +103,6 @@ BarWidgetInner {
 					IconImage {
 						source: "root:icons/gauge.svg"
 						implicitSize: 32
-						color: Pallete.palette().onSurface
 					}
 
 					ColumnLayout {
