@@ -34,6 +34,7 @@ BarWidgetInner {
    			Layout.alignment: Qt.AlignHCenter
    			text: Qt.formatDateTime(clock.date, "hh\nmm")
    			font.pointSize: 18
+			font.family: "Roboto"       // font family
    			color: "white"
    		}
    	}
