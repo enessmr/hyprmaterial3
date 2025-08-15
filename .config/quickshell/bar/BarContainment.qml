@@ -4,6 +4,7 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs
 import qs.lock as Lock
+import "../resources/colors.js" as Pallete
 
 PanelWindow {
 	id: root
@@ -64,10 +65,10 @@ PanelWindow {
 			margins: root.compactState * 10
 		}
 
-		color: ShellGlobals.colors.bar
+		color: Pallete.palette().background
 		radius: root.compactState * 5
 		border.color: ShellGlobals.colors.barOutline
-		border.width: root.compactState
+		border.width: 0
 
 		Item {
 			id: containment
