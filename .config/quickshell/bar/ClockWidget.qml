@@ -7,6 +7,10 @@ import qs
 BarWidgetInner {
 	id: root
 	required property var bar;
+    height: 57
+	radius: 2 * root.radius
+    color: "transparent"   // removes background
+    border.width: 0        // removes border
 
 	implicitHeight: layout.implicitHeight
 
@@ -15,15 +19,16 @@ BarWidgetInner {
 		precision: tooltip.visible ? SystemClock.Seconds : SystemClock.Minutes;
 	}
 
-	BarButton {
+	/* BarButton {
 		id: button
 		anchors.fill: parent
 		fillWindowWidth: true
-		acceptedButtons: Qt.NoButton
+		acceptedButtons: Qt.NoButton */
 
    	ColumnLayout {
-   		id: layout
+   		// id: layout
    		spacing: 0
+		Layout.bottomMargin: 10
 
    		anchors {
    			right: parent.right
@@ -38,7 +43,7 @@ BarWidgetInner {
    			color: "white"
    		}
    	}
-	}
+	// }
 
 	property TooltipItem tooltip: TooltipItem {
 		id: tooltip
