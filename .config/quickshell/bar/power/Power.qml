@@ -42,7 +42,7 @@ BarWidgetInner {
 		anchors.fill: parent
 		baseMargin: 5
 		fillWindowWidth: true
-		acceptedButtons: Qt.RightButton
+		acceptedButtons: Qt.LeftButton | Qt.RightButton
 		directScale: true
 		showPressed: root.showMenu
 
@@ -65,6 +65,7 @@ BarWidgetInner {
 			active: tooltip.visible
 
 			sourceComponent: Label {
+				color: Pallete.palette().onSurface
 				text: {
 					const status = root.statusStr();
 
@@ -95,18 +96,22 @@ BarWidgetInner {
 
 				component SmallLabel: Label {
 					font.pointSize: fm.font.pointSize * 0.8
-					color: "#d0eeffff"
+					color: Pallete.palette().onSurface
 				}
 			
 				RowLayout {
 					IconImage {
 						source: "root:icons/gauge.svg"
 						implicitSize: 32
+						color: Pallete.palette().onSurface
 					}
 
 					ColumnLayout {
 						spacing: 0
-						Label { text: "Power Profile" }
+						Label { 
+							color: Pallete.palette().onSurface
+							text: "Power Profile" 
+						}
 
 						OptionSlider {
 							values: ["Power Save", "Balanced", "Performance"]
@@ -128,13 +133,19 @@ BarWidgetInner {
 						spacing: 0
 
 						RowLayout {
-							Label { text: "Battery" }
+							Label { 
+								color: Pallete.palette().onSurface
+								text: "Battery" 
+							}
 							Item { Layout.fillWidth: true }
 							Label {
 								text: `${root.statusStr()} -`
-								color: "#d0eeffff"
+								color: Pallete.palette().onSurface
 							}
-							Label { text: `${Math.round(root.percentage * 100)}%` }
+							Label { 
+								color: Pallete.palette().onSurface
+								text: `${Math.round(root.percentage * 100)}%` 
+							}
 						}
 
 						ProgressBar {
@@ -147,10 +158,14 @@ BarWidgetInner {
 						RowLayout {
 							visible: remainingTimeLbl.text !== ""
 
-							SmallLabel { text: "Time remaining" }
+							SmallLabel {
+								color: Pallete.palette().onSurface
+								text: "Time remaining"
+							}
 							Item { Layout.fillWidth: true }
 
 				     	SmallLabel {
+							color: Pallete.palette().onSurface
 								id: remainingTimeLbl
 				     		text: {
 				     			const device = UPower.displayDevice;
@@ -165,10 +180,14 @@ BarWidgetInner {
 
 						RowLayout {
 							visible: root.batteryDevice.healthSupported
-							SmallLabel { text: "Health" }
+							SmallLabel {
+								color: Pallete.palette().onSurface
+								text: "Health" 
+							}
 							Item { Layout.fillWidth: true }
 
 				     	SmallLabel {
+							color: Pallete.palette().onSurface
 				     		text: `${Math.floor((root.batteryDevice?.healthPercentage ?? 0))}%`
 				     	}
 						}
@@ -199,9 +218,15 @@ BarWidgetInner {
 			   			spacing: 0
 
 			   			RowLayout {
-			   				Label { text: modelData.model }
+			   				Label { 
+								text: modelData.model 
+								color: Pallete.palette().onSurface
+							}
 			   				Item { Layout.fillWidth: true }
-			   				Label { text: `${Math.round(modelData.percentage * 100)}%` }
+			   				Label { 
+								color: Pallete.palette().onSurface
+								text: `${Math.round(modelData.percentage * 100)}%` 
+							}
 			   			}
 
 			   			ProgressBar {
@@ -213,10 +238,14 @@ BarWidgetInner {
 
 			   			RowLayout {
 			   				visible: modelData.healthSupported
-			   				SmallLabel { text: "Health" }
+			   				SmallLabel { 
+								color: Pallete.palette().onSurface
+								text: "Health" 
+							}
 			   				Item { Layout.fillWidth: true }
 
 			   	     	SmallLabel {
+							color: Pallete.palette().onSurface
 			   	     		text: `${Math.floor(modelData.healthPercentage)}%`
 			   	     	}
 			   			}

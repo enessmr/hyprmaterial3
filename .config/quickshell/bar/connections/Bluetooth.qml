@@ -7,6 +7,9 @@ import Quickshell.Widgets
 import Quickshell.Bluetooth
 import qs
 import qs.bar
+import "../../resources/components/inputs"
+import "../../resources/colors.js" as Pallete
+
 
 ClickableIcon {
 	id: root
@@ -43,7 +46,10 @@ ClickableIcon {
 		owner: root
 		show: root.containsMouse
 
-		Label { text: "Bluetooth" }
+		Label { 
+			color: Pallete.palette().onSurface
+			text: "Bluetooth" 
+		}
 	}
 
 	property var rightclickMenu: TooltipItem {
@@ -77,6 +83,7 @@ ClickableIcon {
 					}
 
 					Label {
+						color: Pallete.palette().onSurface
 						text: `Bluetooth (${root.adapter.adapterId})`
 					}
 

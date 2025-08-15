@@ -3,11 +3,18 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
 import qs.bar
+import "../../resources/colors.js" as Pallete
 
 BarWidgetInner {
 	id: root
 	required property var bar;
 	implicitHeight: column.implicitHeight + 10;
+
+    border.width: 0         // no border
+
+	radius: 9999
+
+	color: Pallete.palette().onSecondary
 
 	ColumnLayout {
 		anchors {
@@ -25,7 +32,7 @@ BarWidgetInner {
 			sourceComponent: AudioControl {
 				bar: root.bar;
 				node: Pipewire.defaultAudioSink;
-				image: `image://icon/${node.audio.muted ? "audio-volume-muted-symbolic" : "audio-volume-high-symbolic"}`
+				image: `root:icons/${node.audio.muted ? "audio-muted" : "audio-volume-high"}`
 			}
 		}
 
@@ -36,7 +43,7 @@ BarWidgetInner {
 			sourceComponent: AudioControl {
 				bar: root.bar;
 				node: Pipewire.defaultAudioSource;
-				image: `image://icon/${node.audio.muted ? "microphone-sensitivity-muted-symbolic" : "microphone-sensitivity-high-symbolic"}`
+				image: `root:icons/${node.audio.muted ? "microphone-muted.svg" : "microphone-high.svg"}`
 			}
 		}
 	}

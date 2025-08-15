@@ -6,6 +6,7 @@ import Quickshell.Widgets
 import Quickshell.Bluetooth
 import qs
 import qs.bar
+import "../../resources/colors.js" as Pallete
 
 WrapperMouseArea {
 	id: root
@@ -32,6 +33,7 @@ WrapperMouseArea {
 				}
 
 				Label {
+					color: Pallete.palette().onSurface
 					text: root.device.name
 				}
 

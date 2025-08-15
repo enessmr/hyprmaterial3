@@ -12,6 +12,9 @@ BarWidgetInner {
 	required property var bar;
 	implicitHeight: column.implicitHeight + 10
 
+	border.width: 0         // no border
+	color: "transparent"
+
 	ColumnLayout {
 		id: column
 		implicitHeight: childrenRect.height
@@ -32,7 +35,7 @@ BarWidgetInner {
 				property bool targetMenuOpen: false;
 
 				Layout.fillWidth: true
-				implicitHeight: width
+				implicitHeight: 27
 
 				ClickableIcon {
 					id: mouseArea
@@ -41,7 +44,7 @@ BarWidgetInner {
 						bottom: parent.bottom
 						horizontalCenter: parent.horizontalCenter
 					}
-					width: height
+					width: 27
 
 					acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
 

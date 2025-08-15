@@ -1,10 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import qs.bar
+import "../resources/colors.js" as Pallete
 
 BarWidgetInner {
 	id: root
 	required property var bar;
+	
+	color: Pallete.palette().onSecondary
+	border.width: 0         // no border
+	radius: 9999
 
 	property bool controlsOpen: false;
 	onControlsOpenChanged: NotificationManager.showTrayNotifs = controlsOpen;

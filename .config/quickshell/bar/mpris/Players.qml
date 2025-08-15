@@ -14,6 +14,8 @@ FullwidthMouseArea {
 	hoverEnabled: true
 	fillWindowWidth: true
 
+	
+
 	required property var bar;
 	implicitHeight: column.implicitHeight + 10
 
@@ -67,6 +69,7 @@ FullwidthMouseArea {
 			id: bkg
 			anchors.fill: parent
 			overlay.color: "#30000000"
+			radius: 9999
 
 			function updateArt(reverse: bool) {
 				console.log("update art", MprisController.activeTrack.artUrl)
