@@ -1,6 +1,6 @@
 pragma ComponentBehavior: Bound
 
-import QtQuick
+import QtQuick 2.15
 import QtQuick.Layouts
 import Quickshell
 import qs.bar.systray as SysTray

@@ -60,6 +60,7 @@ BarWidgetInner {
 		show: button.containsMouse
 
 		Label {
+			color: Pallete.palette().onSurface
 			anchors.verticalCenter: parent.verticalCenter
 			text: {
 				const count = NotificationManager.notifications.length;

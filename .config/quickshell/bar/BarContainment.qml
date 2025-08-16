@@ -5,78 +5,102 @@ import Quickshell.Wayland
 import qs
 import qs.lock as Lock
 import "../resources/colors.js" as Pallete
+import "./roundedcorner"
 
 PanelWindow {
-	id: root
+    id: root
 
-	default property alias barItems: containment.data;
+    default property alias barItems: containment.data
 
-	anchors {
-		left: true
-		top: true
-		bottom: true
-	}
+    anchors {
+        left: true
+        top: true
+        bottom: true
+    }
 
-	property real baseWidth: 55
-	property real leftMargin: root.compactState * 10
-	width: baseWidth + 15
-	exclusiveZone: baseWidth + (isFullscreenWorkspace ? 0 : 15) - margins.left
+    property real baseWidth: 55
+    property real leftMargin: root.compactState * 10
+    width: baseWidth + 15
+    exclusiveZone: baseWidth + (isFullscreenWorkspace ? 0 : 15) - margins.left
 
-	mask: Region {
-		height: root.height
-		width: root.exclusiveZone
-	}
+    mask: Region {
+        height: root.height
+        width: root.exclusiveZone
+    }
 
-	color: "transparent"
+    color: "transparent"
 
-	WlrLayershell.namespace: "shell:bar"
+    WlrLayershell.namespace: "shell:bar"
 
-	readonly property Tooltip tooltip: tooltip;
-	Tooltip {
-		id: tooltip
-		bar: root
-	}
+    readonly property Tooltip tooltip: tooltip
+    Tooltip {
+        id: tooltip
+        bar: root
+    }
 
-	readonly property real tooltipXOffset: root.baseWidth + root.leftMargin + 5;
+    readonly property real tooltipXOffset: root.baseWidth + root.leftMargin + 5
 
-	function boundedY(targetY: real, height: real): real {
-		return Math.max(barRect.anchors.topMargin + height, Math.min(barRect.height + barRect.anchors.topMargin - height, targetY))
-	}
+    function boundedY(targetY: real, height: real): real {
+        return Math.max(barRect.anchors.topMargin + height, Math.min(barRect.height + barRect.anchors.topMargin - height, targetY))
+    }
 
-	readonly property bool isFullscreenWorkspace: Hyprland.monitorFor(screen).activeWorkspace.hasFullscreen
-	property real compactState: isFullscreenWorkspace ? 0 : 1
-	Behavior on compactState {
-		NumberAnimation {
-			duration: 600
-			easing.type: Easing.BezierSpline
-			easing.bezierCurve: [0.0, 0.75, 0.15, 1.0, 1.0, 1.0]
-		}
-	}
+    readonly property bool isFullscreenWorkspace: Hyprland.monitorFor(screen).activeWorkspace.hasFullscreen
+    property real compactState: isFullscreenWorkspace ? 0 : 1
+    Behavior on compactState {
+        NumberAnimation {
+            duration: 600
+            easing.type: Easing.BezierSpline
+            easing.bezierCurve: [0.0, 0.75, 0.15, 1.0, 1.0, 1.0]
+        }
+    }
 
-	Rectangle {
-		id: barRect
+	    // Rounded corners as siblings of barRect
+    RoundCorner {
+        id: topLeftCorner
+        corner: RoundCorner.CornerEnum.TopLeft
+        implicitSize: 15
+        color: Pallete.palette().shadow
+        anchors.right: barRect.right
+		anchors.left: barRect.left
+        anchors.top: barRect.top
+        z: 10
+    }
 
-		x: root.leftMargin - Lock.Controller.lockSlide * (barRect.width + root.leftMargin)
-		width: parent.width - 15
+    RoundCorner {
+        id: bottomLeftCorner
+        corner: RoundCorner.CornerEnum.BottomLeft
+        implicitSize: 15
+        color: Pallete.palette().shadow
+		anchors.left: barRect.left
+        anchors.right: barRect.right
+        anchors.bottom: barRect.bottom
+        // Apply margins
+    	anchors.leftMargin: 0   // negative margin moves it out
+    	// anchors.bottomMargin: -5    // push left from the right edge
+    	// anchors.bottomMargin: 8   // push up from the bottom edge
+		z: 10
+    }
 
-		anchors {
-			top: parent.top
-			bottom: parent.bottom
-			margins: root.compactState * 10
-		}
+    Rectangle {
+        id: barRect
+		clip: false
 
-		color: Pallete.palette().background
-		radius: root.compactState * 5
-		border.color: ShellGlobals.colors.barOutline
-		border.width: 0
+        x: 0
+        width: parent.width - 15
 
-		Item {
-			id: containment
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+        }
 
-			anchors {
-				fill: parent
-				margins: 5
-			}
-		}
-	}
+        color: Pallete.palette().background
+        border.color: ShellGlobals.colors.barOutline
+        border.width: 0
+
+        Item {
+            id: containment
+            anchors.fill: parent
+            anchors.margins: 5
+        }
+    }
 }

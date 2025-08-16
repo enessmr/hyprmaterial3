@@ -50,7 +50,7 @@ ShellRoot {
 			property var modelData
 
 			Bar.Bar {
-				screen: modelData
+				// screen: modelData
 			}
 
 			PanelWindow {
