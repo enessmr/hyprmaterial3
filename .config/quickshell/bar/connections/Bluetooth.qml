@@ -15,7 +15,7 @@ ClickableIcon {
 	id: root
 	required property var bar;
 	readonly property BluetoothAdapter adapter: Bluetooth.defaultAdapter
-	readonly property bool connected: adapter.devices.values.some(device => device.connected)
+	readonly property bool connected: adapter ? adapter.devices.values.some(device => device.connected) : false
 
 	property bool showMenu: false
 
@@ -37,9 +37,9 @@ ClickableIcon {
 	implicitHeight: width
 	fillWindowWidth: true
 	acceptedButtons: Qt.LeftButton | Qt.RightButton
-	image: adapter.enabled
-		? (connected ? "root:/icons/bluetooth-connected.svg" : "root:/icons/bluetooth.svg")
-		: "root:/icons/bluetooth-slash.svg"
+	image: adapter && adapter.enabled
+    	? (connected ? "root:/icons/bluetooth-connected.svg" : "root:/icons/bluetooth.svg")
+    	: "root:/icons/bluetooth-slash.svg"
 
 	property var tooltip: TooltipItem {
 		tooltip: bar.tooltip

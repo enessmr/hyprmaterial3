@@ -102,8 +102,8 @@ Scope {
 			}
 
 			//height: bar.height
-			width: Math.max(700, tooltipItem.largestAnimWidth) // max due to qtwayland glitches
-			height: {
+			implicitWidth: Math.max(700, tooltipItem.largestAnimWidth) // max due to qtwayland glitches
+			implicitHeight: {
 				const h = tooltipItem.lowestAnimY - tooltipItem.highestAnimY
 				//console.log(`seth ${h} ${tooltipItem.highestAnimY} ${tooltipItem.lowestAnimY}; ${tooltipItem.y1} ${tooltipItem.y2}`)
 				return h
@@ -201,13 +201,13 @@ Scope {
 				}
 
 				property var w: -1
-				width: Math.max(1, w)
+				implicitWidth: Math.max(1, w)
 
 				property var y1: -1
 				property var y2: -1
 
 				y: y1 - popup.anchor.rect.y
-				height: y2 - y1
+				implicitHeight: y2 - y1
 
 				readonly property bool anyAnimsRunning: y1Anim.running || y2Anim.running || widthAnim.running
 

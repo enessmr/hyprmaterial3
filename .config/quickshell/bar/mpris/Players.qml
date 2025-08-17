@@ -132,12 +132,12 @@ FullwidthMouseArea {
 			id: positionInfo
 
 			property var player: root.activePlayer;
-			property int position: Math.floor(player.position);
-			property int length: Math.floor(player.length);
+			property int position: player ? Math.floor(player.position) : 0
+			property int length: player ? Math.floor(player.length) : 0
 
 			FrameAnimation {
 				id: posTracker;
-				running: positionInfo.player.isPlaying && (tooltip.visible || rightclickMenu.visible);
+				running: positionInfo.player && positionInfo.player.isPlaying && (tooltip.visible || rightclickMenu.visible);
 				onTriggered: positionInfo.player.positionChanged();
 			}
 
@@ -234,7 +234,7 @@ FullwidthMouseArea {
 
 					Label {
 						text: {
-							if (!MprisController.activePlayer) return "No media playing";
+							root.activePlayer ? root.activePlayer.identity : "No player"
 
 							return MprisController.activePlayer?.identity + " - "
 								+ positionInfo.timeStr(positionInfo.position) + " / "
@@ -255,16 +255,9 @@ FullwidthMouseArea {
 					implicitHeight: 8
 					visible: MprisController.activePlayer != null
 
-					Rectangle {
-						anchors {
-							left: parent.left
-							top: parent.top
-							bottom: parent.bottom
-						}
-
-						color: "#80ceffff"
-						width: parent.width * (root.activePlayer.position / root.activePlayer.length)
-					}
+					implicitWidth: (root.activePlayer && root.activePlayer.length > 0)
+    					? parent.width * (root.activePlayer.position / root.activePlayer.length)
+    					: 0
 				}
 
 

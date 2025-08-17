@@ -20,7 +20,7 @@ BarWidgetInner {
 	readonly property bool isLow: percentage <= 0.20
 
 	readonly property UPowerDevice batteryDevice: UPower.devices.values
-		.find(device => device.isLaptopBattery);
+    	.find(device => device.isLaptopBattery) ?? null
 
 	function statusStr() {
 		return root.isPluggedIn ? `Plugged in, ${root.isCharging ? "Charging" : "Not Charging"}`

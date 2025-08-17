@@ -8,11 +8,11 @@ BarWidgetInner {
 	id: root
 	required property var bar;
     height: 57
-	radius: 2 * root.radius
     color: "transparent"   // removes background
     border.width: 0        // removes border
 
-	implicitHeight: layout.implicitHeight
+	implicitHeight: 57
+	//              ⬆⬆ KINDA PERFECTLY MAKE IT GRETLY POSED AWAHAHAHA
 
 	SystemClock {
 		id: clock
@@ -49,7 +49,7 @@ BarWidgetInner {
 		id: tooltip
 		tooltip: bar.tooltip
 		owner: root
-		show: button.containsMouse
+		show: root.containsMouse === true
 
 		Loader {
 			active: tooltip.visible
