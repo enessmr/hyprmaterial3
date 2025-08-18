@@ -149,10 +149,10 @@ BarWidgetInner {
 
 		Rectangle {
 			anchors.fill: parent
-			radius: root.radius
+			radius: 34
 			color: "transparent"
-			border.color: ShellGlobals.colors.widgetOutlineSeparate;
-			border.width: 1
+			// border.color: ShellGlobals.colors.widgetOutlineSeparate;
+			border.width: 0
 		}
 	}
 
@@ -162,7 +162,8 @@ BarWidgetInner {
 		maskSource: Rectangle {
 			width: root.width
 			height: root.height
-			radius: root.radius
+			radius: 34
+			border.width: 0
 		}
 	}
 }
