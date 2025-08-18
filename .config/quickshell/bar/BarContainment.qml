@@ -99,5 +99,24 @@ PanelWindow {
             anchors.fill: parent
             anchors.margins: 5
         }
+        RoundCorner {
+            id: topLeftCorner2
+            corner: RoundCorner.CornerEnum.TopLeft
+            implicitSize: 15
+            color: Pallete.palette().shadow
+            anchors.left: barRect.left
+            anchors.top: barRect.top
+            z: 10
+        }
+
+        RoundCorner {
+            id: bottomLeftCorner2
+            corner: RoundCorner.CornerEnum.BottomLeft
+            implicitSize: 15
+            color: Pallete.palette().shadow
+            anchors.left: barRect.left
+            anchors.bottom: barRect.bottom
+		    z: 10
+        }
     }
 }
