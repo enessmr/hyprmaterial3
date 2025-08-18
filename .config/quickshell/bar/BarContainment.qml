@@ -62,9 +62,8 @@ PanelWindow {
         id: topLeftCorner
         corner: RoundCorner.CornerEnum.TopLeft
         implicitSize: 15
-        color: Pallete.palette().shadow
-        anchors.right: barRect.right
-		anchors.left: barRect.left
+        color: Pallete.palette().background
+        anchors.left: barRect.right
         anchors.top: barRect.top
         z: 10
     }
@@ -73,14 +72,9 @@ PanelWindow {
         id: bottomLeftCorner
         corner: RoundCorner.CornerEnum.BottomLeft
         implicitSize: 15
-        color: Pallete.palette().shadow
-		anchors.left: barRect.left
-        anchors.right: barRect.right
+        color: Pallete.palette().background
+        anchors.left: barRect.right
         anchors.bottom: barRect.bottom
-        // Apply margins
-    	anchors.leftMargin: 0   // negative margin moves it out
-    	// anchors.bottomMargin: -5    // push left from the right edge
-    	// anchors.bottomMargin: 8   // push up from the bottom edge
 		z: 10
     }
 

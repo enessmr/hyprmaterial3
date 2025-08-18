@@ -8,6 +8,7 @@ import Quickshell
 import Quickshell.Services.Mpris
 import qs
 import qs.bar
+import "../../resources/colors.js" as Pallete
 
 FullwidthMouseArea {
 	id: root
@@ -211,6 +212,7 @@ FullwidthMouseArea {
 						property alias text: label.text
 
 						Label {
+							color: Pallete.palette().onSurface
 							id: label
 							anchors.verticalCenter: parent.verticalCenter
 						}
@@ -233,6 +235,7 @@ FullwidthMouseArea {
 					}
 
 					Label {
+						color: Pallete.palette().onSurface
 						text: {
 							root.activePlayer ? root.activePlayer.identity : "No player"
 
@@ -493,6 +496,7 @@ FullwidthMouseArea {
 										property alias font: label.font
 
 										Label {
+											color: Pallete.palette().onSurface
 											id: label
 											visible: text != ""
 											anchors.centerIn: parent
@@ -625,6 +629,7 @@ FullwidthMouseArea {
 						Layout.margins: 5
 
 						Label {
+							color: Pallete.palette().onSurface
 							Layout.preferredWidth: lengthLabel.implicitWidth
 							text: positionInfo.timeStr(positionInfo.position)
 						}
@@ -698,6 +703,7 @@ FullwidthMouseArea {
 						}
 
 						Label {
+							color: Pallete.palette().onSurface
 							id: lengthLabel
 							text: positionInfo.timeStr(positionInfo.length)
 						}
