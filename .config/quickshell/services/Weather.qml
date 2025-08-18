@@ -1,12 +1,12 @@
-pragma Singleton
-pragma ComponentBehavior: Bound
+// pragma Singleton
+// pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Io
 import QtQuick
 import QtPositioning
 
-import qs.modules.common
+import qs.common
 
 Singleton {
     id: root

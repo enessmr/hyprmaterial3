@@ -1,7 +1,7 @@
-pragma Singleton
+// pragma Singleton
 
 import qs
-import qs.modules.common
+import qs.common
 import Quickshell
 import Quickshell.Services.UPower
 import QtQuick

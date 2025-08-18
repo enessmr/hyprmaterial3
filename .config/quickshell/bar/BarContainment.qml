@@ -6,6 +6,10 @@ import qs
 import qs.lock as Lock
 import "../resources/colors.js" as Pallete
 import "./roundedcorner"
+import qs.services
+import qs.common
+import qs.common.widgets
+import qs.common.functions
 
 PanelWindow {
     id: root

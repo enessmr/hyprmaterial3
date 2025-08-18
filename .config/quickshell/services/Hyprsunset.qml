@@ -1,7 +1,7 @@
-pragma Singleton
+// pragma Singleton
 
 import QtQuick
-import qs.modules.common
+import qs.common
 import Quickshell
 import Quickshell.Io
 

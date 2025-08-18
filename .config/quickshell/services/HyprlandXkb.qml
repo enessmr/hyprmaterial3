@@ -1,10 +1,10 @@
-pragma Singleton
+// pragma Singleton
 
 import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
-import qs.modules.common
+import qs.common
 
 /**
  * Exposes the active Hyprland Xkb keyboard layout name and code for indicators.

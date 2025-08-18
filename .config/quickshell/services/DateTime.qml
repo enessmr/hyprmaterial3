@@ -1,9 +1,9 @@
-import qs.modules.common
+import qs.common
 import QtQuick
 import Quickshell
 import Quickshell.Io
-pragma Singleton
-pragma ComponentBehavior: Bound
+// pragma Singleton
+// pragma ComponentBehavior: Bound
 
 /**
  * A nice wrapper for date and time strings.

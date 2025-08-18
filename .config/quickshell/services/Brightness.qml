@@ -1,5 +1,5 @@
-pragma Singleton
-pragma ComponentBehavior: Bound
+// pragma Singleton
+// pragma ComponentBehavior: Bound
 
 // From https://github.com/caelestia-dots/shell with modifications.
 // License: GPLv3
