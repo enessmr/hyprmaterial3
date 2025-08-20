@@ -12,11 +12,20 @@ import "notifications" as Notifs
 import "launcher" as Launcher
 import "background"
 import "resources/colors.js" as Palette
-import "session" as Session
+import "./session/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
+import "bar/roundedcorner"
+import qs.screenCorners
+import qs.services
+import qs.common
+import qs.common.widgets
+import qs.common.functions
 
 ShellRoot {
+	property bool enableScreenCorners: true
+    property bool enableSession: false
+
 	Component.onCompleted: [Lock.Controller, Launcher.Controller.init()]
 
 	Process {
@@ -82,4 +91,6 @@ ShellRoot {
 			}
 		}
 	}
+	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
+	LazyLoader { active: enableSession; component: Session {} }
 }

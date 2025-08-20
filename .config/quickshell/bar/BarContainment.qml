@@ -103,14 +103,15 @@ PanelWindow {
             anchors.fill: parent
             anchors.margins: 5
         }
-        RoundCorner {
+
+        /*RoundCorner {
             id: topLeftCorner2
             corner: RoundCorner.CornerEnum.TopLeft
             implicitSize: 15
             color: Pallete.palette().shadow
             anchors.left: barRect.left
             anchors.top: barRect.top
-            z: 10
+            z: 1
         }
 
         RoundCorner {
@@ -120,7 +121,7 @@ PanelWindow {
             color: Pallete.palette().shadow
             anchors.left: barRect.left
             anchors.bottom: barRect.bottom
-		    z: 10
-        }
+		    z: 1
+        } */
     }
 }
