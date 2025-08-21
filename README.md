@@ -60,7 +60,7 @@ _Note 2: **YOU MUST READ CONTRIBUTING.MD IF QUICKSHELL**_
 
 ### hyprmaterial3<sup>AGS</sup>
 
-Widget system: AGS | Support: Yes
+Widget system: AGS | Support: Kind of deprecated. Due to busy with QS.
 
 [Showcase video](https://m.youtube.com/watch?v=N4vplvIAF_Y)
 
@@ -70,7 +70,7 @@ Widget system: AGS | Support: Yes
 
 ### hyprmaterial3<sup>QS</sup>
 
-Widget system: Quickshell | Support: Developing...
+Widget system: Quickshell | Support: We nearly exited outfoxxed level
 
 <div align="center">
     <h2>• thank you •</h2>
