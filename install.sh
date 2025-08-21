@@ -16,7 +16,7 @@ if ! command -v gum >/dev/null 2>&1; then
     exit 1
 fi
 
-zenity --warning --text "If you know, you know." --width=400 --height=100 || true
+# zenity --warning --text "If you know, you know." --width=400 --height=100 || true
 
 echo "Does Gum work?"
 gum_work_check() {
