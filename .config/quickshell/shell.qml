@@ -31,7 +31,7 @@ ShellRoot {
 	Component.onCompleted: {
 		Lock.Controller
 		Launcher.Controller.init()
-		MaterialThemeLoader.reapplyTheme()
+		// MaterialThemeLoader.reapplyTheme()
         Hyprsunset.load()
         FirstRunExperience.load()
         ConflictKiller.load()
@@ -104,5 +104,5 @@ ShellRoot {
 
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
-	LazyLoader { active: enableAi; component: Ai {} }
+	LazyLoader { active: enableAi; component: AiChatbot {} }
 }
