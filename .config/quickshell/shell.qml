@@ -24,7 +24,7 @@ import qs.common.functions
 
 ShellRoot {
 	property bool enableScreenCorners: true
-    property bool enableSession: false
+    property bool enableSession: true
 
 	Component.onCompleted: [Lock.Controller, Launcher.Controller.init()]
 

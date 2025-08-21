@@ -7,6 +7,7 @@ import qs.lock as Lock
 import "../resources/colors.js" as Pallete
 import "./roundedcorner"
 import qs.services
+import qs
 import qs.common
 import qs.common.widgets
 import qs.common.functions
@@ -61,11 +62,15 @@ PanelWindow {
         }
     }
 
+    property int large: 23
 	    // Rounded corners as siblings of barRect
     RoundCorner {
         id: topLeftCorner
         corner: RoundCorner.CornerEnum.TopLeft
-        implicitSize: 15
+        implicitSize: large
+        // implicitHeight: large
+        implicitWidth: baseWidth + 15 - leftMargin
+        //exclusiveZone: baseWidth + 15 - leftMargin
         color: Pallete.palette().background
         anchors.left: barRect.right
         anchors.top: barRect.top

@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import qs.common.functions
+import "../resources/colors.js" as Palette
 pragma Singleton
 pragma ComponentBehavior: Bound
 

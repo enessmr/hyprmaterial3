@@ -17,7 +17,7 @@ Rectangle {
 
 	HoverHandler {
 		onHoveredChanged: {
-			backer.pauseCounter += hovered ? 1 : -1;
+			backer.pauseCounter += Math.max(0, backer.pauseCounter + (hovered ? 1 : -1));
 		}
 	}
 

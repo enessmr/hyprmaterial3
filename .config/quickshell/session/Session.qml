@@ -74,7 +74,7 @@ Scope {
 
     Loader {
         id: sessionLoader
-        active: true
+        active: GlobalStates.sessionOpen
         onActiveChanged: {
             if (sessionLoader.active) root.detectRunningStuff();
         }
