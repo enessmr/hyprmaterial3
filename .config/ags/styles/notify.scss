@@ -11,7 +11,7 @@ window.NotificationPopups {
 
 .Notification {
   border-radius: 13px;
-  background-color: $onSecondary;
+  background-color: $background;
   margin: 0.5rem 1rem 0.5rem 1rem;
   box-shadow: 2px 3px 8px 0 gtkalpha($shadow, 0.4);
   border: 1pt solid gtkalpha($onSurface, 0.03);
