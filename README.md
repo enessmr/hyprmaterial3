@@ -72,6 +72,10 @@ Widget system: AGS | Support: Kind of deprecated. Due to busy with QS.
 
 Widget system: Quickshell | Support: We nearly exited outfoxxed level
 
+| Pre-Beta Screenshot |
+|:---|
+| <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2ecf76c1-345c-40e0-9017-d5b604776a2e" /> |
+
 <div align="center">
     <h2>• thank you •</h2>
     <h3></h3>
