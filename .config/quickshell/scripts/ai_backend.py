@@ -33,35 +33,35 @@ def new_chat_file():
     open(file_path, "w").close()
     return file_path
 
-chat_file = new_chat_file()
-
-# --- Main loop ---
-print("AI backend started. Type your queries.")
-sys.stdout.flush()
-
-for line in sys.stdin:
-    query = line.strip()
-    if not query:
-        continue
-
-    ai_name = get_selected_ai()
-    if ai_name == "None":
-        print("[Error] No AI selected. Please select a valid AI.")
-        sys.stdout.flush()
-        continue
-
+# --- Process single query ---
+def process_query(ai_name, query, chat_file):
     # Save user input
     with open(chat_file, "a") as f:
         f.write(f"{username}: {query}\n")
 
     # Run AI (example with Ollama)
     try:
+        print(f"[DEBUG] Running: ollama run {ai_name.lower()} '{query}'", file=sys.stderr)
         result = subprocess.run(
             ["ollama", "run", ai_name.lower(), query],
             capture_output=True,
-            text=True
+            text=True,
+            timeout=30  # don't hang forever bestie
         )
-        answer = result.stdout.strip()
+        print(f"[DEBUG] Return code: {result.returncode}", file=sys.stderr)
+        if result.stderr:
+            print(f"[DEBUG] Stderr: {result.stderr}", file=sys.stderr)
+        
+        if result.returncode != 0:
+            answer = f"[Error] Ollama failed with code {result.returncode}: {result.stderr}"
+        else:
+            answer = result.stdout.strip()
+            if not answer:
+                answer = "[Error] Ollama returned empty response"
+    except subprocess.TimeoutExpired:
+        answer = "[Error] Ollama timed out (30s limit)"
+    except FileNotFoundError:
+        answer = "[Error] Ollama not found - is it installed and in PATH?"
     except Exception as e:
         answer = f"[Error] Failed to run AI: {e}"
 
@@ -71,3 +71,29 @@ for line in sys.stdin:
 
     print(answer)
     sys.stdout.flush()
+
+# --- Main logic ---
+chat_file = new_chat_file()
+
+print("AI backend started. Type your queries.")
+sys.stdout.flush()
+
+if len(sys.argv) >= 3:
+    # Command line mode - single query
+    ai_name = sys.argv[1]
+    query = sys.argv[2]
+    process_query(ai_name, query, chat_file)
+else:
+    # Interactive mode - continuous input
+    for line in sys.stdin:
+        query = line.strip()
+        if not query:
+            continue
+
+        ai_name = get_selected_ai()
+        if ai_name == "None":
+            print("[Error] No AI selected. Please select a valid AI.")
+            sys.stdout.flush()
+            continue  # this was missing the continue btw
+
+        process_query(ai_name, query, chat_file)

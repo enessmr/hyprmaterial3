@@ -46,6 +46,8 @@ Scope {
 	}
 
 	function removeItem(item: TooltipItem) {
+		if (!item) return; // <- null check
+
 		if (item.isMenu && activeMenu == item) {
 			activeMenu = null
 		} else if (!item.isMenu && activeTooltip == item) {

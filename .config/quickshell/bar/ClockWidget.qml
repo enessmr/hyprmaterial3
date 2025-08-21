@@ -7,11 +7,11 @@ import qs
 BarWidgetInner {
 	id: root
 	required property var bar;
-    height: 57
+    // height: 57
     color: "transparent"   // removes background
     border.width: 0        // removes border
 
-	implicitHeight: 57
+	implicitHeight: 56
 	//              ⬆⬆ KINDA PERFECTLY MAKE IT GRETLY POSED AWAHAHAHA
 
 	SystemClock {
@@ -38,14 +38,14 @@ BarWidgetInner {
    		Text {
    			Layout.alignment: Qt.AlignHCenter
    			text: Qt.formatDateTime(clock.date, "hh\nmm")
-   			font.pointSize: 18
+   			font.pointSize: 17
 			font.family: "Roboto"       // font family
    			color: "white"
    		}
    	}
 	// }
 
-	property TooltipItem tooltip: TooltipItem {
+	/* property TooltipItem tooltip: TooltipItem {
 		id: tooltip
 		tooltip: bar.tooltip
 		owner: root
@@ -57,5 +57,5 @@ BarWidgetInner {
 				text: Qt.formatDateTime(clock.date, "hh:mm:ss\ndddd, MMMM d, yyyy");
 			}
 		}
-	}
+	} */ // useless (rn)
 }
