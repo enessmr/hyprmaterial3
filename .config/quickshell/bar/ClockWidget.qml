@@ -11,7 +11,7 @@ BarWidgetInner {
     color: "transparent"   // removes background
     border.width: 0        // removes border
 
-	implicitHeight: 56
+	implicitHeight: 57
 	//              ⬆⬆ KINDA PERFECTLY MAKE IT GRETLY POSED AWAHAHAHA
 
 	SystemClock {
