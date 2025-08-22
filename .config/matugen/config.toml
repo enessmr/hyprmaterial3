@@ -10,11 +10,15 @@ blend = true
 [templates.ags]
 input_path = "./templates/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
-post_hook = "pkill -SIGUSR1 ags"
+post_hook = "pkill -SIGUSR2 gjs"
 
-[templates.quickshell]
+[templates.quickshellpart1]
 input_path = "./templates/quickshell/colors.js"
 output_path = "~/.config/quickshell/resources/colors.js"
+
+[templates.quickshellpart2]
+input_path = "./templates/quickshell/shell.qml"
+output_path = "~/.config/quickshell/shell.qml"
 
 [templates.kitty]
 input_path = './templates/kitty/colors.conf'

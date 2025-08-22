@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 import qs
+import "../resources/colors.js" as Pallete
 
 BarWidgetInner {
 	id: root

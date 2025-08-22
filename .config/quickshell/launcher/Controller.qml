@@ -50,7 +50,7 @@ Singleton {
                 anchors.fill: parent
                 color: Pallete.palette().background
                 radius: 28
-                border.color: Pallete.palette().outline
+                border.color: Pallete.palette().outlineVariant
                 border.width: 1
             }
 
@@ -87,10 +87,10 @@ Singleton {
 					bottomMargin: 10
                     topMargin: 9
                 }
-                color: Pallete.palette().surfaceContainerHighest
+                color: Pallete.palette().surfaceContainerHigh
                 radius: 16
                 border.color: Pallete.palette().outline
-                border.width: 1
+                border.width: 0
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -101,9 +101,9 @@ Singleton {
                         id: searchContainer
                         Layout.fillWidth: true
                         implicitHeight: searchbox.implicitHeight + 10
-                        color: "#30c0ffff"
+                        color: Pallete.palette().surfaceContainer
                         radius: 46
-                        border.color: "#50ffffff"
+                        border.color: Pallete.palette().outline
 
                         RowLayout {
                             id: searchbox
@@ -249,7 +249,8 @@ Singleton {
                                 }
                                 Text {
                                     text: modelData.name
-                                    color: "#f0f0f0"
+                                    color: Pallete.palette().onSurface
+									font.family: "Roboto"
                                     Layout.alignment: Qt.AlignVCenter
                                 }
                             }

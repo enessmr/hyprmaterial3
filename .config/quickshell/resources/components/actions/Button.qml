@@ -65,6 +65,7 @@ Item {
              : (textButton ? root._accentColor() : (outlined ? root._accentColor() : (tonal ? Palette.palette().onSecondaryContainer : (root.kind === "danger" ? Palette.palette().onError : Palette.palette().onPrimary))))
         text: "Button"
         font.pixelSize: 14
+        font.family: "Roboto"
         opacity: 1.0
         Behavior on color { ColorAnimation { duration: 150; easing.type: Easing.InOutQuad } }
         Behavior on opacity { NumberAnimation { duration: 120; easing.type: Easing.InOutQuad } }
