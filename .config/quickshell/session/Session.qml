@@ -41,10 +41,13 @@ Scope {
     }
 
     function closeAllWindows() {
-        HyprlandData.windowList.map(w => w.pid).forEach((pid) => {
-            Quickshell.execDetached(["kill", pid]);
+        (HyprlandData.windowList || []).forEach(w => {
+            if (!w.className.includes("Settings") && !w.className.includes("Launcher")) {
+                Quickshell.execDetached(["kill", w.pid]);
+            }
         });
     }
+
 
     function detectRunningStuff() {
         packageManagerRunning = false;
@@ -160,7 +163,7 @@ Scope {
                         id: sessionLock
                         focus: sessionRoot.visible
                         buttonIcon: "lock"
-                        buttonText: Translation.tr("Lock")
+                        buttonText: "Lock"
                         onClicked:  { Quickshell.execDetached(["loginctl", "lock-session"]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.right: sessionSleep
@@ -169,7 +172,7 @@ Scope {
                     SessionActionButton {
                         id: sessionSleep
                         buttonIcon: "dark_mode"
-                        buttonText: Translation.tr("Sleep")
+                        buttonText: "Sleep"
                         onClicked:  { Quickshell.execDetached(["bash", "-c", "systemctl suspend || loginctl suspend"]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.left: sessionLock
@@ -179,7 +182,7 @@ Scope {
                     SessionActionButton {
                         id: sessionLogout
                         buttonIcon: "logout"
-                        buttonText: Translation.tr("Logout")
+                        buttonText: "Logout"
                         onClicked: { root.closeAllWindows(); Quickshell.execDetached(["pkill", "Hyprland"]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.left: sessionSleep
@@ -189,7 +192,7 @@ Scope {
                     SessionActionButton {
                         id: sessionTaskManager
                         buttonIcon: "browse_activity"
-                        buttonText: Translation.tr("Task Manager")
+                        buttonText: "Task Manager"
                         onClicked:  { Quickshell.execDetached(["bash", "-c", `${Config.options.apps.taskManager}`]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.left: sessionLogout
@@ -199,7 +202,7 @@ Scope {
                     SessionActionButton {
                         id: sessionHibernate
                         buttonIcon: "downloading"
-                        buttonText: Translation.tr("Hibernate")
+                        buttonText: "Hibernate"
                         onClicked:  { Quickshell.execDetached(["bash", "-c", `systemctl hibernate || loginctl hibernate`]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.up: sessionLock
@@ -208,7 +211,7 @@ Scope {
                     SessionActionButton {
                         id: sessionShutdown
                         buttonIcon: "power_settings_new"
-                        buttonText: Translation.tr("Shutdown")
+                        buttonText: "Shutdown"
                         onClicked:  { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl poweroff || loginctl poweroff`]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.left: sessionHibernate
@@ -218,7 +221,7 @@ Scope {
                     SessionActionButton {
                         id: sessionReboot
                         buttonIcon: "restart_alt"
-                        buttonText: Translation.tr("Reboot")
+                        buttonText: "Reboot"
                         onClicked:  { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `reboot || loginctl reboot`]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.left: sessionShutdown
@@ -228,7 +231,7 @@ Scope {
                     SessionActionButton {
                         id: sessionFirmwareReboot
                         buttonIcon: "settings_applications"
-                        buttonText: Translation.tr("Reboot to firmware settings")
+                        buttonText: "Reboot to firmware settings"
                         onClicked:  { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl reboot --firmware-setup || loginctl reboot --firmware-setup`]); sessionRoot.hide() }
                         onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
                         KeyNavigation.up: sessionTaskManager
