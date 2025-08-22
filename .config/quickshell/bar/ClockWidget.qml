@@ -40,7 +40,7 @@ BarWidgetInner {
    			text: Qt.formatDateTime(clock.date, "hh\nmm")
    			font.pointSize: 17
 			font.family: "Roboto"       // font family
-   			color: "white"
+   			color: Pallete.palette().onSurface
    		}
    	}
 	// }
