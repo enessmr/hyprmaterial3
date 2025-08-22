@@ -35,8 +35,8 @@ Scope {
         StyledText {
             id: descriptionLabelText
             anchors.centerIn: parent
-            color: descriptionLabel.textColor
-            text: descriptionLabel.text
+            color: parent.textColor
+            text: parent.text
         }
     }
 
