@@ -22,11 +22,13 @@ import qs.services
 import qs.common
 import qs.common.widgets
 import qs.common.functions
+import qs.zoomWidget
 
 ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableAi: true
+	property bool enableZoomWidget: true
 
 	Component.onCompleted: {
 		Lock.Controller
@@ -102,6 +104,7 @@ ShellRoot {
 		}
 	}
 
+	LazyLoader { active: enableZoomWidget; component: ZoomWidget {} }
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableAi; component: AiChatbot {} }

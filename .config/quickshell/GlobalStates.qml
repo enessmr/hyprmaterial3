@@ -50,11 +50,11 @@ Singleton {
 		target: "zoom"
 
 		function zoomIn() {
-            screenZoom = Math.min(screenZoom + 0.4, 3.0)
+            screenZoom = Math.min(screenZoom + 0.1, 1000)
         }
 
         function zoomOut() {
-            screenZoom = Math.max(screenZoom - 0.4, 1)
+            screenZoom = Math.max(screenZoom - 0.1, 1)
         } 
 	}
 }

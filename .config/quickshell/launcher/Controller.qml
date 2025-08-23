@@ -49,7 +49,7 @@ Singleton {
             Rectangle {
                 anchors.fill: parent
                 color: Pallete.palette().background
-                radius: 28
+                radius: 16
                 border.color: Pallete.palette().outlineVariant
                 border.width: 1
             }
