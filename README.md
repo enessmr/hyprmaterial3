@@ -74,7 +74,7 @@ Widget system: Quickshell | Support: We nearly exited outfoxxed level
 
 | Pre-Beta Screenshot | MPRIS (peak gd player song AF) |
 |:---|:---|
-|<img width="1920" height="1080" alt="image" src="ht tps://github.com/user-attachments/assets/2ecf76c1-345c-40e0-9017-d5b604776a2e" />|<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c2ed8476-a92c-4895-9582-f52e54ab7696" />|
+|<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2ecf76c1-345c-40e0-9017-d5b604776a2e" />|<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c2ed8476-a92c-4895-9582-f52e54ab7696" />|
 
 
 <div align="center">
