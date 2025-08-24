@@ -289,13 +289,15 @@ FullwidthMouseArea {
 			// so we'll try to preload them.
 			preloadBackground: root.containsMouse
 
-			backgroundComponent: BackgroundArt {
+			backgroundComponent: BGArtRMBMenu {
 				id: popupBkg
 				anchors.fill: parent
 				renderHeight: rightclickMenu.implicitHeight
 				renderWidth: rightclickMenu.implicitWidth
 				blurRadius: 100
+				radius: 16
 				blurSamples: 201
+				clip: true
 
 				overlay.color: "#80000000"
 
