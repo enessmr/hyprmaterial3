@@ -8,130 +8,185 @@ import Quickshell.Bluetooth
 import qs
 import qs.bar
 import "../../resources/components/inputs"
-import "../../resources/colors.js" as Pallete
-
+import "../../resources/colors.js" as Palette
 
 ClickableIcon {
-	id: root
-	required property var bar;
-	readonly property BluetoothAdapter adapter: Bluetooth.defaultAdapter
-	readonly property bool connected: adapter ? adapter.devices.values.some(device => device.connected) : false
+    id: root
+    required property var bar
+    readonly property BluetoothAdapter adapter: Bluetooth.defaultAdapter
+    readonly property bool connected: adapter ? adapter.devices.values.some(device => device.connected) : false
 
-	property bool showMenu: false
+    property bool showMenu: false
 
-	onPressed: event => {
-		event.accepted = true;
-		if (event.button === Qt.RightButton) {
-			showMenu = !showMenu;
-		}
-	}
+    onPressed: event => {
+        event.accepted = true
+        if (event.button === Qt.RightButton) {
+            showMenu = !showMenu
+        }
+    }
 
-	onClicked: event => {
-		if (event.button === Qt.LeftButton) {
-			adapter.enabled = !adapter.enabled;
-		}
-	}
+    onClicked: event => {
+        if (event.button === Qt.LeftButton) {
+            adapter.enabled = !adapter.enabled
+        }
+    }
 
-	showPressed: showMenu || (pressedButtons & ~Qt.RightButton)
+    image: ""
+    showPressed: showMenu || (pressedButtons & ~Qt.RightButton)
+    implicitHeight: width
+    fillWindowWidth: true
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-	implicitHeight: width
-	fillWindowWidth: true
-	acceptedButtons: Qt.LeftButton | Qt.RightButton
-	image: adapter && adapter.enabled
-    	? (connected ? "root:/icons/bluetooth-connected.svg" : "root:/icons/bluetooth.svg")
-    	: "root:/icons/bluetooth-slash.svg"
+    // Centered main icon
+    Item {
+        anchors.fill: parent
+        
+        Label {
+            id: bluetoothIcon
+            // Position manually in center to avoid anchor conflicts with scaling
+            x: parent.width / 2 - width / 2
+            y: parent.height / 2 - height / 2
+            font.family: "Material Symbols Outlined"
+            font.pixelSize: 37 // Base size
+            // Scale down when menu is open or when right-clicked
+            scale: root.showMenu || (root.pressedButtons & Qt.RightButton) ? 0.7 : 1.0
+            text: {
+                if (!adapter || !adapter.enabled) return "bluetooth_disabled"
+                if (connected) return "bluetooth_connected"
+                return "bluetooth"
+            }
+            color: Palette.palette().onSurface
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            // Scale from center point
+            transformOrigin: Item.Center
+            
+            // Smoother scaling transition with NumberAnimation instead
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 150
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
 
-	property var tooltip: TooltipItem {
-		tooltip: bar.tooltip
-		owner: root
-		show: root.containsMouse
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                root.adapter.enabled = !root.adapter.enabled
+            }
+        }
+    }
 
-		Label { 
-			color: Pallete.palette().onSurface
-			text: "Bluetooth" 
-		}
-	}
+    // Tooltip
+    property var tooltip: TooltipItem {
+        tooltip: bar.tooltip
+        owner: root
+        show: root.containsMouse
 
-	property var rightclickMenu: TooltipItem {
-		id: rightclickMenu
-		tooltip: bar.tooltip
-		owner: root
+        Label {
+            color: Palette.palette().onSurface
+            text: "Bluetooth"
+        }
+    }
 
-		isMenu: true
-		show: root.showMenu
-		onClose: root.showMenu = false
+    // Right-click menu
+    property var rightclickMenu: TooltipItem {
+        id: rightclickMenu
+        tooltip: bar.tooltip
+        owner: root
+        isMenu: true
+        show: root.showMenu
+        onClose: root.showMenu = false
 
-		Loader {
-			width: 400
-			active: root.showMenu || rightclickMenu.visible
+        Loader {
+            width: 400
+            active: root.showMenu || rightclickMenu.visible
 
-			sourceComponent: Column {
-				spacing: 5
+            sourceComponent: Column {
+                spacing: 5
 
-				move: Transition {
-					SmoothedAnimation { property: "y"; velocity: 350 }
-				}
+                move: Transition {
+                    SmoothedAnimation { property: "y"; velocity: 350 }
+                }
 
-				RowLayout {
-					width: parent.width
+                RowLayout {
+                    width: parent.width
+                    spacing: 5
 
-					ClickableIcon {
-						image: root.image
-						implicitHeight: 40
-						implicitWidth: height
-						onClicked: root.adapter.enabled = !root.adapter.enabled
-					}
+                    // Icon + label clickable
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: { root.adapter.enabled = !root.adapter.enabled }
 
-					Label {
-						color: Pallete.palette().onSurface
-						text: `Bluetooth (${root.adapter.adapterId})`
-					}
+                        RowLayout {
+                            spacing: 5
 
-					Item { Layout.fillWidth: true }
+                            Label {
+                                font.family: "Material Symbols Outlined"
+                                font.pixelSize: 20 // Smaller icon in menu
+                                text: {
+                                    if (!adapter || !adapter.enabled) return "bluetooth_disabled"
+                                    if (connected) return "bluetooth_connected"
+                                    return "bluetooth"
+                                }
+                                color: Palette.palette().onSurface
+                            }
 
-					ClickableIcon {
-						image: root.adapter.enabled ? "root:/icons/bluetooth-slash.svg" : "root:/icons/bluetooth.svg"
-						implicitHeight: 24
-						implicitWidth: height
-						onClicked: root.adapter.enabled = !root.adapter.enabled
-					}
+                            Label {
+                                text: `Bluetooth (${root.adapter.adapterId})`
+                                color: Palette.palette().onSurface
+                                font.pixelSize: 16
+                            }
+                        }
+                    }
 
-					ActivityButton {
-						image: "root:/icons/binoculars.svg"
-						implicitHeight: 24
-						implicitWidth: height
-						onClicked: root.adapter.discovering = !root.adapter.discovering
-						showAction: root.adapter.discovering
-						Layout.rightMargin: 4
-					}
-				}
+                    Item { Layout.fillWidth: true }
 
-				Rectangle {
-					width: parent.width
-					implicitHeight: 1
-					visible: root.adapter.devices.values.length > 0
+                    // Toggle adapter button
+                    Label {
+                        font.family: "Material Symbols Outlined"
+                        font.pixelSize: 20 // Smaller icon in menu
+                        text: adapter.enabled ? "bluetooth_disabled" : "bluetooth"
+                        color: Palette.palette().onSurface
+                        MouseArea { anchors.fill: parent; onClicked: root.adapter.enabled = !root.adapter.enabled }
+                    }
 
-					color: ShellGlobals.colors.separator
-				}
+                    // Discover button
+                    Label {
+                        font.family: "Material Symbols Outlined"
+                        font.pixelSize: 20 // Smaller icon in menu
+                        text: "search"
+                        color: Palette.palette().onSurface
+                        MouseArea { anchors.fill: parent; onClicked: root.adapter.discovering = !root.adapter.discovering }
+                    }
+                }
 
-				Repeater {
-					model: ScriptModel {
-						values: [...root.adapter.devices.values].sort((a, b) => {
-							if (a.connected && !b.connected) return -1;
-							if (b.connected && !a.connected) return 1;
-							if (a.bonded && !b.bonded) return -1;
-							if (b.bonded && !a.bonded) return 1;
-							return b.name - a.name;
-						})
-					}
+                Rectangle {
+                    width: parent.width
+                    implicitHeight: 1
+                    visible: root.adapter.devices.values.length > 0
+                    color: ShellGlobals.colors.separator
+                }
 
-					delegate: BluetoothDeviceDelegate {
-						required property BluetoothDevice modelData
-						device: modelData
-						width: parent.width
-					}
-				}
-			}
-		}
-	}
+                Repeater {
+                    model: ScriptModel {
+                        values: [...root.adapter.devices.values].sort((a, b) => {
+                            if (a.connected && !b.connected) return -1
+                            if (b.connected && !a.connected) return 1
+                            if (a.bonded && !b.bonded) return -1
+                            if (b.bonded && !a.bonded) return 1
+                            return b.name - a.name
+                        })
+                    }
+
+                    delegate: BluetoothDeviceDelegate {
+                        required property BluetoothDevice modelData
+                        device: modelData
+                        width: parent.width
+                    }
+                }
+            }
+        }
+    }
 }
