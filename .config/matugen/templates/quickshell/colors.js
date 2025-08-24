@@ -2,7 +2,7 @@
 // Centralized color tokens (Material 3 style). Non-QML JS module.
 // Import in QML with: import "../colors.js" as Palette
 
-var isDark = true;
+var isDark = {{ is_dark_mode }};
 
 var light = {
     primary: "{{ colors.primary.light.hex }}",

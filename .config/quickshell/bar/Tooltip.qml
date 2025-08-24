@@ -167,7 +167,7 @@ Scope {
 				BarWidgetInner {
 					anchors.fill: parent
 					color: Pallete.palette().secondaryContainer
-					radius: 34  // <- add your desired corner radius
+					radius: 16  // <- add your desired corner radius
 				}
 
 

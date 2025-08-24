@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Services.UPower
 import qs
+import "../../resources/colors.js" as Pallete
 
 Item {
 	id: root
@@ -29,17 +30,25 @@ Item {
 		     : ShellGlobals.interpolateColors(Math.min(1.0, Math.min(0.5, root.device.percentage) * 2), "red", "white")
 	}
 
-	Image {
-		id: img
-		anchors.fill: parent;
+	Text {
+    	id: batteryIcon
+    	anchors.fill: parent
+    	horizontalAlignment: Text.AlignHCenter
+    	verticalAlignment: Text.AlignVCenter
 
-		source: root.isCharging ? "root:icons/battery-charging.svg"
-		      : root.isPluggedIn ? "root:icons/battery-plus.svg"
-					: root.isLow ? "root:icons/battery-warning.svg"
-		      : "root:icons/battery-empty.svg"
+    	// Font setup
+    	font.family: "Material Symbols Outlined"
+    	font.pixelSize: Math.min(parent.width, parent.height)
 
-		sourceSize.width: parent.width
-		sourceSize.height: parent.height
-		visible: true
+    	// Dynamically select the icon by name
+    	text: root.isCharging ? "battery_charging_full"
+         	: root.isPluggedIn ? "battery_plus"
+         	: root.isLow ? "battery_alert"
+         	: "battery_alert"
+
+		color: Pallete.palette().onSurface
+
+    	visible: true
 	}
+
 }

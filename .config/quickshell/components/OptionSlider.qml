@@ -7,6 +7,7 @@ Item {
 
 	property list<string> values;
 	property int index: 0;
+	property color color2
 
 	implicitWidth: 300
 	implicitHeight: 40
@@ -46,7 +47,7 @@ Item {
 					 : -(this.width / 2);
 
 					text: delegate.modelData
-					color: "#a0eeffff"
+					color: root.color2
 				}
 			}
 		}

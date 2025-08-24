@@ -4,19 +4,30 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Services.Notifications
 import qs
+import "../resources/colors.js" as Palette
 
 Rectangle {
 	id: root
 	required property Notification notif;
 	required property var backer;
 
-	color: notif.urgency == NotificationUrgency.Critical ? "#30ff2030" : "#30c0ffff"
+	color: notif.urgency == NotificationUrgency.Critical ? Palette.palette().errorContainer : Palette.palette().surfaceVariant
 	radius: 5
 	implicitWidth: 450
 	implicitHeight: c.implicitHeight
 
+	Component.onCompleted: {
+        if (backer.discardTimer) {
+            backer.discardTimer.stop();   // kill the built-in timer
+        }
+        if (backer.timePercentage !== undefined) {
+            backer.timePercentage = 1.0; // pretend it's "always alive"
+        }
+    }
+
 	HoverHandler {
 		onHoveredChanged: {
+			backer.discardTimer.stop();
 			backer.pauseCounter += Math.max(0, backer.pauseCounter + (hovered ? 1 : -1));
 		}
 	}
@@ -53,6 +64,8 @@ Rectangle {
 				Label {
 					visible: text != ""
 					text: notif.summary
+					color: Palette.palette().onSurface
+					font.family: "Roboto"
 					font.pointSize: 20
 					elide: Text.ElideRight
 					Layout.maximumWidth: root.implicitWidth - 100 // QTBUG-127649
@@ -112,6 +125,8 @@ Rectangle {
 					id: bodyLabel
 					width: root.implicitWidth - 20
 					text: notif.body
+					color: Palette.palette().onSurface
+					font.family: "Roboto"
 					wrapMode: Text.Wrap
 
 					onLineLaidOut: line => {

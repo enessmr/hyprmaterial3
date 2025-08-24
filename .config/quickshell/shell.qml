@@ -27,7 +27,7 @@ ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableAi: true
-	
+
 	Component.onCompleted: {
 		Lock.Controller
 		Launcher.Controller.init()

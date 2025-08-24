@@ -117,6 +117,7 @@ BarWidgetInner {
 							index: PowerProfiles.profile
 							onIndexChanged: PowerProfiles.profile = this.index;
 							implicitWidth: 350
+							color2: Pallete.palette().onSurface
 						}
 					}
 				}

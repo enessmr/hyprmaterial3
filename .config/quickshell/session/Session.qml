@@ -21,7 +21,7 @@ Scope {
     component DescriptionLabel: Rectangle {
         id: descriptionLabel
         property string text
-        property color textColor: Appearance.colors.colOnTooltip
+        property color textColor: Pallete.pallete().surface
         color: Appearance.colors.colTooltip
         clip: true
         radius: Appearance.rounding.normal
