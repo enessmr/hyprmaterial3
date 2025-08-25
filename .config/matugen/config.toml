@@ -10,7 +10,7 @@ blend = true
 [templates.ags]
 input_path = "./templates/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
-post_hook = "pkill -SIGUSR2 gjs"
+post_hook = "pkill -SIGUSR2 gjs;ags run &"
 
 [templates.quickshellpart1]
 input_path = "./templates/quickshell/colors.js"
