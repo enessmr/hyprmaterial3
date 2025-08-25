@@ -2,6 +2,7 @@ import qs.common
 import qs.common.widgets
 import QtQuick
 import QtQuick.Layouts
+import "../resources/colors.js" as Pallete
 
 RippleButton {
     id: button
@@ -12,13 +13,13 @@ RippleButton {
     property real size: 120
 
     buttonRadius: (button.focus || button.down) ? size / 2 : Appearance.rounding.verylarge
-    colBackground: button.keyboardDown ? Appearance.colors.colSecondaryContainerActive : 
-        button.focus ? Appearance.colors.colPrimary : 
-        Appearance.colors.colSecondaryContainer
-    colBackgroundHover: Appearance.colors.colPrimary
-    colRipple: Appearance.colors.colPrimaryActive
-    property color colText: (button.down || button.keyboardDown || button.focus || button.hovered) ?
-        Appearance.m3colors.m3onPrimary : Appearance.colors.colOnLayer0
+    colBackground: button.keyboardDown ? Pallete.palette().primaryContainer : 
+        button.focus ? Pallete.palette().primary : 
+        Pallete.palette().secondaryContainer
+    colBackgroundHover: Pallete.palette().primary
+    colRipple: Pallete.palette().onPrimary
+    // property color colText: (button.down || button.keyboardDown || button.focus || button.hovered) ?
+    //    Pallete.palette().onPrimary : Pallete.palette().onSecondaryContainer
 
     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     background.implicitHeight: size
@@ -45,7 +46,7 @@ RippleButton {
     contentItem: MaterialSymbol {
         id: icon
         anchors.fill: parent
-        color: button.colText
+        color: (button.focus || button.hovered) ? Pallete.palette().surface : Pallete.palette().onSecondaryContainer
         horizontalAlignment: Text.AlignHCenter
         iconSize: 45
         text: buttonIcon

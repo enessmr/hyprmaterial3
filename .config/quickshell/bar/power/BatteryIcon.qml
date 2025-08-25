@@ -26,11 +26,12 @@ Item {
 		height: 23 * root.device.percentage * root.scale
 		radius: 2 * root.scale
 
-		color: root.isPluggedIn ? "#359040"
+		color: root.isPluggedIn ? Pallete.palette().primary
 		     : ShellGlobals.interpolateColors(Math.min(1.0, Math.min(0.5, root.device.percentage) * 2), "red", "white")
 	}
 
 	Text {
+		renderType: Text.NativeRendering
     	id: batteryIcon
     	anchors.fill: parent
     	horizontalAlignment: Text.AlignHCenter

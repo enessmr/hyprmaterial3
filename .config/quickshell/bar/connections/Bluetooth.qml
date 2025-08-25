@@ -42,6 +42,10 @@ ClickableIcon {
         anchors.fill: parent
         
         Label {
+			anchors.fill: parent
+			anchors.leftMargin: 1
+			renderType: Text.NativeRendering
+			// color: Pallete.palette().onSurface
             id: bluetoothIcon
             // Position manually in center to avoid anchor conflicts with scaling
             x: parent.width / 2 - width / 2
