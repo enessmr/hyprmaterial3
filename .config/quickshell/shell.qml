@@ -8,7 +8,7 @@ import QtQuick.Layouts
 import "screenshot" as Screenshot
 import "bar" as Bar
 import "lock" as Lock
-import "notifications" as Notifs
+import "./notificationPopup/"
 import "launcher" as Launcher
 import "background"
 import "resources/colors.js" as Palette
@@ -27,15 +27,16 @@ ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableAi: true
+	property bool enableNotificationPopup: true
 
 	Component.onCompleted: {
 		Lock.Controller
 		Launcher.Controller.init()
 		// MaterialThemeLoader.reapplyTheme()
-        Hyprsunset.load()
-        FirstRunExperience.load()
-        ConflictKiller.load()
-        Cliphist.refresh()
+        // Hyprsunset.load()
+        // FirstRunExperience.load()
+        // ConflictKiller.load()
+        // Cliphist.refresh()
 	}
 
 	Process {
@@ -59,14 +60,14 @@ ShellRoot {
 		}
 	}
 
-	Notifs.NotificationOverlay {
+	/* Notifs.NotificationOverlay {
     	screen: Quickshell.screens.find(s => s.name == "DP-1") || null
     	Component.onCompleted: {
        		if (!screen) {
             	screen = Quickshell.screens.find(s => s.name == "DP-1")
         	}
     	}
-	}
+	} */
 
 	Variants {
 		model: Quickshell.screens
@@ -105,4 +106,5 @@ ShellRoot {
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableAi; component: AiChatbot {} }
+	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 }

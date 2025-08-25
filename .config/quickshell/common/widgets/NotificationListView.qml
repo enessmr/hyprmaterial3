@@ -12,8 +12,9 @@ StyledListView { // Scrollable window
     spacing: 3
 
     model: ScriptModel {
-        values: root.popup ? Notifications.popupAppNameList : Notifications.appNameList
+        values: root.popup ? (Notifications.popupAppNameList ?? []) : (Notifications.appNameList ?? [])
     }
+
     delegate: NotificationGroup {
         required property int index
         required property var modelData

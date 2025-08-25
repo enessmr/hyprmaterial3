@@ -8,7 +8,7 @@ import qs.bar.audio as Audio
 import qs.bar.mpris as Mpris
 import qs.bar.connections as Connections
 import qs.bar.power as Power
-import qs.notifications as Notifs
+// import qs.notifications as Notifs
 // import "../resources/components/layout"
 
 BarContainment {
@@ -25,10 +25,10 @@ BarContainment {
 		ColumnLayout {
 			Layout.fillWidth: true
 
-			Notifs.NotificationWidget {
+			/* Notifs.NotificationWidget {
 				Layout.fillWidth: true
 				bar: root
-			}
+			} */
 
 			ColumnLayout {
 				spacing: 0
