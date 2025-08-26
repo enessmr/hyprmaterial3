@@ -16,6 +16,7 @@ import "./session/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
 import "bar/roundedcorner"
+import "services"  // Make sure this import exists bestie
 import qs.ai
 import qs.screenCorners
 import qs.services
@@ -24,87 +25,102 @@ import qs.common.widgets
 import qs.common.functions
 
 ShellRoot {
-	property bool enableScreenCorners: true
+    property bool enableScreenCorners: true
     property bool enableSession: true
-	property bool enableAi: true
-	property bool enableNotificationPopup: true
+    property bool enableAi: true
+    property bool enableNotificationPopup: true
+    property bool screenLocked: false
 
-	Component.onCompleted: {
-		Lock.Controller
-		Launcher.Controller.init()
-		// MaterialThemeLoader.reapplyTheme()
-        // Hyprsunset.load()
-        // FirstRunExperience.load()
-        // ConflictKiller.load()
-        // Cliphist.refresh()
-	}
+    // ACTUAL NOTIFICATION SERVICE INSTANCE (not singleton)
+    Notifications {
+        id: notificationService
+        Component.onCompleted: {
+            console.log("🔥 NOTIFICATION SERVICE READY BESTIE 🔥")
+        }
+    }
 
-	Process {
-		command: ["mkdir", "-p", ShellGlobals.rtpath]
-		running: true
-	}
+    // Expose it globally so your popup can access it
+    property alias notifications: notificationService
 
-	LazyLoader {
-		id: screenshot
-		loading: true
+    Component.onCompleted: {
+        Lock.Controller
+        Launcher.Controller.init()
+    }
 
-		Screenshot.Controller {
-		}
-	}	
+    Process {
+        command: ["mkdir", "-p", ShellGlobals.rtpath]
+        running: true
+    }
 
-	Connections {
-		target: ShellIpc
+    LazyLoader {
+        id: screenshot
+        loading: true
 
-		function onScreenshot() {
-			screenshot.item.shooting = true;
-		}
-	}
+        Screenshot.Controller {
+        }
+    }   
 
-	/* Notifs.NotificationOverlay {
-    	screen: Quickshell.screens.find(s => s.name == "DP-1") || null
-    	Component.onCompleted: {
-       		if (!screen) {
-            	screen = Quickshell.screens.find(s => s.name == "DP-1")
-        	}
-    	}
-	} */
+    Connections {
+        target: ShellIpc
 
-	Variants {
-		model: Quickshell.screens
+        function onScreenshot() {
+            screenshot.item.shooting = true;
+        }
+    }
 
-		Scope {
-			property var modelData
+    Variants {
+        model: Quickshell.screens
 
-			Bar.Bar {
-				// screen: modelData
-			}
+        Scope {
+            property var modelData
 
-			PanelWindow {
-				id: window
+            Bar.Bar {
+                // screen: modelData
+            }
 
-				screen: modelData
+            PanelWindow {
+                id: window
 
-				exclusionMode: ExclusionMode.Ignore
-				WlrLayershell.layer: WlrLayer.Background
-				WlrLayershell.namespace: "shell:background"
+                screen: modelData
 
-				anchors {
-					top: true
-					bottom: true
-					left: true
-					right: true
-				}
+                exclusionMode: ExclusionMode.Ignore
+                WlrLayershell.layer: WlrLayer.Background
+                WlrLayershell.namespace: "shell:background"
 
-				BackgroundImage {
-					anchors.fill: parent
-					screen: window.screen
-				}
-			}
-		}
-	}
+                anchors {
+                    top: true
+                    bottom: true
+                    left: true
+                    right: true
+                }
 
-	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
-	LazyLoader { active: enableSession; component: Session {} }
-	LazyLoader { active: enableAi; component: AiChatbot {} }
-	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
+                BackgroundImage {
+                    anchors.fill: parent
+                    screen: window.screen
+                }
+            }
+        }
+    }
+
+    LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
+    LazyLoader { active: enableSession; component: Session {} }
+    LazyLoader { active: enableAi; component: AiChatbot {} }
+    
+    // CHANGE THIS TO REGULAR LOADING INSTEAD OF LAZY
+    NotificationPopup {
+        // Regular loading so it can access the notification service immediately
+    }
+
+    // Debug timer to check if everything is working
+    Timer {
+        interval: 2000
+        running: true
+        repeat: false
+        onTriggered: {
+            console.log("🐛 DEBUG CHECK BESTIE:")
+            console.log("Notification service exists:", !!notificationService)
+            console.log("PopupList length:", notificationService.popupList.length)
+            console.log("Total notifications:", notificationService.list.length)
+        }
+    }
 }
