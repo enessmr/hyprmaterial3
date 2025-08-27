@@ -16,7 +16,6 @@ import "./session/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
 import "bar/roundedcorner"
-import "services"  // Make sure this import exists bestie
 import qs.ai
 import qs.screenCorners
 import qs.services
@@ -25,102 +24,87 @@ import qs.common.widgets
 import qs.common.functions
 
 ShellRoot {
-    property bool enableScreenCorners: true
+	property bool enableScreenCorners: true
     property bool enableSession: true
-    property bool enableAi: true
-    property bool enableNotificationPopup: true
-    property bool screenLocked: false
+	property bool enableAi: true
+	property bool enableNotificationPopup: true
 
-    // ACTUAL NOTIFICATION SERVICE INSTANCE (not singleton)
-    Notifications {
-        id: notificationService
-        Component.onCompleted: {
-            console.log("🔥 NOTIFICATION SERVICE READY BESTIE 🔥")
-        }
-    }
+	Component.onCompleted: {
+		Lock.Controller
+		Launcher.Controller.init()
+		// MaterialThemeLoader.reapplyTheme()
+        // Hyprsunset.load()
+        // FirstRunExperience.load()
+        // ConflictKiller.load()
+        // Cliphist.refresh()
+	}
 
-    // Expose it globally so your popup can access it
-    property alias notifications: notificationService
+	Process {
+		command: ["mkdir", "-p", ShellGlobals.rtpath]
+		running: true
+	}
 
-    Component.onCompleted: {
-        Lock.Controller
-        Launcher.Controller.init()
-    }
+	LazyLoader {
+		id: screenshot
+		loading: true
 
-    Process {
-        command: ["mkdir", "-p", ShellGlobals.rtpath]
-        running: true
-    }
+		Screenshot.Controller {
+		}
+	}	
 
-    LazyLoader {
-        id: screenshot
-        loading: true
+	Connections {
+		target: ShellIpc
 
-        Screenshot.Controller {
-        }
-    }   
+		function onScreenshot() {
+			screenshot.item.shooting = true;
+		}
+	}
 
-    Connections {
-        target: ShellIpc
+	/* Notifs.NotificationOverlay {
+    	screen: Quickshell.screens.find(s => s.name == "DP-1") || null
+    	Component.onCompleted: {
+       		if (!screen) {
+            	screen = Quickshell.screens.find(s => s.name == "DP-1")
+        	}
+    	}
+	} */
 
-        function onScreenshot() {
-            screenshot.item.shooting = true;
-        }
-    }
+	Variants {
+		model: Quickshell.screens
 
-    Variants {
-        model: Quickshell.screens
+		Scope {
+			property var modelData
 
-        Scope {
-            property var modelData
+			Bar.Bar {
+				// screen: modelData
+			}
 
-            Bar.Bar {
-                // screen: modelData
-            }
+			PanelWindow {
+				id: window
 
-            PanelWindow {
-                id: window
+				screen: modelData
 
-                screen: modelData
+				exclusionMode: ExclusionMode.Ignore
+				WlrLayershell.layer: WlrLayer.Background
+				WlrLayershell.namespace: "shell:background"
 
-                exclusionMode: ExclusionMode.Ignore
-                WlrLayershell.layer: WlrLayer.Background
-                WlrLayershell.namespace: "shell:background"
+				anchors {
+					top: true
+					bottom: true
+					left: true
+					right: true
+				}
 
-                anchors {
-                    top: true
-                    bottom: true
-                    left: true
-                    right: true
-                }
+				BackgroundImage {
+					anchors.fill: parent
+					screen: window.screen
+				}
+			}
+		}
+	}
 
-                BackgroundImage {
-                    anchors.fill: parent
-                    screen: window.screen
-                }
-            }
-        }
-    }
-
-    LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
-    LazyLoader { active: enableSession; component: Session {} }
-    LazyLoader { active: enableAi; component: AiChatbot {} }
-    
-    // CHANGE THIS TO REGULAR LOADING INSTEAD OF LAZY
-    NotificationPopup {
-        // Regular loading so it can access the notification service immediately
-    }
-
-    // Debug timer to check if everything is working
-    Timer {
-        interval: 2000
-        running: true
-        repeat: false
-        onTriggered: {
-            console.log("🐛 DEBUG CHECK BESTIE:")
-            console.log("Notification service exists:", !!notificationService)
-            console.log("PopupList length:", notificationService.popupList.length)
-            console.log("Total notifications:", notificationService.list.length)
-        }
-    }
+	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
+	LazyLoader { active: enableSession; component: Session {} }
+	LazyLoader { active: enableAi; component: AiChatbot {} }
+	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 }

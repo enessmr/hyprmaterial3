@@ -32,6 +32,12 @@ Item {
         property string urgency: notification?.urgency.toString() ?? "normal"
         property Timer timer
 
+        // BESTIE THIS IS THE MAGIC - WHEN POPUP CHANGES, UPDATE THE PARENT LIST
+        onPopupChanged: {
+            console.log("🔥 POPUP CHANGED FOR ID", notificationId, "TO:", popup)
+            root.updatePopupList()
+        }
+
         onNotificationChanged: {
             if (notification === null) {
                 root.discardNotification(notificationId);
@@ -44,6 +50,7 @@ Item {
         interval: 5000
         running: true
         onTriggered: () => {
+            console.log("⏰ TIMING OUT NOTIFICATION:", notificationId)
             root.timeoutNotification(notificationId);
             destroy()
         }
@@ -52,10 +59,18 @@ Item {
     property bool silent: false
     property var filePath: Directories.notificationsPath
     property list<Notif> list: []
-    property var popupList: list.filter((notif) => notif.popup);
-    property bool popupInhibited: silent // removed the cursed GlobalStates
+    // BESTIE MAKE THIS A REAL PROPERTY THAT UPDATES PROPERLY
+    property list<Notif> popupList: []
+    property bool popupInhibited: silent
     property var latestTimeForApp: ({})
     property int idOffset: 0
+
+    // FUNCTION TO UPDATE POPUP LIST PROPERLY BESTIE
+    function updatePopupList() {
+        const newPopupList = list.filter((notif) => notif.popup)
+        console.log("📊 UPDATING POPUP LIST - NEW LENGTH:", newPopupList.length)
+        popupList = newPopupList
+    }
 
     Component {
         id: notifComponent
@@ -116,6 +131,8 @@ Item {
                 console.log("❌ POPUP INHIBITED RN BESTIE")
             }
 
+            // UPDATE THE POPUP LIST IMMEDIATELY BESTIE
+            root.updatePopupList()
             root.notify(newNotifObject);
             
             // Save to file
@@ -140,6 +157,7 @@ Item {
         if (index !== -1) {
             root.list.splice(index, 1);
             root.list = root.list.slice(0) // trigger change
+            root.updatePopupList() // UPDATE POPUP LIST WHEN REMOVING TOO
         }
         
         const notifServerIndex = notifServer.trackedNotifications.values.findIndex((notif) => notif.id + root.idOffset === id);
@@ -153,8 +171,8 @@ Item {
         console.log("⏰ TIMING OUT NOTIFICATION:", id)
         const index = root.list.findIndex((notif) => notif.notificationId === id);
         if (root.list[index] != null) {
-            root.list[index].popup = false;
-            root.list = root.list.slice(0) // trigger change
+            root.list[index].popup = false; // THIS WILL TRIGGER onPopupChanged NOW
+            // NO NEED TO MANUALLY UPDATE LIST HERE BC onPopupChanged HANDLES IT
         }
         root.timeout(id);
     }
@@ -195,6 +213,7 @@ Item {
                     root.idOffset = maxId
                 }
                 console.log("✅ Loaded", root.list.length, "saved notifications")
+                root.updatePopupList() // UPDATE POPUP LIST AFTER LOADING TOO
             } catch(e) {
                 console.log("❌ Error parsing saved notifications:", e)
                 root.list = []

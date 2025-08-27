@@ -12,11 +12,48 @@ import Quickshell.Hyprland
 Scope {
     id: notificationPopup
 
+    // BESTIE WE'RE GOING FULL CAVEMAN MODE - NO MORE FANCY STUFF
+    property var notificationService: null
+
+    Timer {
+        id: serviceChecker
+        interval: 100  // Check every 100ms like a MENACE
+        running: true
+        repeat: true
+        onTriggered: {
+            if (!notificationPopup.notificationService) {
+                // Try different ways to find this service bc QuickShell is UNHINGED
+                var service = Quickshell.services?.notifications 
+                if (!service) {
+                    // Maybe try the global scope? WHO KNOWS AT THIS POINT
+                    service = notifications
+                }
+                if (service) {
+                    console.log("🎯 FINALLY FOUND THE SERVICE BESTIE!! IT WAS HIDING FR")
+                    notificationPopup.notificationService = service
+                    serviceChecker.stop() // We can rest now
+                }
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        console.log("📱 NOTIFICATION POPUP LOADED BESTIE")
+        // Try immediately first
+        var service = Quickshell.services?.notifications
+        if (service) {
+            console.log("🎯 SERVICE EXISTS IMMEDIATELY BESTIE")
+            notificationService = service
+            serviceChecker.stop()
+        } else {
+            console.log("🔍 SERVICE NOT FOUND YET, STARTING HUNT...")
+        }
+    }
+
     PanelWindow {
         id: root
         // BULLETPROOF VISIBILITY CHECK BESTIE
-        property var notificationService: null
-        visible: notificationService?.popupList?.length > 0
+        visible: notificationPopup.notificationService?.popupList?.length > 0
         
         screen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name) ?? null
 
@@ -39,17 +76,8 @@ Scope {
 
         Component.onCompleted: {
             console.log("📱 NOTIFICATION POPUP LOADED BESTIE")
-            // Find the notification service from the shell root
-            let shellRoot = parent
-            while (shellRoot && !shellRoot.notificationService) {
-                shellRoot = shellRoot.parent
-            }
-            if (shellRoot) {
-                notificationService = shellRoot.notificationService
-                console.log("Found notification service:", !!notificationService)
-            } else {
-                console.log("Could not find notification service!")
-            }
+            console.log("🔥 NOTIFICATION SERVICE EXISTS:", !!notificationPopup.notificationService)
+            console.log("🔥 POPUP LIST LENGTH:", notificationPopup.notificationService?.popupList?.length ?? "undefined")
         }
 
         // Simple list view for now - you can replace with your fancy NotificationListView
@@ -64,7 +92,7 @@ Scope {
             }
             width: parent.width - 8
             
-            model: notificationService?.popupList ?? []
+            model: notificationPopup.notificationService?.popupList ?? []
             
             delegate: Rectangle {
                 width: listview.width
@@ -112,20 +140,20 @@ Scope {
                     anchors.fill: parent
                     onClicked: {
                         console.log("👆 DISMISSING NOTIFICATION:", modelData.notificationId)
-                        if (notificationService) {
-                            notificationService.discardNotification(modelData.notificationId)
+                        if (notificationPopup.notificationService) {
+                            notificationPopup.notificationService.discardNotification(modelData.notificationId)
                         }
                     }
                 }
             }
         }
 
-        // Debug info
+        // Debug info - FIXED THE REFERENCE BESTIE
         Text {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.margins: 8
-            text: "Popups: " + (parent.notifications?.popupList?.length ?? 0)
+            text: "Popups: " + (notificationPopup.notificationService?.popupList?.length ?? 0)
             color: "red"
             font.pixelSize: 10
             visible: true // Set to false later
