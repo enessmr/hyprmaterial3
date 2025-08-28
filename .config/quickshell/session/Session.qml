@@ -10,6 +10,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Hyprland
+import "../resources/colors.js" as Pallete
 // import Quickshell.Ipc
 
 Scope {
@@ -22,7 +23,7 @@ Scope {
         id: descriptionLabel
         property string text
         property color textColor: Pallete.pallete().surface
-        color: Appearance.colors.colTooltip
+        color: Pallete.pallete().surface
         clip: true
         radius: Appearance.rounding.normal
         implicitHeight: descriptionLabelText.implicitHeight + 10 * 2
