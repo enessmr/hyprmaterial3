@@ -1,7 +1,17 @@
-[config]
-command = "sh"
-arguments = ["-c", "swww query | awk -F'image: ' '{print $2}'"]
-set = true
+# no
+# [config]
+# command = "hyprctl"
+# arguments = ["hyprpaper", "listactive"]
+# set = true
+
+[config.wallpaper]
+# The base command to run for applying the wallpaper, shouldn't have spaces in it.
+command = "swww"
+
+# The arguments that will be provided to the command.
+# Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
+# The last argument will be the image path.
+arguments = ["img", "--transition-type", "center"]
 
 [config.custom_colors.yellow]
 color = "#FFFF00"
@@ -17,6 +27,11 @@ input_path = "./templates/quickshell/colors.js"
 output_path = "~/.config/quickshell/resources/colors.js"
 
 [templates.quickshellpart2]
+input_path = "./templates/quickshell/shell.qml"
+output_path = "~/.config/quickshell/shell.qml"
+post_hook = "sleep 1"
+
+[templates.quickshellreload]
 input_path = "./templates/quickshell/shell.qml"
 output_path = "~/.config/quickshell/shell.qml"
 
