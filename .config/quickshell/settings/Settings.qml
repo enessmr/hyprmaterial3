@@ -59,7 +59,7 @@ Singleton {
             RippleButton {
                 buttonRadius: 9999
                 implicitWidth: 37.5
-                implicitHeight: 37.5
+                implicitHeight: 32.5
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.topMargin: 8
