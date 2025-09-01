@@ -10,11 +10,13 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import qs.common.widgets
 import "../resources/colors.js" as Palette
+import "../resources/components/navigation" as Nav
 
 Singleton {
     PersistentProperties {
         id: persist
         property bool settingsOpen: false
+        property int currentPage: 0  // WHICH PAGE WE ON BESTIE
     }
 
     IpcHandler {
@@ -55,8 +57,8 @@ Singleton {
             }
 
             RippleButton {
-                buttonRadius: 9999   // fully round
-                implicitWidth: 37.5   // your size
+                buttonRadius: 9999
+                implicitWidth: 37.5
                 implicitHeight: 37.5
                 anchors.top: parent.top
                 anchors.right: parent.right
@@ -66,15 +68,13 @@ Singleton {
 
                 contentItem: MaterialSymbol {
                     anchors.centerIn: parent
-                    text: "close"   // or "✕" if u want it short
-                    iconSize: 22.5    // scale down for tiny button
+                    text: "close"
+                    iconSize: 22.5
                     horizontalAlignment: Text.AlignHCenter
                 }
-                // border.color: Palette.palette().outlineVariant
             }
 
-            // Your settings content goes here
-            ColumnLayout {
+            RowLayout {
                 anchors.fill: parent
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
@@ -82,16 +82,204 @@ Singleton {
                 anchors.bottomMargin: 10
                 spacing: 10
 
+                // YOUR EXISTING NAV RAIL COMPONENT - CLEAN AS HELL
+                Nav.NavigationRail {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 200
+                    selectedIndex: persist.currentPage
+
+                    // PALETTE PAGE - THE MAIN CHARACTER
+                    Nav.NavigationRailItem {
+                        text: "Pallete"
+                        selected: persist.currentPage === 0
+                        onClicked: persist.currentPage = 0
+                    }
+
+                    // ADD MORE PAGES IF YOU WANT BESTIE
+                    /* Nav.NavigationRailItem {
+                        text: "General"
+                        selected: persist.currentPage === 1
+                        onClicked: persist.currentPage = 1
+                        
+                        contentItem: Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: 16
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: 12
+
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "settings"
+                                font.family: "Material Symbols Outlined"
+                                font.pixelSize: 20
+                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
+                            }
+
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "General"
+                                font.pixelSize: 13
+                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
+                            }
+                        }
+                    } 
+
+                    Nav.NavigationRailItem {
+                        text: "Advanced"
+                        selected: persist.currentPage === 2
+                        onClicked: persist.currentPage = 2
+                        
+                        contentItem: Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: 16
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: 12
+
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "tune"
+                                font.family: "Material Symbols Outlined"
+                                font.pixelSize: 20
+                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
+                            }
+
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "Advanced"
+                                font.pixelSize: 13
+                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
+                            }
+                        }
+                    } */
+                }
+
+                // DYNAMIC CONTENT AREA - WHERE THE MAGIC HAPPENS
                 Rectangle {
                     Layout.fillWidth: true
-                    implicitHeight: 540
+                    Layout.fillHeight: true
                     color: Palette.palette().surfaceContainerHigh
                     radius: 8
 
-                    Text {
-                        text: "Example Setting 1"
-                        anchors.centerIn: parent
-                        color: Palette.palette().onSurfaceVariant
+                    // DYNAMIC PAGE CONTENT
+                    Loader {
+                        id: pageLoader
+                        anchors.fill: parent
+                        anchors.margins: 16
+                        
+                        sourceComponent: {
+                            switch (persist.currentPage) {
+                                case 0: return palletePageComponent
+                                case 1: return generalPageComponent
+                                case 2: return advancedPageComponent
+                                default: return palletePageComponent
+                            }
+                        }
+                    }
+
+                    // PAGE COMPONENTS - THE CONTENT KINGS
+                    Component {
+                        id: palletePageComponent
+                        
+                        Column {
+                            spacing: 16
+                            
+                            Text {
+                                text: "🎨 Palette Settings"
+                                font.pixelSize: 18
+                                font.weight: Font.Bold
+                                color: Palette.palette().onSurface
+                            }
+                            
+                            Text {
+                                text: "customize your colors bestie 💅✨"
+                                font.pixelSize: 12
+                                color: Palette.palette().onSurfaceVariant
+                            }
+                            
+                            Rectangle {
+                                width: parent.width
+                                height: 100
+                                color: Palette.palette().primaryContainer
+                                radius: 8
+                                
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "Color picker goes here\n(palette icon was fire choice ngl)"
+                                    color: Palette.palette().onPrimaryContainer
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+                        }
+                    }
+
+                    Component {
+                        id: generalPageComponent
+                        
+                        Column {
+                            spacing: 16
+                            
+                            Text {
+                                text: "⚙️ General Settings"
+                                font.pixelSize: 18
+                                font.weight: Font.Bold
+                                color: Palette.palette().onSurface
+                            }
+                            
+                            Text {
+                                text: "the basic stuff fr"
+                                font.pixelSize: 12
+                                color: Palette.palette().onSurfaceVariant
+                            }
+                            
+                            Rectangle {
+                                width: parent.width
+                                height: 100
+                                color: Palette.palette().secondaryContainer
+                                radius: 8
+                                
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "General options here\n(toggles and stuff)"
+                                    color: Palette.palette().onSecondaryContainer
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+                        }
+                    }
+
+                    Component {
+                        id: advancedPageComponent
+                        
+                        Column {
+                            spacing: 16
+                            
+                            Text {
+                                text: "🔧 Advanced Settings"
+                                font.pixelSize: 18
+                                font.weight: Font.Bold
+                                color: Palette.palette().onSurface
+                            }
+                            
+                            Text {
+                                text: "for the brave souls only 💀"
+                                font.pixelSize: 12
+                                color: Palette.palette().onSurfaceVariant
+                            }
+                            
+                            Rectangle {
+                                width: parent.width
+                                height: 100
+                                color: Palette.palette().tertiaryContainer
+                                radius: 8
+                                
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "Advanced options here\n(don't touch unless u know what ur doing)"
+                                    color: Palette.palette().onTertiaryContainer
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+                        }
                     }
                 }
             }
