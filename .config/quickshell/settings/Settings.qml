@@ -89,9 +89,10 @@ Singleton {
                     selectedIndex: persist.currentPage
 
                     // PALETTE PAGE - THE MAIN CHARACTER
-                    Nav.NavigationRailItem {
-                        text: "Pallete"
-                        selected: persist.currentPage === 0
+                    Nav.TabButtonSettings {
+                        label: "Palette"
+                        iconName: "palette"   // this is your Material Symbols icon
+                        active: persist.currentPage === 0
                         onClicked: persist.currentPage = 0
                     }
 

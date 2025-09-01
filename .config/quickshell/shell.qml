@@ -10,6 +10,7 @@ import "bar" as Bar
 import "lock" as Lock
 import "./notificationPopup/"
 import "launcher" as Launcher
+import "settings" as Settings
 import "background"
 import "resources/colors.js" as Palette
 import "./session/"
@@ -32,6 +33,7 @@ ShellRoot {
 	Component.onCompleted: {
 		Lock.Controller
 		Launcher.Controller.init()
+		Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
         // Hyprsunset.load()
         // FirstRunExperience.load()
