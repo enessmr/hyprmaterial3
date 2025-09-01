@@ -30,8 +30,8 @@ Singleton {
         activeAsync: persist.settingsOpen
 
         PanelWindow {
-            width: 500
-            height: 400
+            width: 1000
+            height: 600
             color: "transparent"
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
             WlrLayershell.namespace: "shell:settings"
@@ -76,8 +76,24 @@ Singleton {
             // Your settings content goes here
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 16
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
+                anchors.topMargin: 45
+                anchors.bottomMargin: 10
                 spacing: 10
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    implicitHeight: 540
+                    color: Palette.palette().surfaceContainerHigh
+                    radius: 8
+
+                    Text {
+                        text: "Example Setting 1"
+                        anchors.centerIn: parent
+                        color: Palette.palette().onSurfaceVariant
+                    }
+                }
             }
         }
     }
