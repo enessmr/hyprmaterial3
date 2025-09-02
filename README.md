@@ -60,7 +60,7 @@ _Note 2: **YOU MUST READ CONTRIBUTING.MD IF QUICKSHELL**_
 
 ### hyprmaterial3<sup>AGS</sup>
 
-Widget system: AGS | Support: Kind of deprecated. Due to busy with QS.
+Widget system: AGS | Support: No
 
 [Showcase video](https://m.youtube.com/watch?v=N4vplvIAF_Y)
 
