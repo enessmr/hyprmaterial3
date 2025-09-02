@@ -8,6 +8,9 @@
 ![](https://img.shields.io/github/last-commit/enessmr/hyprmaterial3?&style=for-the-badge&color=8ad7eb&logo=git&logoColor=D9E0EE&labelColor=1E202B)
 ![](https://img.shields.io/github/stars/enessmr/hyprmaterial3?style=for-the-badge&logo=andela&color=8ad7eb&logoColor=D9E0EE&labelColor=1E202B)
 ![](https://img.shields.io/github/repo-size/enessmr/hyprmaterial3?color=8ad7eb&label=SIZE&logo=protondrive&style=for-the-badge&logoColor=D9E0EE&labelColor=1E202B)
+![](https://img.shields.io/badge/LINEAGEOS-22.1-8ad7eb?style=for-the-badge&logo=lineageos&logoColor=D9E0EE&labelColor=1E202B)
+
+
 </div>
 
 <div align="center">
