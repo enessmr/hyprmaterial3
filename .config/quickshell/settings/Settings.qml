@@ -11,6 +11,7 @@ import Quickshell.Widgets
 import qs.common.widgets
 import "../resources/colors.js" as Palette
 import "../resources/components/navigation" as Nav
+import "./PaletteButton.qml"
 
 Singleton {
     PersistentProperties {
@@ -32,8 +33,8 @@ Singleton {
         activeAsync: persist.settingsOpen
 
         PanelWindow {
-            width: 1000
-            height: 600
+            implicitWidth: 1000
+            implicitHeight: 600
             color: "transparent"
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
             WlrLayershell.namespace: "shell:settings"
@@ -196,10 +197,12 @@ Singleton {
                                 font.pixelSize: 12
                                 color: Palette.palette().onSurfaceVariant
                             }
+
+                            PaletteButton { }
                             
                             Rectangle {
-                                width: parent.width
-                                height: 100
+                                implicitWidth: parent.width
+                                implicitHeight: 100
                                 color: Palette.palette().primaryContainer
                                 radius: 8
                                 
@@ -233,8 +236,8 @@ Singleton {
                             }
                             
                             Rectangle {
-                                width: parent.width
-                                height: 100
+                                implicitWidth: parent.width
+                                implicitHeight: 100
                                 color: Palette.palette().secondaryContainer
                                 radius: 8
                                 
@@ -268,8 +271,8 @@ Singleton {
                             }
                             
                             Rectangle {
-                                width: parent.width
-                                height: 100
+                                implicitWidth: parent.width
+                                implicitHeight: 100
                                 color: Palette.palette().tertiaryContainer
                                 radius: 8
                                 

@@ -8,7 +8,6 @@ import QtQuick.Layouts
 import "screenshot" as Screenshot
 import "bar" as Bar
 import "lock" as Lock
-import "./notificationPopup/"
 import "launcher" as Launcher
 import "settings" as Settings
 import "background"
@@ -28,7 +27,6 @@ ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableAi: true
-	property bool enableNotificationPopup: true
 
 	Component.onCompleted: {
 		Lock.Controller
@@ -108,5 +106,4 @@ ShellRoot {
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableAi; component: AiChatbot {} }
-	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 }
