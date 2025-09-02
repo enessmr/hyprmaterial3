@@ -1,5 +1,6 @@
 import qs.common
 import QtQuick
+import "../../resources/colors.js" as Palette
 
 Text {
     id: root
@@ -20,7 +21,7 @@ Text {
         }
     }
     verticalAlignment: Text.AlignVCenter
-    color: Appearance.m3colors.m3onBackground
+    color: Palette.palette().onSurface
 
     // Behavior on fill {
     //     NumberAnimation {
