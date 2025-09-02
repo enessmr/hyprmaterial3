@@ -1,37 +1,37 @@
 #!/usr/bin/env bash
 
-# HyprMaterial3 wallpaper switcher
+# HyprMaterial3 wallpaper switcher with Matugen args
 
-WALL_DIR="$HOME/Pictures/.Wallpapers"
-WALLPAPERS=("$WALL_DIR"/*)
-NUM=${#WALLPAPERS[@]}
+IMAGE="$1"
+MODE="$2"
+M3COLOR="$3"
 
-if [ "$NUM" -eq 0 ]; then
-    echo "No wallpapers found in $WALL_DIR"
+if [ -z "$IMAGE" ] || [ -z "$MODE" ] || [ -z "$M3COLOR" ]; then
+    echo "Usage: $0 <IMAGE> <MODE> <M3COLORSCHEME>"
     exit 1
 fi
 
-# pick a random wallpaper
-SELECTED=${WALLPAPERS[$RANDOM % $NUM]}
-echo "Selected wallpaper: $SELECTED"
-echo $WALLPAPERS
-echo $NUM
+# --- Expand globs / validate file ---
+MATCHES=($IMAGE)
+if [ ${#MATCHES[@]} -eq 0 ]; then
+    echo "Wallpaper not found: $IMAGE"
+    exit 1
+fi
+IMAGE="${MATCHES[0]}"
 
+# --- Start swww daemon if not running ---
 if ! pgrep -x "swww-daemon" > /dev/null; then
     swww-daemon &
     sleep 0.5
 fi
 
-# set it using swww (or replace with hyprpaper command)
-swww img "$SELECTED"
-if ! pgrep -x "swww-daemon" > /dev/null; then
-    swww-daemon &
-    sleep 0.5
-fi
+# --- Set wallpaper ---
+echo "Setting wallpaper: $IMAGE"
+swww img "$IMAGE" &
+sleep 0.2
 
+# --- Apply Matugen colors ---
+matugen image "$IMAGE" -m "$MODE" -t scheme-"$M3COLOR"
 
-
-matugen image "$SELECTED"
-
-# optional notification
-notify-send "Wallpaper Changed" "$(basename "$SELECTED")"
+# --- Notification ---
+notify-send "Wallpaper Changed" "$(basename "$IMAGE") — Mode: $MODE | Color: $M3COLOR"
