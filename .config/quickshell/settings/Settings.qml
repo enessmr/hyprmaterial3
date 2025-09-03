@@ -11,7 +11,6 @@ import Quickshell.Widgets
 import qs.common.widgets
 import "../resources/colors.js" as Palette
 import "../resources/components/navigation" as Nav
-import "./PaletteButton.qml"
 
 Singleton {
     PersistentProperties {
@@ -198,8 +197,6 @@ Singleton {
                                 color: Palette.palette().onSurfaceVariant
                             }
 
-                            PaletteButton { }
-                            
                             Rectangle {
                                 implicitWidth: parent.width
                                 implicitHeight: 100
