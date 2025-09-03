@@ -18,8 +18,8 @@ RippleButton {
         Pallete.palette().secondaryContainer
     colBackgroundHover: Pallete.palette().primary
     colRipple: Pallete.palette().onPrimary
-    // property color colText: (button.down || button.keyboardDown || button.focus || button.hovered) ?
-    //    Pallete.palette().onPrimary : Pallete.palette().onSecondaryContainer
+    property color colText: (button.down || button.keyboardDown || button.focus || button.hovered) ?
+        Pallete.palette().onPrimary : Pallete.palette().onSecondaryContainer
 
     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     background.implicitHeight: size

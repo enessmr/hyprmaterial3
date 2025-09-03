@@ -22,8 +22,8 @@ Scope {
     component DescriptionLabel: Rectangle {
         id: descriptionLabel
         property string text
-        property color textColor: Pallete.pallete().surface
-        color: Pallete.pallete().surface
+        property color textColor: Pallete.palette().onSurface
+        color: Pallete.palette().surface
         clip: true
         radius: Appearance.rounding.normal
         implicitHeight: descriptionLabelText.implicitHeight + 10 * 2
@@ -144,14 +144,14 @@ Scope {
                         font.family: Appearance.font.family.title
                         font.pixelSize: Appearance.font.pixelSize.title
                         font.weight: Font.DemiBold
-                        text: Translation.tr("Session")
+                        text: "Session"
                     }
 
                     StyledText { // Small instruction
                         Layout.alignment: Qt.AlignHCenter
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: Appearance.font.pixelSize.normal
-                        text: Translation.tr("Arrow keys to navigate, Enter to select\nEsc or click anywhere to cancel")
+                        text: "Arrow keys to navigate, Enter to select\nEsc or click anywhere to cancel"
                     }
                 }
 
@@ -258,18 +258,18 @@ Scope {
                     active: root.packageManagerRunning
                     visible: active
                     sourceComponent: DescriptionLabel {
-                        text: Translation.tr("Your package manager is running")
-                        textColor: Appearance.m3colors.m3onErrorContainer
-                        color: Appearance.m3colors.m3errorContainer
+                        text: "Your package manager is running"
+                        textColor: Pallete.palette().onErrorContainer
+                        color: Pallete.palette().errorContainer
                     }
                 }
                 Loader {
                     active: root.downloadRunning
                     visible: active
                     sourceComponent: DescriptionLabel {
-                        text: Translation.tr("There might be a download in progress")
-                        textColor: Appearance.m3colors.m3onErrorContainer
-                        color: Appearance.m3colors.m3errorContainer
+                        text: "There might be a download in progress"
+                        textColor: Pallete.palette().onErrorContainer
+                        color: Pallete.palette().errorContainer
                     }
                 }
             }
