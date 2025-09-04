@@ -3,7 +3,7 @@ import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs
-import qs.lock as Lock
+// import qs.lock as Lock
 import "../resources/colors.js" as Pallete
 import "./roundedcorner"
 import qs.services
