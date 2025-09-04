@@ -7,7 +7,7 @@ Row {
     property int currentIndex: 0
     property bool enabled: true
     signal changed(int index)
-    spacing: 0
+    spacing: 2  // ADD SPACING SO ITEMS DON'T COLLIDE! 💅
 
     Repeater {
         model: options.length
@@ -28,8 +28,9 @@ Row {
                     var w = width
                     var h = height
                     var full = h / 2
-                    var softBaseLeft = (index === 0 ? full : 2)
-                    var softBaseRight = (index === (root.options.length - 1) ? full : 2)
+                    var baseRadius = 4;
+                    var softBaseLeft = (index === 0 ? full : baseRadius);
+                    var softBaseRight = (index === (root.options.length - 1) ? full : baseRadius);
                     var rTL = softBaseLeft + (full - softBaseLeft) * t
                     var rBL = rTL
                     var rTR = softBaseRight + (full - softBaseRight) * t

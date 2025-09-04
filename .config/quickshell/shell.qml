@@ -7,8 +7,7 @@ import QtQuick
 import QtQuick.Layouts
 import "screenshot" as Screenshot
 import "bar" as Bar
-// import "lock" as Lock
-import "./lockend4/"
+import "lock" as Lock
 import "launcher" as Launcher
 import "settings" as Settings
 import "background"
@@ -28,10 +27,9 @@ ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableAi: true
-	property bool enableLock: true
 
 	Component.onCompleted: {
-		// Lock.Controller
+		Lock.Controller
 		Launcher.Controller.init()
 		Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
@@ -108,5 +106,4 @@ ShellRoot {
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableAi; component: AiChatbot {} }
-	LazyLoader { active: enableLock; component: Lock {} }
 }
