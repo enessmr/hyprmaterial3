@@ -28,9 +28,8 @@ Row {
                     var w = width
                     var h = height
                     var full = h / 2
-                    var baseRadius = 4;
-                    var softBaseLeft = (index === 0 ? full : baseRadius);
-                    var softBaseRight = (index === (root.options.length - 1) ? full : baseRadius);
+                    var softBaseLeft = (index === 0 ? full : 2)
+                    var softBaseRight = (index === (root.options.length - 1) ? full : 2)
                     var rTL = softBaseLeft + (full - softBaseLeft) * t
                     var rBL = rTL
                     var rTR = softBaseRight + (full - softBaseRight) * t

@@ -379,7 +379,7 @@ Singleton {
                                         width: modeControl.implicitWidth + 16
                                         height: modeControl.implicitHeight + 8
                                         
-                                        Actions.SegmentedControl {
+                                        Actions.SegmentedPill {
                                             id: modeControl
                                             anchors.centerIn: parent
                                             options: ["light", "dark", "auto"]
@@ -466,6 +466,7 @@ Singleton {
                                                     font.pixelSize: 12
                                                     verticalAlignment: Text.AlignVCenter
                                                     leftPadding: 8
+                                                    z: 100000
                                                 }
                                             }
                                         }
