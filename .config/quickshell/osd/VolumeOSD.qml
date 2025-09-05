@@ -10,6 +10,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import Quickshell.Services.Pipewire
+import "../resources/colors.js" as Palette
 
 Scope {
     id: root
@@ -39,7 +40,7 @@ Scope {
         }
     }
 
-    Connections { // Listen to volume changes
+    Connections {
         target: Audio.sink?.audio ?? null
         function onVolumeChanged() {
             if (!Audio.ready) return
@@ -51,7 +52,7 @@ Scope {
         }
     }
 
-    Connections { // Listen to protection triggers
+    Connections {
         target: Audio
         function onSinkProtectionTriggered(reason) {
             root.protectionMessage = reason;
@@ -105,6 +106,19 @@ Scope {
                     implicitWidth: contentColumnLayout.implicitWidth
                     clip: true
 
+                    // ADDED: Background rectangle
+                    Rectangle {
+                        color: Palette.palette().background // Use your preferred background color
+                        radius: Appearance.rounding.full // Rounded corners
+                        opacity: 1.0 // Slightly transparent
+                        anchors.top: parent.top
+                        anchors.topMargin: 6
+                        anchors.left: parent.left
+                        anchors.leftMargin: 8
+                        width: contentColumnLayout.implicitWidth / 1.059
+                        height: contentColumnLayout.implicitHeight / 2 
+                    }
+
                     MouseArea {
                         anchors.fill: parent
                         hoverEnabled: true
@@ -137,13 +151,10 @@ Scope {
                             Layout.alignment: Qt.AlignHCenter
                             opacity: root.protectionMessage !== "" ? 1 : 0
 
-                            StyledRectangularShadow {
-                                target: protectionMessageBackground
-                            }
                             Rectangle {
                                 id: protectionMessageBackground
                                 anchors.centerIn: parent
-                                color: Appearance.m3colors.m3error
+                                color: AppearanceRippleButton.m3colors.m3error
                                 property real padding: 10
                                 implicitHeight: protectionMessageRowLayout.implicitHeight + padding * 2
                                 implicitWidth: protectionMessageRowLayout.implicitWidth + padding * 2
@@ -156,12 +167,12 @@ Scope {
                                         id: protectionMessageIcon
                                         text: "dangerous"
                                         iconSize: Appearance.font.pixelSize.hugeass
-                                        color: Appearance.m3colors.m3onError
+                                        color: AppearanceRippleButton.m3colors.m3onError
                                     }
                                     StyledText {
                                         id: protectionMessageTextWidget
                                         horizontalAlignment: Text.AlignHCenter
-                                        color: Appearance.m3colors.m3onError
+                                        color: AppearanceRippleButton.m3colors.m3onError
                                         wrapMode: Text.Wrap
                                         text: root.protectionMessage
                                     }
@@ -189,6 +200,7 @@ Scope {
             GlobalStates.osdVolumeOpen = !GlobalStates.osdVolumeOpen
         }
 	}
+    
     GlobalShortcut {
         name: "osdVolumeTrigger"
         description: "Triggers volume OSD on press"
@@ -197,6 +209,7 @@ Scope {
             root.triggerOsd()
         }
     }
+    
     GlobalShortcut {
         name: "osdVolumeHide"
         description: "Hides volume OSD on press"
@@ -205,5 +218,4 @@ Scope {
             GlobalStates.osdVolumeOpen = false
         }
     }
-
 }

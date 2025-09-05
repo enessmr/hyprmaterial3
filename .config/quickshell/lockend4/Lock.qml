@@ -96,7 +96,7 @@ Scope {
 			+ "decides to keyboard-unfocus the lock screen"
 
         onPressed: {
-			// console.log("I BEG FOR PLEAS REFOCUZ")
+			console.log("I BEG FOR PLEAS REFOCUZ")
             lockContext.shouldReFocus();
         }
     }

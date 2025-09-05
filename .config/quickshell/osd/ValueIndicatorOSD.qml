@@ -25,14 +25,14 @@ Item {
     implicitWidth: Appearance.sizes.osdWidth
     implicitHeight: valueIndicator.implicitHeight
 
-    StyledRectangularShadow {
-        target: valueIndicator
+    StyledRectangularColorRippleButton {
+        target: protectionMessageBackground
     }
     WrapperRectangle {
         id: valueIndicator
         anchors.fill: parent
         radius: Appearance.rounding.full
-        color: Appearance.colors.colLayer0
+        color: AppearanceRippleButton.colors.colLayer0
         implicitWidth: valueRow.implicitWidth
 
         RowLayout { // Icon on the left, stuff on the right
@@ -53,7 +53,7 @@ Item {
                         centerIn: parent
                         alignWhenCentered: !root.rotateIcon
                     }
-                    color: Appearance.colors.colOnLayer0
+                    color: AppearanceRippleButton.colors.colOnLayer0
                     renderType: Text.QtRendering
 
                     text: root.icon
@@ -79,21 +79,21 @@ Item {
                     Layout.rightMargin: valueProgressBar.height / 2 // Align text with progressbar radius curve's left end
 
                     StyledText {
-                        color: Appearance.colors.colOnLayer0
+                        color: AppearanceRippleButton.colors.colOnLayer0
                         font.pixelSize: Appearance.font.pixelSize.small
                         Layout.fillWidth: true
                         text: root.name
                     }
 
                     StyledText {
-                        color: Appearance.colors.colOnLayer0
+                        color: AppearanceRippleButton.colors.colOnLayer0
                         font.pixelSize: Appearance.font.pixelSize.small
                         Layout.fillWidth: false
                         text: Math.round(root.value * 100)
                     }
                 }
                 
-                StyledProgressBar {
+                StyledProgressBarRippleButton {
                     id: valueProgressBar
                     Layout.fillWidth: true
                     value: root.value
