@@ -7,7 +7,6 @@ import QtQuick
 import QtQuick.Layouts
 import "screenshot" as Screenshot
 import "bar" as Bar
-import "lock" as Lock
 import "launcher" as Launcher
 import "settings" as Settings
 // import "background"
@@ -17,6 +16,7 @@ import "./osd/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
 import "bar/roundedcorner"
+import "./lockend4/"
 import qs.screenCorners
 import qs.services
 import qs.common
@@ -27,9 +27,9 @@ ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableOnScreenDisplayVolume: true
+	property bool enableLock: true
 
 	Component.onCompleted: {
-		Lock.Controller
 		Launcher.Controller.init()
 		Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
@@ -106,4 +106,5 @@ ShellRoot {
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
+	LazyLoader { active: enableLock; component: Lock {} }
 }
