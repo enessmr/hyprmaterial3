@@ -16,13 +16,13 @@ Scope {
     property string wallpaperPath: StandardPaths.writableLocation(StandardPaths.PicturesLocation) + "/.Wallpapers/wallpaper.jpg"
     property bool imageLoaded: false
 
-    // This stores all the information shared between the lock surfaces on each screen.
+    // Shared lock context
     LockContext {
         id: lockContext
 
         onUnlocked: {
-            GlobalStates.screenLocked = false;
-            Quickshell.execDetached(["bash", "-c", "sleep 0.2; hyprctl --batch 'dispatch togglespecialworkspace; dispatch togglespecialworkspace'"]);
+            GlobalStates.screenLocked = false
+            Quickshell.execDetached(["bash", "-c", "sleep 0.2; hyprctl --batch 'dispatch togglespecialworkspace; dispatch togglespecialworkspace'"])
         }
     }
 
@@ -32,94 +32,92 @@ Scope {
 
         WlSessionLockSurface {
             color: "transparent"
+
+            // Loader for the actual lockscreen, initially inactive
             Loader {
-                active: GlobalStates.screenLocked
+                id: lockLoader
+                active: false
                 anchors.fill: parent
                 opacity: active ? 1 : 0
-                Behavior on opacity {
-                    NumberAnimation { duration: 300 }
-                }
+                Behavior on opacity { NumberAnimation { duration: 300 } }
                 sourceComponent: LockSurface {
                     context: lockContext
                 }
-                
-                // Background with proper error handling
+
+                // Background rectangle inside the loader
                 Rectangle {
                     anchors.fill: parent
-                    color: "#1a1b26" // Nice dark fallback color
-                    
+                    color: "#1a1b26"
+
+                    // Full wallpaper image
                     Image {
                         id: lockImage
                         anchors.fill: parent
-                        source: "file://" + root.wallpaperPath
+                        source: Qt.resolvedUrl(root.wallpaperPath)
                         fillMode: Image.PreserveAspectCrop
                         asynchronous: true
                         mipmap: true
-                        
+                        z: 0
+
                         onStatusChanged: {
-                            console.log("Image status:", status, "source:", source);
                             if (status === Image.Ready) {
-                                console.log("Wallpaper loaded successfully!");
-                                root.imageLoaded = true;
+                                console.log("Wallpaper loaded!")
+                                root.imageLoaded = true
+                                lockLoader.active = true // show lockscreen
                             } else if (status === Image.Error) {
-                                console.log("Failed to load wallpaper");
-                                console.log("Path:", root.wallpaperPath);
-                                root.imageLoaded = false;
-                            } else if (status === Image.Loading) {
-                                console.log("Loading wallpaper...");
+                                console.log("Wallpaper failed to load")
+                                root.imageLoaded = false
+                                lockLoader.active = true // still show lockscreen
                             }
                         }
                     }
 
-                    // Fallback gradient if image doesn't load
+                    // Fallback rectangle behind clock (always present)
                     Rectangle {
                         anchors.fill: parent
-                        visible: !root.imageLoaded
                         color: Palette.palette().onPrimary
-                        
-						Clock {
-							anchors.centerIn: parent
-						}
+                        opacity: lockImage.status === Image.Ready ? 0 : 1
+                        Behavior on opacity { NumberAnimation { duration: 300 } }
+                        z: 1
                     }
 
-                    // Debug info
+                    // Clock always on top
+                    Clock {
+                        anchors.centerIn: parent
+                        z: 2
+                    }
+
+                    // Debug info (optional)
                     Rectangle {
-                        anchors {
-                            top: parent.top
-                            left: parent.left
-                            margins: 10
-                        }
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        // margins: 10
                         width: 250
                         height: 80
                         color: AppearanceRippleButton.m3colors.shadow
                         radius: 5
-                        visible: false  // Set to true to show debug info
-                        
+                        visible: false
+                        z: 3
+
                         Column {
                             anchors.fill: parent
                             anchors.margins: 5
                             spacing: 2
-                            
-                            Text {
-                                text: "Status: " + lockImage.status
-                                color: "white"
-                                font.pixelSize: 10
-                            }
-                            Text {
-                                text: "Loaded: " + root.imageLoaded
-                                color: "white"
-                                font.pixelSize: 10
-                            }
-                            Text {
-                                text: "Source: " + lockImage.source
-                                color: "white"
-                                font.pixelSize: 8
-                                elide: Text.ElideRight
-                                width: parent.width
-                            }
+                            Text { text: "Status: " + lockImage.status; color: "white"; font.pixelSize: 10 }
+                            Text { text: "Loaded: " + root.imageLoaded; color: "white"; font.pixelSize: 10 }
+                            Text { text: "Source: " + lockImage.source; color: "white"; font.pixelSize: 8; elide: Text.ElideRight; width: parent.width }
                         }
                     }
                 }
+            }
+
+            // Hidden preload image for smooth startup (optional)
+            Image {
+                id: preloadImage
+                visible: false
+                source: Qt.resolvedUrl(root.wallpaperPath)
+                asynchronous: true
+                mipmap: true
             }
         }
     }
@@ -136,52 +134,31 @@ Scope {
                 screen: blurLayerLoader.modelData
                 WlrLayershell.namespace: "quickshell:lockWindowPusher"
                 color: "transparent"
-                anchors {
-                    top: true
-                    left: true
-                    right: true
-                }
+                anchors.top: true
+                anchors.left: true
+                anchors.right: true
                 implicitHeight: 1
                 exclusiveZone: screen.height * 3
             }
         }
     }
 
+    // IPC handler
     IpcHandler {
         target: "lock"
-
-        function activate() {
-            GlobalStates.screenLocked = true;
-        }
-        function focus() {
-            lockContext.shouldReFocus();
-        }
+        function activate() { GlobalStates.screenLocked = true }
+        function focus() { lockContext.shouldReFocus() }
     }
 
-    GlobalShortcut {
-        name: "lock"
-        description: "Locks the screen"
-
-        onPressed: {
-            GlobalStates.screenLocked = true;
-        }
-    }
-
-    GlobalShortcut {
-        name: "lockFocus"
-        description: "Re-focuses the lock screen"
-
-        onPressed: {
-            console.log("Refocusing lock screen");
-            lockContext.shouldReFocus();
-        }
-    }
+    // Global shortcuts
+    GlobalShortcut { name: "lock"; description: "Locks the screen"; onPressed: { GlobalStates.screenLocked = true } }
+    GlobalShortcut { name: "lockFocus"; description: "Refocuses lock screen"; onPressed: { lockContext.shouldReFocus() } }
 
     Component.onCompleted: {
-        console.log("Lockscreen initialized");
-        console.log("Wallpaper path: file://" + wallpaperPath);
-        
+        console.log("Lockscreen initialized")
+        console.log("Wallpaper path: file://" + wallpaperPath)
+
         // Test if file is readable
-        Quickshell.execDetached(["bash", "-c", "if [ -r \"" + wallpaperPath + "\" ]; then echo \"File is readable\"; else echo \"Cannot read file\"; fi"]);
+        Quickshell.execDetached(["bash", "-c", "if [ -r \"" + wallpaperPath + "\" ]; then echo \"File is readable\"; else echo \"Cannot read file\"; fi"])
     }
 }
