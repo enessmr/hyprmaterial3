@@ -10,7 +10,7 @@ import "bar" as Bar
 import "lock" as Lock
 import "launcher" as Launcher
 import "settings" as Settings
-import "background"
+// import "background"
 import "resources/colors.js" as Palette
 import "./session/"
 import "./osd/"
@@ -79,7 +79,7 @@ ShellRoot {
 				// screen: modelData
 			}
 
-			PanelWindow {
+			/* PanelWindow {
 				id: window
 
 				screen: modelData
@@ -99,7 +99,7 @@ ShellRoot {
 					anchors.fill: parent
 					screen: window.screen
 				}
-			}
+			} */
 		}
 	}
 
