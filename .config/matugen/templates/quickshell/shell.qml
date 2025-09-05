@@ -13,10 +13,10 @@ import "settings" as Settings
 import "background"
 import "resources/colors.js" as Palette
 import "./session/"
+import "./osd/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
 import "bar/roundedcorner"
-import qs.ai
 import qs.screenCorners
 import qs.services
 import qs.common
@@ -26,7 +26,7 @@ import qs.common.functions
 ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
-	property bool enableAi: true
+	property bool enableOnScreenDisplayVolume: true
 
 	Component.onCompleted: {
 		Lock.Controller
@@ -105,5 +105,5 @@ ShellRoot {
 
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
-	LazyLoader { active: enableAi; component: AiChatbot {} }
+	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 }
