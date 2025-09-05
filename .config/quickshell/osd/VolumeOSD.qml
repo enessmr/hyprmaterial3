@@ -116,6 +116,7 @@ Scope {
                         anchors.left: parent.left
                         anchors.leftMargin: 8
                         width: contentColumnLayout.implicitWidth / 1.059
+                        //                                         ⬆⬆⬆⬆ DO IT NEAR PERFECT LMFAOOOOO
                         height: contentColumnLayout.implicitHeight / 2 
                     }
 

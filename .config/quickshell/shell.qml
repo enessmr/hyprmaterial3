@@ -12,6 +12,7 @@ import "settings" as Settings
 // import "background"
 import "resources/colors.js" as Palette
 import "./session/"
+import "./quicksettings/"
 import "./osd/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
@@ -28,6 +29,7 @@ ShellRoot {
     property bool enableSession: true
 	property bool enableOnScreenDisplayVolume: true
 	property bool enableLock: true
+	property bool enableQS: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -107,4 +109,5 @@ ShellRoot {
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableLock; component: Lock {} }
+	LazyLoader { active: enableQS; component: QuickSettings {} }
 }

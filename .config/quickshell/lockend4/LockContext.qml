@@ -48,7 +48,7 @@ Scope {
         }
 
         // pam_unix won't send any important messages so all we need is the completion status.
-        onCompleted: result => {
+        onCompleted: function(result) {
             if (result == PamResult.Success) {
                 root.unlocked();
             } else {

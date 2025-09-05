@@ -73,7 +73,7 @@ Widget system: AGS | Support: No
 
 ### hyprmaterial3<sup>QS</sup>
 
-Widget system: Quickshell | Support: We nearly exited outfoxxed level
+Widget system: Quickshell | Support: bestie vake my grandma up my grandma is sleeping since 99999 bc
 
 | Pre-Beta Screenshot | MPRIS (peak gd player song AF) |
 |:---|:---|
