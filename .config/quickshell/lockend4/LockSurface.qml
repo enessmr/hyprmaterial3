@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import qs
 import qs.services
+import qs.lockend4
 import qs.common
 import qs.common.widgets
 import qs.common.functions
@@ -13,6 +14,11 @@ MouseArea {
     required property LockContext context
     property bool active: false
     property bool showInputField: active || context.currentText.length > 0
+
+    LockThingy {
+        anchors.fill: parent
+        z: 1 // make sure it's ABOVE everything but below the toolbar
+    }
 
     function forceFieldFocus() {
         passwordBox.forceActiveFocus();

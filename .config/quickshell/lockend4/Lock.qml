@@ -89,13 +89,17 @@ Scope {
 
                     // Debug info (optional)
                     Rectangle {
-                        anchors.top: parent.top
-                        anchors.left: parent.left
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
                         // margins: 10
                         width: 250
                         height: 80
-                        color: AppearanceRippleButton.m3colors.shadow
-                        radius: 5
+                        color: Palette.palette().background
+                        border.width: 2
+                        border.color: Palette.palette().outlineVariant
+                        radius: 16
+                        anchors.leftMargin: 5
+                        anchors.topMargin: 5
                         visible: false
                         z: 3
 
