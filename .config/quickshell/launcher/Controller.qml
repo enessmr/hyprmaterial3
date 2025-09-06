@@ -10,6 +10,7 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import "../resources/colors.js" as Pallete
+import "../resources/components/search"
 import ".."
 
 Singleton {
@@ -97,55 +98,34 @@ Singleton {
                     anchors.margins: 7
                     spacing: 0
 
-                    Rectangle {
+                    Search {
                         id: searchContainer
                         Layout.fillWidth: true
-                        implicitHeight: searchbox.implicitHeight + 10
-                        color: Pallete.palette().surfaceContainer
-                        radius: 46
-                        border.color: Pallete.palette().outline
+                        placeholderText: "Search applications..."
+                        
+                        Keys.forwardTo: [list]
+                        Keys.onEscapePressed: persist.launcherOpen = false
 
-                        RowLayout {
-                            id: searchbox
-                            anchors.fill: parent
-                            anchors.margins: 5
-
-                            IconImage {
-                                implicitSize: parent.height
-                                source: "root:icons/magnifying-glass.svg"
-                            }
-
-                            TextInput {
-                                id: search
-                                Layout.fillWidth: true
-                                color: Pallete.palette().onSurface
-
-                                focus: true
-                                Keys.forwardTo: [list]
-                                Keys.onEscapePressed: persist.launcherOpen = false
-
-                                Keys.onPressed: event => {
-                                    if (event.modifiers & Qt.ControlModifier) {
-                                        if (event.key == Qt.Key_J) {
-                                            list.currentIndex = list.currentIndex == list.count - 1 ? 0 : list.currentIndex + 1
-                                            event.accepted = true
-                                        } else if (event.key == Qt.Key_K) {
-                                            list.currentIndex = list.currentIndex == 0 ? list.count - 1 : list.currentIndex - 1
-                                            event.accepted = true
-                                        }
-                                    }
-                                }
-
-                                onAccepted: {
-                                    if (list.currentItem) {
-                                        list.currentItem.clicked(null)
-                                    }
-                                }
-
-                                onTextChanged: {
-                                    list.currentIndex = 0
+                        Keys.onPressed: event => {
+                            if (event.modifiers & Qt.ControlModifier) {
+                                if (event.key == Qt.Key_J) {
+                                    list.currentIndex = list.currentIndex == list.count - 1 ? 0 : list.currentIndex + 1
+                                    event.accepted = true
+                                } else if (event.key == Qt.Key_K) {
+                                    list.currentIndex = list.currentIndex == 0 ? list.count - 1 : list.currentIndex - 1
+                                    event.accepted = true
                                 }
                             }
+                        }
+
+                        onSubmitted: (text) => {
+                            if (list.currentItem) {
+                                list.currentItem.clicked(null)
+                            }
+                        }
+
+                        onTextChanged: {
+                            list.currentIndex = 0
                         }
                     }
 
@@ -158,7 +138,7 @@ Singleton {
                         model: ScriptModel {
                             values: DesktopEntries.applications.values
                                 .map(object => {
-                                    const stxt = search.text.toLowerCase()
+                                    const stxt = searchContainer.text.toLowerCase()
                                     const ntxt = object.name.toLowerCase()
                                     let ni = 0
 

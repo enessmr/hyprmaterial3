@@ -59,7 +59,7 @@ Item {
     color: root._searching ? root._activeBg : root._baseBg
     // Show a subtle border only when not searching (placeholder state)
     border.width: root._searching ? 0 : 1
-    border.color: Palette.palette().outline
+    border.color: Palette.palette().outlineVariant
     Behavior on color { ColorAnimation { duration: 140; easing.type: Easing.InOutQuad } }
   }
 
@@ -77,15 +77,15 @@ Item {
       id: lead
       height: 20
       Layout.alignment: Qt.AlignVCenter
-      width: root._searching ? 0 : 20
+      width: 20
       Behavior on width { NumberAnimation { duration: 140; easing.type: Easing.InOutQuad } }
       Icon.Icon {
         anchors.fill: parent
         name: "search"
         size: 20
         color: Palette.palette().onSurfaceVariant
-        opacity: root._searching ? 0 : 1
-        scale: root._searching ? 0.8 : 1
+        // opacity: root._searching ? 0 : 1
+        // scale: root._searching ? 0.8 : 1
         Behavior on opacity { NumberAnimation { duration: 120; easing.type: Easing.InOutQuad } }
         Behavior on scale { NumberAnimation { duration: 120; easing.type: Easing.InOutQuad } }
       }
@@ -113,6 +113,7 @@ Item {
         mouseSelectionMode: TextInput.SelectCharacters
         clip: true
         focus: false
+        font.family: "Roboto"
         onAccepted: root.submitted(text)
         onActiveFocusChanged: if (activeFocus) { root.active = true; root.activated() }
         Keys.onEscapePressed: {
@@ -136,6 +137,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width - 4
         elide: Text.ElideRight
+        font.family: "Roboto"
         font.pixelSize: 14
       }
     }
