@@ -9,7 +9,6 @@ import "screenshot" as Screenshot
 import "bar" as Bar
 import "launcher" as Launcher
 import "settings" as Settings
-import "apps" as Dih
 // import "background"
 import "resources/colors.js" as Palette
 import "./session/"
@@ -29,7 +28,6 @@ ShellRoot {
     property bool enableSession: true
 	property bool enableOnScreenDisplayVolume: true
 	property bool enableLock: true
-	property bool enableDihSettings: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -109,5 +107,4 @@ ShellRoot {
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableLock; component: Lock {} }
-	LazyLoader { active: enableDihSettings; component: Dih.SettingsApp {} }
 }
