@@ -12,22 +12,17 @@ RippleButton {
     property bool keyboardDown: false
     property real size: 120
 
-    buttonRadius: (button.focus || button.down) ? size / 2 : Appearance.rounding.verylarge
-    colBackground: button.keyboardDown ? Pallete.palette().primaryContainer : 
-        button.focus ? Pallete.palette().primary : 
-        Pallete.palette().secondaryContainer
-    colBackgroundHover: Pallete.palette().primary
-    colRipple: Pallete.palette().onPrimary
-    property color colText: (button.down || button.keyboardDown || button.focus || button.hovered) ?
-        Pallete.palette().onPrimary : Pallete.palette().onSecondaryContainer
-
+    buttonRadius: 9999
+    colBackground: Pallete.palette().surfaceContainer
+    colBackgroundHover: Pallete.palette().surfaceContainer
+    property color colText: Pallete.palette().onSurface
     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     background.implicitHeight: size
     background.implicitWidth: size
 
-    Behavior on buttonRadius {
+    /* Behavior on buttonRadius {
         animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-    }
+    } */
 
     Keys.onPressed: (event) => {
         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
@@ -46,7 +41,7 @@ RippleButton {
     contentItem: MaterialSymbol {
         id: icon
         anchors.fill: parent
-        color: (button.focus || button.hovered) ? Pallete.palette().surface : Pallete.palette().onSecondaryContainer
+        color: Pallete.palette().onSurface
         horizontalAlignment: Text.AlignHCenter
         iconSize: 45
         text: buttonIcon
