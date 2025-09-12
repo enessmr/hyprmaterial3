@@ -68,7 +68,7 @@ Scope {
             WlrLayershell.namespace: "quickshell:session"
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
-            color: ColorUtils.transparentize(Appearance.m3colors.m3background, 0.3)
+            color: ColorUtils.transparentize(Pallete.palette().background, 0.1)
 
             anchors {
                 top: true
@@ -83,229 +83,351 @@ Scope {
                 onClicked: { sessionRoot.hide(); }
             }
 
-            ColumnLayout {
-                id: contentColumn
+            // Centered container with Android 12 styling
+            Item {
                 anchors.centerIn: parent
-                spacing: 15
+                width: Math.min(parent.width * 0.9, 800)
+                height: Math.min(parent.height * 0.8, 600)
 
-                Keys.onPressed: (event) => {
-                    if (event.key === Qt.Key_Escape) sessionRoot.hide();
+                Rectangle {
+                    anchors.fill: parent
+                    color: Pallete.palette().surfaceContainerLowest
+                    radius: 28
                 }
 
                 ColumnLayout {
-                    Layout.alignment: Qt.AlignHCenter
-                    spacing: 0
-                    StyledText {
+                    id: contentColumn
+                    anchors.centerIn: parent
+                    anchors.margins: 40
+                    spacing: 32
+
+                    Keys.onPressed: (event) => {
+                        if (event.key === Qt.Key_Escape) sessionRoot.hide();
+                    }
+
+                    // Android 12 style grid with larger, centered buttons
+                    GridLayout {
                         Layout.alignment: Qt.AlignHCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: Appearance.font.family.title
-                        font.pixelSize: Appearance.font.pixelSize.title
-                        font.weight: Font.DemiBold
-                        text: "Session"
-                    }
-                    StyledText {
-                        Layout.alignment: Qt.AlignHCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: Appearance.font.pixelSize.normal
-                        text: "Arrow keys to navigate, Enter to select\nEsc or click anywhere to cancel"
-                    }
-                }
+                        columns: 2
+                        columnSpacing: 24
+                        rowSpacing: 24
+                        Layout.preferredWidth: 400
 
-                GridLayout {
-                    columns: 4
-                    columnSpacing: 15
-                    rowSpacing: 15
-
-                    // Components for buttons + labels
-                    Component {
-                        id: sessionLockComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionLock
-                                buttonIcon: "lock"
-                                buttonText: "Lock"
-                                onClicked:  { Quickshell.execDetached(["loginctl", "lock-session"]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.right: sessionSleep
-                                KeyNavigation.down: sessionHibernate
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Lock your session"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        // Components for Android 12 style buttons
+                        Component {
+                            id: sessionLockComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: "transparent"
+                                    
+                                    SessionActionButton {
+                                        id: sessionLock
+                                        anchors.centerIn: parent
+                                        buttonIcon: "lock"
+                                        buttonText: "Lock"
+                                        onClicked: { Quickshell.execDetached(["loginctl", "lock-session"]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.right: sessionSleep
+                                        KeyNavigation.down: sessionHibernate
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Lock screen"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionSleepComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionSleep
-                                buttonIcon: "dark_mode"
-                                buttonText: "Sleep"
-                                onClicked:  { Quickshell.execDetached(["bash", "-c", "systemctl suspend || loginctl suspend"]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.left: sessionLock
-                                KeyNavigation.right: sessionLogout
-                                KeyNavigation.down: sessionShutdown
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Put your system to sleep"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionSleepComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: Qt.rgba(0.6, 0.26, 1, 0.12)
+                                    border.width: 1
+                                    border.color: Qt.rgba(0.6, 0.26, 1, 0.2)
+                                    
+                                    SessionActionButton {
+                                        id: sessionSleep
+                                        anchors.centerIn: parent
+                                        buttonIcon: "dark_mode"
+                                        buttonText: "Sleep"
+                                        onClicked: { Quickshell.execDetached(["bash", "-c", "systemctl suspend || loginctl suspend"]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.left: sessionLock
+                                        KeyNavigation.right: sessionLogout
+                                        KeyNavigation.down: sessionShutdown
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Sleep"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionLogoutComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionLogout
-                                buttonIcon: "logout"
-                                buttonText: "Logout"
-                                onClicked: { root.closeAllWindows(); Quickshell.execDetached(["pkill", "Hyprland"]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.left: sessionSleep
-                                KeyNavigation.right: sessionTaskManager
-                                KeyNavigation.down: sessionReboot
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Logout from session"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionLogoutComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: Qt.rgba(1, 0.67, 0, 0.12)
+                                    border.width: 1
+                                    border.color: Qt.rgba(1, 0.67, 0, 0.2)
+                                    
+                                    SessionActionButton {
+                                        id: sessionLogout
+                                        anchors.centerIn: parent
+                                        buttonIcon: "logout"
+                                        buttonText: "Logout"
+                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["pkill", "Hyprland"]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.left: sessionSleep
+                                        KeyNavigation.right: sessionTaskManager
+                                        KeyNavigation.down: sessionReboot
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Sign out"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionTaskManagerComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionTaskManager
-                                buttonIcon: "browse_activity"
-                                buttonText: "Task Manager"
-                                onClicked:  { Quickshell.execDetached(["bash", "-c", `${Config.options.apps.taskManager}`]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.left: sessionLogout
-                                KeyNavigation.down: sessionFirmwareReboot
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Open task manager"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionTaskManagerComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: Qt.rgba(1, 1, 1, 0.08)
+                                    border.width: 1
+                                    border.color: Qt.rgba(1, 1, 1, 0.12)
+                                    
+                                    SessionActionButton {
+                                        id: sessionTaskManager
+                                        anchors.centerIn: parent
+                                        buttonIcon: "browse_activity"
+                                        buttonText: "Task Manager"
+                                        onClicked: { Quickshell.execDetached(["bash", "-c", `${Config.options.apps.taskManager}`]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.left: sessionLogout
+                                        KeyNavigation.down: sessionFirmwareReboot
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Task manager"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionHibernateComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionHibernate
-                                buttonIcon: "downloading"
-                                buttonText: "Hibernate"
-                                onClicked:  { Quickshell.execDetached(["bash", "-c", `systemctl hibernate || loginctl hibernate`]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.up: sessionLock
-                                KeyNavigation.right: sessionShutdown
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Hibernate your system"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionHibernateComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: Qt.rgba(0.3, 0.7, 0.9, 0.12)
+                                    border.width: 1
+                                    border.color: Qt.rgba(0.3, 0.7, 0.9, 0.2)
+                                    
+                                    SessionActionButton {
+                                        id: sessionHibernate
+                                        anchors.centerIn: parent
+                                        buttonIcon: "downloading"
+                                        buttonText: "Hibernate"
+                                        onClicked: { Quickshell.execDetached(["bash", "-c", `systemctl hibernate || loginctl hibernate`]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.up: sessionLock
+                                        KeyNavigation.right: sessionShutdown
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Hibernate"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionShutdownComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionShutdown
-                                buttonIcon: "power_settings_new"
-                                buttonText: "Shutdown"
-                                onClicked:  { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl poweroff || loginctl poweroff`]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.left: sessionHibernate
-                                KeyNavigation.right: sessionReboot
-                                KeyNavigation.up: sessionSleep
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Shutdown your system"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionShutdownComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: Qt.rgba(0.91, 0.26, 0.21, 0.12)
+                                    border.width: 1
+                                    border.color: Qt.rgba(0.91, 0.26, 0.21, 0.2)
+                                    
+                                    SessionActionButton {
+                                        id: sessionShutdown
+                                        anchors.centerIn: parent
+                                        buttonIcon: "power_settings_new"
+                                        buttonText: "Shutdown"
+                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl poweroff || loginctl poweroff`]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.left: sessionHibernate
+                                        KeyNavigation.right: sessionReboot
+                                        KeyNavigation.up: sessionSleep
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Power off"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionRebootComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionReboot
-                                buttonIcon: "restart_alt"
-                                buttonText: "Reboot"
-                                onClicked:  { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `reboot || loginctl reboot`]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.left: sessionShutdown
-                                KeyNavigation.right: sessionFirmwareReboot
-                                KeyNavigation.up: sessionLogout
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Reboot your system"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionRebootComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: "transparent"
+                                    
+                                    SessionActionButton {
+                                        id: sessionReboot
+                                        anchors.centerIn: parent
+                                        buttonIcon: "restart_alt"
+                                        buttonText: "Reboot"
+                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `reboot || loginctl reboot`]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.left: sessionShutdown
+                                        KeyNavigation.right: sessionFirmwareReboot
+                                        KeyNavigation.up: sessionLogout
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Restart"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    Component {
-                        id: sessionFirmwareRebootComp
-                        ColumnLayout {
-                            spacing: 5
-                            SessionActionButton {
-                                id: sessionFirmwareReboot
-                                buttonIcon: "settings_applications"
-                                buttonText: "Reboot to firmware settings"
-                                onClicked:  { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl reboot --firmware-setup || loginctl reboot --firmware-setup`]); sessionRoot.hide() }
-                                onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
-                                KeyNavigation.left: sessionReboot
-                                KeyNavigation.up: sessionTaskManager
-                            }
-                            StyledText {
-                                horizontalAlignment: Text.AlignHCenter
-                                text: "Reboot to BIOS/firmware"
-                                font.pixelSize: 12
-                                color: Pallete.palette().onSurface
+                        Component {
+                            id: sessionFirmwareRebootComp
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignHCenter
+                                spacing: 12
+                                
+                                Rectangle {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 160
+                                    height: 120
+                                    radius: 20
+                                    color: Qt.rgba(0.5, 0.5, 0.5, 0.12)
+                                    border.width: 1
+                                    border.color: Qt.rgba(0.5, 0.5, 0.5, 0.2)
+                                    
+                                    SessionActionButton {
+                                        id: sessionFirmwareReboot
+                                        anchors.centerIn: parent
+                                        buttonIcon: "settings_applications"
+                                        buttonText: "Reboot to firmware settings"
+                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl reboot --firmware-setup || loginctl reboot --firmware-setup`]); sessionRoot.hide() }
+                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        KeyNavigation.left: sessionReboot
+                                        KeyNavigation.up: sessionTaskManager
+                                    }
+                                }
+                                
+                                StyledText {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    text: "Boot to BIOS"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    color: "#E8EAED"
+                                }
                             }
                         }
-                    }
 
-                    // Loaders to instantiate buttons in the grid
-                    Loader { sourceComponent: sessionLockComp }
-                    Loader { sourceComponent: sessionSleepComp }
-                    Loader { sourceComponent: sessionLogoutComp }
-                    Loader { sourceComponent: sessionTaskManagerComp }
-                    Loader { sourceComponent: sessionHibernateComp }
-                    Loader { sourceComponent: sessionShutdownComp }
-                    Loader { sourceComponent: sessionRebootComp }
-                    Loader { sourceComponent: sessionFirmwareRebootComp }
+                        // Loaders to instantiate buttons in the centered grid
+                        Loader { sourceComponent: sessionLockComp }
+                        Loader { sourceComponent: sessionSleepComp }
+                        Loader { sourceComponent: sessionLogoutComp }
+                        Loader { sourceComponent: sessionTaskManagerComp }
+                        Loader { sourceComponent: sessionHibernateComp }
+                        Loader { sourceComponent: sessionShutdownComp }
+                        Loader { sourceComponent: sessionRebootComp }
+                        Loader { sourceComponent: sessionFirmwareRebootComp }
+                    }
                 }
             }
         }
