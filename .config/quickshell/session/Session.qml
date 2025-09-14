@@ -68,7 +68,7 @@ Scope {
             WlrLayershell.namespace: "quickshell:session"
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
-            color: ColorUtils.transparentize(Pallete.palette().background, 0.1)
+            color: ColorUtils.transparentize(Pallete.palette().shadow, 0.1)
 
             anchors {
                 top: true
@@ -132,8 +132,23 @@ Scope {
                                         anchors.centerIn: parent
                                         buttonIcon: "lock"
                                         buttonText: "Lock"
-                                        onClicked: { Quickshell.execDetached(["loginctl", "lock-session"]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            Quickshell.execDetached(["loginctl", "lock-session"]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: {
+                                            if (focus) sessionRoot.subtitle = buttonText
+                                        }
+                                        
                                         KeyNavigation.right: sessionSleep
                                         KeyNavigation.down: sessionHibernate
                                     }
@@ -161,17 +176,30 @@ Scope {
                                     width: 160
                                     height: 120
                                     radius: 20
-                                    color: Qt.rgba(0.6, 0.26, 1, 0.12)
-                                    border.width: 1
-                                    border.color: Qt.rgba(0.6, 0.26, 1, 0.2)
+                                    color: "transparent"
                                     
                                     SessionActionButton {
                                         id: sessionSleep
                                         anchors.centerIn: parent
                                         buttonIcon: "dark_mode"
                                         buttonText: "Sleep"
-                                        onClicked: { Quickshell.execDetached(["bash", "-c", "systemctl suspend || loginctl suspend"]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            Quickshell.execDetached(["bash", "-c", "systemctl suspend || loginctl suspend"]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: { 
+                                            if (focus) sessionRoot.subtitle = buttonText 
+                                        }
+                                        
                                         KeyNavigation.left: sessionLock
                                         KeyNavigation.right: sessionLogout
                                         KeyNavigation.down: sessionShutdown
@@ -200,17 +228,31 @@ Scope {
                                     width: 160
                                     height: 120
                                     radius: 20
-                                    color: Qt.rgba(1, 0.67, 0, 0.12)
-                                    border.width: 1
-                                    border.color: Qt.rgba(1, 0.67, 0, 0.2)
+                                    color: "transparent"
                                     
                                     SessionActionButton {
                                         id: sessionLogout
                                         anchors.centerIn: parent
                                         buttonIcon: "logout"
                                         buttonText: "Logout"
-                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["pkill", "Hyprland"]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            root.closeAllWindows(); 
+                                            Quickshell.execDetached(["pkill", "Hyprland"]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: {
+                                            if (focus) sessionRoot.subtitle = buttonText
+                                        }
+                                        
                                         KeyNavigation.left: sessionSleep
                                         KeyNavigation.right: sessionTaskManager
                                         KeyNavigation.down: sessionReboot
@@ -239,17 +281,30 @@ Scope {
                                     width: 160
                                     height: 120
                                     radius: 20
-                                    color: Qt.rgba(1, 1, 1, 0.08)
-                                    border.width: 1
-                                    border.color: Qt.rgba(1, 1, 1, 0.12)
+                                    color: "transparent"
                                     
                                     SessionActionButton {
                                         id: sessionTaskManager
                                         anchors.centerIn: parent
                                         buttonIcon: "browse_activity"
                                         buttonText: "Task Manager"
-                                        onClicked: { Quickshell.execDetached(["bash", "-c", `${Config.options.apps.taskManager}`]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            Quickshell.execDetached(["bash", "-c", `${Config.options.apps.taskManager}`]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: { 
+                                            if (focus) sessionRoot.subtitle = buttonText 
+                                        }
+                                        
                                         KeyNavigation.left: sessionLogout
                                         KeyNavigation.down: sessionFirmwareReboot
                                     }
@@ -277,17 +332,30 @@ Scope {
                                     width: 160
                                     height: 120
                                     radius: 20
-                                    color: Qt.rgba(0.3, 0.7, 0.9, 0.12)
-                                    border.width: 1
-                                    border.color: Qt.rgba(0.3, 0.7, 0.9, 0.2)
+                                    color: "transparent"
                                     
                                     SessionActionButton {
                                         id: sessionHibernate
                                         anchors.centerIn: parent
                                         buttonIcon: "downloading"
                                         buttonText: "Hibernate"
-                                        onClicked: { Quickshell.execDetached(["bash", "-c", `systemctl hibernate || loginctl hibernate`]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            Quickshell.execDetached(["bash", "-c", `systemctl hibernate || loginctl hibernate`]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: { 
+                                            if (focus) sessionRoot.subtitle = buttonText 
+                                        }
+                                        
                                         KeyNavigation.up: sessionLock
                                         KeyNavigation.right: sessionShutdown
                                     }
@@ -315,17 +383,31 @@ Scope {
                                     width: 160
                                     height: 120
                                     radius: 20
-                                    color: Qt.rgba(0.91, 0.26, 0.21, 0.12)
-                                    border.width: 1
-                                    border.color: Qt.rgba(0.91, 0.26, 0.21, 0.2)
+                                    color: "transparent"
                                     
                                     SessionActionButton {
                                         id: sessionShutdown
                                         anchors.centerIn: parent
                                         buttonIcon: "power_settings_new"
                                         buttonText: "Shutdown"
-                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl poweroff || loginctl poweroff`]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            root.closeAllWindows(); 
+                                            Quickshell.execDetached(["bash", "-c", `systemctl poweroff || loginctl poweroff`]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: { 
+                                            if (focus) sessionRoot.subtitle = buttonText 
+                                        }
+                                        
                                         KeyNavigation.left: sessionHibernate
                                         KeyNavigation.right: sessionReboot
                                         KeyNavigation.up: sessionSleep
@@ -361,8 +443,24 @@ Scope {
                                         anchors.centerIn: parent
                                         buttonIcon: "restart_alt"
                                         buttonText: "Reboot"
-                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `reboot || loginctl reboot`]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            root.closeAllWindows(); 
+                                            Quickshell.execDetached(["bash", "-c", `reboot || loginctl reboot`]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: { 
+                                            if (focus) sessionRoot.subtitle = buttonText 
+                                        }
+                                        
                                         KeyNavigation.left: sessionShutdown
                                         KeyNavigation.right: sessionFirmwareReboot
                                         KeyNavigation.up: sessionLogout
@@ -391,17 +489,31 @@ Scope {
                                     width: 160
                                     height: 120
                                     radius: 20
-                                    color: Qt.rgba(0.5, 0.5, 0.5, 0.12)
-                                    border.width: 1
-                                    border.color: Qt.rgba(0.5, 0.5, 0.5, 0.2)
+                                    color: "transparent"
                                     
                                     SessionActionButton {
                                         id: sessionFirmwareReboot
                                         anchors.centerIn: parent
                                         buttonIcon: "settings_applications"
                                         buttonText: "Reboot to firmware settings"
-                                        onClicked: { root.closeAllWindows(); Quickshell.execDetached(["bash", "-c", `systemctl reboot --firmware-setup || loginctl reboot --firmware-setup`]); sessionRoot.hide() }
-                                        onFocusChanged: { if (focus) sessionRoot.subtitle = buttonText }
+                                        
+                                        scale: focus ? 0.8 : 1.0
+                                        Behavior on scale {
+                                            NumberAnimation { 
+                                                duration: 150 
+                                                easing.type: Easing.OutCubic 
+                                            }
+                                        }
+                                        
+                                        onClicked: { 
+                                            root.closeAllWindows(); 
+                                            Quickshell.execDetached(["bash", "-c", `systemctl reboot --firmware-setup || loginctl reboot --firmware-setup`]); 
+                                            sessionRoot.hide() 
+                                        }
+                                        onFocusChanged: { 
+                                            if (focus) sessionRoot.subtitle = buttonText 
+                                        }
+                                        
                                         KeyNavigation.left: sessionReboot
                                         KeyNavigation.up: sessionTaskManager
                                     }
