@@ -86,8 +86,8 @@ Scope {
             // Centered container with Android 12 styling
             Item {
                 anchors.centerIn: parent
-                width: Math.min(parent.width * 0.9, 800)
-                height: Math.min(parent.height * 0.8, 600)
+                width: Math.min(parent.width * 2.9, 400)
+                height: Math.min(parent.height * 2.8, 725)
 
                 Rectangle {
                     anchors.fill: parent
@@ -112,6 +112,8 @@ Scope {
                         columnSpacing: 24
                         rowSpacing: 24
                         Layout.preferredWidth: 400
+                        anchors.leftMargin: 15
+                        anchors.left: parent.left
 
                         // Components for Android 12 style buttons
                         Component {
@@ -133,14 +135,6 @@ Scope {
                                         buttonIcon: "lock"
                                         buttonText: "Lock"
                                         
-                                        scale: focus ? 0.8 : 1.0
-                                        Behavior on scale {
-                                            NumberAnimation { 
-                                                duration: 150 
-                                                easing.type: Easing.OutCubic 
-                                            }
-                                        }
-                                        
                                         onClicked: { 
                                             Quickshell.execDetached(["loginctl", "lock-session"]); 
                                             sessionRoot.hide() 
@@ -159,8 +153,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Lock screen"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -211,8 +206,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Sleep"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -264,8 +260,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Sign out"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -315,8 +312,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Task manager"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -366,8 +364,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Hibernate"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -419,8 +418,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Power off"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -472,8 +472,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Restart"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }
@@ -524,8 +525,9 @@ Scope {
                                     horizontalAlignment: Text.AlignHCenter
                                     text: "Boot to BIOS"
                                     font.pixelSize: 14
+                                    font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: "#E8EAED"
+                                    color: Pallete.palette().onSurface
                                 }
                             }
                         }

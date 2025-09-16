@@ -10,7 +10,7 @@ RippleButton {
     property string buttonIcon
     property string buttonText
     property bool keyboardDown: false
-    property real size: 120
+    property real size: button.down ? 105 : 120
 
     buttonRadius: 9999
     colBackground: Pallete.palette().surfaceContainer
@@ -19,6 +19,13 @@ RippleButton {
     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     background.implicitHeight: size
     background.implicitWidth: size
+
+    Behavior on size {
+        NumberAnimation { 
+            duration: 150 
+            easing.type: Easing.OutCubic 
+        }
+    }
 
     /* Behavior on buttonRadius {
         animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
@@ -43,12 +50,13 @@ RippleButton {
         anchors.fill: parent
         color: Pallete.palette().onSurface
         horizontalAlignment: Text.AlignHCenter
-        iconSize: 45
+        iconSize: button.down ? 40 : 45
+        Behavior on iconSize {
+            NumberAnimation { 
+                duration: 150 
+                easing.type: Easing.OutCubic 
+            }
+        }
         text: buttonIcon
     }
-
-    StyledToolTip {
-        content: buttonText
-    }
-
 }
