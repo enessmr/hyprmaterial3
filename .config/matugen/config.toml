@@ -127,3 +127,7 @@ output_path = '~/.config/helix/themes/matugen.toml'
 [templates.btop]
 input_path = './templates/btop/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
+
+[templates.vscode]
+input_path = "./templates/vscode/hyprluna.json"
+output_path = "~/.vscode/extensions/hyprluna.hyprluna-theme-1.0.2/themes/hyprluna.json"

@@ -19,24 +19,31 @@ Singleton {
         id: persist
         property bool settingsOpen: false
         property int currentPage: 0  // WHICH PAGE WE ON BESTIE
-        property string currentWallpaper: "/home/lfsuser/Pictures/.Wallpapers/wallpaper.jpg"
+        property string currentWallpaper: "$HOME/Pictures/.Wallpapers/wallpaper.jpg"
     }
     
-    // Wallpaper model - dynamically load wallpapers from directory
+    // FIXED: Use Timer instead of setTimeout - QML WAY BESTIE! 💅
+    Timer {
+        id: fallbackTimer
+        interval: 2000
+        repeat: false
+        onTriggered: {
+            if (wallpaperModel.count === 0) {
+                console.log("🆘 Scanner failed, adding fallback wallpapers bestie!")
+                wallpaperModel.append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/wallpaper.jpg"})
+                wallpaperModel.append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/ascension_teal_dark.jpg"})
+            }
+        }
+    }
+    
     ListModel {
         id: wallpaperModel
         Component.onCompleted: {
-            // Dynamically scan the wallpaper directory
+            // linux but make it big.LITTLE
             scanWallpaperDirectory()
             
-            // Fallback: Add known wallpapers if scanner fails
-            setTimeout(function() {
-                if (count === 0) {
-                    console.log("🆘 Scanner failed, adding fallback wallpapers bestie!")
-                    append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/wallpaper.jpg"})
-                    append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/ascension_teal_dark.jpg"})
-                }
-            }, 2000)
+            // START THE FALLBACK TIMER BESTIE! ⏰
+            fallbackTimer.start()
         }
         
         function scanWallpaperDirectory() {
@@ -166,63 +173,6 @@ Singleton {
                         active: persist.currentPage === 0
                         onClicked: persist.currentPage = 0
                     }
-
-                    // ADD MORE PAGES IF YOU WANT BESTIE
-                    /* Nav.NavigationRailItem {
-                        text: "General"
-                        selected: persist.currentPage === 1
-                        onClicked: persist.currentPage = 1
-                        
-                        contentItem: Row {
-                            anchors.left: parent.left
-                            anchors.leftMargin: 16
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: 12
-
-                            Text {
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: "settings"
-                                font.family: "Material Symbols Outlined"
-                                font.pixelSize: 20
-                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
-                            }
-
-                            Text {
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: "General"
-                                font.pixelSize: 13
-                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
-                            }
-                        }
-                    } 
-
-                    Nav.NavigationRailItem {
-                        text: "Advanced"
-                        selected: persist.currentPage === 2
-                        onClicked: persist.currentPage = 2
-                        
-                        contentItem: Row {
-                            anchors.left: parent.left
-                            anchors.leftMargin: 16
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: 12
-
-                            Text {
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: "tune"
-                                font.family: "Material Symbols Outlined"
-                                font.pixelSize: 20
-                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
-                            }
-
-                            Text {
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: "Advanced"
-                                font.pixelSize: 13
-                                color: parent.parent.selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
-                            }
-                        }
-                    } */
                 }
 
                 // DYNAMIC CONTENT AREA - WHERE THE MAGIC HAPPENS
@@ -292,10 +242,13 @@ Singleton {
                                             height: 70
                                             radius: 6
                                             color: Palette.palette().surfaceContainerHigh
+                                            // FIXED AGAIN: Qt's delegate context is UNHINGED bestie! 💀
                                             border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
                                             border.width: selected ? 2 : 1
                                             
+                                            // THE REAL FIX: Direct property access in delegate context! 🔥
                                             property bool selected: wallpaperPath === persist.currentWallpaper
+                                            // wallpaperPath is DIRECTLY available in delegate scope (Qt magic)
                                             
                                             Rectangle {
                                                 anchors.fill: parent
@@ -306,7 +259,8 @@ Singleton {
                                                 
                                                 Image {
                                                     anchors.fill: parent
-                                                    source: "file://" + wallpaperPath
+                                                    // FIXED AGAIN: Qt delegates auto-expose model properties! 🔥
+                                                    source: wallpaperPath ? ("file://" + wallpaperPath) : ""
                                                     fillMode: Image.PreserveAspectCrop
                                                     
                                                     onStatusChanged: {
@@ -322,6 +276,7 @@ Singleton {
                                             MouseArea {
                                                 anchors.fill: parent
                                                 onClicked: {
+                                                    // FIXED FINAL TIME: Direct access to delegate's wallpaperPath! 💅
                                                     persist.currentWallpaper = wallpaperPath
                                                     // Get current mode and color from the controls
                                                     var currentMode = modeControl.options[modeControl.currentIndex]
