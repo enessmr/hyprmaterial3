@@ -56,7 +56,7 @@
 <details>
     <summary>Random useless info</summary>
 
-   _since im cooking, i actually need to learn qml_
+   **My style isnt styling like android, it's getting out of context for some reason**
     
 </details>
 
