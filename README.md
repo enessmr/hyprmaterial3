@@ -79,7 +79,7 @@ Widget system: AGS | Support: No
 
 ### hyprmaterial3<sup>QS</sup>
 
-Widget system: Quickshell | Support: bestie vake my grandma up my grandma is sleeping since 99999 bc
+Widget system: Quickshell | Support: Yes (but since my qml is very no-no, expect for bugs by ai code)
 
 | Pre-Beta Screenshot | MPRIS (peak gd player song AF) |
 |:---|:---|
