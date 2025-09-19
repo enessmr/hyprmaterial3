@@ -43,16 +43,22 @@
   | Software | Purpose |
   | ------------- | ------------- |
   | [Hyprland](https://github.com/hyprwm/hyprland) | The compositor (for noobs, you can just call it a window manager) |
-  | [AGS](https://github.oom/Aylur/ags) | A framework for... well you know it, it's GTK widgets, responsible for the top bar, etc. |
+  | [AGS](https://github.oom/Aylur/ags) | A framework for... well you know it, it's GTK widgets, responsible for the notifications bc outfoxxed' config made me get stage2 brain damage from analyzing that RANDOM SPAGETTI CODE vith a bug vhen you send a notify every shovn dissapears then reappears |
   | [Quickshell](https://github.com/quickshell-mirror/quickshell) | a thing thats responsible for everything ig hmm  |
+
+
+  _Note: **THERE IS NO FUCKING WAYBAR**_
 
 
   - For a more comprehensive list of dependencies, see [.deps.txt](https://github.com/enessmr/hyprmaterial3/blob/main/.deps.txt)
 </details>
 
-_Note: **THERE IS NO FUCKING WAYBAR**_
+<details>
+    <summary>Random useless info</summary>
 
-_Note 2: **YOU MUST READ CONTRIBUTING.MD IF QUICKSHELL**_
+   _since im cooking, i actually need to learn qml_
+    
+</details>
 
 
 <div align="center">
@@ -87,7 +93,6 @@ Widget system: Quickshell | Support: bestie vake my grandma up my grandma is sle
 
  - [@end-4](https://github.com/end-4) for i18n
  - [@koeqaife](https://github.com/koeqaife) for gum
- - [@KSeeker5](https://github.com/KSeeker5) for providing SMO wallpapers
  - AGS: [Aylur's AGS examples](https://github.com/Aylur/ags/tree/main/examples/gtk4) for providing working TSX code
  - AI bots for... idk
 
