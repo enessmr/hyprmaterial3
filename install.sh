@@ -81,7 +81,7 @@ fi
 http_code=$(curl -s -o /dev/null -w "%{http_code}" "https://github.com/$userinput")
 
 if [[ "$http_code" == "404" ]]; then
-    echo "GitHub user not found — equating to offensive"
+    echo "lying is bad so die 💔💔💔"
     pkill_home
 fi
 
@@ -107,6 +107,7 @@ install_dots() {
             echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt
             grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
             grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
+            grep -qxF 'export PATH="$PATH:~/.local/bin"' ~/.bashrc || echo 'export PATH="$PATH:~/.local/bin"' >> ~/.bashrc
             source ~/.bashrc
             touch ~/.local/share/hyprmaterial3/installed
             echo -e "thx <3\n"
