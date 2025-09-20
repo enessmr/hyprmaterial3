@@ -1,8 +1,3 @@
-# no
-# [config]
-# command = "hyprctl"
-# arguments = ["hyprpaper", "listactive"]
-# set = true
 
 [config.wallpaper]
 # The base command to run for applying the wallpaper, shouldn't have spaces in it.
@@ -12,6 +7,7 @@ command = "swww"
 # Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
 # The last argument will be the image path.
 arguments = ["img", "--transition-type", "center"]
+set = true
 
 [config.custom_colors.yellow]
 color = "#FFFF00"
