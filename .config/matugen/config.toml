@@ -1,12 +1,12 @@
 
 [config.wallpaper]
 # The base command to run for applying the wallpaper, shouldn't have spaces in it.
-command = "swww"
+command = "matugenparade"
 
 # The arguments that will be provided to the command.
 # Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
 # The last argument will be the image path.
-arguments = ["img", "--transition-type", "center"]
+arguments = ["img", "--transition-type", "grow", "--transition-fps=120", "--invert-y", "--transition-pos", "$CPOS", "&"]
 set = true
 
 [config.custom_colors.yellow]
@@ -28,6 +28,11 @@ output_path = "~/.config/quickshell/shell.qml"
 post_hook = "sleep 1"
 
 [templates.quickshellreload]
+input_path = "./templates/quickshell/shell.qml"
+output_path = "~/.config/quickshell/shell.qml"
+post_hook = "sleep 2"
+
+[templates.quickshellreload2]
 input_path = "./templates/quickshell/shell.qml"
 output_path = "~/.config/quickshell/shell.qml"
 

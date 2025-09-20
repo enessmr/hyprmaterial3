@@ -15,6 +15,7 @@ import "./session/"
 import "./osd/"
 import "resources/components/DialogService.js" as DialogService
 import "views/Shell.qml" as AppShell
+import "./Dih/"
 import "bar/roundedcorner"
 import "./lockend4/"
 import qs.screenCorners
@@ -28,6 +29,7 @@ ShellRoot {
     property bool enableSession: true
 	property bool enableOnScreenDisplayVolume: true
 	property bool enableLock: true
+	property bool enableDihEmoji: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -107,4 +109,5 @@ ShellRoot {
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableLock; component: Lock {} }
+	LazyLoader { active: enableDihEmoji; component: Emoji {} }
 }
