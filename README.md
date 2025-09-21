@@ -32,6 +32,7 @@
    - **Run install.sh**: It's easy!
    - **Default keybinds**: Should be somewhat familiar to Windows or GNOME users. 
      - `Super`+`Enter` = terminal
+     - `Super`+`B` = brave browser 
 
 
 </details>
