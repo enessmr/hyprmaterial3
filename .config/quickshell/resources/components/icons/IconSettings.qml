@@ -32,6 +32,24 @@ Item {
                 return "wifi"
             case 'bluetooth':
                 return "bluetooth"
+            case 'mood':
+                return "mood"
+            case 'emoji_people':
+                return "emoji_people"
+            case 'pets':
+                return "pets"
+            case 'emoji_food_beverage':
+                return "emoji_food_beverage"
+            case 'emoji_transportation':
+                return "emoji_transportation"
+            case 'sports_soccer':
+                return "sports_soccer"
+            case 'emoji_objects':
+                return "emoji_objects"
+            case 'emoji_symbols':
+                return "emoji_symbols"
+            case 'flag':
+                return "flag"
             default:
                 return "more_horiz"
             }

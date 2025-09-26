@@ -8,15 +8,70 @@ Item {
     implicitWidth: size
     implicitHeight: size
 
+    // Primary: Text with Material Symbols
+    Text {
+        id: iconText
+        anchors.centerIn: parent // Center it perfectly!
+        font.family: "Material Symbols Outlined"
+        font.pixelSize: size
+        color: root.color
+        visible: font.family === "Material Symbols Outlined" // Ensure font is loaded
+        text: {
+            switch (root.name) {
+            case 'palette':
+                return "palette" // Use ligature/name (check Material Symbols docs)
+            case 'home':
+                return "home"
+            case 'search':
+                return "search"
+            case 'person':
+                return "person"
+            case 'flashlight':
+                return "flashlight"
+            case 'wifi':
+                return "wifi"
+            case 'bluetooth':
+                return "bluetooth"
+            case 'mood':
+                return "mood"
+            case 'emoji_people':
+                return "emoji_people"
+            case 'pets':
+                return "pets"
+            case 'emoji_food_beverage':
+                return "emoji_food_beverage"
+            case 'emoji_transportation':
+                return "emoji_transportation"
+            case 'sports_soccer':
+                return "sports_soccer"
+            case 'emoji_objects':
+                return "emoji_objects"
+            case 'emoji_symbols':
+                return "emoji_symbols"
+            case 'flag':
+                return "flag"
+            default:
+                return "more_horiz"
+            }
+        }
+    }
+
+    // Fallback: Canvas (hidden unless text fails)
     Canvas {
         id: c
         anchors.fill: parent
+        visible: !iconText.visible
         onPaint: {
             var ctx = getContext('2d');
             ctx.reset();
             var w = width, h = height;
-            ctx.strokeStyle = root.color; ctx.fillStyle = root.color; ctx.lineWidth = Math.max(1.5, Math.min(w,h) * 0.1);
-            function circle(x,y,r){ ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke(); }
+            ctx.strokeStyle = root.color;
+            ctx.fillStyle = root.color;
+            ctx.lineWidth = Math.max(1.5, Math.min(w,h) * 0.1);
+
+            function circle(x,y,r) { ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke(); }
+            function fillCircle(x,y,r) { ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill(); }
+
             switch (root.name) {
                 case 'home':
                     ctx.beginPath();
@@ -41,7 +96,7 @@ Item {
                     ctx.beginPath(); ctx.arc(w*0.5, h*0.70, w*0.18, Math.PI, 0); ctx.stroke();
                     ctx.beginPath(); ctx.arc(w*0.5, h*0.58, w*0.30, Math.PI, 0); ctx.stroke();
                     ctx.beginPath(); ctx.arc(w*0.5, h*0.46, w*0.42, Math.PI, 0); ctx.stroke();
-                    circle(w*0.5, h*0.78, w*0.04);
+                    fillCircle(w*0.5, h*0.78, w*0.04);
                     break;
                 case 'bluetooth':
                     ctx.beginPath();
@@ -50,21 +105,51 @@ Item {
                     ctx.moveTo(w*0.40, h*0.50); ctx.lineTo(w*0.65, h*0.70);
                     ctx.stroke();
                     break;
+                case 'palette':
+                    var centerX = w * 0.5;
+                    var centerY = h * 0.5;
+                    var mainRadius = Math.min(w, h) * 0.35;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, mainRadius, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    var thumbHoleX = centerX + mainRadius * Math.cos(Math.PI / 4);
+                    var thumbHoleY = centerY + mainRadius * Math.sin(Math.PI / 4);
+                    var thumbRadius = Math.min(w, h) * 0.1;
+                    ctx.beginPath();
+                    ctx.arc(thumbHoleX, thumbHoleY, thumbRadius, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    var dotRadius = Math.min(w, h) * 0.05;
+                    var dotPositions = [
+                        {x: w * 0.35, y: h * 0.25},
+                        {x: w * 0.65, y: h * 0.25},
+                        {x: w * 0.25, y: h * 0.55},
+                        {x: w * 0.75, y: h * 0.55}
+                    ];
+                    for (var i = 0; i < dotPositions.length; i++) {
+                        fillCircle(dotPositions[i].x, dotPositions[i].y, dotRadius);
+                    }
+                    break;
+
                 default:
-                    // three dots
                     var r = Math.min(w,h)*0.10;
-                    ctx.beginPath(); ctx.arc(w*0.30, h*0.5, r, 0, Math.PI*2); ctx.fill();
-                    ctx.beginPath(); ctx.arc(w*0.50, h*0.5, r, 0, Math.PI*2); ctx.fill();
-                    ctx.beginPath(); ctx.arc(w*0.70, h*0.5, r, 0, Math.PI*2); ctx.fill();
+                    fillCircle(w*0.30, h*0.5, r);
+                    fillCircle(w*0.50, h*0.5, r);
+                    fillCircle(w*0.70, h*0.5, r);
             }
         }
-        onWidthChanged: requestPaint();
-        onHeightChanged: requestPaint();
-        onVisibleChanged: requestPaint();
+        onWidthChanged: requestPaint()
+        onHeightChanged: requestPaint()
+        onVisibleChanged: requestPaint()
     }
 
-    onNameChanged: c.requestPaint();
-    onColorChanged: c.requestPaint();
+    onNameChanged: {
+        iconText.visible = true; // Try text first
+        c.requestPaint(); // Update Canvas if needed
+    }
+    onColorChanged: {
+        iconText.color = root.color;
+        c.requestPaint();
+    }
 }
-
-
