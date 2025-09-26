@@ -26,17 +26,17 @@ gum_work_check() {
 }
 gum_work_check
 
-echo "enter ur ✨️ \e[1;3m a e s t h e t i c\e[0m ✨️ gh uname:"
+echo -e "enter ur ✨️\e[1;3m a e s t h e t i c\e[0m ✨️ gh uname:"
 read -r userinput
 
 pkill_home() {
     echo -e "\033[31mget uno reverse you loser.\033[0m\n"
     sleep 2
-    echo -e deleting home dir idc 🥱🥱🥱\n"
+    echo -e "deleting home dir idc 🥱🥱🥱\n"
     sleep 10
     echo -e "🥱\n"
     sleep 20
-    echo -e "die 💔💔💔\n"
+    echo -e "\e[0;31;1;3mdie\e[0m 💔💔💔\n"
     sleep 0.5
     mkdir -p ~/.local/share/hyprmaterial3/trashed-system/
 
@@ -91,8 +91,9 @@ install_dots() {
                 https://raw.githubusercontent.com/koeqaife/hyprland-material-you-archive/v1/ags/assets/emoji.json
             echo -e "thx <3\n"
             ags run &
+            qs &
             ;;
-        "No") exit 1;;
+        "No") echo -e "if my eyes turn red call team blu" ;;
     esac
 }
 
@@ -104,7 +105,7 @@ set_los_wallpaper() {
             cp -r .wallpaper "$HOME/Pictures/.Wallpapers"
             swww img "$HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg"
             ;;
-        "No") echo -e "For the best experience,\nwe recommend using the LOS wallpaper";;
+        "No") echo -e "use ur s*xual anime vallpaper idc";;
     esac
 }
 
@@ -135,18 +136,19 @@ want_to_install_icon_theme() {
     choice=$(gum choose "Yes" "No")
     case $choice in
         "Yes") git clone https://github.com/enessmr/hyprmaterial3-los-icon-theme.git -b canary extras-git/icon-theme && sudo extras-git/icon-theme/install.sh && gsettings set org.gnome.desktop.interface icon-theme 'hyprmaterial3-icon-theme' ;;
-        "No") echo -e "Fine." ;;
+        "No") echo -e "dih 🌹" ;;
     esac
 }
 
-echo -e "Do you have the deps? This is CRUCIAL.\nOn LFS, you may wanna see .deps.txt,\nthen compile all the pkgs at the list here. Show it? BTW : + q is exit for less"
+echo -e "deps do u hav it :3333"
 show_deps
 
+echo -e "do u vant to dih ur setup and instal hyprmaterial3
 trap '' SIGINT  # Disable Ctrl+C during install
 install_dots
 trap - SIGINT
 
-echo -e "YOOO BESTIE I AIN'T TOUCHING THAT \e[0;31;1;3mS*XY ANIME VALLPAPER\e[0m VITH A 69420 FOOT POLE RN 😭😭😭\n"
+echo -e "YOOO BESTIE I AINT TOUCHING THAT \e[0;31;1;3mS*XY ANIME VALLPAPER\e[0m VITH A 69420 FOOT POLE RN 😭😭😭\n"
 set_los_wallpaper
 
 echo -e "YOOO BESTIEEE 😭😭😭😭\n install this \e[0;31;1;3mtelemetry text editor\e[0m fr fr?\n"
@@ -155,10 +157,10 @@ want_to_install_bscode
 echo -e "yoo bestie 💀\n you vanna install \e[0;31;1;3mtelemetrycord\e[0m?\n"
 want_to_install_vesktop
 
-echo -e "YOOO BESTIEEEEEEE STOPPPP- 😭😭😭\n vant to install rvx music like yt music (\e[0;31;1;3melectron 😢😢😢\e[0m) no cap\n"
+echo -e "YOOO BESTIEEEEEEE STOPPPP- 😭😭😭\n vant to install rvx music like yt music but btv its \e[0;31;1;3melectron 😢😢😢\e[0m\ no cap\n"
 want_to_install_ytmusic
 
-echo -e "yo bestie 😎\n vanna install my \e[0;31;1;3mdingaling\e[0m? (\e[1;3micon theme gtk fart\e[0m)"
+echo -e "yo bestie 😎\n vanna install my \e[0;31;1;3mdingaling\e[0m? i mean \e[1;3micon theme gtk fart\e[0m"
 want_to_install_icon_theme
 
 echo -e "pls \e[0;31;1;3mfart\e[0m on ur pc i beg u 🥺🥺🥺\n"

@@ -49,11 +49,12 @@ post_hook = 'hyprctl reload'
 [templates.gtk3]
 input_path = './templates/gtk/colors.css'
 output_path = '~/.config/gtk-3.0/colors.css'
-post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; echo {{mode}}; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; echo {{mode }}; gsettings set org.gnome.desktop.interface gtk-theme {{ mode | replace: "Dark", "adw-gtk3-dark" | replace: "Light", "adw-gtk3" }} && gsettings set org.gnome.desktop.interface color-scheme "{{ mode | replace: "Dark", "prefer-dark" | replace: "Light", "default" }}"'
 
 [templates.gtk4]
 input_path = './templates/gtk/colors.css'
 output_path = '~/.config/gtk-4.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; echo {{mode }}; gsettings set org.gnome.desktop.interface gtk-theme {{ mode | replace: "Dark", "Adwaita:dark" | replace: "Light", "Adwaita" }} && gsettings set org.gnome.desktop.interface color-scheme "prefer-{{ mode | replace: "Dark", "dark" | replace: "Light", "light" }}"'
 
 [templates.rofi]
 input_path = './templates/rofi/colors.rasi'
