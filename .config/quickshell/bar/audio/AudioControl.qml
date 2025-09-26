@@ -7,6 +7,7 @@ ClickableIcon {
 	required property var bar;
 	required property PwNode node;
 	property bool mixerOpen: false;
+	scale: 1.1
 
 	PwObjectTracker { objects: [ node ] }
 

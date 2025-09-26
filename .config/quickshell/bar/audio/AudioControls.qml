@@ -32,7 +32,7 @@ BarWidgetInner {
 			sourceComponent: AudioControl {
 				bar: root.bar;
 				node: Pipewire.defaultAudioSink;
-				image: `root:icons/${node.audio.muted ? "audio-muted" : "audio-volume-high"}`
+				icon: `${node.audio.muted ? "volume_mute" : "volume_up"}`
 			}
 		}
 
@@ -43,7 +43,7 @@ BarWidgetInner {
 			sourceComponent: AudioControl {
 				bar: root.bar;
 				node: Pipewire.defaultAudioSource;
-				image: `root:icons/${node.audio.muted ? "microphone-muted.svg" : "microphone-high.svg"}`
+				icon: `${node.audio.muted ? "mic_off" : "mic"}`
 			}
 		}
 	}

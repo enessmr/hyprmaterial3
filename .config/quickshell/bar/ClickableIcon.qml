@@ -1,19 +1,44 @@
 import QtQuick
+import QtQuick.Controls
+import "../resources/colors.js" as Palette
 
 BarButton {
-	id: root
-	required property string image;
-	property alias cache: imageComponent.cache;
-	property alias asynchronous: imageComponent.asynchronous;
-	property bool scaleIcon: !asynchronous
+    id: root
+	property string icon
+    property string image
+    property alias cache: imageComponent.cache
+    property alias asynchronous: imageComponent.asynchronous
+    property bool scaleIcon: !asynchronous
+    
+    // New properties for text icon
+    property bool useTextIcon: true
+    property string textIcon: icon  // Can be overridden if icon name differs from image path
 
-	Image {
-		id: imageComponent
-		anchors.fill: parent
+    // Text-based icon (Material Symbols)
+    Text {
+        id: textComponent
+        // visible: useTextIcon
+        anchors.fill: parent
+        text: root.textIcon
+		color: Palette.palette().onSurface
+        font.family: "Material Symbols Outlined"
+        font.pixelSize: Math.min(parent.width, parent.height) - baseMargin
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        visible: useTextIcon && font.family === "Material Symbols Outlined"
+        
+        // Optional: Add color binding
+        // color: root.pressed ? pressedColor : (root.hovered ? hoveredColor : normalColor)
+    }
 
-		source: root.image
-		sourceSize.width: scaleIcon ? width : (root.width - baseMargin)
-		sourceSize.height: scaleIcon ? height : (root.height - baseMargin)
-		cache: false
-	}
+    // Fallback image icon
+    Image {
+        id: imageComponent
+        // visible: !textComponent.visible
+        anchors.fill: parent
+        source: root.image
+        sourceSize.width: scaleIcon ? width : (root.width - baseMargin)
+        sourceSize.height: scaleIcon ? height : (root.height - baseMargin)
+        cache: false
+    }
 }

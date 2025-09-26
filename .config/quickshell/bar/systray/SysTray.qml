@@ -38,6 +38,7 @@ BarWidgetInner {
 				implicitHeight: 27
 
 				ClickableIcon {
+					scale: 1.1
 					id: mouseArea
 					anchors {
 						top: parent.top

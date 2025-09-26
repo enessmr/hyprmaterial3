@@ -97,8 +97,9 @@ FullwidthMouseArea {
 			}
 
 			ClickableIcon {
+				scale: 1.1
 				Layout.fillWidth: true
-				image: "root:icons/rewind.svg"
+				icon: "fast_rewind"
 				implicitHeight: width
 				scaleIcon: false
 				baseMargin: 3
@@ -108,8 +109,9 @@ FullwidthMouseArea {
 			}
 
 			ClickableIcon {
+				scale: 1.1
 				Layout.fillWidth: true
-				image: `root:icons/${MprisController.isPlaying ? "pause" : "play"}.svg`;
+				icon: `${MprisController.isPlaying ? "pause" : "play_arrow"}`;
 				implicitHeight: width
 				scaleIcon: false
 				hoverEnabled: false
@@ -118,8 +120,9 @@ FullwidthMouseArea {
 			}
 
 			ClickableIcon {
+				scale: 1.1
 				Layout.fillWidth: true
-				image: "root:icons/fast-forward.svg"
+				icon: "fast_forward"
 				implicitHeight: width
 				scaleIcon: false
 				baseMargin: 3
@@ -560,11 +563,12 @@ FullwidthMouseArea {
 							anchors.centerIn: parent
 
 							ClickableIcon {
-								image: {
+								scale: 1.1
+								icon: {
 									switch (MprisController.loopState) {
-									case MprisLoopState.None: return "root:icons/repeat-none.svg";
-									case MprisLoopState.Playlist: return "root:icons/repeat-all.svg";
-									case MprisLoopState.Track: return "root:icons/repeat-once.svg";
+									case MprisLoopState.None: return "repeat";
+									case MprisLoopState.Playlist: return "repeat_on";
+									case MprisLoopState.Track: return "repeat_one";
 									}
 								}
 
@@ -586,7 +590,8 @@ FullwidthMouseArea {
 							}
 
 							ClickableIcon {
-								image: "root:icons/rewind.svg"
+								scale: 1.1
+								icon: "fast_rewind"
 								implicitWidth: 60
 								implicitHeight: width
 								scaleIcon: false
@@ -596,7 +601,8 @@ FullwidthMouseArea {
 							}
 
 							ClickableIcon {
-								image: `root:icons/${MprisController.isPlaying ? "pause" : "play"}.svg`;
+								scale: 1.1
+								icon: `${MprisController.isPlaying ? "pause" : "play_arrow"}`;
 								Layout.leftMargin: -10
 								Layout.rightMargin: -10
 								implicitWidth: 80
@@ -607,7 +613,8 @@ FullwidthMouseArea {
 							}
 
 							ClickableIcon {
-								image: "root:icons/fast-forward.svg"
+								scale: 1.1
+								icon: "fast_forward"
 								implicitWidth: 60
 								implicitHeight: width
 								scaleIcon: false
@@ -617,7 +624,7 @@ FullwidthMouseArea {
 							}
 
 							ClickableIcon {
-								image: `root:icons/${MprisController.hasShuffle ? "shuffle" : "shuffle-off"}.svg`
+								icon: `${MprisController.hasShuffle ? "shuffle" : "compare_arrows"}`
 								implicitWidth: 50
 								implicitHeight: width
 								scaleIcon: false
