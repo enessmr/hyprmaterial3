@@ -45,7 +45,7 @@ ApplicationWindow {
     }
 
     // BAH BAH BAH BAH BAHBAHBHAH BAH BAH (but make it visible for testing)
-    visible: true
+    visible: false
 
     property string selectedEmoji
     property var emojiCategories: ({})
@@ -190,7 +190,7 @@ ApplicationWindow {
             }
         }
         root.jsonLoaded = true
-        loadCategoryEmojis("smileys-emotion")
+        loadCategoryEmojis("mood")
     }
 
     function loadCategoryEmojis(categoryName) {
@@ -246,16 +246,22 @@ ApplicationWindow {
                         spacing: 10
                         
                         Repeater {
-                            model: Object.keys(root.emojiCategories)
-                            
-                            Toggles.RoundIconToggle {
-                                iconName: modelData.replace(/-/g, " ")
-                                checked: root.currentCategory === modelData
-                                onToggled: {
-                                    root.loadCategoryEmojis(modelData)
-                                }
-                            }
+                model: Object.keys(root.emojiCategories)
+                
+                Toggles.RoundIconToggleEmoji {
+                    iconName: modelData.replace(/-/g, " ")
+                    checked: root.currentCategory === modelData
+                    onToggled: {
+                        if (!checked) {
+                            // If toggled off, do nothing to avoid breaking single-selection
+                            return
                         }
+                        root.loadCategoryEmojis(modelData)
+                        // Update currentCategory to ensure only this toggle is checked
+                        root.currentCategory = modelData
+                    }
+                }
+            }
                     }
                 }
             }

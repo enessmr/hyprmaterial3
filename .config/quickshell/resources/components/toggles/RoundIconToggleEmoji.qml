@@ -76,14 +76,12 @@ Item {
         anchors.fill: background
         hoverEnabled: true
         enabled: root.enabled
+        
         onClicked: {
             if (!root.checked) {
-                root.checked = true  // Only allow turning ON
+                root.checked = true
                 root.toggled(root.checked)
             }
-            // If checked is already true, do nothing (no deselection)
         }
     }
 }
-
-
