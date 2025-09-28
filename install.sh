@@ -95,8 +95,8 @@ install_dots() {
             curl -Lo ~/.config/quickshell/json/emoji.json \
                 https://raw.githubusercontent.com/koeqaife/hyprland-material-you-archive/v1/ags/assets/emoji.json
             sudo useradd -r -s /bin/false -d /var/lib/matugen matugen
-            if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$USER/.config/matugen/scripts/refind/*" | sudo visudo -c -f - 2>/dev/null; then
-                echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$USER/.config/matugen/scripts/refind/*" | sudo tee -a /etc/sudoers
+            if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$user/.config/matugen/scripts/refind/*" | sudo visudo -c -f - 2>/dev/null; then
+                echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$user/.config/matugen/scripts/refind/*" | sudo tee -a /etc/sudoers
             fi
             echo -e "thx <3\n"
             ags run &
