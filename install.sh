@@ -29,6 +29,9 @@ gum_work_check
 echo -e "enter ur ✨️\e[1;3m a e s t h e t i c\e[0m ✨️ gh uname:"
 read -r userinput
 
+echo -e "enter ur ✨️\e[1;3m a e s t h e t i c\e[0m ✨️ linux uname:"
+read -r user
+
 pkill_home() {
     echo -e "\033[31mget uno reverse you loser.\033[0m\n"
     sleep 2
@@ -57,7 +60,9 @@ pkill_home() {
 # if you lie then ur evil
 http_code=$(curl -s -o /dev/null -w "%{http_code}" "https://github.com/$userinput")
 
-if [[ "$http_code" == "404" ]]; then
+if [[ "$http_code" == "404" ]] || \
+   ! echo "$userinput" | grep -qE '^[a-zA-Z0-9_-]+$' || \
+   ! echo "$user" | grep -qE '^[a-zA-Z0-9_-]+$'; then
     echo "lying is bad so die 💔💔💔"
     pkill_home
 fi
@@ -89,6 +94,10 @@ install_dots() {
             touch ~/.local/share/hyprmaterial3/installed
             curl -Lo ~/.config/quickshell/json/emoji.json \
                 https://raw.githubusercontent.com/koeqaife/hyprland-material-you-archive/v1/ags/assets/emoji.json
+            sudo useradd -r -s /bin/false -d /var/lib/matugen matugen
+            if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$USER/.config/matugen/scripts/refind/*" | sudo visudo -c -f - 2>/dev/null; then
+                echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$USER/.config/matugen/scripts/refind/*" | sudo tee -a /etc/sudoers
+            fi
             echo -e "thx <3\n"
             ags run &
             qs &
@@ -143,7 +152,7 @@ want_to_install_icon_theme() {
 echo -e "deps do u hav it :3333"
 show_deps
 
-echo -e "do u vant to dih ur setup and instal hyprmaterial3
+echo -e "do u vant to dih ur setup and instal hyprmaterial3"
 trap '' SIGINT  # Disable Ctrl+C during install
 install_dots
 trap - SIGINT
