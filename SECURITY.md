@@ -7,7 +7,7 @@ currently being supported with security upd commits.
 
 You will need to check with hyprm3ctl
 
-| Version | Supported          |
+| Version/Branch | Supported          |
 | ------- | ------------------ |
 | any newer commit than 0.0.0.1| :white_check_mark: |
 | ags | IF MY EYES TURN RED, _**RUN**_ 🔴👄🔴 :x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x::x: |
