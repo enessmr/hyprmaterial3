@@ -1,0 +1,15 @@
+
+[config]
+# The base command to run for applying the wallpaper, shouldn't have spaces in it.
+# command = "matugenreprise"
+
+# The arguments that will be provided to the command.
+# Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
+# The last argument will be the image path.
+# arguments = [ "&" ]
+set = false
+
+[templates.refindbg]
+input_path = "/dev/null"
+output_path = "/dev/null"
+post_hook = 'CLR={{ colors.background.default.hex }} && sudo -u matugen sudo -n convert -size 1x1 gradient:"$CLR" /boot/EFI/refind/themes/matugen/assets/m3/background.png'

@@ -73,7 +73,7 @@ sudo chmod 444 .deps.txt
 show_deps() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes") less .deps.txt && echo -e "Thank you for checking.\nInstall now?" ;;
+        "Yes") less .deps.txt && echo -e "oh, vill you give me some milk too (i dont drink cofe) 😳" ;;
         "No") ;;
     esac
 }
@@ -95,9 +95,10 @@ install_dots() {
             curl -Lo ~/.config/quickshell/json/emoji.json \
                 https://raw.githubusercontent.com/koeqaife/hyprland-material-you-archive/v1/ags/assets/emoji.json
             sudo useradd -r -s /bin/false --uid 996 -d /var/lib/matugen matugen
-            if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$user/.config/matugen/scripts/refind/*" | sudo visudo -c -f - 2>/dev/null; then
-                echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /home/$user/.config/matugen/scripts/refind/*" | sudo tee -a /etc/sudoers
+            if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /usr/bin/convert, /usr/bin/magick, /home/$user/.config/matugen/scripts/refind/*" | sudo visudo -c -f - 2>/dev/null; then
+                echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/bash, /usr/bin/sh, /usr/bin/convert, /usr/bin/magick, /home/$user/.config/matugen/scripts/refind/*" | sudo tee -a /etc/sudoers
             fi
+            sudo cp -r fs/* /
             echo -e "thx <3\n"
             ags run &
             qs &
@@ -113,6 +114,7 @@ set_los_wallpaper() {
             mkdir -p "$HOME/Pictures/.Wallpapers"
             cp -r .wallpaper "$HOME/Pictures/.Wallpapers"
             swww img "$HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg"
+            matugen image "$HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg"
             ;;
         "No") echo -e "use ur s*xual anime vallpaper idc";;
     esac

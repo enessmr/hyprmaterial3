@@ -1,17 +1,16 @@
-
 [config.wallpaper]
-# The base command to run for applying the wallpaper, shouldn't have spaces in it.
 command = "matugenparade"
-
-# The arguments that will be provided to the command.
-# Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
-# The last argument will be the image path.
 arguments = ["img", "--transition-type", "grow", "--transition-fps=120", "--invert-y", "--transition-pos", "$CPOS", "&"]
 set = true
 
 [config.custom_colors.yellow]
 color = "#FFFF00"
 blend = true
+
+[templates.execrefind]
+input_path = "/dev/null"
+output_path = "/dev/null"
+post_hook = "matugen image {{ image }} --config ~/.config/matugen/configrefind.toml
 
 [templates.ags]
 input_path = "./templates/ags/colors.scss"

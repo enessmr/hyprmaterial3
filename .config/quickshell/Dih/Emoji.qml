@@ -5,10 +5,11 @@ import QtQuick.Layouts 1.15
 import Quickshell.Io
 import Quickshell
 import "../resources/components/toggles" as Toggles
+import "../resources/colors.js" as Palette
 import "./"
 
 ApplicationWindow {
-    width: 600
+    width: 400
     height: 500
     minimumWidth: 400
     minimumHeight: 300
@@ -16,15 +17,15 @@ ApplicationWindow {
     id: root
     flags: Qt.Window | Qt.WindowStaysOnTopHint
     
-    // Property to store window geometry
+    // FOUND A 12 INCH DINGALING HERE THO NGL?!?!? 😳😳😳
     property var windowGeometry: ({
         x: 0,
         y: 0,
-        width: 600,
+        width: 475,
         height: 500
     })
 
-    // Save geometry when window is closed
+    // KEEP THAT 12 INCH DINGALING!!! 🫙🫙🫙 
     onClosing: {
         windowGeometry = {
             x: x,
@@ -34,7 +35,7 @@ ApplicationWindow {
         }
     }
 
-    // Restore geometry when shown
+    // LET THAT 12 INCH DINGALING ESCAPE BUT I FOUND IT AGAIN 😭😭😭
     onVisibleChanged: {
         if (visible) {
             x = windowGeometry.x
@@ -44,7 +45,7 @@ ApplicationWindow {
         }
     }
 
-    // BAH BAH BAH BAH BAHBAHBHAH BAH BAH (but make it visible for testing)
+    // MEOV. MEE-OVVV.
     visible: false
 
     property string selectedEmoji
@@ -52,13 +53,14 @@ ApplicationWindow {
     property var currentCategoryEmojis: []
     property string currentCategory: "mood"
     property bool jsonLoaded: false
+    property var categoryToggles: ({})
 
     // YOSHI LOVE BESTIE 💚🦕
     Component.onCompleted: {
         loadEmojiData()
     }
 
-    // PROCESS TO READ THE EMOJI JSON BESTIE!! 🔥🔥
+    // IS SYSTEMD KICKING MY ASS OR IS IT GOONING AT ME? 😳😳😳
     Process {
         id: emojiProcess
         running: true
@@ -66,42 +68,36 @@ ApplicationWindow {
         
         stdout: StdioCollector {
             id: emojiCollector
-            // target: emojiProcess
             
             onStreamFinished: {
-                console.log("BESTIE WE GOT THE JSON DATA!! 🔥")
+                console.log("GOONERS DATA GET!! 🔥")
                 try {
                     var jsonData = JSON.parse(data)
                     root.emojiCategories = jsonData
                     root.jsonLoaded = true
                     loadCategoryEmojis("mood")
-                    console.log("JSON LOADED SUCCESSFULLY!! Categories:", Object.keys(jsonData))
+                    console.log("GOONERS FILE LOADED TASK UNFAILED GOONER SUCESFULEY!!! GOONER CATEGORIES:", Object.keys(jsonData))
                 } catch (e) {
-                    console.log("JSON PARSE ERROR BESTIE:", e)
-                    // FALLBACK TO HARDCODED EMOJIS IF JSON FAILS
+                    console.log("NOOO GOONER FILE PARSE ERROR THE GOONERS DIED 😭😭😭:", e)
+                    // IF GOONERS DIE LOAD BACKUP GOONERS IN THE SIMULATION 😧😧😧
                     loadFallbackEmojis()
                 }
             }
-            
-            /* onErrorOccurred: {
-                console.log("ERROR LOADING JSON FILE BESTIE, USING FALLBACK!!")
-                loadFallbackEmojis()
-            } */
         }
     }
 
     function loadEmojiData() {
         console.log("EMOJI DATA WILL LOAD AUTOMATICALLY BESTIE!! 🔥")
-        // Process starts automatically when running: true
+        // NAH NAH NAH NAH NAH VHO GOONED AT ME 😱😱😱
         if (root.jsonLoaded === false) {
-            console.log("WAITING FOR JSON TO LOAD...")
+            console.log("WAITING FOR THE GOONERS FILE TO LOAD...")
         }
     }
 
     function loadFallbackEmojis() {
-        console.log("USING FALLBACK EMOJIS BESTIE!!")
+        console.log("MY DIH GOT CUT 😭😭😭")
         root.emojiCategories = {
-            "smileys-emotion": {
+            "mood": {
                 "face-smiling": {
                     "grinning-face": "😀",
                     "grinning-face-with-big-eyes": "😃", 
@@ -126,7 +122,7 @@ ApplicationWindow {
                     "kissing-face": "😗"
                 }
             },
-            "people-body": {
+            "emoji_people": {
                 "hand-fingers-open": {
                     "waving-hand": "👋",
                     "raised-back-of-hand": "🤚",
@@ -135,7 +131,7 @@ ApplicationWindow {
                     "vulcan-salute": "🖖"
                 }
             },
-            "animals-nature": {
+            "pets": {
                 "animal-reptile": {
                     "turtle": "🐢",
                     "lizard": "🦎", 
@@ -145,7 +141,7 @@ ApplicationWindow {
                     "sauropod": "🦕"  // YOSHI BESTIE!! 💚
                 }
             },
-            "food-drink": {
+            "emoji_food_beverage": {
                 "food-prepared": {
                     "pizza": "🍕",
                     "hamburger": "🍔",
@@ -154,7 +150,7 @@ ApplicationWindow {
                     "taco": "🌮"
                 }
             },
-            "activities": {
+            "sports_soccer": {
                 "event": {
                     "party-popper": "🎉",
                     "confetti-ball": "🎊",
@@ -162,14 +158,14 @@ ApplicationWindow {
                     "birthday-cake": "🎂"
                 }
             },
-            "objects": {
+            "emoji_objects": {
                 "light-video": {
                     "fire": "🔥",
                     "flashlight": "🔦",
                     "candle": "🕯️"
                 }
             },
-            "symbols": {
+            "emoji_symbols": {
                 "heart": {
                     "red-heart": "❤️",
                     "orange-heart": "🧡", 
@@ -195,6 +191,14 @@ ApplicationWindow {
 
     function loadCategoryEmojis(categoryName) {
         console.log("LOADING CATEGORY:", categoryName)
+        
+        // UNTOGGLE ALL OTHER GOONERS!!! 🔥🔥
+        for (var cat in root.categoryToggles) {
+            if (cat !== categoryName && root.categoryToggles[cat]) {
+                root.categoryToggles[cat].checked = false
+            }
+        }
+        
         root.currentCategory = categoryName
         var emojis = []
         
@@ -209,10 +213,10 @@ ApplicationWindow {
         }
         
         root.currentCategoryEmojis = emojis
-        console.log("LOADED", emojis.length, "EMOJIS FOR CATEGORY:", categoryName)
+        console.log("LOADED AN AK47", emojis.length, "GOONERS FOR GOONER CATEGORY:", categoryName)
     }
 
-    // instantiate EmojiRunner
+    // SOMENONE GOONED TO ME AND IT'S BASH 😳😳😳
     EmojiRunner {
         id: emojiRunner
     }
@@ -221,7 +225,7 @@ ApplicationWindow {
         id: scrollView
         anchors.fill: parent
         anchors.margins: 20
-        clip: true // Prevent content overflow
+        clip: true // PAYLEEY HAS A 2.7 INCH DINGALING AND IF YOU CUT IT YOU VILL FIND A GOONER TO SATAN IN IT! (payleey hater btv) 😱😱😱
 
         ColumnLayout {
             Layout.fillWidth: true
@@ -229,14 +233,12 @@ ApplicationWindow {
             width: scrollView.width
             spacing: 20
 
-            // CATEGORY SELECTOR BESTIE!! 🔥🔥
+            // GOONERS IN HERE??? NO I'M NOT TOUCHING THIS VITH A 1000 FOOT POLE
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 60
-                color: "#2d2d2d"
+                color: Palette.palette().surfaceContainerHigh
                 radius: 12
-                border.color: "#007acc"
-                border.width: 2
 
                 ScrollView {
                     anchors.fill: parent
@@ -246,29 +248,36 @@ ApplicationWindow {
                         spacing: 10
                         
                         Repeater {
-                model: Object.keys(root.emojiCategories)
-                
-                Toggles.RoundIconToggleEmoji {
-                    iconName: modelData.replace(/-/g, " ")
-                    checked: root.currentCategory === modelData
-                    onToggled: {
-                        if (!checked) {
-                            // If toggled off, do nothing to avoid breaking single-selection
-                            return
+                            model: Object.keys(root.emojiCategories)
+                            
+                            Toggles.RoundIconToggleEmoji {
+                                id: categoryToggle
+                                iconName: modelData.replace(/-/g, " ")
+                                checked: root.currentCategory === modelData
+                                
+                                // THE OBJECT IS TRYING TO SKIP 9/11 BY GOONING 😱🤯🤯🤯
+                                objectName: "toggle_" + modelData
+                                
+                                // oh so the complete tried turning his eyes red (if my eyes turn red run) [IMA GUNA TUCH U 😍]
+                                Component.onCompleted: {
+                                    root.categoryToggles[modelData] = categoryToggle
+                                    console.log("REGISTERED TOGGLE FOR:", modelData)
+                                }
+                                
+                                onToggled: {
+                                    if (checked) {
+                                        root.loadCategoryEmojis(modelData)
+                                    }
+                                }
+                            }
                         }
-                        root.loadCategoryEmojis(modelData)
-                        // Update currentCategory to ensure only this toggle is checked
-                        root.currentCategory = modelData
-                    }
-                }
-            }
                     }
                 }
             }
 
-            // THE EPIC EMOJI GRID BESTIE!!! 🔥🔥🔥🔥
+            // OK SO I SHOVED UP MY ASS A BUTT PLUG INSIDE A GERMAN STICKY GRENADE 😭😭😭
             GridLayout {
-                columns: 8
+                columns: 9
                 columnSpacing: 8
                 rowSpacing: 8
                 Layout.alignment: Qt.AlignHCenter
@@ -279,37 +288,18 @@ ApplicationWindow {
                     
                     Button {
                         text: modelData
-                        font.pixelSize: 32
-                        Layout.preferredWidth: 60
-                        Layout.preferredHeight: 60
+                        font.pixelSize: 24
+                        Layout.preferredWidth: 40
+                        Layout.preferredHeight: 40
                         
                         onClicked: {
                             emojiRunner.run(modelData)
-                            console.log("CLICKED EMOJI:", modelData, "🔥🔥🔥")
+                            console.log("GOONED EMOJI:", modelData, "💦💦💦")
                         }
                         
-                        hoverEnabled: true
-                        
+                        // hoverEnabled: true
                         background: Rectangle {
-                            color: parent.hovered ? "#007acc" : "#2d2d2d"
-                            border.color: parent.hovered ? "#00ff88" : "#555"
-                            border.width: 2
-                            radius: 12
-                            
-                            // HOVER ANIMATION BESTIE
-                            Behavior on color {
-                                ColorAnimation { duration: 150 }
-                            }
-                            
-                            Behavior on border.color {
-                                ColorAnimation { duration: 150 }
-                            }
-                        }
-                        
-                        // CLICK ANIMATION CUZ WE'RE EXTRA
-                        scale: pressed ? 0.95 : 1.0
-                        Behavior on scale {
-                            NumberAnimation { duration: 100 }
+                            color: "transparent"
                         }
                     }
                 }
@@ -317,7 +307,7 @@ ApplicationWindow {
         }
     }
 
-    // IPC HANDLER FOR TOGGLING BESTIE
+    // NAH FAM I PUT THIS DIH IN A JAR SO IT BECOMES SAFE AND NEVER STOLEN AND BE CALLED EVERYTIME 🗣️🗣️🗣️🔥🔥🔥
     IpcHandler {
         target: "emoji"
         function toggle(): void {
@@ -326,10 +316,10 @@ ApplicationWindow {
         }
     }
 
-    // BACKGROUND COLOR CUZ WE'RE AESTHETIC AF
+    // SO A GOONER IN THE BG??? VHAT???? 😱😱😱😱😱😱
     Rectangle {
         anchors.fill: parent
-        color: "#0d1117"
+        color: Palette.palette().background
         z: -1
     }
 }

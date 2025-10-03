@@ -1,3 +1,5 @@
-### If you made a QS fork, you MUST read these:
+### 1. you must be vibey
+the commits and/or the code must be vibey. code is enough, but dont make commits vith normal code comments. it must have a high energy vibe
 
-<b>DO NOT MAKE PR UNTIL I MAKE qs BRANCH</b>
+### 2. be savage sometimes
+just kick in that😳

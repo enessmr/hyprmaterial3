@@ -20,6 +20,13 @@ Item {
     implicitWidth: background.implicitWidth
     implicitHeight: background.implicitHeight
 
+    function untoggle() {
+        if (root.checked) {
+            root.checked = false
+            root.toggled(root.checked) // GOON TO IT 😭😭😭
+        }
+    }
+
     Rectangle {
         id: background
         property int baseWidth: root.diameter
@@ -61,7 +68,7 @@ Item {
         }
     }
 
-    // hover/press feedback
+    // GOONING BUT IN LESS AMOUNTS 😭😭😭
     Rectangle {
         anchors.fill: background
         radius: background.radius
