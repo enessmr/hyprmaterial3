@@ -18,18 +18,18 @@ Singleton {
     PersistentProperties {
         id: persist
         property bool settingsOpen: false
-        property int currentPage: 0  // WHICH PAGE WE ON BESTIE
+        property int currentPage: 0  // WHICH DINGALING YOU ARE???
         property string currentWallpaper: "$HOME/Pictures/.Wallpapers/wallpaper.jpg"
     }
     
-    // FIXED: Use Timer instead of setTimeout - QML WAY BESTIE! 💅
+    // OHHH a GOONER 😍😍😍
     Timer {
         id: fallbackTimer
         interval: 2000
         repeat: false
         onTriggered: {
             if (wallpaperModel.count === 0) {
-                console.log("🆘 Scanner failed, adding fallback wallpapers bestie!")
+                console.log("OHHH NOOOO MY SMOL GOOBERS 😭😭😭")
                 wallpaperModel.append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/wallpaper.jpg"})
                 wallpaperModel.append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/ascension_teal_dark.jpg"})
             }
@@ -42,7 +42,7 @@ Singleton {
             // linux but make it big.LITTLE
             scanWallpaperDirectory()
             
-            // START THE FALLBACK TIMER BESTIE! ⏰
+            // THE BACKUP GOONER!!!! 😍😍😍
             fallbackTimer.start()
         }
         
@@ -50,7 +50,7 @@ Singleton {
             var wallpaperDir = "/home/lfsuser/Pictures/.Wallpapers"
             var supportedFormats = [".jpg", ".jpeg", ".png", ".webp", ".bmp"]
             
-            console.log("🔍 Scanning wallpaper directory bestie:", wallpaperDir)
+            console.log("THE GOOBERS, VHERE ARE THEY???? 🔍🔍🔍", wallpaperDir)
             
             // Use Process to list files in the directory
             directoryScanner.command = ["find", wallpaperDir, "-type", "f", "(", "-iname", "*.jpg", "-o", "-iname", "*.jpeg", "-o", "-iname", "*.png", "-o", "-iname", "*.webp", "-o", "-iname", "*.bmp", ")"]
@@ -58,7 +58,7 @@ Singleton {
         }
     }
     
-    // Process to scan wallpaper directory
+    // Sniffers that vill smell my feet 😳
     Process {
         id: directoryScanner
         stdout: SplitParser {
@@ -67,32 +67,32 @@ Singleton {
                 lines.forEach(function(line) {
                     if (line.trim() !== "") {
                         wallpaperModel.append({wallpaperPath: line.trim()})
-                        console.log("🎨 Found wallpaper bestie:", line.trim())
+                        console.log("THE GOOBER IS HERE!!! 😄😄😄", line.trim())
                     }
                 })
             }
         }
     }
     
-    // Function to apply wallpaper using the svitchVall.sh script - BESTIE ENERGY! ✨
+    // A
     function applyWallpaper(mode, color) {
         var wallpaper = persist.currentWallpaper
         
-        console.log("🎨 Applying wallpaper bestie! Mode:", mode, "Color:", color, "Wallpaper:", wallpaper)
+        console.log("applying my goober to ur desktop, oh let me give my side:", mode, "the goon color of it is:", color, "the paper to apply:", wallpaper)
         
-        // Execute the wallpaper switching script - LET'S GOOO! 💅
+        // YOU CAN FEEL THE PAIN IN HIS DIH
         wallpaperProcess.command = ["bash", "/home/lfsuser/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
         wallpaperProcess.running = true
     }
     
-    // Process for executing wallpaper changes - BESTIE POWER! 💪
+    // OHH MY LIVE HEA- AAAHH 😭💔
     Process {
         id: wallpaperProcess
         onExited: (exitCode, exitStatus) => {
             if (exitCode === 0) {
-                console.log("✨ Wallpaper changed successfully bestie! Ur vibe is immaculate! 💅")
+                console.log("I CAN SMELL THE ANIME IN IT, MY GOOBER SAID 😳😳😳")
             } else {
-                console.log("😔 Oops bestie, wallpaper change failed with exit code:", exitCode)
+                console.log("MY GOOBER FELL INTO THE FAIL PIT 😭😭😭", exitCode)
             }
         }
     }
@@ -160,29 +160,28 @@ Singleton {
                 anchors.bottomMargin: 10
                 spacing: 10
 
-                // YOUR EXISTING NAV RAIL COMPONENT - CLEAN AS HELL
                 Nav.NavigationRail {
                     Layout.fillHeight: true
                     Layout.preferredWidth: 200
                     selectedIndex: persist.currentPage
 
-                    // PALETTE PAGE - THE MAIN CHARACTER
+                    // One of my goobers found the main chars at the speed of TON 618 drifting
                     Nav.TabButtonSettings {
                         label: "Palette"
-                        iconName: "palette"   // this is ur Material Symbols icon
+                        iconName: "palette"   // My goober holded and shoved me its dingaling vhile placing it on a rail and smacking it's ass vith a shovel 🥵🥵🥵
                         active: persist.currentPage === 0
                         onClicked: persist.currentPage = 0
                     }
                 }
 
-                // DYNAMIC CONTENT AREA - WHERE THE MAGIC HAPPENS
+                // GOOBER CLICK AREA LIKE THE FUZZY MINE TIME EATING MARIOS ASS 🥵🥵🥵
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: Palette.palette().surfaceContainerHigh
                     radius: 8
 
-                    // DYNAMIC PAGE CONTENT
+                    // DYNAMIC HOT GEOMETRY DASH ROLEPLAY 🥵🥵🥵
                     Loader {
                         id: pageLoader
                         anchors.fill: parent
@@ -198,7 +197,7 @@ Singleton {
                         }
                     }
 
-                    // PAGE COMPONENTS - THE CONTENT KINGS
+                    // SMOL GOOBERS INSIDE FEET SMELLERS 😳😳😳
                     Component {
                         id: palletePageComponent
                         
@@ -206,19 +205,21 @@ Singleton {
                             spacing: 16
                             
                             Text {
-                                text: "🎨 Wallpaper Picker"
+                                text: "Palete stuf 67"
                                 font.pixelSize: 18
                                 font.weight: Font.Bold
+                                font.family: "Roboto"
                                 color: Palette.palette().onSurface
                             }
                             
                             Text {
-                                text: "choose ur vibe bestie 💅✨"
+                                text: "choose ur vibe 💅✨"
                                 font.pixelSize: 12
+                                font.family: "Roboto"
                                 color: Palette.palette().onSurfaceVariant
                             }
 
-                            // Wallpaper Preview Grid
+                            // goober's gooner to satan inside a feet smeller device😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
                             Rectangle {
                                 implicitWidth: parent.width
                                 implicitHeight: 300
@@ -242,32 +243,32 @@ Singleton {
                                             height: 70
                                             radius: 6
                                             color: Palette.palette().surfaceContainerHigh
-                                            // FIXED AGAIN: Qt's delegate context is UNHINGED bestie! 💀
+                                            // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳
                                             border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
                                             border.width: selected ? 2 : 1
                                             
-                                            // THE REAL FIX: Direct property access in delegate context! 🔥
+                                            // Ohh so i cut payleey's dih so it has a goober inside then at the goobers inside theres another goober then theres a feet smeller then theres a ton 618 and then a gooner to satan himself inside 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
                                             property bool selected: wallpaperPath === persist.currentWallpaper
-                                            // wallpaperPath is DIRECTLY available in delegate scope (Qt magic)
+                                            // flasl  daslkdlasjdlaksdl
                                             
                                             Rectangle {
                                                 anchors.fill: parent
                                                 anchors.margins: 2
                                                 radius: 4
                                                 clip: true
-                                                color: Palette.palette().surfaceContainerLow  // Fallback color so we can see the rectangles
+                                                color: Palette.palette().surfaceContainerLow  // chatgpt be like: (1 message later) "You have hit your limit of your Free GPT-5 usage" 😂😂😂
                                                 
                                                 Image {
                                                     anchors.fill: parent
-                                                    // FIXED AGAIN: Qt delegates auto-expose model properties! 🔥
+                                                    // vaht da fakingh balasshg 🗣️🗣️🗣️🔥🔥🔥
                                                     source: wallpaperPath ? ("file://" + wallpaperPath) : ""
                                                     fillMode: Image.PreserveAspectCrop
                                                     
                                                     onStatusChanged: {
                                                         if (status === Image.Error) {
-                                                            console.log("😔 Failed to load wallpaper bestie:", source)
+                                                            console.log("NOOO THE GOOBER FALLED TO THE LONG FAIL PITTT 🥵🥵🥵😭😭😭:", source)
                                                         } else if (status === Image.Ready) {
-                                                            console.log("✨ Wallpaper loaded successfully:", source)
+                                                            console.log("THE GOOBER SUCEEDED AND SUCCESSFULLY GOONED TO SATAN😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳", source)
                                                         }
                                                     }
                                                 }
@@ -276,16 +277,14 @@ Singleton {
                                             MouseArea {
                                                 anchors.fill: parent
                                                 onClicked: {
-                                                    // FIXED FINAL TIME: Direct access to delegate's wallpaperPath! 💅
                                                     persist.currentWallpaper = wallpaperPath
-                                                    // Get current mode and color from the controls
                                                     var currentMode = modeControl.options[modeControl.currentIndex]
                                                     var currentColor = colorCombo.currentText
                                                     applyWallpaper(currentMode, currentColor)
                                                 }
                                             }
                                             
-                                            // Selection indicator
+                                            // Goober inside the parent goober
                                             Rectangle {
                                                 anchors.top: parent.top
                                                 anchors.right: parent.right
@@ -310,15 +309,14 @@ Singleton {
                                 }
                             }
                             
-                            // Mode and Color Controls - PROPER MARGINS BESTIE! 💅
+                            // TENI-TENI-TENI-TENI-TENI 🗣️🗣️🗣️🔥🔥🔥
                             Row {
-                                spacing: 24  // Increased spacing between controls
+                                spacing: 24 
                                 topPadding: 16
                                 bottomPadding: 16
-                                leftPadding: 8   // ADD MARGINS SO ITEMS DON'T COLLIDE! 💅
+                                leftPadding: 8   // add gooners so i dont accidentally goon to myself 😳😳😳
                                 rightPadding: 8
                                 
-                                // Mode Selection - PROPER M3 COMPONENT! ✨
                                 Column {
                                     spacing: 8
                                     
@@ -329,7 +327,6 @@ Singleton {
                                     }
                                     
                                     Rectangle {
-                                        // Container with proper margins so items don't collide! 💅
                                         color: "transparent"
                                         width: modeControl.implicitWidth + 16
                                         height: modeControl.implicitHeight + 8
@@ -337,17 +334,16 @@ Singleton {
                                         Actions.SegmentedPill {
                                             id: modeControl
                                             anchors.centerIn: parent
-                                            options: ["light", "dark", "auto"]
-                                            currentIndex: 1 // default to dark
+                                            options: ["light", "dark", "default"]
+                                            currentIndex: 1 // default to feet smeller 😳
                                             
                                             onChanged: function(index) {
-                                                console.log("🎨 Mode changed to:", options[index])
+                                                console.log("MODE GOOBER CHANGES IT'S GOONING SATAN MODE TO 😳😳😳:", options[index])
                                             }
                                         }
                                     }
                                 }
                                 
-                                // M3 Color Dropdown - WITH PROPER MARGINS! 💅
                                 Column {
                                     spacing: 8
                                     
@@ -358,7 +354,7 @@ Singleton {
                                     }
                                     
                                     Rectangle {
-                                        width: 140  // Made wider for better text display
+                                        width: 140  // dih 😳😳😳
                                         height: 40
                                         color: Palette.palette().surfaceContainerHigh
                                         radius: 6
@@ -370,7 +366,7 @@ Singleton {
                                             anchors.fill: parent
                                             anchors.margins: 4
                                             model: ["tonal-spot", "content", "expressive", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "vibrant"]
-                                            currentIndex: 0 // default to tonal-spot (THE GOAT! 🐐)
+                                            currentIndex: 0 // default to tonal-spot farter 😳
                                             
                                             background: Rectangle {
                                                 color: "transparent"
@@ -379,7 +375,7 @@ Singleton {
                                             contentItem: Text {
                                                 text: colorCombo.displayText
                                                 font.pixelSize: 12
-                                                color: Palette.palette().onSurface  // M3 RECOMMENDED! 💅
+                                                color: Palette.palette().onSurface
                                                 verticalAlignment: Text.AlignVCenter
                                                 leftPadding: 8
                                             }
@@ -417,7 +413,7 @@ Singleton {
                                                 
                                                 contentItem: Text {
                                                     text: modelData
-                                                    color: "#FFFFFF"  // FORCE WHITE TEXT - NO MORE INVISIBLE POPUP TEXT! 💅
+                                                    color: "#FFFFFF"  // DEFAULT THE FEET SMELLER TO VHITE SKIN CLR 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
                                                     font.pixelSize: 12
                                                     verticalAlignment: Text.AlignVCenter
                                                     leftPadding: 8
