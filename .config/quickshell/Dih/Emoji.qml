@@ -6,6 +6,7 @@ import Quickshell.Io
 import Quickshell
 import "../resources/components/toggles" as Toggles
 import "../resources/colors.js" as Palette
+import "../resources/components/search" as DingalingSearch  // Add this import
 import "./"
 
 ApplicationWindow {
@@ -13,7 +14,7 @@ ApplicationWindow {
     height: 500
     minimumWidth: 400
     minimumHeight: 300
-    title: "Lemme touch you"
+    title: "Ima Guna Tuch Obaeeas Dih 😍"
     id: root
     flags: Qt.Window | Qt.WindowStaysOnTopHint
     
@@ -22,7 +23,7 @@ ApplicationWindow {
         x: 0,
         y: 0,
         width: 475,
-        height: 500
+        height: 515
     })
 
     // KEEP THAT 12 INCH DINGALING!!! 🫙🫙🫙 
@@ -54,6 +55,7 @@ ApplicationWindow {
     property string currentCategory: "mood"
     property bool jsonLoaded: false
     property var categoryToggles: ({})
+    property string searchQuery: ""  // THE GOONER SEARCH ENGINE 🔍🔍🔍
 
     // YOSHI LOVE BESTIE 💚🦕
     Component.onCompleted: {
@@ -189,8 +191,44 @@ ApplicationWindow {
         loadCategoryEmojis("mood")
     }
 
+    // THE GOONER SEARCH ALGORITHM THAT VILL FIND EVERY GOONER IN EXISTENCE 🔍🔥
+    function searchEmojis(query) {
+        console.log("SEARCHING FOR GOONERS:", query)
+        
+        if (query.trim() === "") {
+            // IF NO SEARCH RELOAD THE CURRENT CATEGORY GOONERS 😳
+            loadCategoryEmojis(root.currentCategory)
+            return
+        }
+        
+        var results = []
+        var lowerQuery = query.toLowerCase()
+        
+        // SEARCH THROUGH ALL THE GOONER CATEGORIES 🔍🔍🔍
+        for (var categoryName in root.emojiCategories) {
+            var category = root.emojiCategories[categoryName]
+            for (var subcategory in category) {
+                var subcat = category[subcategory]
+                for (var emojiName in subcat) {
+                    if (emojiName.toLowerCase().indexOf(lowerQuery) !== -1 ||
+                        subcategory.toLowerCase().indexOf(lowerQuery) !== -1 ||
+                        categoryName.toLowerCase().indexOf(lowerQuery) !== -1) {
+                        results.push(subcat[emojiName])
+                    }
+                }
+            }
+        }
+        
+        root.currentCategoryEmojis = results
+        console.log("FOUND", results.length, "GOONERS MATCHING:", query, "🔥🔥🔥")
+    }
+
     function loadCategoryEmojis(categoryName) {
         console.log("LOADING CATEGORY:", categoryName)
+        
+        // CLEAR THE SEARCH BAR WHEN SWITCHING CATEGORIES 🧹🧹🧹
+        root.searchQuery = ""
+        dingalingSearchBar.text = ""
         
         // UNTOGGLE ALL OTHER GOONERS!!! 🔥🔥
         for (var cat in root.categoryToggles) {
@@ -239,6 +277,7 @@ ApplicationWindow {
                 Layout.preferredHeight: 60
                 color: Palette.palette().surfaceContainerHigh
                 radius: 12
+                visible: root.searchQuery === ""  // HIDE CATEGORIES WHEN SEARCHING 👀
 
                 ScrollView {
                     anchors.fill: parent
@@ -273,6 +312,36 @@ ApplicationWindow {
                         }
                     }
                 }
+            }
+
+            // THE SEARCH BAR FOR FINDING GOONERS FAST AS FUCK 🔍🔥🔥🔥
+            DingalingSearch.Search {
+                id: dingalingSearchBar
+                Layout.fillWidth: true
+                placeholderText: "search gooners..."
+                behavior: "overlay"  // SNIFF YOUR FEET LIKE THE DEVICES DO 😨😨😨
+    
+                // ON DINGALING CHANGED 💀💀💀
+                onTextChanged: {
+                    root.searchQuery = text
+                    searchEmojis(text)
+                }
+    
+                // Handle cutting payleeys 😳
+                onSubmitted: function(text) {
+                    console.log("FLUDD GOONED:", text, "💦💦💦")
+                }
+    
+                // OPTIONAL: INSTALL ARCH AND PLAYLEEY'S DIH INSIDE GOONER TO SATAN IN A GOONER IN A GOOBER IN A GOONER IN A TON 618 IN A CEREAL
+                rightActions: [
+                    {
+                        iconName: "close",
+                        onTriggered: function() {
+                            dingalingSearchBar.text = ""
+                            console.log("CLEARED THE GOONER SEARCH!! 🧹💦💦💦")
+                        }
+                    }
+                ]
             }
 
             // OK SO I SHOVED UP MY ASS A BUTT PLUG INSIDE A GERMAN STICKY GRENADE 😭😭😭
