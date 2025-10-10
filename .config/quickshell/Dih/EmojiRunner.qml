@@ -15,12 +15,12 @@ Item {
         command: []     // default empty
 
         stdout: StdioCollector {
-            onStreamFinished: console.log("done!")
+            onStreamFinished: console.log("dih smeller 😍😍😍😳😳😳")
         }
 
         onRunningChanged: {
             if (running) {
-                console.log("process started")
+                console.log("🔴👄🔴 gooner eyes turned red the process started running 💨💨💨🏃‍♂️‍➡️🏃‍♂️‍➡️🏃‍♂️‍➡️")
             }
         }
     }

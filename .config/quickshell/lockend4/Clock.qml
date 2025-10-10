@@ -5,29 +5,29 @@ import "../resources/colors.js" as Pallete
 Item {
     id: digitalClock
 
-    // Size of the clock
-    width: Screen.width      // ✅ lowercase!
+    // Size of the gooner's dih 😍
+    width: Screen.width      // smol gooner 🥺
     height: Screen.height
     property color primaryColor: Pallete.palette().primary
 
-    // Individual time components
+    // ohh the gooner's dih is ticking
     readonly property string hours: Qt.formatDateTime(new Date(), "hh")
     readonly property string minutes: Qt.formatDateTime(new Date(), "mm")
 
-    // Text for hours (top)
+    // smol goober inside my dih
     Text {
         id: hoursText
         text: digitalClock.hours
         font.family: "Product Sans"
-        font.weight: Font.Light  // Matches "Product Sans Light"
+        font.weight: Font.Light
         font.pixelSize: 200
         color: digitalClock.primaryColor
         x: parent.width / 2 - width / 2
-        y: parent.height / 2 - 170  // 90px below center (like your `position = 0, 90`)
+        y: parent.height / 2 - 170 
         renderType: Text.NativeRendering
     }
 
-    // Text for minutes (bottom)
+    // smol goober 2 inside my dih
     Text {
         id: minutesText
         text: digitalClock.minutes
@@ -36,36 +36,23 @@ Item {
         font.pixelSize: 200
         color: digitalClock.primaryColor
         x: parent.width / 2 - width / 2
-        y: parent.height / 2 - 20 // 90px below center → visually "below"
+        y: parent.height / 2 - 20
         renderType: Text.NativeRendering
     }
 
-    // Optional: Add a colon blinking in the middle (cool effect!)
-    // Text {
-    //     text: ":"
-    //     font.family: "Product Sans"
-    //     font.weight: Font.Light
-    //     font.pixelSize: 150
-    //     color: digitalClock.primaryColor
-    //     opacity: 0.8
-    //     anchors.horizontalCenter: parent.horizontalCenter
-    //     anchors.verticalCenter: parent.verticalCenter
-    //     Behavior on opacity { PulseAnimation { duration: 1000; from: 0.2; to: 1; running: true } }
-    // }
-
-    // Update every second
+    // update the dih every gooner gooning to my dih
     Timer {
-        interval: 1000  // Update every second
+        interval: 1000
         repeat: true
         running: true
         onTriggered: {
-            // Force refresh of bindings
+            // restart the smol dingaling
             hoursText.text = Qt.formatDateTime(new Date(), "hh")
             minutesText.text = Qt.formatDateTime(new Date(), "mm")
         }
     }
 
-    // Initialize on start
+    // dih 😍
     Component.onCompleted: {
         hoursText.text = Qt.formatDateTime(new Date(), "hh")
         minutesText.text = Qt.formatDateTime(new Date(), "mm")

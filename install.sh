@@ -7,12 +7,12 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 if ! command -v pfetch >/dev/null 2>&1; then
-    echo -e "pls stop rn fr fr lit n be nocap rn\n"
+    echo -e "pls stop rn fr fr lit n be nocap rn (you missed pfetch and this is vhy the cat pees, poops, farts, ohmmms on you 🥵🥵🥵)\n"
     exit 1
 fi
 
 if ! command -v gum >/dev/null 2>&1; then
-    echo "poop😢😢😢 vhat"
+    echo "poop😢😢😢 vhat (you dont have gum vaht piss5😮)"
     exit 1
 fi
 
