@@ -2,8 +2,8 @@ import qs.common
 import QtQuick
 import Quickshell
 import Quickshell.Services.Pipewire
-// pragma Singleton
-// pragma ComponentBehavior: Bound
+pragma Singleton
+pragma ComponentBehavior: Bound
 
 /**
  * A nice wrapper for default Pipewire audio sink and source.
@@ -46,6 +46,7 @@ Singleton {
             if (sink.ready && (isNaN(sink.audio.volume) || sink.audio.volume === undefined || sink.audio.volume === null)) {
                 sink.audio.volume = 0;
             }
+            console.log("Ok fix:", sink.audio.volume);
             lastVolume = sink.audio.volume;
         }
         

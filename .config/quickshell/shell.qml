@@ -19,7 +19,7 @@ import "./Dih/"
 import "bar/roundedcorner"
 import "./lockend4/"
 import qs.screenCorners
-import qs.services
+import "./services/"
 import qs.common
 import qs.common.widgets
 import qs.common.functions

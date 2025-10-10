@@ -1,5 +1,5 @@
 import qs
-import qs.services
+import "../services"
 import qs.common
 import qs.common.widgets
 import QtQuick
@@ -15,6 +15,7 @@ import "../resources/colors.js" as Palette
 Scope {
     id: root
     property string protectionMessage: ""
+    property bool audioReady: Audio.ready
     property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
 
     function triggerOsd() {
@@ -30,13 +31,6 @@ Scope {
         onTriggered: {
             GlobalStates.osdVolumeOpen = false
             root.protectionMessage = ""
-        }
-    }
-
-    Connections {
-        target: Brightness
-        function onBrightnessChanged() {
-            GlobalStates.osdVolumeOpen = false
         }
     }
 
@@ -155,7 +149,7 @@ Scope {
                             Rectangle {
                                 id: protectionMessageBackground
                                 anchors.centerIn: parent
-                                color: AppearanceRippleButton.m3colors.m3error
+                                color: Palette.palette().error
                                 property real padding: 10
                                 implicitHeight: protectionMessageRowLayout.implicitHeight + padding * 2
                                 implicitWidth: protectionMessageRowLayout.implicitWidth + padding * 2
@@ -168,12 +162,12 @@ Scope {
                                         id: protectionMessageIcon
                                         text: "dangerous"
                                         iconSize: Appearance.font.pixelSize.hugeass
-                                        color: AppearanceRippleButton.m3colors.m3onError
+                                        color: Palette.palette().onError
                                     }
                                     StyledText {
                                         id: protectionMessageTextWidget
                                         horizontalAlignment: Text.AlignHCenter
-                                        color: AppearanceRippleButton.m3colors.m3onError
+                                        color: Palette.palette().onError
                                         wrapMode: Text.Wrap
                                         text: root.protectionMessage
                                     }
@@ -191,6 +185,7 @@ Scope {
 
 		function trigger() {
             root.triggerOsd()
+            console.log("YO PROBLEM::::", Audio.sink)
         }
 
         function hide() {
