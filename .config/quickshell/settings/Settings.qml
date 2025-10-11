@@ -176,8 +176,10 @@ Singleton {
 
                 // GOOBER CLICK AREA LIKE THE FUZZY MINE TIME EATING MARIOS ASS 🥵🥵🥵
                 Rectangle {
-                    Layout.fillWidth: true
+                    // Layout.fillWidth: true
                     Layout.fillHeight: true
+                    width: 900
+                    anchors.right: parent.right
                     color: Palette.palette().surfaceContainerHigh
                     radius: 8
 
