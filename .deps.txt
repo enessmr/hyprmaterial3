@@ -1,3 +1,4 @@
+AGS
 Quickshell
 cairo
 pango
@@ -26,13 +27,14 @@ pfetch-with-kitties
 Noto fonts
 Material Symbols fonts
 Noto Color Emoji
-Smile fork by larouxn branch app_launch_optimization
+
 
 --- OPTIONAL ---
 
 Materialgram
 Discord (having it is reccomended due to matugen config making themes)
 Material forks of pkgs
+Smile fork by larouxn branch app_launch_optimization
 
 
 --- EXTREMELY OPTIONAL ---
