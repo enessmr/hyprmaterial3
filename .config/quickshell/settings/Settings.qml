@@ -242,7 +242,13 @@ Singleton {
                                             width: 110
                                             height: 70
                                             radius: 6
+                                            
                                             color: Palette.palette().surfaceContainerHigh
+                                            
+                                            // THE FIX: ADD THESE REQUIRED PROPERTIES TO GET THE MODEL DATA 🔥🔥🔥
+                                            required property string wallpaperPath
+                                            required property int index
+
                                             // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳
                                             border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
                                             border.width: selected ? 2 : 1
