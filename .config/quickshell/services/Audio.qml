@@ -14,6 +14,19 @@ Singleton {
     property bool ready: Pipewire.defaultAudioSink?.ready ?? false
     property PwNode sink: Pipewire.defaultAudioSink
     property PwNode source: Pipewire.defaultAudioSource
+    readonly property real hardMaxValue: 2.00 // People keep joking about setting volume to 5172% so...
+    
+    // SATANIC MAX VOLUME DETECTION 🔥
+    property real maxVolume: {
+        if (!sink?.audio) return hardMaxValue
+        // USE THE ACTUAL PIPEWIRE MAX VOLUME IF AVAILABLE, OTHERWUSE USE HARD MAX
+        return sink.audio.hasOwnProperty("maxVolume") ? sink.audio.maxVolume : hardMaxValue
+    }
+    
+    // TRUE PERCENTAGE CALCULATION BASED ON REAL MAX
+    function getTruePercentage(volume) {
+        return (volume / maxVolume) * 100
+    }
 
     signal sinkProtectionTriggered(string reason);
 
@@ -39,7 +52,7 @@ Singleton {
             if (newVolume - lastVolume > maxAllowedIncrease) {
                 sink.audio.volume = lastVolume;
                 root.sinkProtectionTriggered("Illegal increment");
-            } else if (newVolume > maxAllowed) {
+            } else if (newVolume > maxAllowed  || newVolume > root.hardMaxValue) {
                 root.sinkProtectionTriggered("Exceeded max allowed");
                 sink.audio.volume = Math.min(lastVolume, maxAllowed);
             }
@@ -49,7 +62,14 @@ Singleton {
             console.log("Ok fix:", sink.audio.volume);
             lastVolume = sink.audio.volume;
         }
-        
     }
-
+    
+    // SATANIC LOGGING TO SEE ACTUAL MAX VOLUMES
+    onSinkChanged: {
+        if (sink?.audio) {
+            console.log("🔥 SATANIC AUDIO DETECTED - Max volume:", root.maxVolume, 
+                       "Pipewire max:", sink.audio.maxVolume, 
+                       "Hard max:", root.hardMaxValue)
+        }
+    }
 }

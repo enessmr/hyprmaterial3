@@ -24,7 +24,11 @@ echo "Setting wallpaper: $IMAGE"
 swww img "$IMAGE" --transition-type grow --transition-fps=120 --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" &
 sleep 0.2
 
+if [ ! -d ~/.local/share/hyprmaterial3/logs/matugen ]; then
+    mkdir -p ~/.local/share/hyprmaterial3/logs/matugen
+fi
+
 # BESTIE REALLY SAID "linux but make it ✨️ a e s t h e t i c ✨️" 😭😭😭
-matugen image "$IMAGE" -m "$MODE" -t scheme-"$M3COLOR"
+matugen image "$(ls "$IMAGE")" -m "$MODE" -t scheme-"$M3COLOR" >> ~/.local/share/hyprmaterial3/logs/matugen/log.dih
 
 notify-send "Wallpaper Changed" "$(basename "$IMAGE") — Mode: $MODE | Color: $M3COLOR"

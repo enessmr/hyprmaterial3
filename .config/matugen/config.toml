@@ -7,11 +7,6 @@ set = true
 color = "#FFFF00"
 blend = true
 
-[templates.execrefind]
-input_path = "/dev/null"
-output_path = "/dev/null"
-post_hook = "matugen image {{ image }} --config ~/.config/matugen/configrefind.toml
-
 [templates.ags]
 input_path = "./templates/ags/colors.scss"
 output_path = "~/.config/ags/styles/colors.scss"
@@ -132,3 +127,8 @@ output_path = '~/.config/btop/themes/matugen.theme'
 [templates.vscode]
 input_path = "./templates/vscode/hyprluna.json"
 output_path = "~/.vscode/extensions/hyprluna.hyprluna-theme-1.0.2/themes/hyprluna.json"
+
+[templates.execrefind]
+input_path = "/dev/null"
+output_path = "/dev/null"
+post_hook = "matugen image {{ image }} --config ~/.config/matugen/configrefind.toml"

@@ -13,13 +13,18 @@ import "../resources/colors.js" as Palette
 import "../resources/components/navigation" as Nav
 import "../resources/components/actions" as Actions
 import "../resources/components/inputs/chips" as Chips
+import "../resources/components/Menu" as Menu
 
 Singleton {
+    id: dihSettingsRootFrFrNoCapNoCapDingaling
+
+    property string homeDir: Quickshell.env("HOME") || ""
+
     PersistentProperties {
         id: persist
         property bool settingsOpen: false
         property int currentPage: 0  // WHICH DINGALING YOU ARE???
-        property string currentWallpaper: "$HOME/Pictures/.Wallpapers/wallpaper.jpg"
+        property string currentWallpaper: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
     }
     
     // OHHH a GOONER 😍😍😍
@@ -30,8 +35,8 @@ Singleton {
         onTriggered: {
             if (wallpaperModel.count === 0) {
                 console.log("OHHH NOOOO MY SMOL GOOBERS 😭😭😭")
-                wallpaperModel.append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/wallpaper.jpg"})
-                wallpaperModel.append({wallpaperPath: "/home/lfsuser/Pictures/.Wallpapers/ascension_teal_dark.jpg"})
+                wallpaperModel.append({wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"})
+                wallpaperModel.append({wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/ascension_teal_dark.jpg"})
             }
         }
     }
@@ -47,7 +52,7 @@ Singleton {
         }
         
         function scanWallpaperDirectory() {
-            var wallpaperDir = "/home/lfsuser/Pictures/.Wallpapers"
+            var wallpaperDir = dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers"
             var supportedFormats = [".jpg", ".jpeg", ".png", ".webp", ".bmp"]
             
             console.log("THE GOOBERS, VHERE ARE THEY???? 🔍🔍🔍", wallpaperDir)
@@ -81,7 +86,7 @@ Singleton {
         console.log("applying my goober to ur desktop, oh let me give my side:", mode, "the goon color of it is:", color, "the paper to apply:", wallpaper)
         
         // YOU CAN FEEL THE PAIN IN HIS DIH
-        wallpaperProcess.command = ["bash", "/home/lfsuser/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
+        wallpaperProcess.command = ["bash", dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
         wallpaperProcess.running = true
     }
     
@@ -91,8 +96,12 @@ Singleton {
         onExited: (exitCode, exitStatus) => {
             if (exitCode === 0) {
                 console.log("I CAN SMELL THE ANIME IN IT, MY GOOBER SAID 😳😳😳")
+                // UNFREEZE THE UI AFTER MATUGEN IS DONE COOKING 🔥🔥🔥
+                unfreezeTimer.start()
             } else {
                 console.log("MY GOOBER FELL INTO THE FAIL PIT 😭😭😭", exitCode)
+                // UNFREEZE ANYWAY EVEN IF IT FAILED
+                unfreezeTimer.start()
             }
         }
     }
@@ -122,6 +131,7 @@ Singleton {
                 radius: 16
                 border.color: Palette.palette().outlineVariant
                 border.width: 1
+                z: -10  // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
             }
 
             Text {
@@ -132,6 +142,7 @@ Singleton {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: 12
+                z: 1  // 🗣️ TEXT ON TOP 🗣️
             }
 
             RippleButton {
@@ -150,6 +161,7 @@ Singleton {
                     iconSize: 22.5
                     horizontalAlignment: Text.AlignHCenter
                 }
+                z: 1  // 🔥 BUTTON ON TOP TOO 🔥
             }
 
             RowLayout {
@@ -164,6 +176,7 @@ Singleton {
                     Layout.fillHeight: true
                     Layout.preferredWidth: 200
                     selectedIndex: persist.currentPage
+                    z: -9  // 😳 TABS IN THE GOOBER LAYER 😳
 
                     // One of my goobers found the main chars at the speed of TON 618 drifting
                     Nav.TabButtonSettings {
@@ -212,6 +225,7 @@ Singleton {
                                 font.weight: Font.Bold
                                 font.family: "Roboto"
                                 color: Palette.palette().onSurface
+                                z: 1 // 🔥 TEXT ON TOP 🔥
                             }
                             
                             Text {
@@ -219,101 +233,162 @@ Singleton {
                                 font.pixelSize: 12
                                 font.family: "Roboto"
                                 color: Palette.palette().onSurfaceVariant
+                                z: 1  // 🔥 TEXT ON TOP 🔥
                             }
 
-                            // goober's gooner to satan inside a feet smeller device😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
-                            Rectangle {
+                            // THE WALLPAPER CONTAINER WITH FREEZE OVERLAY MAGIC 📸📸📸
+                            Item {
+                                id: wallpaperContainer
                                 implicitWidth: parent.width
                                 implicitHeight: 300
-                                color: Palette.palette().surfaceContainer
-                                radius: 8
-                                border.color: Palette.palette().outlineVariant
-                                border.width: 1
                                 
-                                ScrollView {
+                                // FUNCTION TO FREEZE THE UI BEFORE MATUGEN COOKS 🥶🥶🥶
+                                function freezeUI() {
+                                    gridSnapshot.scheduleUpdate()
+                                    freezeOverlay.visible = true
+                                    console.log("UI FROZEN BESTIE THE DIH IS COOKING 🍳🍳🍳")
+                                }
+                                
+                                // FUNCTION TO UNFREEZE AFTER MATUGEN IS DONE ✨✨✨
+                                function unfreezeUI() {
+                                    freezeOverlay.visible = false
+                                    console.log("UI UNFROZEN THE DIH IS COOKED 🔥🔥🔥")
+                                }
+                                
+                                // THE REAL WALLPAPER GRID 😳😳😳
+                                Rectangle {
+                                    id: realWallpaperGrid
                                     anchors.fill: parent
-                                    anchors.margins: 8
+                                    color: Palette.palette().surfaceContainer
+                                    radius: 8
+                                    border.color: Palette.palette().outlineVariant
+                                    border.width: 1
+                                    z: -9  // 😳 VALLPAPER BG CONTAINER 😳
                                     
-                                    GridView {
-                                        id: wallpaperGrid
-                                        model: wallpaperModel
-                                        cellWidth: 120
-                                        cellHeight: 80
+                                    ScrollView {
+                                        anchors.fill: parent
+                                        anchors.margins: 8
                                         
-                                        delegate: Rectangle {
-                                            width: 110
-                                            height: 70
-                                            radius: 6
+                                        GridView {
+                                            id: wallpaperGrid
+                                            model: wallpaperModel
+                                            cellWidth: 120
+                                            cellHeight: 80
                                             
-                                            color: Palette.palette().surfaceContainerHigh
-                                            
-                                            // THE FIX: ADD THESE REQUIRED PROPERTIES TO GET THE MODEL DATA 🔥🔥🔥
-                                            required property string wallpaperPath
-                                            required property int index
-
-                                            // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳
-                                            border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
-                                            border.width: selected ? 2 : 1
-                                            
-                                            // Ohh so i cut payleey's dih so it has a goober inside then at the goobers inside theres another goober then theres a feet smeller then theres a ton 618 and then a gooner to satan himself inside 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
-                                            property bool selected: wallpaperPath === persist.currentWallpaper
-                                            // flasl  daslkdlasjdlaksdl
-                                            
-                                            Rectangle {
-                                                anchors.fill: parent
-                                                anchors.margins: 2
-                                                radius: 4
-                                                clip: true
-                                                color: Palette.palette().surfaceContainerLow  // chatgpt be like: (1 message later) "You have hit your limit of your Free GPT-5 usage" 😂😂😂
+                                            delegate: Rectangle {
+                                                width: 110
+                                                height: 70
+                                                radius: 6
+                                                z: 9999  // 🔥🔥🔥 KEEP DELEGATE AT NORMAL LAYER 🔥🔥🔥
                                                 
-                                                Image {
+                                                color: Palette.palette().surfaceContainerHigh
+                                                
+                                                // THE FIX: ADD THESE REQUIRED PROPERTIES TO GET THE MODEL DATA 🔥🔥🔥
+                                                required property string wallpaperPath
+                                                required property int index
+
+                                                // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳
+                                                border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
+                                                border.width: selected ? 2 : 1
+                                                
+                                                // Ohh so i cut payleey's dih so it has a goober inside then at the goobers inside theres another goober then theres a feet smeller then theres a ton 618 and then a gooner to satan himself inside 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
+                                                property bool selected: wallpaperPath === persist.currentWallpaper
+                                                // flasl  daslkdlasjdlaksdl
+                                                
+                                                Rectangle {
                                                     anchors.fill: parent
-                                                    // vaht da fakingh balasshg 🗣️🗣️🗣️🔥🔥🔥
-                                                    source: wallpaperPath ? ("file://" + wallpaperPath) : ""
-                                                    fillMode: Image.PreserveAspectCrop
-                                                    
-                                                    onStatusChanged: {
-                                                        if (status === Image.Error) {
-                                                            console.log("NOOO THE GOOBER FALLED TO THE LONG FAIL PITTT 🥵🥵🥵😭😭😭:", source)
-                                                        } else if (status === Image.Ready) {
-                                                            console.log("THE GOOBER SUCEEDED AND SUCCESSFULLY GOONED TO SATAN😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳", source)
+                                                    anchors.margins: 2
+                                                    radius: 4
+                                                    clip: true
+                                                    color: Palette.palette().surfaceContainerLow  // chatgpt be like: (1 message later) "You have hit your limit of your Free GPT-5 usage" 😂😂😂
+                                                    z: 0
+                                                    Image {
+                                                        anchors.fill: parent
+                                                        // vaht da fakingh balasshg 🗣️🗣️🗣️🔥🔥🔥
+                                                        source: wallpaperPath ? ("file://" + wallpaperPath) : ""
+                                                        fillMode: Image.PreserveAspectCrop
+                                                        cache: true  // 🔥 CACHE THE IMAGE SO IT DONT RELOAD 🔥
+                                                        asynchronous: true  // LOAD ASYNC SO UI DONT FREEZE 💯
+                                                        z: 0
+                                                        onStatusChanged: {
+                                                            if (status === Image.Error) {
+                                                                console.log("NOOO THE GOOBER FALLED TO THE LONG FAIL PITTT 🥵🥵🥵😭😭😭:", source)
+                                                            } else if (status === Image.Ready) {
+                                                                console.log("THE GOOBER SUCEEDED AND SUCCESSFULLY GOONED TO SATAN😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳", source)
+                                                            }
                                                         }
                                                     }
                                                 }
-                                            }
-                                            
-                                            MouseArea {
-                                                anchors.fill: parent
-                                                onClicked: {
-                                                    persist.currentWallpaper = wallpaperPath
-                                                    var currentMode = modeControl.options[modeControl.currentIndex]
-                                                    var currentColor = colorCombo.currentText
-                                                    applyWallpaper(currentMode, currentColor)
-                                                }
-                                            }
-                                            
-                                            // Goober inside the parent goober
-                                            Rectangle {
-                                                anchors.top: parent.top
-                                                anchors.right: parent.right
-                                                anchors.margins: 4
-                                                width: 16
-                                                height: 16
-                                                radius: 8
-                                                color: selected ? Palette.palette().primary : "transparent"
-                                                border.color: Palette.palette().primary
-                                                border.width: 2
-                                                visible: selected
                                                 
-                                                MaterialSymbol {
-                                                    anchors.centerIn: parent
-                                                    text: "check"
-                                                    iconSize: 10
-                                                    color: Palette.palette().onPrimary
+                                                MouseArea {
+                                                    anchors.fill: parent
+                                                    z: 1  // 🔥 MOUSE AREA ON TOP SO U CAN CLICK 🔥
+                                                    onClicked: {
+                                                        // FREEZE THE UI FIRST SO NO FLICKER 🥶🥶🥶
+                                                        wallpaperContainer.freezeUI()
+                                                        
+                                                        persist.currentWallpaper = wallpaperPath
+                                                        var currentMode = modeControl.options[modeControl.currentIndex]
+                                                        var currentColor = colorCombo.displayText
+                                                        applyWallpaper(currentMode, currentColor)
+                                                    }
+                                                }
+                                                
+                                                // Goober inside the parent goober
+                                                Rectangle {
+                                                    anchors.top: parent.top
+                                                    anchors.right: parent.right
+                                                    anchors.margins: 4
+                                                    width: 16
+                                                    height: 16
+                                                    radius: 10
+                                                    color: selected ? Palette.palette().primary : "transparent"
+                                                    border.color: Palette.palette().primary
+                                                    border.width: 2
+                                                    visible: selected
+                                                    z: 999  // 🔥🔥🔥 CHECK CIRCLE ON TOP BABYYYY 🔥🔥🔥
+                                                    
+                                                    MaterialSymbol {
+                                                        anchors.centerIn: parent
+                                                        text: "check"
+                                                        iconSize: 10
+                                                        color: Palette.palette().onPrimary
+                                                    }
                                                 }
                                             }
                                         }
                                     }
+                                }
+                                
+                                // THE FROZEN CACHE OVERLAY THAT PREVENTS FLICKER 📸📸📸
+                                Item {
+                                    id: freezeOverlay
+                                    anchors.fill: parent
+                                    visible: false
+                                    z: 99999  // 🔥 ON TOP OF EVERYTHING WHILE FROZEN 🔥
+                                    
+                                    ShaderEffectSource {
+                                        id: gridSnapshot
+                                        anchors.fill: parent
+                                        sourceItem: realWallpaperGrid
+                                        live: false  // STATIC SNAPSHOT NOT LIVE UPDATING
+                                        hideSource: false
+                                    }
+                                    
+                                    // SMOOTH FADE OUT WHEN UNFREEZING ✨✨✨
+                                    Behavior on opacity {
+                                        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                                    }
+                                }
+                            }
+                            
+                            // TIMER TO UNFREEZE AFTER MATUGEN FINISHES 🕐🕐🕐
+                            Timer {
+                                id: unfreezeTimer
+                                interval: 500  // SMALL DELAY TO LET THINGS SETTLE
+                                repeat: false
+                                onTriggered: {
+                                    wallpaperContainer.unfreezeUI()
                                 }
                             }
                             
@@ -362,6 +437,7 @@ Singleton {
                                     }
                                     
                                     Rectangle {
+                                        id: colorComboContainer
                                         width: 140  // dih 😳😳😳
                                         height: 40
                                         color: Palette.palette().surfaceContainerHigh
@@ -369,65 +445,70 @@ Singleton {
                                         border.color: Palette.palette().outlineVariant
                                         border.width: 1
                                         
-                                        ComboBox {
-                                            id: colorCombo
+                                        // THE CUSTOM HAMBURGER MENU COMBOBOX REPLACEMENT 🔥🔥🔥
+                                        property string selectedColor: "tonal-spot"
+                                        property var colorOptions: ["tonal-spot", "content", "expressive", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "vibrant"]
+                                        
+                                        // THE DISPLAY TEXT AND ARROW 🗣️🗣️🗣️
+                                        Row {
                                             anchors.fill: parent
-                                            anchors.margins: 4
-                                            model: ["tonal-spot", "content", "expressive", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "vibrant"]
-                                            currentIndex: 0 // default to tonal-spot farter 😳
+                                            anchors.margins: 8
+                                            spacing: 4
                                             
-                                            background: Rectangle {
-                                                color: "transparent"
-                                            }
-                                            
-                                            contentItem: Text {
-                                                text: colorCombo.displayText
+                                            Text {
+                                                id: colorCombo
+                                                text: colorComboContainer.selectedColor
                                                 font.pixelSize: 12
                                                 color: Palette.palette().onSurface
                                                 verticalAlignment: Text.AlignVCenter
-                                                leftPadding: 8
+                                                anchors.verticalCenter: parent.verticalCenter
+                                                width: parent.width - 20
+                                                elide: Text.ElideRight
+                                                
+                                                // EXPOSE displayText SO THE REST OF THE CODE STILL VORKS 💀💀💀
+                                                property string displayText: text
                                             }
                                             
-                                            popup: Popup {
-                                                y: colorCombo.height
-                                                width: colorCombo.width
-                                                implicitHeight: contentItem.implicitHeight
-                                                padding: 4
-                                                
-                                                background: Rectangle {
-                                                    color: Palette.palette().surfaceContainerHigh
-                                                    radius: 6
-                                                    border.color: Palette.palette().outlineVariant
-                                                    border.width: 1
-                                                }
-                                                
-                                                contentItem: ListView {
-                                                    clip: true
-                                                    implicitHeight: contentHeight
-                                                    model: colorCombo.popup.visible ? colorCombo.delegateModel : null
-                                                    
-                                                    ScrollIndicator.vertical: ScrollIndicator { }
-                                                }
+                                            Text {
+                                                text: "▼"
+                                                font.pixelSize: 10
+                                                color: Palette.palette().onSurfaceVariant
+                                                anchors.verticalCenter: parent.verticalCenter
                                             }
-                                            
-                                            delegate: ItemDelegate {
-                                                width: colorCombo.width
-                                                height: 32
-                                                
-                                                background: Rectangle {
-                                                    color: parent.hovered ? Palette.palette().surfaceContainer : "transparent"
-                                                    radius: 4
+                                        }
+                                        
+                                        // CLICK TO OPEN THE HAMBURGERMENU 🍔🍔🍔
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            onClicked: {
+                                                // BUILD THE MENU ITEMS ARRAY FROM COLOR OPTIONS 🔥🔥🔥
+                                                var menuItems = []
+                                                for (var i = 0; i < colorComboContainer.colorOptions.length; i++) {
+                                                    var colorName = colorComboContainer.colorOptions[i]
+                                                    menuItems.push({
+                                                        label: colorName,
+                                                        enabled: true,
+                                                        onTriggered: (function(color) {
+                                                            return function() {
+                                                                colorComboContainer.selectedColor = color
+                                                                console.log("OHHHH U PICKED THE COLOR SCHEME:", color, "FRFR NO CAP 🔥🔥🔥")
+                                                            }
+                                                        })(colorName)
+                                                    })
                                                 }
                                                 
-                                                contentItem: Text {
-                                                    text: modelData
-                                                    color: "#FFFFFF"  // DEFAULT THE FEET SMELLER TO VHITE SKIN CLR 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
-                                                    font.pixelSize: 12
-                                                    verticalAlignment: Text.AlignVCenter
-                                                    leftPadding: 8
-                                                    z: 100000
-                                                }
+                                                // OPEN THE HAMBURGERMENU AT THE COMBOBOX LOCATION 💅✨
+                                                colorSchemeMenu.items = menuItems
+                                                colorSchemeMenu.openAtItem(colorComboContainer)
                                             }
+                                        }
+                                        
+                                        // THE HAMBURGERMENU OVERLAY (LIVES OUTSIDE BUT ANCHORED HERE) 😳😳😳
+                                        Menu.HamburgerMenu {
+                                            id: colorSchemeMenu
+                                            anchors.fill: parent
+                                            minWidth: 140
+                                            z: 99999  // 🔥🔥🔥 MENU ON TOP OF EVERYTHING 🔥🔥🔥
                                         }
                                     }
                                 }
