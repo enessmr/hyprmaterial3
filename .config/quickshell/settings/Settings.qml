@@ -23,6 +23,7 @@ Singleton {
     PersistentProperties {
         id: persist
         property bool settingsOpen: false
+        property bool dihNoTsNotVisibleVhatItsNotTuff67: persist.settingsOpen
         property int currentPage: 0  // WHICH DINGALING YOU ARE???
         property string currentWallpaper: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
     }
@@ -35,8 +36,14 @@ Singleton {
         onTriggered: {
             if (wallpaperModel.count === 0) {
                 console.log("OHHH NOOOO MY SMOL GOOBERS 😭😭😭")
-                wallpaperModel.append({wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"})
-                wallpaperModel.append({wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/ascension_teal_dark.jpg"})
+                wallpaperModel.append({
+                    wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg",
+                    wallpaperPathCached: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
+                })
+                wallpaperModel.append({
+                    wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/ascension_teal_dark.jpg",
+                    wallpaperPathCached: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/ascension_teal_dark.jpg"
+                })
             }
         }
     }
@@ -53,11 +60,10 @@ Singleton {
         
         function scanWallpaperDirectory() {
             var wallpaperDir = dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers"
-            var supportedFormats = [".jpg", ".jpeg", ".png", ".webp", ".bmp"]
-            
             console.log("THE GOOBERS, VHERE ARE THEY???? 🔍🔍🔍", wallpaperDir)
             
-            // Use Process to list files in the directory
+            wallpaperModel.clear()
+            
             directoryScanner.command = ["find", wallpaperDir, "-type", "f", "(", "-iname", "*.jpg", "-o", "-iname", "*.jpeg", "-o", "-iname", "*.png", "-o", "-iname", "*.webp", "-o", "-iname", "*.bmp", ")"]
             directoryScanner.running = true
         }
@@ -71,13 +77,21 @@ Singleton {
                 var lines = output.trim().split('\n')
                 lines.forEach(function(line) {
                     if (line.trim() !== "") {
-                        wallpaperModel.append({wallpaperPath: line.trim()})
-                        console.log("THE GOOBER IS HERE!!! 😄😄😄", line.trim())
+                        var path = line.trim()
+                        wallpaperModel.append({
+                            wallpaperPath: path,
+                            wallpaperPathCached: path
+                        })
+                        console.log("THE GOOBER IS HERE!!! 😄😄😄", path)
                     }
                 })
             }
         }
     }
+
+    signal colorsChanged()
+    property int colorRefreshTrigger: 0
+    property var freshPalette: Palette.palette()
     
     // A
     function applyWallpaper(mode, color) {
@@ -88,6 +102,21 @@ Singleton {
         // YOU CAN FEEL THE PAIN IN HIS DIH
         wallpaperProcess.command = ["bash", dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
         wallpaperProcess.running = true
+
+        onChanged: {
+            var freshPalette = Palette.palette()
+        }
+    }
+
+    Connections {
+        target: wallpaperProcess
+        function onExited(exitCode) {
+            if (exitCode === 0) {
+                console.log("🎨 FORCING COLOR RELOAD GOOBER STYLE");
+                colorsChanged();
+                colorRefreshTrigger++;
+            }
+        }
     }
     
     // OHH MY LIVE HEA- AAAHH 😭💔
@@ -96,40 +125,38 @@ Singleton {
         onExited: (exitCode, exitStatus) => {
             if (exitCode === 0) {
                 console.log("I CAN SMELL THE ANIME IN IT, MY GOOBER SAID 😳😳😳")
-                // UNFREEZE THE UI AFTER MATUGEN IS DONE COOKING 🔥🔥🔥
-                unfreezeTimer.start()
             } else {
                 console.log("MY GOOBER FELL INTO THE FAIL PIT 😭😭😭", exitCode)
-                // UNFREEZE ANYWAY EVEN IF IT FAILED
-                unfreezeTimer.start()
             }
         }
     }
-
+    
     IpcHandler {
         target: "settings"
 
         function open(): void { persist.settingsOpen = true }
         function close(): void { persist.settingsOpen = false }
-        function toggle(): void { persist.settingsOpen = !persist.settingsOpen }
+        function toggle(): void { persist.settingsOpen = !persist.settingsOpen; console.log("dih") }
     }
 
     LazyLoader {
         id: loader
-        activeAsync: persist.settingsOpen
+        activeAsync: true
 
-        PanelWindow {
-            implicitWidth: 1000
-            implicitHeight: 600
+        ApplicationWindow {
+            width: 1000
+            height: 600
             color: "transparent"
-            WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
-            WlrLayershell.namespace: "shell:settings"
+            title: "I Tuch Myself 2 My Comits 😍"
+            visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
+            id: dihtsvindovisnttuff
+            property var paletteCache: dihSettingsRootFrFrNoCapNoCapDingaling.freshPalette
 
             Rectangle {
                 anchors.fill: parent
-                color: Palette.palette().background
+                color: paletteCache.background
                 radius: 16
-                border.color: Palette.palette().outlineVariant
+                border.color: paletteCache.outlineVariant
                 border.width: 1
                 z: -10  // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
             }
@@ -138,7 +165,7 @@ Singleton {
                 text: "Settings"
                 font.family: "Roboto"
                 font.pointSize: 16
-                color: Palette.palette().onSurface
+                color: paletteCache.onSurface
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: 12
@@ -189,14 +216,17 @@ Singleton {
 
                 // GOOBER CLICK AREA LIKE THE FUZZY MINE TIME EATING MARIOS ASS 🥵🥵🥵
                 Rectangle {
-                    // Layout.fillWidth: true
+                    //Layout.fillWidth: true
                     Layout.fillHeight: true
-                    width: 900
+                    width: dihtsvindovisnttuff.width
                     anchors.right: parent.right
-                    color: Palette.palette().surfaceContainerHigh
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.leftMargin: 80
+                    color: paletteCache.surfaceContainerHigh
                     radius: 8
 
-                    // DYNAMIC HOT GEOMETRY DASH ROLEPLAY 🥵🥵🥵
                     Loader {
                         id: pageLoader
                         anchors.fill: parent
@@ -212,11 +242,11 @@ Singleton {
                         }
                     }
 
-                    // SMOL GOOBERS INSIDE FEET SMELLERS 😳😳😳
                     Component {
                         id: palletePageComponent
                         
-                        Column {
+                        ColumnLayout {
+                            anchors.fill: parent
                             spacing: 16
                             
                             Text {
@@ -224,44 +254,30 @@ Singleton {
                                 font.pixelSize: 18
                                 font.weight: Font.Bold
                                 font.family: "Roboto"
-                                color: Palette.palette().onSurface
-                                z: 1 // 🔥 TEXT ON TOP 🔥
+                                color: paletteCache.onSurface
+                                z: 1
                             }
                             
                             Text {
                                 text: "choose ur vibe 💅✨"
                                 font.pixelSize: 12
                                 font.family: "Roboto"
-                                color: Palette.palette().onSurfaceVariant
-                                z: 1  // 🔥 TEXT ON TOP 🔥
+                                color: paletteCache.onSurfaceVariant
+                                z: 1
                             }
 
-                            // THE WALLPAPER CONTAINER WITH FREEZE OVERLAY MAGIC 📸📸📸
                             Item {
                                 id: wallpaperContainer
                                 implicitWidth: parent.width
                                 implicitHeight: 300
                                 
-                                // FUNCTION TO FREEZE THE UI BEFORE MATUGEN COOKS 🥶🥶🥶
-                                function freezeUI() {
-                                    gridSnapshot.scheduleUpdate()
-                                    freezeOverlay.visible = true
-                                    console.log("UI FROZEN BESTIE THE DIH IS COOKING 🍳🍳🍳")
-                                }
-                                
-                                // FUNCTION TO UNFREEZE AFTER MATUGEN IS DONE ✨✨✨
-                                function unfreezeUI() {
-                                    freezeOverlay.visible = false
-                                    console.log("UI UNFROZEN THE DIH IS COOKED 🔥🔥🔥")
-                                }
-                                
-                                // THE REAL WALLPAPER GRID 😳😳😳
                                 Rectangle {
                                     id: realWallpaperGrid
                                     anchors.fill: parent
-                                    color: Palette.palette().surfaceContainer
+                                    
+                                    color: paletteCache.surfaceContainer
                                     radius: 8
-                                    border.color: Palette.palette().outlineVariant
+                                    border.color: paletteCache.outlineVariant
                                     border.width: 1
                                     z: -9  // 😳 VALLPAPER BG CONTAINER 😳
                                     
@@ -283,18 +299,21 @@ Singleton {
                                                 
                                                 color: Palette.palette().surfaceContainerHigh
                                                 
-                                                // THE FIX: ADD THESE REQUIRED PROPERTIES TO GET THE MODEL DATA 🔥🔥🔥
+                                                // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳😳
                                                 required property string wallpaperPath
                                                 required property int index
-
+                                                property string actualWallpaperPath: wallpaperPath || ""
                                                 // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳
                                                 border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
                                                 border.width: selected ? 2 : 1
-                                                
+          
                                                 // Ohh so i cut payleey's dih so it has a goober inside then at the goobers inside theres another goober then theres a feet smeller then theres a ton 618 and then a gooner to satan himself inside 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
-                                                property bool selected: wallpaperPath === persist.currentWallpaper
+                                                property bool selected: {
+                                                    var isSelected = actualWallpaperPath === persist.currentWallpaper
+                                                    return isSelected
+                                                }           
                                                 // flasl  daslkdlasjdlaksdl
-                                                
+
                                                 Rectangle {
                                                     anchors.fill: parent
                                                     anchors.margins: 2
@@ -305,11 +324,16 @@ Singleton {
                                                     Image {
                                                         anchors.fill: parent
                                                         // vaht da fakingh balasshg 🗣️🗣️🗣️🔥🔥🔥
-                                                        source: wallpaperPath ? ("file://" + wallpaperPath) : ""
+                                                        source: actualWallpaperPath ? ("file://" + actualWallpaperPath) : ""
                                                         fillMode: Image.PreserveAspectCrop
                                                         cache: true  // 🔥 CACHE THE IMAGE SO IT DONT RELOAD 🔥
                                                         asynchronous: true  // LOAD ASYNC SO UI DONT FREEZE 💯
                                                         z: 0
+                                                        
+                                                        Component.onCompleted: {
+                                                            console.log("LOCKING IN THE GOOBER PATH:", actualWallpaperPath, "💪💪💪")
+                                                        }
+                                                        
                                                         onStatusChanged: {
                                                             if (status === Image.Error) {
                                                                 console.log("NOOO THE GOOBER FALLED TO THE LONG FAIL PITTT 🥵🥵🥵😭😭😭:", source)
@@ -324,17 +348,13 @@ Singleton {
                                                     anchors.fill: parent
                                                     z: 1  // 🔥 MOUSE AREA ON TOP SO U CAN CLICK 🔥
                                                     onClicked: {
-                                                        // FREEZE THE UI FIRST SO NO FLICKER 🥶🥶🥶
-                                                        wallpaperContainer.freezeUI()
-                                                        
-                                                        persist.currentWallpaper = wallpaperPath
+                                                        persist.currentWallpaper = actualWallpaperPath
                                                         var currentMode = modeControl.options[modeControl.currentIndex]
                                                         var currentColor = colorCombo.displayText
                                                         applyWallpaper(currentMode, currentColor)
                                                     }
                                                 }
                                                 
-                                                // Goober inside the parent goober
                                                 Rectangle {
                                                     anchors.top: parent.top
                                                     anchors.right: parent.right
@@ -342,8 +362,8 @@ Singleton {
                                                     width: 16
                                                     height: 16
                                                     radius: 10
-                                                    color: selected ? Palette.palette().primary : "transparent"
-                                                    border.color: Palette.palette().primary
+                                                    color: selected ? paletteCache.primary : "transparent"
+                                                    border.color: paletteCache.primary
                                                     border.width: 2
                                                     visible: selected
                                                     z: 999  // 🔥🔥🔥 CHECK CIRCLE ON TOP BABYYYY 🔥🔥🔥
@@ -352,57 +372,33 @@ Singleton {
                                                         anchors.centerIn: parent
                                                         text: "check"
                                                         iconSize: 10
-                                                        color: Palette.palette().onPrimary
+                                                        color: paletteCache.onPrimary
                                                     }
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                
-                                // THE FROZEN CACHE OVERLAY THAT PREVENTS FLICKER 📸📸📸
-                                Item {
-                                    id: freezeOverlay
-                                    anchors.fill: parent
-                                    visible: false
-                                    z: 99999  // 🔥 ON TOP OF EVERYTHING WHILE FROZEN 🔥
-                                    
-                                    ShaderEffectSource {
-                                        id: gridSnapshot
-                                        anchors.fill: parent
-                                        sourceItem: realWallpaperGrid
-                                        live: false  // STATIC SNAPSHOT NOT LIVE UPDATING
-                                        hideSource: false
-                                    }
-                                    
-                                    // SMOOTH FADE OUT WHEN UNFREEZING ✨✨✨
-                                    Behavior on opacity {
-                                        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
-                                    }
-                                }
                             }
                             
-                            // TIMER TO UNFREEZE AFTER MATUGEN FINISHES 🕐🕐🕐
-                            Timer {
-                                id: unfreezeTimer
-                                interval: 500  // SMALL DELAY TO LET THINGS SETTLE
-                                repeat: false
-                                onTriggered: {
-                                    wallpaperContainer.unfreezeUI()
-                                }
-                            }
-                            
-                            // TENI-TENI-TENI-TENI-TENI 🗣️🗣️🗣️🔥🔥🔥
                             Row {
-                                spacing: 24 
-                                topPadding: 16
-                                bottomPadding: 16
-                                leftPadding: 8   // add gooners so i dont accidentally goon to myself 😳😳😳
-                                rightPadding: 8
+                                Layout.fillWidth: true  // 🔥 FILL THE WIDTH 🔥
+                                Layout.preferredHeight: 60  // 🔥 FIXED HEIGHT FOR CONTROLS 🔥
+                                spacing: 24
+                                leftPadding: 8
+                                rightPadding: 8   // add gooners so i dont accidentally goon to myself 😳😳😳
                                 
                                 Column {
                                     spacing: 8
-                                    
+
+                                    anchors.right: parent.right
+                                    anchors.left: parent.left
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                            
+                                    anchors.leftMargin: 20
+
+
                                     Text {
                                         text: "Mode"
                                         font.pixelSize: 12
@@ -417,7 +413,7 @@ Singleton {
                                         Actions.SegmentedPill {
                                             id: modeControl
                                             anchors.centerIn: parent
-                                            options: ["light", "dark", "default"]
+                                            options: ["light", "dark"]
                                             currentIndex: 1 // default to feet smeller 😳
                                             
                                             onChanged: function(index) {
@@ -429,11 +425,20 @@ Singleton {
                                 
                                 Column {
                                     spacing: 8
+
+                                            anchors.right: parent.right
+                                            anchors.left: parent.left
+                                            anchors.bottom: parent.bottom
+                                            anchors.bottomMargin: 0
+                                            
+                                            anchors.leftMargin: 90
                                     
                                     Text {
                                         text: "M3 Color"
                                         font.pixelSize: 12
                                         color: Palette.palette().onSurfaceVariant
+                                        anchors.left: parent.left
+                                        anchors.leftMargin: 200
                                     }
                                     
                                     Rectangle {
@@ -444,6 +449,8 @@ Singleton {
                                         radius: 6
                                         border.color: Palette.palette().outlineVariant
                                         border.width: 1
+                                        anchors.left: parent.left
+                                        anchors.leftMargin: 200
                                         
                                         // THE CUSTOM HAMBURGER MENU COMBOBOX REPLACEMENT 🔥🔥🔥
                                         property string selectedColor: "tonal-spot"

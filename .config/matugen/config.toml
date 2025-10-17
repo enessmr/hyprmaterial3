@@ -30,6 +30,12 @@ post_hook = "sleep 2"
 input_path = "./templates/quickshell/shell.qml"
 output_path = "~/.config/quickshell/shell.qml"
 
+# bro just STOP not reloading colors quickshell 😭😭😭
+[templates.quickshellreload3]
+input_path = "./templates/quickshell/shell.qml"
+output_path = "~/.config/quickshell/shell.qml"
+post_hook = "sleep 2"
+
 [templates.kitty]
 input_path = './templates/kitty/colors.conf'
 output_path = '~/.config/kitty/themes/templates-matugen.conf'
@@ -48,7 +54,7 @@ post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; echo {{mode
 [templates.gtk4]
 input_path = './templates/gtk/colors.css'
 output_path = '~/.config/gtk-4.0/colors.css'
-post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; echo {{mode }}; gsettings set org.gnome.desktop.interface gtk-theme {{ mode | replace: "Dark", "adw-gtk3-dark" | replace: "Light", "adw-gtk3" }} && gsettings set org.gnome.desktop.interface color-scheme "prefer-{{ mode | replace: "Dark", "dark" | replace: "Light", "light" }}"'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; echo {{mode }}; gsettings set org.gnome.desktop.interface gtk-theme {{ mode | replace: "Dark", "adw-gtk3-dark" | replace: "Light", "adw-gtk3" }} && gsettings set org.gnome.desktop.interface color-scheme "{{ mode | replace: "Dark", "prefer-dark" | replace: "Light", "default" }}"'
 
 [templates.rofi]
 input_path = './templates/rofi/colors.rasi'

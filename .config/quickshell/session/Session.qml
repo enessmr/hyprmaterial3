@@ -7,7 +7,7 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 import qs.common
 import qs
-import qs.services
+import "../services" as DihServices
 import qs.common.widgets
 import qs.common.functions
 import "../resources/colors.js" as Pallete
@@ -19,7 +19,7 @@ Scope {
     property bool downloadRunning: false
 
     function closeAllWindows() {
-        (HyprlandData.windowList || []).forEach(w => {
+        (DihServices.HyprlandData.windowList || []).forEach(w => {
             if (!w.className.includes("Settings") && !w.className.includes("Launcher")) {
                 Quickshell.execDetached(["kill", w.pid]);
             }

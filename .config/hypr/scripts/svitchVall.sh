@@ -29,6 +29,6 @@ if [ ! -d ~/.local/share/hyprmaterial3/logs/matugen ]; then
 fi
 
 # BESTIE REALLY SAID "linux but make it ✨️ a e s t h e t i c ✨️" 😭😭😭
-matugen image "$(ls "$IMAGE")" -m "$MODE" -t scheme-"$M3COLOR" >> ~/.local/share/hyprmaterial3/logs/matugen/log.dih
+matugen image "$(ls "$IMAGE")" -m "$MODE" -t scheme-"$M3COLOR" >> ~/.local/share/hyprmaterial3/logs/matugen/log.dih 2>&1
 
 notify-send "Wallpaper Changed" "$(basename "$IMAGE") — Mode: $MODE | Color: $M3COLOR"
