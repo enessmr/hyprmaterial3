@@ -118,7 +118,8 @@ Singleton {
             }
         }
     }
-    
+
+    // dih no gooner 67 vhy u play super luigi 46 and sell my heart for tha-
     // OHH MY LIVE HEA- AAAHH 😭💔
     Process {
         id: wallpaperProcess
@@ -155,10 +156,15 @@ Singleton {
             Rectangle {
                 anchors.fill: parent
                 color: paletteCache.background
-                radius: 16
+                id: dihNoFakNo67DihUhmAAAPDiddyNoPlsNotTuffGoonerITuchedMySelf
+                radius: dihtsvindovisnttuff.visibility === Window.FullScreen ? 0 : 16
                 border.color: paletteCache.outlineVariant
                 border.width: 1
                 z: -10  // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
+
+                Behavior on radius {
+                    NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                }
             }
 
             Text {
