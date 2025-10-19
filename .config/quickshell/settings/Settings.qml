@@ -145,14 +145,14 @@ Singleton {
         activeAsync: true
 
         ApplicationWindow {
-            width: 1000
-            height: 600
-            color: "transparent"
+            minimumWidth: 400
+            minimumHeight: 200
+            // color: "transparent"
             title: "I Tuch Myself 2 My Comits 😍"
             visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
             id: dihtsvindovisnttuff
             property var paletteCache: dihSettingsRootFrFrNoCapNoCapDingaling.freshPalette
-            flags: Qt.FramelessWindowHint
+            flags: Qt.Window | Qt.WindowStaysOnTopHint
 
             // FOUND A 12 INCH DINGALING AND A GOONER THO NGL??? 😳😳😳
             property var windowGeometry: ({
@@ -192,12 +192,14 @@ Singleton {
                 border.width: 1
                 width: parent.width
                 height: parent.height
-                x: parent.x
-                y: parent.y
                 z: -10 // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
 
                 Behavior on radius {
                     NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                }
+
+                Behavior on scale {
+                    NumberAnimation { duration: 800; easing.type: Easing.InOutQuad }
                 }
             }
 

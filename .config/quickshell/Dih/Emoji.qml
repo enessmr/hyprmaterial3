@@ -6,7 +6,7 @@ import Quickshell.Io
 import Quickshell
 import "../resources/components/toggles" as Toggles
 import "../resources/colors.js" as Palette
-import "../resources/components/search" as DingalingSearch  // Add this import
+import "../resources/components/search" as DingalingSearch
 import "./"
 
 ApplicationWindow {
@@ -51,8 +51,9 @@ ApplicationWindow {
 
     property string selectedEmoji
     property var emojiCategories: ({})
+    property var categoryCache: ({})  // CACHE THE PARSED EMOJIS SO WE DONT STROKE OUT!! 🧠🔥
     property var currentCategoryEmojis: []
-    property string currentCategory: "mood"
+    property string currentCategory: "Smileys & Emotion"
     property bool jsonLoaded: false
     property var categoryToggles: ({})
     property string searchQuery: ""  // THE GOONER SEARCH ENGINE 🔍🔍🔍
@@ -65,7 +66,7 @@ ApplicationWindow {
     // IS SYSTEMD KICKING MY ASS OR IS IT GOONING AT ME? 😳😳😳
     Process {
         id: emojiProcess
-        running: true
+        running: false  // DONT RUN AUTOMATICALLY!! WE CONTROL THIS!! 🔥
         command: ["cat", Qt.resolvedUrl("../json/emoji.json").toString().replace("file://", "")]
         
         stdout: StdioCollector {
@@ -75,10 +76,87 @@ ApplicationWindow {
                 console.log("GOONERS DATA GET!! 🔥")
                 try {
                     var jsonData = JSON.parse(data)
-                    root.emojiCategories = jsonData
+                    
+                    // PRE-CACHE ALL CATEGORIES SO WE DONT HAVE A STROKE LATER!! 💯💯💯
+                    console.log("STARTING TO CACHE ALL THE GOONERS IN RAM!! 🧠🔥")
+                    var categoryNames = []
+                    
+                    for (var categoryName in jsonData) {
+                        var categoryData = jsonData[categoryName]
+                        var cachedEmojis = []
+                        
+                        // HANDLE BOTH ARRAY AND OBJECT FORMATS!! 🧠⚡
+                        if (Array.isArray(categoryData)) {
+                            // DIRECT ARRAY FORMAT (Smileys & Emotion)
+                            for (var i = 0; i < categoryData.length; i++) {
+                                var emoji = categoryData[i]
+                                if (emoji && emoji.char) {
+                                    cachedEmojis.push({
+                                        char: emoji.char,
+                                        name: emoji.name || "unknown"
+                                    })
+                                }
+                            }
+                        } else if (typeof categoryData === 'object') {
+                            // NESTED OBJECT FORMAT (People & Body, etc.)
+                            for (var subcategory in categoryData) {
+                                var subcategoryData = categoryData[subcategory]
+                                if (Array.isArray(subcategoryData)) {
+                                    for (var j = 0; j < subcategoryData.length; j++) {
+                                        var subEmoji = subcategoryData[j]
+                                        if (subEmoji && subEmoji.char) {
+                                            cachedEmojis.push({
+                                                char: subEmoji.char,
+                                                name: subEmoji.name || "unknown"
+                                            })
+                                        }
+                                    }
+                                } else if (typeof subcategoryData === 'object') {
+                                    // DEEPLY NESTED (like hand-fingers-open -> waving-hand)
+                                    for (var emojiKey in subcategoryData) {
+                                        var deepEmoji = subcategoryData[emojiKey]
+                                        if (deepEmoji && typeof deepEmoji === 'string') {
+                                            cachedEmojis.push({
+                                                char: deepEmoji,
+                                                name: emojiKey.replace(/-/g, ' ') || "unknown"
+                                            })
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if (cachedEmojis.length > 0) {
+                            root.categoryCache[categoryName] = cachedEmojis
+                            categoryNames.push(categoryName)
+                            console.log("CACHED", cachedEmojis.length, "GOONERS FOR:", categoryName, "🔥")
+                        } else {
+                            console.log("NO EMOJIS FOUND FOR CATEGORY:", categoryName, "😭")
+                        }
+                    }
+                    
+                    // SET EMOJI CATEGORIES FROM CACHE ONLY - NO DIRECT JSON ACCESS!! 🧠⚡
+                    root.emojiCategories = categoryNames
                     root.jsonLoaded = true
-                    loadCategoryEmojis("mood")
-                    console.log("GOONERS FILE LOADED TASK UNFAILED GOONER SUCESFULEY!!! GOONER CATEGORIES:", Object.keys(jsonData))
+                    
+                    // STOP THE PROCESS SO IT NEVER RUNS AGAIN!! RAM CACHE ONLY NOW!! 🧠💯
+                    emojiProcess.running = false
+                    
+                    loadCategoryEmojis("Smileys & Emotion")
+                    console.log("GOONERS FILE LOADED TASK UNFAILED GOONER SUCESFULEY!!! GOONER CATEGORIES:", categoryNames, "💯💯💯")
+                    console.log("PROCESS KILLED!! RUNNING FROM RAM CACHE ONLY NOW!! ⚡⚡⚡")
+                    
+                    // DEBUG: CHECK PEOPLE & BODY CACHE
+                    if (root.categoryCache["People & Body"]) {
+                        console.log("PEOPLE & BODY CACHE SUCCESS!! EMOJIS:", root.categoryCache["People & Body"].length, "🔥")
+                    } else {
+                        console.log("PEOPLE & BODY CACHE MISS - CHECKING ALTERNATIVE NAMES...")
+                        for (var cat in root.categoryCache) {
+                            if (cat.toLowerCase().includes("people") || cat.toLowerCase().includes("body")) {
+                                console.log("FOUND SIMILAR CATEGORY:", cat, "WITH", root.categoryCache[cat].length, "EMOJIS")
+                            }
+                        }
+                    }
                 } catch (e) {
                     console.log("NOOO GOONER FILE PARSE ERROR THE GOONERS DIED 😭😭😭:", e)
                     // IF GOONERS DIE LOAD BACKUP GOONERS IN THE SIMULATION 😧😧😧
@@ -90,105 +168,127 @@ ApplicationWindow {
 
     function loadEmojiData() {
         console.log("EMOJI DATA WILL LOAD AUTOMATICALLY BESTIE!! 🔥")
-        // NAH NAH NAH NAH NAH VHO GOONED AT ME 😱😱😱
+        
+        // ONLY LOAD IF NOT ALREADY CACHED!! 🧠💯
         if (root.jsonLoaded === false) {
-            console.log("WAITING FOR THE GOONERS FILE TO LOAD...")
+            console.log("LOADING GOONERS FROM FILE FOR THE FIRST TIME...")
+            emojiProcess.running = true
+        } else {
+            console.log("GOONERS ALREADY IN RAM CACHE!! SKIPPING FILE READ!! ⚡⚡⚡")
+            // EVEN IF ALREADY LOADED, MAKE SURE WE'RE USING CACHE!!
+            loadCategoryEmojis(root.currentCategory)
         }
     }
 
     function loadFallbackEmojis() {
         console.log("MY DIH GOT CUT 😭😭😭")
-        root.emojiCategories = {
-            "mood": {
-                "face-smiling": {
-                    "grinning-face": "😀",
-                    "grinning-face-with-big-eyes": "😃", 
-                    "grinning-face-with-smiling-eyes": "😄",
-                    "beaming-face-with-smiling-eyes": "😁",
-                    "grinning-squinting-face": "😆",
-                    "grinning-face-with-sweat": "😅",
-                    "rolling-on-the-floor-laughing": "🤣",
-                    "face-with-tears-of-joy": "😂",
-                    "slightly-smiling-face": "🙂",
-                    "upside-down-face": "🙃",
-                    "melting-face": "🫠",
-                    "winking-face": "😉",
-                    "smiling-face-with-smiling-eyes": "😊",
-                    "smiling-face-with-halo": "😇"
-                },
-                "face-affection": {
-                    "smiling-face-with-hearts": "🥰",
-                    "face-with-heart-eyes": "😍",
-                    "star-struck": "🤩",
-                    "face-blowing-kiss": "😘",
-                    "kissing-face": "😗"
-                }
-            },
-            "emoji_people": {
-                "hand-fingers-open": {
-                    "waving-hand": "👋",
-                    "raised-back-of-hand": "🤚",
-                    "hand-with-fingers-splayed": "🖐️",
-                    "raised-hand": "✋",
-                    "vulcan-salute": "🖖"
-                }
-            },
-            "pets": {
-                "animal-reptile": {
-                    "turtle": "🐢",
-                    "lizard": "🦎", 
-                    "snake": "🐍",
-                    "dragon-face": "🐲",
-                    "dragon": "🐉",
-                    "sauropod": "🦕"  // YOSHI BESTIE!! 💚
-                }
-            },
-            "emoji_food_beverage": {
-                "food-prepared": {
-                    "pizza": "🍕",
-                    "hamburger": "🍔",
-                    "fries": "🍟",
-                    "hot-dog": "🌭",
-                    "taco": "🌮"
-                }
-            },
-            "sports_soccer": {
-                "event": {
-                    "party-popper": "🎉",
-                    "confetti-ball": "🎊",
-                    "balloon": "🎈",
-                    "birthday-cake": "🎂"
-                }
-            },
-            "emoji_objects": {
-                "light-video": {
-                    "fire": "🔥",
-                    "flashlight": "🔦",
-                    "candle": "🕯️"
-                }
-            },
-            "emoji_symbols": {
-                "heart": {
-                    "red-heart": "❤️",
-                    "orange-heart": "🧡", 
-                    "yellow-heart": "💛",
-                    "green-heart": "💚", // YOSHI LOVE!! 🦕
-                    "blue-heart": "💙",
-                    "purple-heart": "💜",
-                    "brown-heart": "🤎",
-                    "black-heart": "🖤",
-                    "white-heart": "🤍"
-                },
-                "other-symbol": {
-                    "skull": "💀",
-                    "fire": "🔥",
-                    "speaking-head": "🗣️",
-                    "sparkles": "✨"
-                }
-            }
+        // CREATE FALLBACK DATA THAT'S ALREADY IN THE CACHE FORMAT
+        var fallbackCache = {
+            "Smileys & Emotion": [
+                {char: "😀", name: "grinning face"},
+                {char: "😃", name: "grinning face with big eyes"},
+                {char: "😄", name: "grinning face with smiling eyes"},
+                {char: "😁", name: "beaming face with smiling eyes"},
+                {char: "😆", name: "grinning squinting face"},
+                {char: "😅", name: "grinning face with sweat"},
+                {char: "🤣", name: "rolling on the floor laughing"},
+                {char: "😂", name: "face with tears of joy"},
+                {char: "🙂", name: "slightly smiling face"},
+                {char: "🙃", name: "upside-down face"},
+                {char: "😉", name: "winking face"},
+                {char: "😊", name: "smiling face with smiling eyes"},
+                {char: "😇", name: "smiling face with halo"},
+                {char: "🥰", name: "smiling face with hearts"},
+                {char: "😍", name: "smiling face with heart-eyes"},
+                {char: "🤩", name: "star-struck"},
+                {char: "😘", name: "face blowing a kiss"},
+                {char: "😗", name: "kissing face"}
+            ],
+            "People & Body": [
+                {char: "👋", name: "waving hand"},
+                {char: "🤚", name: "raised back of hand"},
+                {char: "🖐️", name: "hand with fingers splayed"},
+                {char: "✋", name: "raised hand"},
+                {char: "🖖", name: "vulcan salute"},
+                {char: "👌", name: "OK hand"},
+                {char: "🤌", name: "pinched fingers"},
+                {char: "🤏", name: "pinching hand"},
+                {char: "✌️", name: "victory hand"},
+                {char: "🤞", name: "crossed fingers"},
+                {char: "🫰", name: "hand with index finger and thumb crossed"},
+                {char: "🤟", name: "love-you gesture"},
+                {char: "🤘", name: "sign of the horn"},
+                {char: "🤙", name: "call me hand"},
+                {char: "👈", name: "backhand index pointing left"},
+                {char: "👉", name: "backhand index pointing right"},
+                {char: "👆", name: "backhand index pointing up"},
+                {char: "🖕", name: "middle finger"},
+                {char: "👇", name: "backhand index pointing down"},
+                {char: "☝️", name: "index pointing up"},
+                {char: "👍", name: "thumbs up"},
+                {char: "👎", name: "thumbs down"},
+                {char: "✊", name: "raised fist"},
+                {char: "👊", name: "oncoming fist"},
+                {char: "🤛", name: "left-facing fist"},
+                {char: "🤜", name: "right-facing fist"},
+                {char: "👏", name: "clapping hands"},
+                {char: "🙌", name: "raising hands"},
+                {char: "🫶", name: "heart hands"},
+                {char: "👐", name: "open hands"},
+                {char: "🤲", name: "palms up together"},
+                {char: "🤝", name: "handshake"},
+                {char: "🙏", name: "folded hands"}
+            ],
+            "Animals & Nature": [
+                {char: "🐢", name: "turtle"},
+                {char: "🦎", name: "lizard"},
+                {char: "🐍", name: "snake"},
+                {char: "🐲", name: "dragon face"},
+                {char: "🐉", name: "dragon"},
+                {char: "🦕", name: "sauropod"}  // YOSHI BESTIE!! 💚
+            ],
+            "Food & Drink": [
+                {char: "🍕", name: "pizza"},
+                {char: "🍔", name: "hamburger"},
+                {char: "🍟", name: "fries"},
+                {char: "🌭", name: "hot dog"},
+                {char: "🌮", name: "taco"}
+            ],
+            "Activities": [
+                {char: "🎉", name: "party popper"},
+                {char: "🎊", name: "confetti ball"},
+                {char: "🎈", name: "balloon"},
+                {char: "🎂", name: "birthday cake"}
+            ],
+            "Objects": [
+                {char: "🔥", name: "fire"},
+                {char: "🔦", name: "flashlight"},
+                {char: "🕯️", name: "candle"}
+            ],
+            "Symbols": [
+                {char: "❤️", name: "red heart"},
+                {char: "🧡", name: "orange heart"},
+                {char: "💛", name: "yellow heart"},
+                {char: "💚", name: "green heart"}, // YOSHI LOVE!! 🦕
+                {char: "💙", name: "blue heart"},
+                {char: "💜", name: "purple heart"},
+                {char: "🤎", name: "brown heart"},
+                {char: "🖤", name: "black heart"},
+                {char: "🤍", name: "white heart"},
+                {char: "💀", name: "skull"},
+                {char: "🗣️", name: "speaking head"},
+                {char: "✨", name: "sparkles"}
+            ]
         }
+        
+        // DIRECTLY CACHE THE FALLBACK DATA - NO PARSING NEEDED!! ⚡⚡⚡
+        root.categoryCache = fallbackCache
+        root.emojiCategories = Object.keys(fallbackCache)  // ONLY STORE CATEGORY NAMES
         root.jsonLoaded = true
-        loadCategoryEmojis("mood")
+        
+        loadCategoryEmojis("Smileys & Emotion")
+        console.log("FALLBACK GOONERS LOADED DIRECTLY INTO CACHE!! ⚡🔥")
+        console.log("PEOPLE & BODY FALLBACK EMOJIS:", fallbackCache["People & Body"].length, "🔥")
     }
 
     // THE GOONER SEARCH ALGORITHM THAT VILL FIND EVERY GOONER IN EXISTENCE 🔍🔥
@@ -196,7 +296,7 @@ ApplicationWindow {
         console.log("SEARCHING FOR GOONERS:", query)
         
         if (query.trim() === "") {
-            // IF NO SEARCH RELOAD THE CURRENT CATEGORY GOONERS 😳
+            // WHEN SEARCH IS EMPTY, JUST USE THE CACHED CATEGORY DATA!! ⚡
             loadCategoryEmojis(root.currentCategory)
             return
         }
@@ -204,17 +304,13 @@ ApplicationWindow {
         var results = []
         var lowerQuery = query.toLowerCase()
         
-        // SEARCH THROUGH ALL THE GOONER CATEGORIES 🔍🔍🔍
-        for (var categoryName in root.emojiCategories) {
-            var category = root.emojiCategories[categoryName]
-            for (var subcategory in category) {
-                var subcat = category[subcategory]
-                for (var emojiName in subcat) {
-                    if (emojiName.toLowerCase().indexOf(lowerQuery) !== -1 ||
-                        subcategory.toLowerCase().indexOf(lowerQuery) !== -1 ||
-                        categoryName.toLowerCase().indexOf(lowerQuery) !== -1) {
-                        results.push(subcat[emojiName])
-                    }
+        // SEARCH THE CACHED DATA SUPER FAST!! ⚡⚡⚡
+        for (var categoryName in root.categoryCache) {
+            var cachedArray = root.categoryCache[categoryName]
+            for (var i = 0; i < cachedArray.length; i++) {
+                var emoji = cachedArray[i]
+                if (emoji.name && emoji.name.toLowerCase().indexOf(lowerQuery) !== -1) {
+                    results.push(emoji)
                 }
             }
         }
@@ -224,11 +320,12 @@ ApplicationWindow {
     }
 
     function loadCategoryEmojis(categoryName) {
-        console.log("LOADING CATEGORY:", categoryName)
+        console.log("LOADING CATEGORY FROM CACHE:", categoryName)
         
-        // CLEAR THE SEARCH BAR WHEN SWITCHING CATEGORIES 🧹🧹🧹
         root.searchQuery = ""
-        dingalingSearchBar.text = ""
+        if (dingalingSearchBar) {
+            dingalingSearchBar.text = ""
+        }
         
         // UNTOGGLE ALL OTHER GOONERS!!! 🔥🔥
         for (var cat in root.categoryToggles) {
@@ -238,20 +335,16 @@ ApplicationWindow {
         }
         
         root.currentCategory = categoryName
-        var emojis = []
         
-        if (root.emojiCategories[categoryName]) {
-            var category = root.emojiCategories[categoryName]
-            for (var subcategory in category) {
-                var subcat = category[subcategory]
-                for (var emojiName in subcat) {
-                    emojis.push(subcat[emojiName])
-                }
-            }
+        // ONLY USE THE CACHE - NO JSON PARSING EVER!! ⚡⚡⚡
+        if (root.categoryCache[categoryName]) {
+            root.currentCategoryEmojis = root.categoryCache[categoryName]
+            console.log("YOINKED", root.currentCategoryEmojis.length, "GOONERS FROM CACHE FOR", categoryName, "!! INSTANT LOAD!! ⚡🔥")
+        } else {
+            console.log("CACHE MISS FOR:", categoryName, "😭 - USING EMPTY ARRAY")
+            console.log("AVAILABLE CACHED CATEGORIES:", Object.keys(root.categoryCache))
+            root.currentCategoryEmojis = []
         }
-        
-        root.currentCategoryEmojis = emojis
-        console.log("LOADED AN AK47", emojis.length, "GOONERS FOR GOONER CATEGORY:", categoryName)
     }
 
     // SOMENONE GOONED TO ME AND IT'S BASH 😳😳😳
@@ -287,7 +380,7 @@ ApplicationWindow {
                         spacing: 10
                         
                         Repeater {
-                            model: Object.keys(root.emojiCategories)
+                            model: root.emojiCategories
                             
                             Toggles.RoundIconToggleEmoji {
                                 id: categoryToggle
@@ -356,17 +449,22 @@ ApplicationWindow {
                     model: root.currentCategoryEmojis
                     
                     Button {
-                        text: modelData
+                        text: modelData.char
                         font.pixelSize: 24
                         Layout.preferredWidth: 40
                         Layout.preferredHeight: 40
+
+                        // HOVER TOOLTIP WITH THE NAME!! 💯💯💯
+                        hoverEnabled: true
+                        ToolTip.visible: hovered
+                        ToolTip.text: modelData.name
+                        ToolTip.delay: 500
                         
                         onClicked: {
-                            emojiRunner.run(modelData)
-                            console.log("GOONED EMOJI:", modelData, "💦💦💦")
+                            emojiRunner.run(modelData.char)
+                            console.log("GOONED EMOJI:", modelData.char, "NAME:", modelData.name, "💦💦💦")
                         }
                         
-                        // hoverEnabled: true
                         background: Rectangle {
                             color: "transparent"
                         }

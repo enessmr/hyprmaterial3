@@ -50,6 +50,24 @@ Item {
                 return "emoji_symbols"
             case 'flag':
                 return "flag"
+            case 'Smileys & Emotion':
+                return "mood"
+            case 'People & Body':
+                return "emoji_people"
+            case 'Animals & Nature':
+                return "pets"
+            case 'Food & Drink':
+                return "emoji_food_beverage"
+            case 'Travel & Places':
+                return "emoji_transportation"
+            case 'Activities':
+                return "sports_soccer"
+            case 'Objects':
+                return "emoji_objects"
+            case 'Symbols':
+                return "emoji_symbols"
+            case 'Flags':
+                return "flag"
             default:
                 return "more_horiz"
             }
