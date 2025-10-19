@@ -152,15 +152,49 @@ Singleton {
             visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
             id: dihtsvindovisnttuff
             property var paletteCache: dihSettingsRootFrFrNoCapNoCapDingaling.freshPalette
+            flags: Qt.FramelessWindowHint
+
+            // FOUND A 12 INCH DINGALING AND A GOONER THO NGL??? 😳😳😳
+            property var windowGeometry: ({
+                x: 0,
+                y: 0,
+                width: 1000,
+                height: 600
+            })
+
+            // KEEP THAT 12 INCH DINGALING AND GOONER!!! 🫙🫙🫙 
+            onClosing: {
+                if (dihtsvindovisnttuff.visibility !== Window.FullScreen) {
+                    windowGeometry = {
+                        x: x,
+                        y: y,
+                        width: width,
+                        height: height
+                    }
+                }
+            }
+
+            onVisibleChanged: {
+                if (visible) {
+                    x = windowGeometry.x
+                    y = windowGeometry.y
+                    width = windowGeometry.width
+                    height = windowGeometry.height
+                }
+            }
 
             Rectangle {
-                anchors.fill: parent
+                // anchors.fill: parent
                 color: paletteCache.background
                 id: dihNoFakNo67DihUhmAAAPDiddyNoPlsNotTuffGoonerITuchedMySelf
                 radius: dihtsvindovisnttuff.visibility === Window.FullScreen ? 0 : 16
                 border.color: paletteCache.outlineVariant
                 border.width: 1
-                z: -10  // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
+                width: parent.width
+                height: parent.height
+                x: parent.x
+                y: parent.y
+                z: -10 // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
 
                 Behavior on radius {
                     NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }

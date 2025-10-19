@@ -4,6 +4,12 @@ import QtQuick
 import "./settings" as SettingsDingalingAAAAAAAAAAAAAAANotTuff76SuperLuigi46DihGoonFrNoCap
 
 ShellRoot {
+    PanelWindow {
+        width: 0
+        height: 0
+        visible: false
+    }
+    
     // DIH DEIGHHSADNJABSDKsabh J👲👲👲
     Component.onCompleted: {
         SettingsDingalingAAAAAAAAAAAAAAANotTuff76SuperLuigi46DihGoonFrNoCap.Settings.init()
