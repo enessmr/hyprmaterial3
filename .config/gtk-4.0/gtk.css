@@ -2,41 +2,41 @@
 
 /* Color definitions assumed from your colors.css */
 
-@define-color theme_fg_color #AEE5FA;
-@define-color theme_text_color #AEE5FA;
-@define-color theme_bg_color #1a1b26;
-@define-color theme_base_color #1a1b26;
-@define-color theme_selected_bg_color #AEE5FA;
+@define-color theme_fg_color @primary;
+@define-color theme_text_color @primary;
+@define-color theme_bg_color @background;
+@define-color theme_base_color @background;
+@define-color theme_selected_bg_color @primary;
 @define-color theme_selected_fg_color rgba(0, 0, 0, 0.87);
-@define-color insensitive_bg_color #1a1b26;
+@define-color insensitive_bg_color @background;
 @define-color insensitive_fg_color rgba(192, 202, 245, 0.5);
-@define-color insensitive_base_color #24283b;
-@define-color theme_unfocused_fg_color #AEE5FA;
-@define-color theme_unfocused_text_color #c0caf5;
-@define-color theme_unfocused_bg_color #1a1b26;
-@define-color theme_unfocused_base_color #1a1b26;
-@define-color theme_unfocused_selected_bg_color #a9b1d6;
+@define-color insensitive_base_color @surface_container;
+@define-color theme_unfocused_fg_color @primary;
+@define-color theme_unfocused_text_color @background;
+@define-color theme_unfocused_bg_color @surface_container;
+@define-color theme_unfocused_base_color @surface_container;
+@define-color theme_unfocused_selected_bg_color @secondary;
 @define-color theme_unfocused_selected_fg_color rgba(0, 0, 0, 0.87);
 @define-color unfocused_insensitive_color rgba(192, 202, 245, 0.5);
 @define-color borders rgba(192, 202, 245, 0.12);
 @define-color unfocused_borders rgba(192, 202, 245, 0.12);
 @define-color warning_color #FDD633;
-@define-color error_color #BA1B1B;
-@define-color success_color #81C995;
-@define-color wm_title #AEE5FA;
+@define-color error_color @errorContainer;
+@define-color success_color @primary;
+@define-color wm_title @primary;
 @define-color wm_unfocused_title rgba(192, 202, 245, 0.7);
 @define-color wm_highlight rgba(192, 202, 245, 0.1);
-@define-color wm_bg #1a1b26;
-@define-color wm_unfocused_bg #1a1b26;
-@define-color wm_button_close_icon #1a1b26;
-@define-color wm_button_close_hover_bg #a9b1d6;
-@define-color wm_button_close_active_bg #c7c7c7;
-@define-color content_view_bg #1a1b26;
+@define-color wm_bg @surface_container;
+@define-color wm_unfocused_bg @surface_container;
+@define-color wm_button_close_icon @surface_container;
+@define-color wm_button_close_hover_bg @secondary;
+@define-color wm_button_close_active_bg @outline;
+@define-color content_view_bg @surface_container;
 @define-color placeholder_text_color @onSurface;
-@define-color text_view_bg #1d1d1d;
-@define-color budgie_tasklist_indicator_color #90D1F6;
-@define-color budgie_tasklist_indicator_color_active #90D1F6;
-@define-color budgie_tasklist_indicator_color_active_window #999999;
+@define-color text_view_bg @surface_container_low;
+@define-color budgie_tasklist_indicator_color @primary;
+@define-color budgie_tasklist_indicator_color_active @primary;
+@define-color budgie_tasklist_indicator_color_active_window @outline;
 @define-color budgie_tasklist_indicator_color_attention #FDD633;
 @define-color STRAWBERRY_100 #FF9262;
 @define-color STRAWBERRY_300 #FF793E;
@@ -186,7 +186,7 @@ separator {
 button, combobox, entry {
     border-radius: 100px;
     margin: 0 2px 0 2px;
-    box-shadow: none;
+    /* box-shadow: none; */
     transition: all 0.2s ease-in-out;
 }
 

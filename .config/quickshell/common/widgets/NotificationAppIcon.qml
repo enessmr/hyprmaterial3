@@ -5,6 +5,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Notifications
+import "../../resources/colors.js" as Palette
 
 Rectangle { // App icon
     id: root
@@ -24,7 +25,7 @@ Rectangle { // App icon
     implicitWidth: size
     implicitHeight: size
     radius: Appearance.rounding.full
-    color: Appearance.colors.colSecondaryContainer
+    color: AppearanceRippleButton.colors.colSecondaryContainer
     Loader {
         id: materialSymbolLoader
         active: root.appIcon == ""
@@ -37,9 +38,7 @@ Rectangle { // App icon
                     "release_alert" : guessedIcon
             }
             anchors.fill: parent
-            color: (root.urgency == NotificationUrgency.Critical) ? 
-                ColorUtils.mix(Appearance.m3colors.m3onSecondary, Appearance.m3colors.m3onSecondaryContainer, 0.1) :
-                Appearance.m3colors.m3onSecondaryContainer
+            color: (root.urgency == NotificationUrgency.Critical) ? ColorUtils.mix(Palette.palette().onSecondary, Palette.palette().onSecondaryContainer, 0.1) : Palette.palette().onSecondaryContainer
             iconSize: root.materialIconSize
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

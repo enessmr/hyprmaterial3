@@ -14,6 +14,7 @@ import "../resources/components/navigation" as Nav
 import "../resources/components/actions" as Actions
 import "../resources/components/inputs/chips" as Chips
 import "../resources/components/Menu" as Menu
+import qs.common
 
 Singleton {
     id: dihSettingsRootFrFrNoCapNoCapDingaling
@@ -27,6 +28,22 @@ Singleton {
         property int currentPage: 0  // WHICH DINGALING YOU ARE???
         property string currentWallpaper: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
     }
+
+    // i am breaking the rules but i collabed vith chatgpt for fixing my broken Process lmfao😳
+    Process {
+        id: goonerFinder
+        running: true
+        command: [ "bash", "-c", "swww query | sed -n 's/.*image: //p'" ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                persist.currentWallpaper = Qt.resolvedUrl(this.text.trim())
+                console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
+                console.log(`IF ITS DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
+                Config.background.wallpaperPath = Qt.resolvedUrl(this.text.trim())
+            }
+        }
+    }
     
     // OHHH a GOONER 😍😍😍
     Timer {
@@ -36,14 +53,7 @@ Singleton {
         onTriggered: {
             if (wallpaperModel.count === 0) {
                 console.log("OHHH NOOOO MY SMOL GOOBERS 😭😭😭")
-                wallpaperModel.append({
-                    wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg",
-                    wallpaperPathCached: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
-                })
-                wallpaperModel.append({
-                    wallpaperPath: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/ascension_teal_dark.jpg",
-                    wallpaperPathCached: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/ascension_teal_dark.jpg"
-                })
+                console.log("THEY GOONED TO A FAIL PIT THEN D'OHED LIKE MARIO AND GOONED TO THEIR D'OH AND DINGALING ☠️☠️☠️☠️☠️")
             }
         }
     }
@@ -102,17 +112,14 @@ Singleton {
         // YOU CAN FEEL THE PAIN IN HIS DIH
         wallpaperProcess.command = ["bash", dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
         wallpaperProcess.running = true
-
-        onChanged: {
-            var freshPalette = Palette.palette()
-        }
     }
 
     Connections {
         target: wallpaperProcess
         function onExited(exitCode) {
             if (exitCode === 0) {
-                console.log("🎨 FORCING COLOR RELOAD GOOBER STYLE");
+                console.log("FORCING GOON RELOAD IT AGE 18 RN ALVAYS YKYK AHH DIH OHMMMM 😍🍑");
+                freshPalette = Palette.palette();  // 🔥 ACTUALLY UPDATE IT 🔥
                 colorsChanged();
                 colorRefreshTrigger++;
             }
@@ -123,11 +130,25 @@ Singleton {
     // OHH MY LIVE HEA- AAAHH 😭💔
     Process {
         id: wallpaperProcess
+        stdout: SplitParser {
+            onRead: (output) => {
+                console.log("📜 SCRIPT OUTPUT:", output.trim())
+            }
+        }
+
+        stderr: SplitParser {
+            onRead: (output) => {
+                console.log("❌ SCRIPT ERROR:", output.trim())
+            }
+        }
+
         onExited: (exitCode, exitStatus) => {
+            console.log("🔍 SCRIPT EXITED - CODE:", exitCode, "STATUS:", exitStatus)
             if (exitCode === 0) {
                 console.log("I CAN SMELL THE ANIME IN IT, MY GOOBER SAID 😳😳😳")
             } else {
-                console.log("MY GOOBER FELL INTO THE FAIL PIT 😭😭😭", exitCode)
+                console.log("MY GOOBER FELL INTO THE FAIL PIT 😭😭😭")
+                console.log("COMMAND VAS:", command)
             }
         }
     }
@@ -151,7 +172,8 @@ Singleton {
             title: "I Tuch Myself 2 My Comits 😍"
             visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
             id: dihtsvindovisnttuff
-            property var paletteCache: dihSettingsRootFrFrNoCapNoCapDingaling.freshPalette
+            // update gooner so hes 18 everytime 😍🍑
+            property var paletteCache: Palette.palette()
             flags: Qt.Window | Qt.WindowStaysOnTopHint
 
             // FOUND A 12 INCH DINGALING AND A GOONER THO NGL??? 😳😳😳
@@ -161,6 +183,15 @@ Singleton {
                 width: 1000,
                 height: 600
             })
+
+            Connections {
+                target: dihSettingsRootFrFrNoCapNoCapDingaling
+                function onColorRefreshTriggerChanged() {
+                    console.log("🎨 PALETTE UPDATE TRIGGERED, REFRESHING THE GOOBER CACHE 🎨")
+                    paletteCache = AppearanceRippleButton.m3colors
+                }
+            }
+
 
             // KEEP THAT 12 INCH DINGALING AND GOONER!!! 🫙🫙🫙 
             onClosing: {
@@ -172,6 +203,7 @@ Singleton {
                         height: height
                     }
                 }
+                persist.settingsOpen = false
             }
 
             onVisibleChanged: {
@@ -339,21 +371,21 @@ Singleton {
                                                 radius: 6
                                                 z: 9999  // 🔥🔥🔥 KEEP DELEGATE AT NORMAL LAYER 🔥🔥🔥
                                                 
-                                                color: Palette.palette().surfaceContainerHigh
+                                                color: paletteCache.surfaceContainerHigh
                                                 
                                                 // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳😳
                                                 required property string wallpaperPath
                                                 required property int index
                                                 property string actualWallpaperPath: wallpaperPath || ""
                                                 // Goober's goober inside a gooner inside a gooner to satan inside a main characther syndrome inside a ton 618 inside a feet smeller device😳😳😳😳😳
-                                                border.color: selected ? Palette.palette().primary : Palette.palette().outlineVariant
+                                                border.color: selected ? paletteCache.primary : paletteCache.outlineVariant
                                                 border.width: selected ? 2 : 1
           
                                                 // Ohh so i cut payleey's dih so it has a goober inside then at the goobers inside theres another goober then theres a feet smeller then theres a ton 618 and then a gooner to satan himself inside 😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳
                                                 property bool selected: {
-                                                    var isSelected = actualWallpaperPath === persist.currentWallpaper
-                                                    return isSelected
-                                                }           
+                                                    var cleanPersist = persist.currentWallpaper.replace("file://", "")
+                                                    return actualWallpaperPath === cleanPersist
+                                                }
                                                 // flasl  daslkdlasjdlaksdl
 
                                                 Rectangle {
@@ -361,9 +393,18 @@ Singleton {
                                                     anchors.margins: 2
                                                     radius: 4
                                                     clip: true
-                                                    color: Palette.palette().surfaceContainerLow  // chatgpt be like: (1 message later) "You have hit your limit of your Free GPT-5 usage" 😂😂😂
+                                                    color: paletteCache.surfaceContainerLow  // chatgpt be like: (1 message later) "You have hit your limit of your Free GPT-5 usage" 😂😂😂
                                                     z: 0
+
+                                                    Label {
+                                                        visible: wallpaperModel.count === 0 // as it should be vith gooning
+                                                        anchors.fill: parent
+                                                        text: "Sorry bestie no vallpapers ☹️"
+                                                        color: Palette.palette().onSurface
+                                                    }
+
                                                     Image {
+                                                        visible: wallpaperModel.count > 0
                                                         anchors.fill: parent
                                                         // vaht da fakingh balasshg 🗣️🗣️🗣️🔥🔥🔥
                                                         source: actualWallpaperPath ? ("file://" + actualWallpaperPath) : ""
@@ -444,7 +485,7 @@ Singleton {
                                     Text {
                                         text: "Mode"
                                         font.pixelSize: 12
-                                        color: Palette.palette().onSurfaceVariant
+                                        color: paletteCache.onSurfaceVariant
                                     }
                                     
                                     Rectangle {
@@ -478,7 +519,7 @@ Singleton {
                                     Text {
                                         text: "M3 Color"
                                         font.pixelSize: 12
-                                        color: Palette.palette().onSurfaceVariant
+                                        color: paletteCache.onSurfaceVariant
                                         anchors.left: parent.left
                                         anchors.leftMargin: 200
                                     }
@@ -487,9 +528,9 @@ Singleton {
                                         id: colorComboContainer
                                         width: 140  // dih 😳😳😳
                                         height: 40
-                                        color: Palette.palette().surfaceContainerHigh
+                                        color: paletteCache.surfaceContainerHigh
                                         radius: 6
-                                        border.color: Palette.palette().outlineVariant
+                                        border.color: paletteCache.outlineVariant
                                         border.width: 1
                                         anchors.left: parent.left
                                         anchors.leftMargin: 200
@@ -508,7 +549,7 @@ Singleton {
                                                 id: colorCombo
                                                 text: colorComboContainer.selectedColor
                                                 font.pixelSize: 12
-                                                color: Palette.palette().onSurface
+                                                color: paletteCache.onSurface
                                                 verticalAlignment: Text.AlignVCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 width: parent.width - 20
@@ -521,7 +562,7 @@ Singleton {
                                             Text {
                                                 text: "▼"
                                                 font.pixelSize: 10
-                                                color: Palette.palette().onSurfaceVariant
+                                                color: paletteCache.onSurfaceVariant
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                         }
