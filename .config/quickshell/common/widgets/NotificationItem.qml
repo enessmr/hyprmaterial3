@@ -139,9 +139,8 @@ Item { // Notification item area
 
         color: (expanded && !onlyNotification) ? 
             (notificationObject.urgency == NotificationUrgency.Critical) ? 
-                ColorUtils.mix(Appearance.colors.colSecondaryContainer, Appearance.colors.colLayer2, 0.35) :
-                (Appearance.colors.colLayer3) :
-            ColorUtils.transparentize(Appearance.colors.colLayer3)
+                ColorUtils.mix(AppearanceRippleButton.colors.colSecondaryContainer, AppearanceRippleButton.colors.colLayer2, 0.35) :
+                (AppearanceRippleButton.m3colors.surfaceContainerHigh) : ColorUtils.transparentize(AppearanceRippleButton.m3colors.surfaceContainer)
 
         implicitHeight: expanded ? (contentColumn.implicitHeight + padding * 2) : summaryRow.implicitHeight
         Behavior on implicitHeight {
@@ -203,7 +202,7 @@ Item { // Notification item area
                     }
                     Layout.fillWidth: true
                     font.pixelSize: root.fontSize
-                    color: Appearance.colors.colSubtext
+                    color: AppearanceRippleButton.colors.colSubtext
                     wrapMode: Text.Wrap
                     elide: Text.ElideRight
                     textFormat: Text.RichText
@@ -243,7 +242,7 @@ Item { // Notification item area
 
                         NotificationActionButton {
                             Layout.fillWidth: true
-                            buttonText: Translation.tr("Close")
+                            buttonText: Close
                             urgency: notificationObject.urgency
                             implicitWidth: (notificationObject.actions.length == 0) ? ((actionsFlickable.width - actionRowLayout.spacing) / 2) : 
                                 (contentItem.implicitWidth + leftPadding + rightPadding)

@@ -354,6 +354,14 @@ Singleton {
                                     border.color: paletteCache.outlineVariant
                                     border.width: 1
                                     z: -9  // 😳 VALLPAPER BG CONTAINER 😳
+
+                                    Label {
+                                        visible: wallpaperModel.count === 0 // as it should be vith gooning
+                                        text: "Sorry bestie no vallpapers ☹️"
+                                        color: Palette.palette().onSurface
+                                        z: 9999999
+                                        anchors.centerIn: parent
+                                    }
                                     
                                     ScrollView {
                                         anchors.fill: parent
@@ -395,13 +403,6 @@ Singleton {
                                                     clip: true
                                                     color: paletteCache.surfaceContainerLow  // chatgpt be like: (1 message later) "You have hit your limit of your Free GPT-5 usage" 😂😂😂
                                                     z: 0
-
-                                                    Label {
-                                                        visible: wallpaperModel.count === 0 // as it should be vith gooning
-                                                        anchors.fill: parent
-                                                        text: "Sorry bestie no vallpapers ☹️"
-                                                        color: Palette.palette().onSurface
-                                                    }
 
                                                     Image {
                                                         visible: wallpaperModel.count > 0
