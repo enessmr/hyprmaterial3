@@ -48,7 +48,6 @@
   | Software | Purpose |
   | ------------- | ------------- |
   | [Hyprland](https://github.com/hyprwm/hyprland) | The compositor (for noobs, you can just call it a window manager) |
-  | [AGS](https://github.oom/Aylur/ags) | A framework for... well you know it, it's GTK widgets, responsible for the notifications bc outfoxxed' config made me get stage2 brain damage from analyzing that RANDOM SPAGETTI CODE vith a bug vhen you send a notify every shovn dissapears then reappears |
   | [Quickshell](https://github.com/quickshell-mirror/quickshell) | a thing thats responsible for everything ig hmm  |
 
 

@@ -9,6 +9,7 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 import Qt.labs.platform 1.1
 import "../resources/colors.js" as Palette
+import qs.settings as SettingsAhhGoon
 
 Scope {
     id: root
@@ -23,6 +24,24 @@ Scope {
         onUnlocked: {
             GlobalStates.screenLocked = false
             Quickshell.execDetached(["bash", "-c", "sleep 0.2; hyprctl --batch 'dispatch togglespecialworkspace; dispatch togglespecialworkspace'"])
+        }
+    }
+
+
+    // stupid vorkaround that is ACTUALLY DIABOLICAL
+    Process {
+        id: goonerFinder
+        running: true
+        command: [ "bash", "-c", "swww query | sed -n 's/.*image: //p'" ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                wallpaperPath = Qt.resolvedUrl(this.text.trim())
+                console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
+                console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
+                goonerFinder.running = false
+                goonerFinder.running = true
+            }
         }
     }
 

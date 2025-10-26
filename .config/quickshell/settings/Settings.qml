@@ -40,7 +40,7 @@ Singleton {
                 persist.currentWallpaper = Qt.resolvedUrl(this.text.trim())
                 console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
                 console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
-                Config.background.wallpaperPath = Qt.resolvedUrl(this.text.trim())
+                Config.options.background.wallpaperPath = Qt.resolvedUrl(this.text.trim())
             }
         }
     }
@@ -108,7 +108,7 @@ Singleton {
         var wallpaper = persist.currentWallpaper
         
         console.log("applying my goober to ur desktop, oh let me give my side:", mode, "the goon color of it is:", color, "the paper to apply:", wallpaper)
-        
+
         // YOU CAN FEEL THE PAIN IN HIS DIH
         wallpaperProcess.command = ["bash", dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
         wallpaperProcess.running = true
