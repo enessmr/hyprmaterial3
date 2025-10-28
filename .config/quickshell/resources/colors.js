@@ -56,7 +56,7 @@ var light = {
     onSecondaryFixedVariant: "#334a50",
 
     tertiaryFixed: "#dbe1ff",
-    tertiaryDfixedDim: "#bcc5eb",
+    tertiaryFixedDim: "#bcc5eb",
     onTertiaryFixed: "#101a37",
     onTertiaryFixedVariant: "#3c4665",
 
@@ -121,7 +121,7 @@ var dark = {
     onSecondaryFixedVariant: "#334a50",
 
     tertiaryFixed: "#dbe1ff",
-    tertiaryDfixedDim: "#bcc5eb",
+    tertiaryFixedDim: "#bcc5eb",
     onTertiaryFixed: "#101a37",
     onTertiaryFixedVariant: "#3c4665",
 

@@ -37,8 +37,9 @@ Scope {
         stdout: StdioCollector {
             onStreamFinished: {
                 wallpaperPath = Qt.resolvedUrl(this.text.trim())
-                console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
-                console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
+                // enable these gooners if u vanna frick 😳😳😳
+                // console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
+                // console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
                 goonerFinder.running = false
                 goonerFinder.running = true
             }

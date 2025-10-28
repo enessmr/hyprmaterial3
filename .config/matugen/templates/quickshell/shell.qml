@@ -24,7 +24,6 @@ ShellRoot {
 	property bool enableScreenCorners: true
     property bool enableSession: true
 	property bool enableOnScreenDisplayVolume: true
-	property bool enableLock: true
 	property bool enableNotificationPopup: true
 	property bool enableDihEmoji: true
 
@@ -105,7 +104,6 @@ ShellRoot {
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
-	LazyLoader { active: enableLock; component: Lock {} }
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 	LazyLoader { active: enableDihEmoji; component: Emoji {} }
 }

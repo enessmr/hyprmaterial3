@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import qs.common.functions
 import "../resources/colors.js" as Palette
 pragma Singleton
@@ -15,14 +16,6 @@ Singleton {
 	property QtObject font
 	property QtObject sizes
 	property string syntaxHighlightingTheme: Palette.isDarkMode() ? "Monokai" : "ayu Light"
-
-	// Update syntax theme when palette mode changes
-	Connections {
-		target: Palette
-		function onIsDarkChanged() {
-			syntaxHighlightingTheme = Palette.isDarkMode() ? "Monokai" : "ayu Light"
-		}
-	}
 
 	// Transparency. The quadratic functions were derived from analysis of hand-picked transparency values.
 	ColorQuantizer {
@@ -97,7 +90,7 @@ Singleton {
 		property color onSecondaryFixedVariant: Palette.palette().onSecondaryFixedVariant
 
 		property color tertiaryFixed: Palette.palette().tertiaryFixed
-		property color tertiaryFixedDim: Palette.palette().tertiaryDFixedDim
+		property color tertiaryFixedDim: Palette.palette().tertiaryFixedDim
 		property color onTertiaryFixed: Palette.palette().onTertiaryFixed
 		property color onTertiaryFixedVariant: Palette.palette().onTertiaryFixedVariant
 
@@ -192,7 +185,7 @@ Singleton {
 		property QtObject family: QtObject {
 			property string main: "Rubik"
 			property string title: "Gabarito"
-			property string iconMaterial: "Material Symbols Rounded"
+			property string iconMaterial: "Material Symbols Outlined"
 			property string iconNerd: "SpaceMono NF"
 			property string monospace: "JetBrains Mono NF"
 			property string reading: "Readex Pro"

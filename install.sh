@@ -98,10 +98,13 @@ install_dots() {
             if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo visudo -c -f - 2>/dev/null; then
                 echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo tee -a /etc/sudoers
             fi
+            if ! sudo grep -q "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" /etc/sudoers; then
+                if echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" | sudo visudo -c -f - 2>/dev/null; then
+                    echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" | sudo tee -a /etc/sudoers
+                fi
+            fi
             sudo cp -r fs/* /
-            echo -e "thx <3\n"
-            ags run &
-            qs &
+            echo -e "thx <3 (sign in n out!!!)\n"
             ;;
         "No") echo -e "if my eyes turn red call team blu" ;;
     esac

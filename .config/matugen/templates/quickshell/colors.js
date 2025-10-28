@@ -56,7 +56,7 @@ var light = {
     onSecondaryFixedVariant: "{{ colors.on_secondary_fixed_variant.light.hex }}",
 
     tertiaryFixed: "{{ colors.tertiary_fixed.light.hex }}",
-    tertiaryDfixedDim: "{{ colors.tertiary_fixed_dim.light.hex }}",
+    tertiaryFixedDim: "{{ colors.tertiary_fixed_dim.light.hex }}",
     onTertiaryFixed: "{{ colors.on_tertiary_fixed.light.hex }}",
     onTertiaryFixedVariant: "{{ colors.on_tertiary_fixed_variant.light.hex }}",
 
@@ -121,7 +121,7 @@ var dark = {
     onSecondaryFixedVariant: "{{ colors.on_secondary_fixed_variant.dark.hex }}",
 
     tertiaryFixed: "{{ colors.tertiary_fixed.dark.hex }}",
-    tertiaryDfixedDim: "{{ colors.tertiary_fixed_dim.dark.hex }}",
+    tertiaryFixedDim: "{{ colors.tertiary_fixed_dim.dark.hex }}",
     onTertiaryFixed: "{{ colors.on_tertiary_fixed.dark.hex }}",
     onTertiaryFixedVariant: "{{ colors.on_tertiary_fixed_variant.dark.hex }}",
 

@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import "../resources/colors.js" as Pallete
+import qs.common
 
 Item {
     id: digitalClock
@@ -8,7 +8,7 @@ Item {
     // Size of the gooner's dih 😍
     width: Screen.width      // smol gooner 🥺
     height: Screen.height
-    property color primaryColor: Pallete.palette().primary
+    property color primaryColor: AppearanceRippleButton.m3colors.primary
 
     // ohh the gooner's dih is ticking
     readonly property string hours: Qt.formatDateTime(new Date(), "hh")

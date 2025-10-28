@@ -12,4 +12,4 @@ set = false
 [templates.refindbg]
 input_path = "/dev/null"
 output_path = "/dev/null"
-post_hook = 'CLR={{ colors.background.default.hex }} && sudo -u matugen sudo -n convert -size 1x1 gradient:"$CLR" /boot/EFI/refind/themes/matugen/assets/m3/background.png'
+post_hook = 'CLR={{ colors.background.default.hex }} && sudo convert -size 1x1 gradient:"$CLR" /boot/EFI/refind/themes/matugen/assets/m3/background.png'

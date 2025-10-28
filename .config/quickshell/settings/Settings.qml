@@ -4,6 +4,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQml
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
@@ -29,6 +30,10 @@ Singleton {
         property string currentWallpaper: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
     }
 
+    property var paletteCache: Palette.palette()
+    property var paletteCacheText: Palette.palette()
+    property string goonerLogged: "0"
+
     // i am breaking the rules but i collabed vith chatgpt for fixing my broken Process lmfao😳
     Process {
         id: goonerFinder
@@ -38,9 +43,17 @@ Singleton {
         stdout: StdioCollector {
             onStreamFinished: {
                 persist.currentWallpaper = Qt.resolvedUrl(this.text.trim())
-                console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
-                console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
-                Config.options.background.wallpaperPath = Qt.resolvedUrl(this.text.trim())
+                if (goonerLogged == "0") {
+                    persist.currentWallpaper = Qt.resolvedUrl(this.text.trim())
+                    Config.options.background.wallpaperPath = Qt.resolvedUrl(this.text.trim())
+                    console.log(`FOUND GOONER CURRENTLY GOONING TO UR DINGALING SUCCESFULLY😳😳😳😳 ${this.text.trim()}`)
+                    console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
+                    goonerLogged++;
+                }
+                paletteCache = Palette.palette();
+                paletteCacheText = Palette.palette();
+                goonerFinder.running = false;
+                goonerFinder.running = true;
             }
         }
     }
@@ -101,7 +114,7 @@ Singleton {
 
     signal colorsChanged()
     property int colorRefreshTrigger: 0
-    property var freshPalette: Palette.palette()
+    property var freshPalette: AppearanceRippleButton.m3colors
     
     // A
     function applyWallpaper(mode, color) {
@@ -112,6 +125,24 @@ Singleton {
         // YOU CAN FEEL THE PAIN IN HIS DIH
         wallpaperProcess.command = ["bash", dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/.config/hypr/scripts/svitchVall.sh", wallpaper, mode, color]
         wallpaperProcess.running = true
+
+        onChanged: {
+            goonerLogged = "0";
+            paletteCache = Palette.palette();
+            reloadTimer.start()
+        }
+    }
+
+    Timer {
+        id: reloadTimer
+        interval: 20
+        onTriggered: {
+            console.log("🎨 FORCING PALETTE RELOAD AFTER DELAY!!!")
+            paletteCache = Palette.palette()
+            paletteCacheText = Palette.palette()
+            colorRefreshTrigger++
+            colorsChanged()
+        }
     }
 
     Connections {
@@ -119,7 +150,9 @@ Singleton {
         function onExited(exitCode) {
             if (exitCode === 0) {
                 console.log("FORCING GOON RELOAD IT AGE 18 RN ALVAYS YKYK AHH DIH OHMMMM 😍🍑");
-                freshPalette = Palette.palette();  // 🔥 ACTUALLY UPDATE IT 🔥
+                freshPalette = Palette.palette();
+                paletteCache = Palette.palette();
+                paletteCacheText = Palette.palette();  // 🔥 ACTUALLY UPDATE IT 🔥
                 colorsChanged();
                 colorRefreshTrigger++;
             }
@@ -168,12 +201,11 @@ Singleton {
         ApplicationWindow {
             minimumWidth: 400
             minimumHeight: 200
-            // color: "transparent"
+            color: "transparent"
             title: "I Tuch Myself 2 My Comits 😍"
             visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
             id: dihtsvindovisnttuff
             // update gooner so hes 18 everytime 😍🍑
-            property var paletteCache: Palette.palette()
             flags: Qt.Window | Qt.WindowStaysOnTopHint
 
             // FOUND A 12 INCH DINGALING AND A GOONER THO NGL??? 😳😳😳
@@ -188,10 +220,30 @@ Singleton {
                 target: dihSettingsRootFrFrNoCapNoCapDingaling
                 function onColorRefreshTriggerChanged() {
                     console.log("🎨 PALETTE UPDATE TRIGGERED, REFRESHING THE GOOBER CACHE 🎨")
-                    paletteCache = AppearanceRippleButton.m3colors
+                    paletteCache = Palette.palette()
+                    paletteCacheText = Palette.palette()
                 }
             }
 
+            FileView {
+  		        path:  Quickshell.env("HOME") + "/.config/quickshell/resources/colors.js"
+
+  		        // when changes are made on disk, reload the file's content
+  		        watchChanges: true
+  		        onFileChanged: {
+                    console.log("GOONER CHANGED CATCHED PIC FRICKING TO A DIH 😳😳😳")
+                    reload()
+
+                    // Force reload by re-evaluating the palette
+                    paletteCache = Palette.palette()
+                    paletteCacheText = Palette.palette()
+                    freshPalette = Palette.palette()
+        
+                    // Trigger property changes to force UI updates
+                    colorRefreshTrigger++
+                    colorsChanged()
+                }    
+	        }
 
             // KEEP THAT 12 INCH DINGALING AND GOONER!!! 🫙🫙🫙 
             onClosing: {
@@ -239,7 +291,7 @@ Singleton {
                 text: "Settings"
                 font.family: "Roboto"
                 font.pointSize: 16
-                color: paletteCache.onSurface
+                color: paletteCacheText.onSurface
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: 12
@@ -328,7 +380,7 @@ Singleton {
                                 font.pixelSize: 18
                                 font.weight: Font.Bold
                                 font.family: "Roboto"
-                                color: paletteCache.onSurface
+                                color: paletteCacheText.onSurface
                                 z: 1
                             }
                             
@@ -336,7 +388,7 @@ Singleton {
                                 text: "choose ur vibe 💅✨"
                                 font.pixelSize: 12
                                 font.family: "Roboto"
-                                color: paletteCache.onSurfaceVariant
+                                color: paletteCacheText.onSurfaceVariant
                                 z: 1
                             }
 
@@ -358,7 +410,7 @@ Singleton {
                                     Label {
                                         visible: wallpaperModel.count === 0 // as it should be vith gooning
                                         text: "Sorry bestie no vallpapers ☹️"
-                                        color: Palette.palette().onSurface
+                                        color: paletteCacheText.onSurface
                                         z: 9999999
                                         anchors.centerIn: parent
                                     }
@@ -486,7 +538,7 @@ Singleton {
                                     Text {
                                         text: "Mode"
                                         font.pixelSize: 12
-                                        color: paletteCache.onSurfaceVariant
+                                        color: paletteCacheText.onSurfaceVariant
                                     }
                                     
                                     Rectangle {
@@ -520,7 +572,7 @@ Singleton {
                                     Text {
                                         text: "M3 Color"
                                         font.pixelSize: 12
-                                        color: paletteCache.onSurfaceVariant
+                                        color: paletteCacheText.onSurfaceVariant
                                         anchors.left: parent.left
                                         anchors.leftMargin: 200
                                     }
@@ -529,9 +581,9 @@ Singleton {
                                         id: colorComboContainer
                                         width: 140  // dih 😳😳😳
                                         height: 40
-                                        color: paletteCache.surfaceContainerHigh
+                                        color: paletteCacheText.surfaceContainerHigh
                                         radius: 6
-                                        border.color: paletteCache.outlineVariant
+                                        border.color: paletteCacheText.outlineVariant
                                         border.width: 1
                                         anchors.left: parent.left
                                         anchors.leftMargin: 200

@@ -13,7 +13,7 @@ Item { // Notification item area
     property var notificationObject
     property bool expanded: false
     property bool onlyNotification: false
-    property real fontSize: Appearance.font.pixelSize.small
+    property real fontSize: AppearanceRippleButton.font.pixelSize.small
     property real padding: onlyNotification ? 0 : 8
 
     property real dragConfirmThreshold: 70 // Drag further to discard notification
@@ -65,9 +65,9 @@ Item { // Notification item area
             target: background.anchors
             property: "leftMargin"
             to: root.width + root.dismissOvershoot
-            duration: Appearance.animation.elementMove.duration
-            easing.type: Appearance.animation.elementMove.type
-            easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+            duration: AppearanceRippleButton.animation.elementMove.duration
+            easing.type: AppearanceRippleButton.animation.elementMove.type
+            easing.bezierCurve: AppearanceRippleButton.animation.elementMove.bezierCurve
         }
         onFinished: () => {
             Notifications.discardNotification(notificationObject.notificationId);
@@ -112,7 +112,7 @@ Item { // Notification item area
         visible: opacity > 0
 
         Behavior on opacity {
-            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+            animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
         }
 
         image: notificationObject.image
@@ -125,15 +125,15 @@ Item { // Notification item area
         id: background
         width: parent.width
         anchors.left: parent.left
-        radius: Appearance.rounding.small
+        radius: AppearanceRippleButton.rounding.small
         anchors.leftMargin: root.xOffset
 
         Behavior on anchors.leftMargin {
             enabled: !dragManager.dragging
             NumberAnimation {
-                duration: Appearance.animation.elementMove.duration
-                easing.type: Appearance.animation.elementMove.type
-                easing.bezierCurve: Appearance.animationCurves.expressiveFastSpatial
+                duration: AppearanceRippleButton.animation.elementMove.duration
+                easing.type: AppearanceRippleButton.animation.elementMove.type
+                easing.bezierCurve: AppearanceRippleButton.animationCurves.expressiveFastSpatial
             }
         }
 
@@ -144,7 +144,7 @@ Item { // Notification item area
 
         implicitHeight: expanded ? (contentColumn.implicitHeight + padding * 2) : summaryRow.implicitHeight
         Behavior on implicitHeight {
-            animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
+            animation: AppearanceRippleButton.animation.elementMove.numberAnimation.createObject(this)
         }
 
         ColumnLayout { // Content column
@@ -154,7 +154,7 @@ Item { // Notification item area
             spacing: 3
 
             Behavior on anchors.margins {
-                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
             }
 
             RowLayout { // Summary row
@@ -167,7 +167,7 @@ Item { // Notification item area
                     id: summaryText
                     visible: !root.onlyNotification
                     font.pixelSize: root.fontSize
-                    color: Appearance.colors.colOnLayer3
+                    color: AppearanceRippleButton.colors.colOnLayer3
                     elide: Text.ElideRight
                     text: root.notificationObject.summary || ""
                 }
@@ -176,10 +176,10 @@ Item { // Notification item area
                     visible: opacity > 0
                     Layout.fillWidth: true
                     Behavior on opacity {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     font.pixelSize: root.fontSize
-                    color: Appearance.colors.colSubtext
+                    color: AppearanceRippleButton.colors.colSubtext
                     elide: Text.ElideRight
                     wrapMode: Text.Wrap // Needed for proper eliding????
                     maximumLineCount: 1
@@ -198,7 +198,7 @@ Item { // Notification item area
                 StyledText { // Notification body (expanded)
                     id: notificationBodyText
                     Behavior on opacity {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     Layout.fillWidth: true
                     font.pixelSize: root.fontSize
@@ -227,13 +227,13 @@ Item { // Notification item area
                     clip: !onlyNotification
 
                     Behavior on opacity {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     Behavior on height {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     Behavior on implicitHeight {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
 
                     RowLayout {
@@ -252,10 +252,10 @@ Item { // Notification item area
                             }
 
                             contentItem: MaterialSymbol {
-                                iconSize: Appearance.font.pixelSize.large
+                                iconSize: AppearanceRippleButton.font.pixelSize.large
                                 horizontalAlignment: Text.AlignHCenter
                                 color: (notificationObject.urgency == NotificationUrgency.Critical) ? 
-                                    Appearance.m3colors.m3onSurfaceVariant : Appearance.m3colors.m3onSurface
+                                    AppearanceRippleButton.m3colors.onSurfaceVariant : AppearanceRippleButton.m3colors.onSurfaceVariant
                                 text: "close"
                             }
                         }
@@ -296,10 +296,10 @@ Item { // Notification item area
 
                             contentItem: MaterialSymbol {
                                 id: copyIcon
-                                iconSize: Appearance.font.pixelSize.large
+                                iconSize: AppearanceRippleButton.font.pixelSize.large
                                 horizontalAlignment: Text.AlignHCenter
                                 color: (notificationObject.urgency == NotificationUrgency.Critical) ? 
-                                    Appearance.m3colors.m3onSurfaceVariant : Appearance.m3colors.m3onSurface
+                                    AppearanceRippleButton.m3colors.onSurfaceVariant : AppearanceRippleButton.m3colors.onSurfaceVariant
                                 text: "content_copy"
                             }
                         }
