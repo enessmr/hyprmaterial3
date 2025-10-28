@@ -179,8 +179,8 @@ Item { // Notification group area
                                 topRow.fontSize :
                                 Appearance.font.pixelSize.small
                             color: topRow.showAppName ?
-                                Appearance.colors.colSubtext :
-                                Appearance.colors.colOnLayer2
+                                AppearanceRippleButton.colors.colSubtext :
+                                AppearanceRippleButton.colors.colOnLayer2
                         }
                         StyledText {
                             id: timeText
@@ -189,7 +189,7 @@ Item { // Notification group area
                             horizontalAlignment: Text.AlignLeft
                             text: NotificationUtils.getFriendlyNotifTimeString(notificationGroup?.time)
                             font.pixelSize: topRow.fontSize
-                            color: Appearance.colors.colSubtext
+                            color: AppearanceRippleButton.colors.colSubtext
                         }
                     }
                     NotificationGroupExpandButton {

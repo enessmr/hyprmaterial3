@@ -15,6 +15,7 @@ function findSuitableMaterialSymbol(summary = "") {
         'screenshot': 'screenshot_monitor',
         'welcome': 'waving_hand',
         'time': 'scheduleb',
+        'wallpaper changed': 'palette',
         'installed': 'download',
         'configuration reloaded': 'reset_wrench',
         'config': 'reset_wrench',
