@@ -89,7 +89,6 @@ Widget system: Quickshell | Support: Yes (but since my qml is very no-no, expect
 |:---|:---|
 |<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2ecf76c1-345c-40e0-9017-d5b604776a2e" />|<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c2ed8476-a92c-4895-9582-f52e54ab7696" />|
 | But First, We Need To Talk About Parallel Universes 🧐 |
-|:---|
 | <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c219c23-c343-4609-96cd-99d04e53aa8a" /> |
 
 
