@@ -19,6 +19,7 @@ import qs.services
 import qs.common
 import qs.common.widgets
 import qs.common.functions
+import qs.Dih.ai
 
 ShellRoot {
 	property bool enableScreenCorners: true
@@ -26,6 +27,7 @@ ShellRoot {
 	property bool enableOnScreenDisplayVolume: true
 	property bool enableNotificationPopup: true
 	property bool enableDihEmoji: true
+	property bool enableDihAi: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -106,4 +108,5 @@ ShellRoot {
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 	LazyLoader { active: enableDihEmoji; component: Emoji {} }
+	LazyLoader { active: enableDihAi; component: Ai {} }
 }

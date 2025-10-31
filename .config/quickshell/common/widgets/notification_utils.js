@@ -25,6 +25,7 @@ function findSuitableMaterialSymbol(summary = "") {
         'upscale': 'compare',
         'install': 'deployed_code_update',
         'startswith:file': 'folder_copy', // Declarative startsWith check
+        'paws': 'pets',
     };
 
     const lowerSummary = summary.toLowerCase();
