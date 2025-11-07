@@ -118,7 +118,7 @@ Singleton {
     
     // A
     function applyWallpaper(mode, color) {
-        var wallpaper = persist.currentWallpaper
+        var wallpaper = persist.currentWallpaper.replace("file://", "")
         
         console.log("applying my goober to ur desktop, oh let me give my side:", mode, "the goon color of it is:", color, "the paper to apply:", wallpaper)
 
@@ -197,6 +197,7 @@ Singleton {
     LazyLoader {
         id: loader
         activeAsync: true
+        loading: true
 
         ApplicationWindow {
             minimumWidth: 400
@@ -327,7 +328,7 @@ Singleton {
 
                 Nav.NavigationRail {
                     Layout.fillHeight: true
-                    Layout.preferredWidth: 200
+                    Layout.preferredWidth: 70
                     selectedIndex: persist.currentPage
                     z: -9  // 😳 TABS IN THE GOOBER LAYER 😳
 
@@ -342,14 +343,11 @@ Singleton {
 
                 // GOOBER CLICK AREA LIKE THE FUZZY MINE TIME EATING MARIOS ASS 🥵🥵🥵
                 Rectangle {
-                    //Layout.fillWidth: true
+                    Layout.fillWidth: true
                     Layout.fillHeight: true
-                    width: dihtsvindovisnttuff.width
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 80
+                    // width: dihtsvindovisnttuff.width
+                    // Layout.margins: 0       // general margin
+                    // Layout.leftMargin: 80    // specific left margin
                     color: paletteCache.surfaceContainerHigh
                     radius: 8
 
@@ -371,28 +369,157 @@ Singleton {
                     Component {
                         id: palletePageComponent
                         
-                        ColumnLayout {
+                        RowLayout {
                             anchors.fill: parent
                             spacing: 16
-                            
-                            Text {
+                            ColumnLayout {
+                            anchors.fill: parent
+                            spacing: 16
+                                Text {
                                 text: "Palete stuf 67"
                                 font.pixelSize: 18
                                 font.weight: Font.Bold
                                 font.family: "Roboto"
                                 color: paletteCacheText.onSurface
-                                z: 1
-                            }
+                                z: 999999999
+                                }
                             
                             Text {
                                 text: "choose ur vibe 💅✨"
                                 font.pixelSize: 12
                                 font.family: "Roboto"
                                 color: paletteCacheText.onSurfaceVariant
-                                z: 1
+                                z: 99999999999999999
+                            }
                             }
 
-                            Item {
+                            
+                                Column {
+                                    spacing: 8
+
+                                    Layout.preferredWidth: modeControl.implicitWidth + 16
+                                    Layout.leftMargin: 390
+                                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
+
+                                    Text {
+                                        text: "Mode"
+                                        font.pixelSize: 12
+                                        color: paletteCacheText.onSurfaceVariant
+                                    }
+                                    
+                                    Rectangle {
+                                        color: "transparent"
+                                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter 
+                                        width: modeControl.implicitWidth + 16
+                                        height: modeControl.implicitHeight + 8
+                                        
+                                        Actions.SegmentedPill {
+                                            id: modeControl
+                                            options: ["light", "dark"]
+                                            currentIndex: 1 // default to feet smeller 😳
+                                            
+                                            onChanged: function(index) {
+                                                console.log("MODE GOOBER CHANGES IT'S GOONING SATAN MODE TO 😳😳😳:", options[index])
+                                                applyWallpaper(options[index], colorComboContainer.selectedColor)
+                                            }
+                                        }
+                                    }
+                                }
+                            
+
+                            Column {
+                                spacing: 8
+
+                                Layout.fillWidth: true        
+                                Layout.leftMargin: 0
+                                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                                    
+                                Text {
+                                    text: "M3 Color"
+                                    font.pixelSize: 12
+                                    color: paletteCacheText.onSurfaceVariant
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 0
+                                }
+                                    
+                                Rectangle {
+                                    id: colorComboContainer
+                                    width: 140  // dih 😳😳😳
+                                    height: 40
+                                    color: paletteCacheText.surfaceContainerHigh
+                                    radius: 6
+                                    border.color: paletteCacheText.outlineVariant
+                                    border.width: 1
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 0
+                                        
+                                    // THE CUSTOM HAMBURGER MENU COMBOBOX REPLACEMENT 🔥🔥🔥
+                                    property string selectedColor: "tonal-spot"
+                                    property var colorOptions: ["tonal-spot", "content", "expressive", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "vibrant"]
+                                        
+                                    // THE DISPLAY TEXT AND ARROW 🗣️🗣️🗣️
+                                    Row {
+                                        anchors.fill: parent
+                                        anchors.margins: 8
+                                        spacing: 4
+                                            
+                                        Text {
+                                            id: colorCombo
+                                            text: colorComboContainer.selectedColor
+                                            font.pixelSize: 12
+                                            color: paletteCache.onSurface
+                                            verticalAlignment: Text.AlignVCenter
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            width: parent.width - 20
+                                            elide: Text.ElideRight
+                                                
+                                            // EXPOSE displayText SO THE REST OF THE CODE STILL VORKS 💀💀💀
+                                            property string displayText: text
+                                        }
+                                            
+                                        Text {
+                                            text: "▼"
+                                            font.pixelSize: 10
+                                            color: paletteCache.onSurfaceVariant
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                    }
+                                        
+                                    // CLICK TO OPEN THE HAMBURGERMENU 🍔🍔🍔
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        z: 999
+                                        onClicked: {
+                                            // BUILD THE MENU ITEMS ARRAY FROM COLOR OPTIONS 🔥🔥🔥
+                                            var menuItems = []
+                                            for (var i = 0; i < colorComboContainer.colorOptions.length; i++) {
+                                                var colorName = colorComboContainer.colorOptions[i]
+                                                menuItems.push({
+                                                    label: colorName,
+                                                    enabled: true,
+                                                    onTriggered: (function(color) {
+                                                        return function() {
+                                                            colorComboContainer.selectedColor = color
+                                                            console.log("OHHHH U PICKED THE COLOR SCHEME:", color, "FRFR NO CAP 🔥🔥🔥")
+                                                            var currentMode = modeControl.options[modeControl.currentIndex]
+                                                            applyWallpaper(currentMode, color)
+                                                        }
+                                                    })(colorName)
+                                                })
+                                            }
+
+                                            colorSchemeMenu.items = menuItems
+                                            colorSchemeMenu.openAtItem(colorComboContainer)
+                                        }
+                                    }
+                                }
+                            }
+
+                            ColumnLayout {
+                            anchors.fill: parent
+                            spacing: 16
+                            anchors.topMargin: 100 
+Item {
                                 id: wallpaperContainer
                                 implicitWidth: parent.width
                                 implicitHeight: 300
@@ -486,7 +613,7 @@ Singleton {
                                                     onClicked: {
                                                         persist.currentWallpaper = actualWallpaperPath
                                                         var currentMode = modeControl.options[modeControl.currentIndex]
-                                                        var currentColor = colorCombo.displayText
+                                                        var currentColor = colorComboContainer.selectedColor
                                                         applyWallpaper(currentMode, currentColor)
                                                     }
                                                 }
@@ -516,145 +643,6 @@ Singleton {
                                     }
                                 }
                             }
-                            
-                            Row {
-                                Layout.fillWidth: true  // 🔥 FILL THE WIDTH 🔥
-                                Layout.preferredHeight: 60  // 🔥 FIXED HEIGHT FOR CONTROLS 🔥
-                                spacing: 24
-                                leftPadding: 8
-                                rightPadding: 8   // add gooners so i dont accidentally goon to myself 😳😳😳
-                                
-                                Column {
-                                    spacing: 8
-
-                                    anchors.right: parent.right
-                                    anchors.left: parent.left
-                                    anchors.bottom: parent.bottom
-                                    anchors.bottomMargin: 0
-                                            
-                                    anchors.leftMargin: 20
-
-
-                                    Text {
-                                        text: "Mode"
-                                        font.pixelSize: 12
-                                        color: paletteCacheText.onSurfaceVariant
-                                    }
-                                    
-                                    Rectangle {
-                                        color: "transparent"
-                                        width: modeControl.implicitWidth + 16
-                                        height: modeControl.implicitHeight + 8
-                                        
-                                        Actions.SegmentedPill {
-                                            id: modeControl
-                                            anchors.centerIn: parent
-                                            options: ["light", "dark"]
-                                            currentIndex: 1 // default to feet smeller 😳
-                                            
-                                            onChanged: function(index) {
-                                                console.log("MODE GOOBER CHANGES IT'S GOONING SATAN MODE TO 😳😳😳:", options[index])
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                                Column {
-                                    spacing: 8
-
-                                            anchors.right: parent.right
-                                            anchors.left: parent.left
-                                            anchors.bottom: parent.bottom
-                                            anchors.bottomMargin: 0
-                                            
-                                            anchors.leftMargin: 90
-                                    
-                                    Text {
-                                        text: "M3 Color"
-                                        font.pixelSize: 12
-                                        color: paletteCacheText.onSurfaceVariant
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 200
-                                    }
-                                    
-                                    Rectangle {
-                                        id: colorComboContainer
-                                        width: 140  // dih 😳😳😳
-                                        height: 40
-                                        color: paletteCacheText.surfaceContainerHigh
-                                        radius: 6
-                                        border.color: paletteCacheText.outlineVariant
-                                        border.width: 1
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 200
-                                        
-                                        // THE CUSTOM HAMBURGER MENU COMBOBOX REPLACEMENT 🔥🔥🔥
-                                        property string selectedColor: "tonal-spot"
-                                        property var colorOptions: ["tonal-spot", "content", "expressive", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "vibrant"]
-                                        
-                                        // THE DISPLAY TEXT AND ARROW 🗣️🗣️🗣️
-                                        Row {
-                                            anchors.fill: parent
-                                            anchors.margins: 8
-                                            spacing: 4
-                                            
-                                            Text {
-                                                id: colorCombo
-                                                text: colorComboContainer.selectedColor
-                                                font.pixelSize: 12
-                                                color: paletteCache.onSurface
-                                                verticalAlignment: Text.AlignVCenter
-                                                anchors.verticalCenter: parent.verticalCenter
-                                                width: parent.width - 20
-                                                elide: Text.ElideRight
-                                                
-                                                // EXPOSE displayText SO THE REST OF THE CODE STILL VORKS 💀💀💀
-                                                property string displayText: text
-                                            }
-                                            
-                                            Text {
-                                                text: "▼"
-                                                font.pixelSize: 10
-                                                color: paletteCache.onSurfaceVariant
-                                                anchors.verticalCenter: parent.verticalCenter
-                                            }
-                                        }
-                                        
-                                        // CLICK TO OPEN THE HAMBURGERMENU 🍔🍔🍔
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            onClicked: {
-                                                // BUILD THE MENU ITEMS ARRAY FROM COLOR OPTIONS 🔥🔥🔥
-                                                var menuItems = []
-                                                for (var i = 0; i < colorComboContainer.colorOptions.length; i++) {
-                                                    var colorName = colorComboContainer.colorOptions[i]
-                                                    menuItems.push({
-                                                        label: colorName,
-                                                        enabled: true,
-                                                        onTriggered: (function(color) {
-                                                            return function() {
-                                                                colorComboContainer.selectedColor = color
-                                                                console.log("OHHHH U PICKED THE COLOR SCHEME:", color, "FRFR NO CAP 🔥🔥🔥")
-                                                            }
-                                                        })(colorName)
-                                                    })
-                                                }
-                                                
-                                                // OPEN THE HAMBURGERMENU AT THE COMBOBOX LOCATION 💅✨
-                                                colorSchemeMenu.items = menuItems
-                                                colorSchemeMenu.openAtItem(colorComboContainer)
-                                            }
-                                        }
-                                        
-                                        // THE HAMBURGERMENU OVERLAY (LIVES OUTSIDE BUT ANCHORED HERE) 😳😳😳
-                                        Menu.HamburgerMenu {
-                                            id: colorSchemeMenu
-                                            anchors.fill: parent
-                                            minWidth: 140
-                                            z: 99999  // 🔥🔥🔥 MENU ON TOP OF EVERYTHING 🔥🔥🔥
-                                        }
-                                    }
-                                }
                             }
                         }
                     }
@@ -729,6 +717,14 @@ Singleton {
                         }
                     }
                 }
+            }
+
+            // THE GOONER SELECTER (LIVES INSIDE A DIH OHM BUT INSIDE A GOOBER) 🥵🥵🥵
+            Menu.HamburgerMenu {
+                id: colorSchemeMenu
+                anchors.fill: parent
+                minWidth: 140
+                z: 99999  // GOON ON TOP OF MY DIH 🥵🥵🥵💦💦💦
             }
         }
     }

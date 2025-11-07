@@ -20,7 +20,7 @@ Item {
   id: overlayRoot
   anchors.fill: parent
   visible: overlayRoot.open || panel.opacity > 0.01 || Boolean(activeSubmenu)
-  z: 999
+  z: 999999
 
   // Public API
   property bool open: false

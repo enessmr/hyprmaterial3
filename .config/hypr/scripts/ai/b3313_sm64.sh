@@ -1,0 +1,52 @@
+#!/bin/bash
+SYSTEM_PROMPT=$1
+model=$2
+content=$3
+
+prompt_json=$(jq -n --arg system_prompt "$SYSTEM_PROMPT" --arg content "$content" '$system_prompt + " " + $content')
+api_payload=$(jq -n --arg model "$model" --argjson prompt "$prompt_json" --argjson stream false \
+'{model: $model, prompt: $prompt, stream: $stream}')
+
+api_response=$(curl -s http://localhost:11434/api/generate -d "$api_payload")
+
+thinking=$(echo "$api_response" | jq -r '.thinking // ""' 2>/dev/null)
+response=$(echo "$api_response" | jq -r '.response // ""' 2>/dev/null)
+
+# 🔥 OUTPUT TO STDOUT FOR QML 🔥
+if [[ -n "$thinking" ]]; then
+  echo "💭 thinking bestie... cooking hard"
+  echo ""
+  echo "$thinking"
+  echo ""
+fi
+
+echo "😼 response bestie"
+echo ""
+echo "$response"
+echo ""
+echo "✨ done bestie! more femboys?"
+
+# 🫙 GET FIRST 30 LINES FOR NOTIFICATION 🫙
+full_output=""
+if [[ -n "$thinking" ]]; then
+  full_output="💭 THINKING:\n$thinking\n\n"
+fi
+full_output+="😼 RESPONSE:\n$response"
+
+notification_preview=$(echo -e "$full_output" | head -n 30)
+total_lines=$(echo -e "$full_output" | wc -l)
+
+if [[ $total_lines -gt 30 ]]; then
+  notification_preview+="\n\n... (+$((total_lines - 30)) more lines bestie 🔥)"
+fi
+
+# 🔥 SEND NOTIFICATION WITH CUSTOM ACTION BUTTON 🔥
+notify-send --app-name="AI BESTIE WITH FEMBOYS DLC 🫙" \
+  --expire-time=15000 \
+  --action="open=Yooo open the ai im curious about full msg!!!!" \
+  "AI Response Ready!!! 🔥💚🦕" \
+  "$notification_preview" | while read action; do
+    if [[ "$action" == "open" ]]; then
+      qs ipc call dihAi triggerDih
+    fi
+  done &

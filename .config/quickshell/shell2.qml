@@ -5,8 +5,8 @@ import "./settings" as SettingsDingalingAAAAAAAAAAAAAAANotTuff76SuperLuigi46DihG
 
 ShellRoot {
     PanelWindow {
-        width: 0
-        height: 0
+        implicitWidth: 0
+        implicitHeight: 0
         visible: false
     }
     
