@@ -58,6 +58,11 @@ ShellRoot {
 		running: true
 	}
 
+	Process {
+		command: ["bash", "$HOME/.config/hypr/scripts/confirmThatUAreGreeted.sh"]
+		running: true
+	}
+
 	LazyLoader {
 		id: screenshot
 		loading: true
