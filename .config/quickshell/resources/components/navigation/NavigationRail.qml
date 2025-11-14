@@ -1,5 +1,6 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
-import "../../colors.js" as Palette
 
 Item {
     id: root

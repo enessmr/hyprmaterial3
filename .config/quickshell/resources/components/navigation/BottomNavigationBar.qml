@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
@@ -8,7 +11,7 @@ Rectangle {
     // expose safe area inset for when used inside Container
     property int topInset: 0
 
-    color: Palette.palette().surface
+    color: Appearance.m3colors.m3surface
     height: 64
     width: parent ? parent.width : implicitWidth
     border.width: 0
@@ -19,7 +22,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
         height: 1
-        color: Palette.palette().outline
+        color: Appearance.m3colors.m3outline
         opacity: 0.24
     }
 

@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "."
 import "../Menu/ContextMenuHelper.js" as Ctx
+import qs.common
 
 Item {
   id: root
@@ -47,11 +50,11 @@ Item {
     anchors.top: parent.top
     height: root.fieldHeight
     radius: rectRadius
-    color: filled ? Palette.palette().surfaceVariant : Palette.palette().surface
+    color: filled ? Appearance.m3colors.m3surfaceVariant : Appearance.m3colors.m3surface
     border.width: borderWidth
-    border.color: error ? Palette.palette().error
-                         : (input.activeFocus ? Palette.palette().primary
-                                               : Qt.darker(Palette.palette().outline, 1.15))
+    border.color: error ? Appearance.m3colors.m3error
+                         : (input.activeFocus ? Appearance.m3colors.m3primary
+                                               : Qt.darker(Appearance.m3colors.m3outline, 1.15))
     opacity: enabled ? 1.0 : 0.38
     Behavior on border.color { ColorAnimation { duration: 120; easing.type: Easing.InOutQuad } }
   }
@@ -71,8 +74,8 @@ Item {
       id: input
       anchors.fill: parent
       verticalAlignment: Text.AlignVCenter
-      color: error ? Palette.palette().error : Palette.palette().onSurface
-      selectionColor: Qt.darker(Palette.palette().primary, 1.8)
+      color: error ? Appearance.m3colors.m3error : Appearance.m3colors.m3onSurface
+      selectionColor: Qt.darker(Appearance.m3colors.m3primary, 1.8)
       selectByMouse: true
       mouseSelectionMode: TextInput.SelectCharacters
       cursorVisible: activeFocus
@@ -109,8 +112,8 @@ Item {
       id: floatingLabel
       visible: false
       text: (root.labelText && root.labelText.length) ? root.labelText : root.placeholderText
-      color: root.error ? Palette.palette().error
-                        : (input.activeFocus ? Palette.palette().primary : Palette.palette().onSurfaceVariant)
+      color: root.error ? Appearance.m3colors.m3error
+                        : (input.activeFocus ? Appearance.m3colors.m3primary : Appearance.m3colors.m3onSurfaceVariant)
       x: 12
       y: root.floating ? -height / 2 - 1 : (background.height - height) / 2
       font.pixelSize: root.floating ? floatingFontSize : labelFontSize
@@ -127,8 +130,8 @@ Item {
     id: floatingLabelOverlay
     visible: useFloatingLabel && !filled
     text: (root.labelText && root.labelText.length) ? root.labelText : root.placeholderText
-    color: root.error ? Palette.palette().error
-                      : (input.activeFocus ? Palette.palette().primary : Palette.palette().onSurfaceVariant)
+    color: root.error ? Appearance.m3colors.m3error
+                      : (input.activeFocus ? Appearance.m3colors.m3primary : Appearance.m3colors.m3onSurfaceVariant)
     x: 12
     y: root.floating ? -height / 2 - 1 : (background.height - height) / 2
     font.pixelSize: root.floating ? floatingFontSize : labelFontSize
@@ -177,7 +180,7 @@ Item {
     anchors.top: background.bottom
     anchors.left: parent.left
     anchors.topMargin: 4
-    color: Palette.palette().error
+    color: Appearance.m3colors.m3error
     font.pixelSize: 12
     visible: root.error && text.length > 0
     text: ""

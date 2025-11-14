@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -13,7 +16,7 @@ Item {
         id: track
         anchors.fill: parent
         radius: height / 2
-        color: Palette.palette().surfaceVariant
+        color: Appearance.m3colors.m3surfaceVariant
         clip: true
 
         // determinate bar
@@ -24,7 +27,7 @@ Item {
             height: parent.height
             width: Math.max(0, Math.min(1, root.value)) * track.width
             radius: height / 2
-            color: Palette.palette().primary
+            color: Appearance.m3colors.m3primary
             Behavior on width { NumberAnimation { duration: 140; easing.type: Easing.InOutQuad } }
         }
 
@@ -36,7 +39,7 @@ Item {
             height: parent.height
             width: track.width * 0.25
             radius: height / 2
-            color: Palette.palette().primary
+            color: Appearance.m3colors.m3primary
             x: -width
             SequentialAnimation on x {
                 running: root.indeterminate

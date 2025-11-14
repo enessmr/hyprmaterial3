@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import Quickshell.Services.Pipewire
 import qs.bar
+import Quickshell
 
 ClickableIcon {
 	id: root
@@ -20,6 +23,7 @@ ClickableIcon {
 		event.accepted = true;
 		if (event.button === Qt.RightButton) {
 			mixerOpen = !mixerOpen;
+			Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-come.mp3"])
 		}
 	}
 
@@ -27,6 +31,7 @@ ClickableIcon {
 		if (event.button === Qt.LeftButton) {
 			event.accepted = true;
 			node.audio.muted = !node.audio.muted;
+			Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-come.mp3"])
 		}
 	}
 

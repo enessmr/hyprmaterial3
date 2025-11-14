@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs
 import qs.common
 import qs.common.widgets
@@ -8,7 +10,6 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
-import "../resources/colors.js" as Palette
 
 Scope {
     id: notificationPopup
@@ -33,7 +34,7 @@ Scope {
         }
 
         color: "transparent"
-        implicitWidth: AppearanceRippleButton.sizes.notificationPopupWidth
+        implicitWidth: Appearance.sizes.notificationPopupWidth
 
         NotificationListView {
             id: listview

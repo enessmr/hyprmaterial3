@@ -1,8 +1,11 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import "../../colors.js" as Palette
 import "../icons" as Icon
 import "../Menu/ContextMenuHelper.js" as Ctx
+import qs.common
 
 Item {
   id: root
@@ -48,10 +51,10 @@ Item {
   implicitWidth: Math.max(240, contentRow.implicitWidth + 24)
 
   // Background that darkens slightly when active/focused
-  readonly property color _baseBg: Palette.isDarkMode() ? Qt.lighter(Palette.palette().surfaceVariant, 1.03)
-                                                       : Qt.darker(Palette.palette().surfaceVariant, 1.02)
-  readonly property color _activeBg: Palette.isDarkMode() ? Qt.darker(Palette.palette().surfaceVariant, 1.20)
-                                                         : Qt.darker(Palette.palette().surfaceVariant, 1.08)
+  readonly property color _baseBg: Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surfaceVariant, 1.03)
+                                                       : Qt.darker(Appearance.m3colors.m3surfaceVariant, 1.02)
+  readonly property color _activeBg: Palette.isDarkMode() ? Qt.darker(Appearance.m3colors.m3surfaceVariant, 1.20)
+                                                         : Qt.darker(Appearance.m3colors.m3surfaceVariant, 1.08)
   Rectangle {
     id: background
     anchors.fill: parent
@@ -59,7 +62,7 @@ Item {
     color: root._searching ? root._activeBg : root._baseBg
     // Show a subtle border only when not searching (placeholder state)
     border.width: root._searching ? 0 : 1
-    border.color: Palette.palette().outlineVariant
+    border.color: Appearance.m3colors.m3outlineVariant
     Behavior on color { ColorAnimation { duration: 140; easing.type: Easing.InOutQuad } }
   }
 
@@ -83,7 +86,7 @@ Item {
         anchors.fill: parent
         name: "search"
         size: 20
-        color: Palette.palette().onSurfaceVariant
+        color: Appearance.m3colors.m3onSurfaceVariant
         // opacity: root._searching ? 0 : 1
         // scale: root._searching ? 0.8 : 1
         Behavior on opacity { NumberAnimation { duration: 120; easing.type: Easing.InOutQuad } }
@@ -107,8 +110,8 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         height: Math.max(20, font.pixelSize + 4)
         font.pixelSize: 14
-        color: Palette.palette().onSurface
-        selectionColor: Qt.darker(Palette.palette().primary, 1.8)
+        color: Appearance.m3colors.m3onSurface
+        selectionColor: Qt.darker(Appearance.m3colors.m3primary, 1.8)
         selectByMouse: true
         mouseSelectionMode: TextInput.SelectCharacters
         clip: true
@@ -131,7 +134,7 @@ Item {
       // Placeholder (centered inside this input item; item width already sized to content)
       Text {
         text: root.placeholderText
-        color: Palette.palette().onSurfaceVariant
+        color: Appearance.m3colors.m3onSurfaceVariant
         visible: input.length === 0 && !input.activeFocus
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
@@ -155,7 +158,7 @@ Item {
           visible: !!(modelData && typeof modelData.iconName === 'string' && modelData.iconName.length > 0)
           name: (modelData && typeof modelData.iconName === 'string') ? modelData.iconName : ""
           size: 20
-          color: Palette.palette().onSurface
+          color: Appearance.m3colors.m3onSurface
         }
         Image {
           anchors.fill: parent

@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Effects
 

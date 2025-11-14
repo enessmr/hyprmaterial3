@@ -21,3 +21,5 @@ Use this section to tell people how to report a vulnerability.
 Tell them where to go, how often they can expect to get an commit on a
 reported vulnerability, what to expect if the vulnerability is accepted or
 declined, etc.
+
+The green dino vill report enessmr if theres a bug 💚🦕

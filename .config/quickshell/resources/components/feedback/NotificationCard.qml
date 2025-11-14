@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../actions" as Actions
+import qs.common
 
 Rectangle {
     id: root
@@ -72,12 +75,12 @@ Rectangle {
                 ctx.closePath()
             }
             // base
-            ctx.fillStyle = Palette.palette().surface
+            ctx.fillStyle = Appearance.m3colors.m3surface
             roundedRect(rTL, rTR, rBR, rBL)
             ctx.fill()
             // luminous overlay
             ctx.globalAlpha = 0.04
-            ctx.fillStyle = Palette.palette().inverseSurface
+            ctx.fillStyle = Appearance.m3colors.m3inverseSurface
             roundedRect(rTL, rTR, rBR, rBL)
             ctx.fill()
             ctx.globalAlpha = 1.0
@@ -134,11 +137,11 @@ Rectangle {
             width: parent.width
             height: Math.max(32, titleText.implicitHeight)
 
-            Rectangle { id: avatar; width: 32; height: 32; radius: 8; color: Palette.palette().primary; opacity: 0.15; anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter }
+            Rectangle { id: avatar; width: 32; height: 32; radius: 8; color: Appearance.m3colors.m3primary; opacity: 0.15; anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter }
             Text {
                 id: titleText
                 text: root.title
-                color: Palette.palette().onSurface
+                color: Appearance.m3colors.m3onSurface
                 font.pixelSize: 16
                 anchors.left: avatar.right
                 anchors.leftMargin: 8
@@ -162,7 +165,7 @@ Rectangle {
                     width: 12; height: 12
                     onPaint: {
                         var ctx = getContext('2d'); ctx.reset();
-                        ctx.strokeStyle = Palette.palette().onSurfaceVariant; ctx.lineWidth = 2; ctx.lineCap = 'round';
+                        ctx.strokeStyle = Appearance.m3colors.m3onSurfaceVariant; ctx.lineWidth = 2; ctx.lineCap = 'round';
                         ctx.beginPath(); ctx.moveTo(1,4); ctx.lineTo(6,9); ctx.lineTo(11,4); ctx.stroke();
                     }
                 }
@@ -179,7 +182,7 @@ Rectangle {
                 Canvas {
                     anchors.centerIn: parent
                     width: 12; height: 12
-                    onPaint: { var ctx = getContext('2d'); ctx.reset(); ctx.strokeStyle = Palette.palette().onSurfaceVariant; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(2,2); ctx.lineTo(10,10); ctx.moveTo(10,2); ctx.lineTo(2,10); ctx.stroke(); }
+                    onPaint: { var ctx = getContext('2d'); ctx.reset(); ctx.strokeStyle = Appearance.m3colors.m3onSurfaceVariant; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(2,2); ctx.lineTo(10,10); ctx.moveTo(10,2); ctx.lineTo(2,10); ctx.stroke(); }
                 }
                 MouseArea { anchors.fill: parent; onClicked: if (root.dismissible) animOut.start(); hoverEnabled: true }
             }
@@ -198,7 +201,7 @@ Rectangle {
                 id: expanderContent
                 width: parent.width
                 spacing: 8
-                Text { text: root.body; color: Palette.palette().onSurfaceVariant; wrapMode: Text.Wrap }
+                Text { text: root.body; color: Appearance.m3colors.m3onSurfaceVariant; wrapMode: Text.Wrap }
                 Row {
                     spacing: 8
                     visible: root.showActions

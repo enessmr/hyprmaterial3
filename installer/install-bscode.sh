@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 set -e
 
 # Configuration

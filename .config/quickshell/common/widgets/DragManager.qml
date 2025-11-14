@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.common
 import qs.services
 import QtQuick

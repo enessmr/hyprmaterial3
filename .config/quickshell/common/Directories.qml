@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma Singleton
 pragma ComponentBehavior: Bound
 
@@ -10,6 +12,7 @@ Singleton {
     // XDG Dirs, with "file://"
     readonly property string config: StandardPaths.standardLocations(StandardPaths.ConfigLocation)[0]
     readonly property string state: StandardPaths.standardLocations(StandardPaths.StateLocation)[0]
+    readonly property string share: StandardPaths.standardLocations(StandardPaths.ShareLocation)[0]
     readonly property string cache: StandardPaths.standardLocations(StandardPaths.CacheLocation)[0]
     readonly property string pictures: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
     readonly property string downloads: StandardPaths.standardLocations(StandardPaths.DownloadLocation)[0]
@@ -23,12 +26,13 @@ Singleton {
     property string booruDownloads: FileUtils.trimFileProtocol(Directories.pictures  + "/homework")
     property string booruDownloadsNsfw: FileUtils.trimFileProtocol(Directories.pictures + "/homework/🌶️")
     property string latexOutput: FileUtils.trimFileProtocol(`${Directories.cache}/media/latex`)
-    property string shellConfig: FileUtils.trimFileProtocol(`${Directories.config}/illogical-impulse`)
+    property string shellConfig: FileUtils.trimFileProtocol(`${Directories.config}/hypryoshi3`)
     property string shellConfigName: "config.json"
     property string shellConfigPath: `${Directories.shellConfig}/${Directories.shellConfigName}`
     property string todoPath: FileUtils.trimFileProtocol(`${Directories.state}/user/todo.json`)
     property string notificationsPath: FileUtils.trimFileProtocol(`${Directories.cache}/notifications/notifications.json`)
-    property string generatedMaterialThemePath: FileUtils.trimFileProtocol(`${Directories.state}/user/generated/colors.json`)
+    property string generatedMaterialThemePath: FileUtils.trimFileProtocol(`${Directories.share}/../.local/share/hypryoshi3/quickshell/user/generated/colors.json`)
+    property string generatedThemeColorsDir: FileUtils.trimFileProtocol(`${Directories.share}/../.local/share/hypryoshi3/quickshell/user/generated`)
     property string cliphistDecode: FileUtils.trimFileProtocol(`/tmp/quickshell/media/cliphist`)
     property string screenshotTemp: "/tmp/quickshell/media/screenshot"
     property string wallpaperSwitchScriptPath: FileUtils.trimFileProtocol(`${Directories.scriptPath}/colors/switchwall.sh`)
@@ -37,6 +41,7 @@ Singleton {
     property string aiChats: FileUtils.trimFileProtocol(`${Directories.state}/user/ai/chats`)
     // Cleanup on init
     Component.onCompleted: {
+        Quickshell.execDetached(["mkdir", "-p", `${generatedThemeColorsDir}`])
         Quickshell.execDetached(["mkdir", "-p", `${shellConfig}`])
         Quickshell.execDetached(["mkdir", "-p", `${favicons}`])
         Quickshell.execDetached(["bash", "-c", `rm -rf '${coverArt}'; mkdir -p '${coverArt}'`])

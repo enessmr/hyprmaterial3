@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.common
 import qs.services
 import QtQuick
@@ -12,13 +14,13 @@ RippleButton {
     leftPadding: 15
     rightPadding: 15
     buttonRadius: Appearance.rounding.small
-    colBackground: AppearanceRippleButton.m3colors.secondaryContainer 
-    colBackgroundHover: AppearanceRippleButton.colors.colSecondaryContainerHover
-    colRipple: AppearanceRippleButton.colors.colLayer4Active
+    colBackground: Appearance.m3colors.m3secondaryContainer 
+    colBackgroundHover: Appearance.colors.colSecondaryContainerHover
+    colRipple: Appearance.colors.colLayer4Active
 
     contentItem: StyledText {
         horizontalAlignment: Text.AlignHCenter
         text: buttonText
-        color: AppearanceRippleButton.m3colors.onSurfaceVariant
+        color: Appearance.m3colors.m3onSurfaceVariant
     }
 }

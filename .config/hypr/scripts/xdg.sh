@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 sleep 1
 
 # kill all possible running xdg-desktop-portals

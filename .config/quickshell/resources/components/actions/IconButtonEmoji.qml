@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../icons" as Icon
+import qs.common
 
 Item {
     id: root
@@ -18,8 +21,8 @@ Item {
         anchors.fill: parent
         radius: width / 2
         // Neutral surface-ish background, no primary/tonal usage
-        color: Palette.isDarkMode() ? Qt.lighter(Palette.palette().surface, 1.08)
-                                    : Qt.darker(Palette.palette().surface, 1.03)
+        color: Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surface, 1.08)
+                                    : Qt.darker(Appearance.m3colors.m3surface, 1.03)
         border.width: 0
         opacity: root.enabled ? 1.0 : 0.38
         antialiasing: true
@@ -35,7 +38,7 @@ Item {
             anchors.fill: parent
             name: root.iconName
             size: parent.width
-            color: Palette.palette().onSurface
+            color: Appearance.m3colors.m3onSurface
             visible: root.iconName && root.iconName.length > 0
         }
         Image {
@@ -52,7 +55,7 @@ Item {
     Rectangle {
         anchors.fill: background
         radius: background.radius
-        color: Palette.palette().onSurface
+        color: Appearance.m3colors.m3onSurface
         opacity: mouseArea.pressed ? 0.14 : (mouseArea.containsMouse ? 0.06 : 0.0)
         visible: root.enabled
         Behavior on opacity { NumberAnimation { duration: 110; easing.type: Easing.InOutQuad } }

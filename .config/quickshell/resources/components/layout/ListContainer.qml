@@ -1,9 +1,12 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
-    color: Palette.palette().surface
+    color: Appearance.m3colors.m3surface
     radius: 12
     // No border; slightly darker than surface via overlay
     layer.enabled: true

@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import qs.common
@@ -9,6 +11,7 @@ RippleButton {
     property string materialIcon
     property bool materialIconFill: true
     property string mainText: "Button text"
+    property bool settings
     property Component mainContentComponent: Component {
         StyledText {
             text: buttonWithIconRoot.mainText
@@ -18,7 +21,7 @@ RippleButton {
     }
     implicitHeight: 35
     horizontalPadding: 15
-    buttonRadius: Appearance.rounding.small
+    buttonRadius: settings ? Appearance.rounding.full : Appearance.rounding.small
     colBackground: Appearance.colors.colLayer2
 
     contentItem: RowLayout {

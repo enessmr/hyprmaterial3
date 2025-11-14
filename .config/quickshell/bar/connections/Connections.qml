@@ -1,14 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import qs.bar
-import "../../resources/colors.js" as Pallete
+import qs.common
 
 BarWidgetInner {
 	id: root
 	required property var bar;
 	implicitHeight: column.implicitHeight + 10
 	border.width: 0         // no border
-	color: Pallete.palette().onSecondary
+	color:  Appearance.m3colors.m3onSecondary
 	radius: 999
 
 	ColumnLayout {

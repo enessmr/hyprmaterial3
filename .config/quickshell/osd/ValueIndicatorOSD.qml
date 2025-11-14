@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.services
 import qs.common
 import qs.common.widgets
@@ -32,7 +34,7 @@ Item {
         id: valueIndicator
         anchors.fill: parent
         radius: Appearance.rounding.full
-        color: AppearanceRippleButton.colors.colLayer0
+        color: Appearance.colors.colLayer0
         implicitWidth: valueRow.implicitWidth
 
         RowLayout { // Icon on the left, stuff on the right
@@ -53,7 +55,7 @@ Item {
                         centerIn: parent
                         alignWhenCentered: !root.rotateIcon
                     }
-                    color: AppearanceRippleButton.colors.colOnLayer0
+                    color: Appearance.colors.colOnLayer0
                     renderType: Text.QtRendering
 
                     text: root.icon
@@ -79,14 +81,14 @@ Item {
                     Layout.rightMargin: valueProgressBar.height / 2 // Align text with progressbar radius curve's left end
 
                     StyledText {
-                        color: AppearanceRippleButton.colors.colOnLayer0
+                        color: Appearance.colors.colOnLayer0
                         font.pixelSize: Appearance.font.pixelSize.small
                         Layout.fillWidth: true
                         text: root.name
                     }
 
                     StyledText {
-                        color: AppearanceRippleButton.colors.colOnLayer0
+                        color: Appearance.colors.colOnLayer0
                         font.pixelSize: Appearance.font.pixelSize.small
                         Layout.fillWidth: false
                         text: Math.round(root.value * 100)

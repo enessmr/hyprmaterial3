@@ -1,8 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import qs.common
 import qs.common.widgets
-import "../../resources/colors.js" as Palette
 
 /**
  * Material 3 expressive style toolbar.
@@ -24,7 +25,7 @@ Item {
     Rectangle {
         id: background
         anchors.centerIn: parent
-        color: Palette.palette().surfaceContainer // Needs to be opaque
+        color: Appearance.m3colors.m3surfaceContainer // Needs to be opaque
         implicitHeight: toolbarLayout.implicitHeight + root.padding * 2
         implicitWidth: toolbarLayout.implicitWidth + root.padding * 2
         radius: Appearance.rounding.full

@@ -1,9 +1,12 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQml.Models 2.15
 import Quickshell
 import Quickshell.Services.SystemTray
 import "../Menu" as MenuComp
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: trayRoot
@@ -37,7 +40,7 @@ Item {
           width: trayRoot.iconSize + 12
           height: width
           radius: width / 2
-          color: Palette.palette().onSurface
+          color: Appearance.m3colors.m3onSurface
           opacity: hovered ? 0.08 : 0.0
           antialiasing: true
           Behavior on opacity { NumberAnimation { duration: 110; easing.type: Easing.InOutQuad } }

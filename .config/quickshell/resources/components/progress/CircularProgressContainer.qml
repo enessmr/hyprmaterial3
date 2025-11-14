@@ -1,13 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../../metrics.js" as Metrics
+import qs.common
 
 Item {
     id: root
     // Determinate circular progress with a center slot
     property real progress: 0.0 // 0..1
-    property color trackColor: Palette.palette().surfaceVariant
-    property color progressColor: Palette.palette().primary
+    property color trackColor: Appearance.m3colors.m3surfaceVariant
+    property color progressColor: Appearance.m3colors.m3primary
     property real strokeWidth: 6
     property real size: 72
     // Visual gap between progress end and remainder (empty) for determinate mode
@@ -79,7 +82,7 @@ Item {
         height: parent.height
         anchors.centerIn: parent
         // Convenience text centered
-        Text { visible: root.centerText.length > 0; anchors.centerIn: parent; text: root.centerText; color: Palette.palette().onSurface; font.pixelSize: 14 }
+        Text { visible: root.centerText.length > 0; anchors.centerIn: parent; text: root.centerText; color: Appearance.m3colors.m3onSurface; font.pixelSize: 14 }
         Item { id: centerContent; anchors.centerIn: parent }
     }
 }

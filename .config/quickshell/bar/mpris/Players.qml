@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma ComponentBehavior: Bound
 
 import QtQuick
@@ -8,7 +10,7 @@ import Quickshell
 import Quickshell.Services.Mpris
 import qs
 import qs.bar
-import "../../resources/colors.js" as Pallete
+import qs.common
 
 FullwidthMouseArea {
 	id: root
@@ -34,10 +36,15 @@ FullwidthMouseArea {
 
 	acceptedButtons: Qt.RightButton | Qt.ForwardButton | Qt.BackButton
 	onPressed: event => {
-		if (event.button == Qt.RightButton) widgetOpen = !widgetOpen;
+		if (event.button == Qt.RightButton) {
+			widgetOpen = !widgetOpen;
+			Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-yap.mp3"])
+		}
 		else if (event.button == Qt.ForwardButton) {
+			Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-tongue.mp3"])
 			MprisController.next();
 		} else if (event.button == Qt.BackButton) {
+			Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-pam.mp3"])
 			MprisController.previous();
 		}
 	}
@@ -47,6 +54,7 @@ FullwidthMouseArea {
 		if (MprisController.canChangeVolume) {
 			root.activePlayer.volume = Math.max(0, Math.min(1, root.activePlayer.volume + (event.angleDelta.y / 120) * 0.05));
 		}
+		Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-wooh.mp3"])
 	}
 
 	readonly property var activePlayer: MprisController.activePlayer
@@ -215,7 +223,7 @@ FullwidthMouseArea {
 						property alias text: label.text
 
 						Label {
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 							id: label
 							anchors.verticalCenter: parent.verticalCenter
 						}
@@ -238,7 +246,7 @@ FullwidthMouseArea {
 					}
 
 					Label {
-						color: Pallete.palette().onSurface
+						color: Appearance.m3colors.m3onSurface
 						text: {
 							root.activePlayer ? root.activePlayer.identity : "No player"
 
@@ -501,7 +509,7 @@ FullwidthMouseArea {
 										property alias font: label.font
 
 										Label {
-											color: Pallete.palette().onSurface
+											color: Appearance.m3colors.m3onSurface
 											id: label
 											visible: text != ""
 											anchors.centerIn: parent
@@ -638,7 +646,7 @@ FullwidthMouseArea {
 						Layout.margins: 5
 
 						Label {
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 							Layout.preferredWidth: lengthLabel.implicitWidth
 							text: positionInfo.timeStr(positionInfo.position)
 						}
@@ -712,7 +720,7 @@ FullwidthMouseArea {
 						}
 
 						Label {
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 							id: lengthLabel
 							text: positionInfo.timeStr(positionInfo.length)
 						}

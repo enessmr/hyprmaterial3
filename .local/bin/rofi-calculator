@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 # Simple calculator script
 # Use it by adding a new mode, e.g.:
 # rofi -show run -modi calc:../Examples/rofi-calculator.sh

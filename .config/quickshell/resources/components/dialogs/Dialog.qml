@@ -1,9 +1,12 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../actions" as Actions
 import "../DialogService.js" as DialogService
 // Ensure local components (e.g., Button.qml) are available
 import "."
+import qs.common
 
 Item {
     id: root
@@ -42,7 +45,7 @@ Item {
     // scrim
         Rectangle {
             anchors.fill: parent
-            color: Palette.palette().onSurface
+            color: Appearance.m3colors.m3onSurface
             opacity: root.open ? 0.32 : 0.0
             visible: true
             Behavior on opacity { NumberAnimation { duration: 160; easing.type: Easing.InOutQuad } }
@@ -64,7 +67,7 @@ Item {
                  : Math.max(280, Math.min(root.maxWidth, content.implicitWidth + root.padding * 2))
         height: content.implicitHeight + root.padding * 2
         radius: 12
-        color: Palette.palette().surface
+        color: Appearance.m3colors.m3surface
         anchors.centerIn: parent
         opacity: root.open ? 1.0 : 0.0
         scale: root.open ? 1.0 : 0.97
@@ -90,11 +93,11 @@ Item {
             x: root.padding
             y: root.padding
             spacing: 12
-            Text { id: titleLabel; text: root.title; color: Palette.palette().onSurface; font.pixelSize: 18 }
+            Text { id: titleLabel; text: root.title; color: Appearance.m3colors.m3onSurface; font.pixelSize: 18 }
             Text {
                 id: bodyText
                 text: root.text
-                color: Palette.palette().onSurfaceVariant
+                color: Appearance.m3colors.m3onSurfaceVariant
                 wrapMode: Text.Wrap
                 // Avoid binding loop: when preferredWidth <= 0, measure against max width, not card.width
                 width: (root.preferredWidth > 0)

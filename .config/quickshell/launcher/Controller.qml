@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma Singleton
 pragma ComponentBehavior: Bound
 
@@ -9,7 +11,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
-import "../resources/colors.js" as Pallete
+import qs.common
 import "../resources/components/search"
 import ".."
 
@@ -49,9 +51,9 @@ Singleton {
             // --- Background panel ---
             Rectangle {
                 anchors.fill: parent
-                color: Pallete.palette().background
+                color: Appearance?.m3colors?.m3background
                 radius: 16
-                border.color: Pallete.palette().outlineVariant
+                border.color: Appearance?.m3colors?.m3outlineVariant
                 border.width: 1
             }
 
@@ -60,7 +62,7 @@ Singleton {
                 text: "Launcher"
                 font.family: "Roboto"
                 font.pointSize: 15
-                color: Pallete.palette().onSurface
+                color: Appearance?.m3colors?.m3onSurface
                 anchors {
                     top: parent.top
                     left: parent.left
@@ -88,9 +90,9 @@ Singleton {
 					bottomMargin: 10
                     topMargin: 9
                 }
-                color: Pallete.palette().surfaceContainerHigh
+                color: Appearance?.m3colors?.m3surfaceContainerHigh
                 radius: 16
-                border.color: Pallete.palette().outline
+                border.color: Appearance?.m3colors?.m3outline
                 border.width: 0
 
                 ColumnLayout {
@@ -229,7 +231,7 @@ Singleton {
                                 }
                                 Text {
                                     text: modelData.name
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
 									font.family: "Roboto"
                                     Layout.alignment: Qt.AlignVCenter
                                 }

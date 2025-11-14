@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
@@ -79,7 +82,7 @@ Item {
     id: container
     anchors.fill: parent
     radius: height / 2
-    color: Palette.palette().primary
+    color: Appearance.m3colors.m3primary
     border.width: 0
     antialiasing: true
     opacity: root.enabled ? 1.0 : 0.55
@@ -102,7 +105,7 @@ Item {
     // Hover/press overlay
     Rectangle {
       anchors.fill: parent
-      color: Palette.palette().onPrimary
+      color: Appearance.m3colors.m3onPrimary
       radius: container.radius
       opacity: (ma.pressed ? 0.14 : (ma.containsMouse ? 0.08 : 0))
       visible: root.enabled
@@ -116,7 +119,7 @@ Item {
       anchors.bottom: parent.bottom
       anchors.right: root.orientation === "right" ? parent.right : undefined
       anchors.left: root.orientation === "left" ? parent.left : undefined
-      color: Palette.palette().onPrimary
+      color: Appearance.m3colors.m3onPrimary
       opacity: 0.35
       visible: true
     }
@@ -139,10 +142,10 @@ Item {
           var w = width, h = height
           // circular background
           ctx.beginPath(); ctx.arc(w/2, h/2, Math.min(w,h)/2, 0, Math.PI*2);
-          ctx.fillStyle = Palette.palette().onPrimary
+          ctx.fillStyle = Appearance.m3colors.m3onPrimary
           ctx.fill()
           // plus sign
-          ctx.strokeStyle = Palette.palette().primary
+          ctx.strokeStyle = Appearance.m3colors.m3primary
           ctx.lineWidth = 2
           ctx.lineCap = 'round'
           var r = Math.min(w,h) * 0.28
@@ -154,7 +157,7 @@ Item {
       Text {
         id: textItem
         text: root.text
-        color: Palette.palette().onPrimary
+        color: Appearance.m3colors.m3onPrimary
         font.pixelSize: 14
         verticalAlignment: Text.AlignVCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -184,7 +187,7 @@ Item {
     // Hover/press overlay
     Rectangle {
       anchors.fill: parent
-      color: Palette.palette().onPrimary
+      color: Appearance.m3colors.m3onPrimary
       radius: container.radius
       opacity: (mb.pressed ? 0.14 : (mb.containsMouse ? 0.08 : 0))
       visible: root.enabled
@@ -199,7 +202,7 @@ Item {
       onPaint: {
         var ctx = getContext('2d'); ctx.reset();
         var w = width, h = height
-        ctx.strokeStyle = Palette.palette().onPrimary
+        ctx.strokeStyle = Appearance.m3colors.m3onPrimary
         ctx.lineWidth = 2
         ctx.lineCap = 'round'
         ctx.beginPath()

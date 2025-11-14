@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma Singleton
 pragma ComponentBehavior: Bound
 
@@ -10,17 +12,22 @@ import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Widgets
 import qs.common.widgets
-import "../resources/colors.js" as Palette
 import "../resources/components/navigation" as Nav
 import "../resources/components/actions" as Actions
 import "../resources/components/inputs/chips" as Chips
 import "../resources/components/Menu" as Menu
+import qs.services
 import qs.common
+import qs.settings.pages
 
 Singleton {
     id: dihSettingsRootFrFrNoCapNoCapDingaling
 
     property string homeDir: Quickshell.env("HOME") || ""
+
+    Component.onCompleted: {
+        MaterialThemeLoader.reapplyTheme()
+    }
 
     PersistentProperties {
         id: persist
@@ -30,8 +37,8 @@ Singleton {
         property string currentWallpaper: dihSettingsRootFrFrNoCapNoCapDingaling.homeDir + "/Pictures/.Wallpapers/wallpaper.jpg"
     }
 
-    property var paletteCache: Palette.palette()
-    property var paletteCacheText: Palette.palette()
+    property var paletteCache: Appearance?.m3colors
+    property var paletteCacheText: Appearance?.m3colors
     property string goonerLogged: "0"
 
     // i am breaking the rules but i collabed vith chatgpt for fixing my broken Process lmfao😳
@@ -50,8 +57,8 @@ Singleton {
                     console.log(`IF IT DIH GOT CUT HERES A LOG FOR ITS DINGALING TO REPLACE HIS DIH😭😭😭😭 ${Qt.resolvedUrl(this.text.trim())}`)
                     goonerLogged++;
                 }
-                paletteCache = Palette.palette();
-                paletteCacheText = Palette.palette();
+                paletteCache = Appearance?.m3colors;
+                paletteCacheText = Appearance?.m3colors;
                 goonerFinder.running = false;
                 goonerFinder.running = true;
             }
@@ -91,6 +98,11 @@ Singleton {
             directoryScanner.running = true
         }
     }
+
+    property alias wallpaperModel: wallpaperModel
+    property int wallpaperCount: wallpaperModel.count  // THE P DIDDY INT IS BABY OILING MY DIH TO TICK IT 😍😍😍😍😍😍😍
+
+    signal wallpapersReady()
     
     // Sniffers that vill smell my feet 😳
     Process {
@@ -108,13 +120,18 @@ Singleton {
                         console.log("THE GOOBER IS HERE!!! 😄😄😄", path)
                     }
                 })
+                onFinished: {
+                    console.log("P DIDDY BABY OILED THE GOOBERS, READY TO FRICK AND GOON 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍")
+                    wallpapersReady()
+                }
             }
         }
     }
 
+    property string wallpaperCountString: wallpaperModel.count.toString()
     signal colorsChanged()
     property int colorRefreshTrigger: 0
-    property var freshPalette: AppearanceRippleButton.m3colors
+    property var freshPalette: Appearance?.m3colors
     
     // A
     function applyWallpaper(mode, color) {
@@ -128,7 +145,7 @@ Singleton {
 
         onChanged: {
             goonerLogged = "0";
-            paletteCache = Palette.palette();
+            paletteCache = Appearance?.m3colors;
             reloadTimer.start()
         }
     }
@@ -137,9 +154,9 @@ Singleton {
         id: reloadTimer
         interval: 20
         onTriggered: {
-            console.log("🎨 FORCING PALETTE RELOAD AFTER DELAY!!!")
-            paletteCache = Palette.palette()
-            paletteCacheText = Palette.palette()
+            console.log("P DIDDY DIDDLING ART GOOBER AFTER THAT 20 BABY OIL TIME PARTITION!!! 💦💦💦💦💦💦")
+            paletteCache = Appearance?.m3colors
+            paletteCacheText = Appearance?.m3colors
             colorRefreshTrigger++
             colorsChanged()
         }
@@ -150,9 +167,9 @@ Singleton {
         function onExited(exitCode) {
             if (exitCode === 0) {
                 console.log("FORCING GOON RELOAD IT AGE 18 RN ALVAYS YKYK AHH DIH OHMMMM 😍🍑");
-                freshPalette = Palette.palette();
-                paletteCache = Palette.palette();
-                paletteCacheText = Palette.palette();  // 🔥 ACTUALLY UPDATE IT 🔥
+                freshPalette = Appearance?.m3colors;
+                paletteCache = Appearance?.m3colors;
+                paletteCacheText = Appearance?.m3colors;  // TICK THE GOOBER'S DIH 🥵🥵🥵🥵🥵🥵
                 colorsChanged();
                 colorRefreshTrigger++;
             }
@@ -165,13 +182,13 @@ Singleton {
         id: wallpaperProcess
         stdout: SplitParser {
             onRead: (output) => {
-                console.log("📜 SCRIPT OUTPUT:", output.trim())
+                console.log("P DIDDYS BABY OIL 💦💦💦", output.trim())
             }
         }
 
         stderr: SplitParser {
             onRead: (output) => {
-                console.log("❌ SCRIPT ERROR:", output.trim())
+                console.log("P DIDDYS BABY OIL SLIPPED 😭😭😭", output.trim())
             }
         }
 
@@ -203,11 +220,29 @@ Singleton {
             minimumWidth: 400
             minimumHeight: 200
             color: "transparent"
-            title: "I Tuch Myself 2 My Comits 😍"
+            title: "HyprYoshi3 Gooner Settings 💚🦕😍💦🥵"
             visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
             id: dihtsvindovisnttuff
             // update gooner so hes 18 everytime 😍🍑
             flags: Qt.Window | Qt.WindowStaysOnTopHint
+
+            property var pages: [
+        {
+            name: "Palette",
+            icon: "palette",
+            component: "pages/PalettePage.qml"
+        },
+        {
+            name: "General",
+            icon: "browse",
+            component: "pages/GeneralPage.qml"
+        },
+        {
+            name: "Advanced",
+            icon: "settings_alert",
+            component: "pages/AdvancedConfig.qml"
+        }
+    ]
 
             // FOUND A 12 INCH DINGALING AND A GOONER THO NGL??? 😳😳😳
             property var windowGeometry: ({
@@ -220,31 +255,11 @@ Singleton {
             Connections {
                 target: dihSettingsRootFrFrNoCapNoCapDingaling
                 function onColorRefreshTriggerChanged() {
-                    console.log("🎨 PALETTE UPDATE TRIGGERED, REFRESHING THE GOOBER CACHE 🎨")
-                    paletteCache = Palette.palette()
-                    paletteCacheText = Palette.palette()
+                    console.log("P DIDDY'S GOOBER OIL APPLIED TO GOOBER TO MY DIH 💦💦💦")
+                    paletteCache = Appearance?.m3colors
+                    paletteCacheText = Appearance?.m3colors
                 }
             }
-
-            FileView {
-  		        path:  Quickshell.env("HOME") + "/.config/quickshell/resources/colors.js"
-
-  		        // when changes are made on disk, reload the file's content
-  		        watchChanges: true
-  		        onFileChanged: {
-                    console.log("GOONER CHANGED CATCHED PIC FRICKING TO A DIH 😳😳😳")
-                    reload()
-
-                    // Force reload by re-evaluating the palette
-                    paletteCache = Palette.palette()
-                    paletteCacheText = Palette.palette()
-                    freshPalette = Palette.palette()
-        
-                    // Trigger property changes to force UI updates
-                    colorRefreshTrigger++
-                    colorsChanged()
-                }    
-	        }
 
             // KEEP THAT 12 INCH DINGALING AND GOONER!!! 🫙🫙🫙 
             onClosing: {
@@ -270,14 +285,14 @@ Singleton {
 
             Rectangle {
                 // anchors.fill: parent
-                color: paletteCache.background
+                color: paletteCache.m3background
                 id: dihNoFakNo67DihUhmAAAPDiddyNoPlsNotTuffGoonerITuchedMySelf
                 radius: dihtsvindovisnttuff.visibility === Window.FullScreen ? 0 : 16
-                border.color: paletteCache.outlineVariant
+                border.color: paletteCache.m3outlineVariant
                 border.width: 1
                 width: parent.width
                 height: parent.height
-                z: -10 // 🔥 VINDOV LAYER IN THE SHADOW REALM 🔥
+                z: -10 // P DIDDY IN THE DIDDY DIMENSION 💦💦💦
 
                 Behavior on radius {
                     NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
@@ -292,21 +307,22 @@ Singleton {
                 text: "Settings"
                 font.family: "Roboto"
                 font.pointSize: 16
-                color: paletteCacheText.onSurface
+                color: paletteCacheText.m3onSurface
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: 12
-                z: 1  // 🗣️ TEXT ON TOP 🗣️
+                z: 1  // DIH ON TOP 😳😳😳😳😳😳😳
             }
 
             RippleButton {
                 buttonRadius: 9999
-                implicitWidth: 37.5
+                implicitWidth: 32.5
                 implicitHeight: 32.5
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.topMargin: 8
                 anchors.rightMargin: 8
+                settings: true
                 onClicked: { persist.settingsOpen = false }
 
                 contentItem: MaterialSymbol {
@@ -315,43 +331,52 @@ Singleton {
                     iconSize: 22.5
                     horizontalAlignment: Text.AlignHCenter
                 }
-                z: 1  // 🔥 BUTTON ON TOP TOO 🔥
+                z: 1  // DIJ ON TOP TOO 😳😳😳😳
             }
 
             RowLayout {
                 anchors.fill: parent
-                anchors.leftMargin: 10
-                anchors.rightMargin: 10
                 anchors.topMargin: 45
                 anchors.bottomMargin: 10
+                                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
                 spacing: 10
 
-                Nav.NavigationRail {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 70
-                    selectedIndex: persist.currentPage
-                    z: -9  // 😳 TABS IN THE GOOBER LAYER 😳
+                NavigationRail {
+        id: navRail
+        Layout.fillHeight: true
+        spacing: 10
+        expanded: true
 
-                    // One of my goobers found the main chars at the speed of TON 618 drifting
-                    Nav.TabButtonSettings {
-                        label: "Palette"
-                        iconName: "palette"   // My goober holded and shoved me its dingaling vhile placing it on a rail and smacking it's ass vith a shovel 🥵🥵🥵
-                        active: persist.currentPage === 0
-                        onClicked: persist.currentPage = 0
-                    }
+        NavigationRailTabArray {
+            currentIndex: persist.currentPage
+            expanded: true
+            Repeater {
+                model: dihtsvindovisnttuff.pages
+                NavigationRailButton {
+                    required property var index
+                    required property var modelData
+                    toggled: persist.currentPage === index
+                    onPressed: persist.currentPage = index
+                    expanded: true
+                    buttonIcon: modelData.icon
+                    buttonText: modelData.name
                 }
+            }
+        }
+
+        Item { Layout.fillHeight: true } // DIJ BESTIE 😭😭😭😭😭😭😭😭
+    }
 
                 // GOOBER CLICK AREA LIKE THE FUZZY MINE TIME EATING MARIOS ASS 🥵🥵🥵
                 Rectangle {
+                    id: iFrickedToMyDih
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    // width: dihtsvindovisnttuff.width
-                    // Layout.margins: 0       // general margin
-                    // Layout.leftMargin: 80    // specific left margin
-                    color: paletteCache.surfaceContainerHigh
+                    color: paletteCache.m3surfaceContainerHigh
                     radius: 8
 
-                    Loader {
+                        Loader {
                         id: pageLoader
                         anchors.fill: parent
                         anchors.margins: 16
@@ -359,102 +384,14 @@ Singleton {
                         
                          source: {
         switch (persist.currentPage) {
-            case 0: return "pages/PalettePage.qml"  // 🔥 LOAD THE SEPARATE FILE 🔥
-            // case 1: return "pages/GeneralPage.qml"
-            // case 2: return "pages/AdvancedPage.qml"
-            default: return "pages/PalettePage.qml"
+            case 0: return "pages/PalettePage.qml"  // GOON TO THE NEWBORN GOOBER 👩‍🍼👩‍🍼👩‍🍼
+            case 1: return "pages/GeneralPage.qml" // GOON TO THE NEWBORN P DIDDY👩‍🍼👩‍🍼👩‍🍼
+            case 2: return "pages/AdvancedPage.qml" // GOON TO THE NEWBORN GOONER 👩‍🍼👩‍🍼👩‍🍼
+            default: return "pages/PalettePage.qml" // GOON TO THE SHOOK DIH VHILE THE MOMS ARE FEEDING IT 👩‍🍼👩‍🍼👩‍🍼
         }
     }
-    
-    // 💀💀💀 PASS ALL THE DINGHALING PROPS TO THE PAGE 💀💀💀
-    onLoaded: {
-        item.paletteCache = Qt.binding(() => paletteCache)
-        item.paletteCacheText = Qt.binding(() => paletteCacheText)
-        item.persist = persist
-        item.wallpaperModel = wallpaperModel
-        item.applyWallpaper = applyWallpaper
-        item.colorSchemeMenu = colorSchemeMenu
-    }
-                    }
-
-                    Component {
-                        id: generalPageComponent
-                        
-                        Column {
-                            spacing: 16
-                            
-                            Text {
-                                text: "⚙️ General Settings"
-                                font.pixelSize: 18
-                                font.weight: Font.Bold
-                                color: Palette.palette().onSurface
-                            }
-                            
-                            Text {
-                                text: "the basic stuff fr"
-                                font.pixelSize: 12
-                                color: Palette.palette().onSurfaceVariant
-                            }
-                            
-                            Rectangle {
-                                implicitWidth: parent.width
-                                implicitHeight: 100
-                                color: Palette.palette().secondaryContainer
-                                radius: 8
-                                
-                                Text {
-                                    anchors.centerIn: parent
-                                    text: "General options here\n(toggles and stuff)"
-                                    color: Palette.palette().onSecondaryContainer
-                                    horizontalAlignment: Text.AlignHCenter
-                                }
-                            }
-                        }
-                    }
-
-                    Component {
-                        id: advancedPageComponent
-                        
-                        Column {
-                            spacing: 16
-                            
-                            Text {
-                                text: "🔧 Advanced Settings"
-                                font.pixelSize: 18
-                                font.weight: Font.Bold
-                                color: Palette.palette().onSurface
-                            }
-                            
-                            Text {
-                                text: "for the brave souls only 💀"
-                                font.pixelSize: 12
-                                color: Palette.palette().onSurfaceVariant
-                            }
-                            
-                            Rectangle {
-                                implicitWidth: parent.width
-                                implicitHeight: 100
-                                color: Palette.palette().tertiaryContainer
-                                radius: 8
-                                
-                                Text {
-                                    anchors.centerIn: parent
-                                    text: "Advanced options here\n(don't touch unless u know what ur doing)"
-                                    color: Palette.palette().onTertiaryContainer
-                                    horizontalAlignment: Text.AlignHCenter
-                                }
-                            }
-                        }
                     }
                 }
-            }
-
-            // THE GOONER SELECTER (LIVES INSIDE A DIH OHM BUT INSIDE A GOOBER) 🥵🥵🥵
-            Menu.HamburgerMenu {
-                id: colorSchemeMenu
-                anchors.fill: parent
-                minWidth: 140
-                z: 99999  // GOON ON TOP OF MY DIH 🥵🥵🥵💦💦💦
             }
         }
     }

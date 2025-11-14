@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 .pragma library
 // Centralized color tokens (Material 3 style). Non-QML JS module.
 // Import in QML with: import "../colors.js" as Palette

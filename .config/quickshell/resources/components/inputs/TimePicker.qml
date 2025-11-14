@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "."
+import qs.common
 
 Item {
   id: root
@@ -57,7 +60,7 @@ Item {
 
   Text {
     text: "Select time"
-    color: Palette.palette().onSurfaceVariant
+    color: Appearance.m3colors.m3onSurfaceVariant
     anchors.left: parent.left
     anchors.leftMargin: 8
     anchors.top: parent.top
@@ -75,7 +78,7 @@ Item {
     Rectangle {
       id: hourTile
       radius: 8
-      color: selectingHour ? Palette.palette().primary : Palette.palette().surfaceVariant
+      color: selectingHour ? Appearance.m3colors.m3primary : Appearance.m3colors.m3surfaceVariant
       border.width: 0
       width: 96
       height: 56
@@ -84,18 +87,18 @@ Item {
       Text {
         anchors.centerIn: parent
         text: root.displayHour()
-        color: selectingHour ? Palette.palette().onPrimary : Palette.palette().onSurface
+        color: selectingHour ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
         font.pixelSize: 28
         font.bold: true
       }
     }
 
-    Text { text: ":"; color: Palette.palette().onSurfaceVariant; anchors.verticalCenter: hourTile.verticalCenter; font.pixelSize: 24 }
+    Text { text: ":"; color: Appearance.m3colors.m3onSurfaceVariant; anchors.verticalCenter: hourTile.verticalCenter; font.pixelSize: 24 }
 
     Rectangle {
       id: minuteTile
       radius: 8
-      color: !selectingHour ? Palette.palette().primary : Palette.palette().surfaceVariant
+      color: !selectingHour ? Appearance.m3colors.m3primary : Appearance.m3colors.m3surfaceVariant
       border.width: 0
       width: 96
       height: 56
@@ -104,7 +107,7 @@ Item {
       Text {
         anchors.centerIn: parent
         text: pad2(root.minute)
-        color: !selectingHour ? Palette.palette().onPrimary : Palette.palette().onSurface
+        color: !selectingHour ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
         font.pixelSize: 28
         font.bold: true
       }
@@ -117,7 +120,7 @@ Item {
       width: 64
       height: 96
       anchors.verticalCenter: hourTile.verticalCenter
-      property color borderColor: Palette.palette().outline
+      property color borderColor: Appearance.m3colors.m3outline
       property real borderWidth: 2
 
       // AM half
@@ -135,8 +138,8 @@ Item {
           ctx.lineJoin = 'miter'
           var rTop = 10
           var bw = ampmSegment.borderWidth
-          var fill = (root.hour < 12) ? Palette.palette().primary : 'transparent'
-          var stroke = (root.hour < 12) ? Palette.palette().primary : ampmSegment.borderColor
+          var fill = (root.hour < 12) ? Appearance.m3colors.m3primary : 'transparent'
+          var stroke = (root.hour < 12) ? Appearance.m3colors.m3primary : ampmSegment.borderColor
           // Fill path with rounded top corners only
           ctx.beginPath()
           ctx.moveTo(bw, height - bw)
@@ -169,7 +172,7 @@ Item {
         }
         MouseArea { anchors.fill: parent; onClicked: { if (root.hour >= 12) { root.hour -= 12; root.timeChanged(root.hour, root.minute); amCanvas.requestPaint(); pmCanvas.requestPaint() } } }
         Behavior on opacity { NumberAnimation { duration: 140; easing.type: Easing.InOutQuad } }
-        Text { anchors.centerIn: parent; text: 'AM'; font.bold: true; color: root.hour < 12 ? Palette.palette().onPrimary : Palette.palette().onSurface; Behavior on color { ColorAnimation { duration: 160; easing.type: Easing.InOutQuad } } }
+        Text { anchors.centerIn: parent; text: 'AM'; font.bold: true; color: root.hour < 12 ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface; Behavior on color { ColorAnimation { duration: 160; easing.type: Easing.InOutQuad } } }
       }
 
       // PM half
@@ -187,8 +190,8 @@ Item {
           ctx.lineJoin = 'miter'
           var rBot = 10
           var bw = ampmSegment.borderWidth
-          var fill = (root.hour >= 12) ? Palette.palette().primary : 'transparent'
-          var stroke = (root.hour >= 12) ? Palette.palette().primary : ampmSegment.borderColor
+          var fill = (root.hour >= 12) ? Appearance.m3colors.m3primary : 'transparent'
+          var stroke = (root.hour >= 12) ? Appearance.m3colors.m3primary : ampmSegment.borderColor
           // Fill path with rounded bottom corners only
           ctx.beginPath()
           ctx.moveTo(bw, 0)
@@ -222,7 +225,7 @@ Item {
         }
         MouseArea { anchors.fill: parent; onClicked: { if (root.hour < 12) { root.hour += 12; root.timeChanged(root.hour, root.minute); amCanvas.requestPaint(); pmCanvas.requestPaint() } } }
         Behavior on opacity { NumberAnimation { duration: 140; easing.type: Easing.InOutQuad } }
-        Text { anchors.centerIn: parent; text: 'PM'; font.bold: true; color: root.hour >= 12 ? Palette.palette().onPrimary : Palette.palette().onSurface; Behavior on color { ColorAnimation { duration: 160; easing.type: Easing.InOutQuad } } }
+        Text { anchors.centerIn: parent; text: 'PM'; font.bold: true; color: root.hour >= 12 ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface; Behavior on color { ColorAnimation { duration: 160; easing.type: Easing.InOutQuad } } }
       }
     }
   }
@@ -244,7 +247,7 @@ Item {
       width: dialArea.radius * 2
       height: dialArea.radius * 2
       radius: width / 2
-      color: Palette.palette().surfaceVariant
+      color: Appearance.m3colors.m3surfaceVariant
     }
 
     // Minute tick marks to help read minute position (visible in minute mode)
@@ -272,7 +275,7 @@ Item {
           ctx.beginPath()
           ctx.moveTo(x1, y1)
           ctx.lineTo(x2, y2)
-          ctx.strokeStyle = (i % 5 === 0) ? Palette.palette().onSurface : Palette.palette().onSurfaceVariant
+          ctx.strokeStyle = (i % 5 === 0) ? Appearance.m3colors.m3onSurface : Appearance.m3colors.m3onSurfaceVariant
           ctx.lineWidth = (i % 5 === 0) ? 2 : 1
           ctx.stroke()
         }
@@ -301,7 +304,7 @@ Item {
           ctx.beginPath()
           ctx.moveTo(x1, y1)
           ctx.lineTo(x2, y2)
-          ctx.strokeStyle = Palette.palette().onSurface
+          ctx.strokeStyle = Appearance.m3colors.m3onSurface
           ctx.lineWidth = 2
           ctx.stroke()
         }
@@ -333,13 +336,13 @@ Item {
         z: hovered ? 10 : (selected ? 3 : 0)
         x: dialArea.centerX + (dialArea.radius - 20) * Math.cos((index1 - 3) * Math.PI / 6) - width / 2
         y: dialArea.centerY + (dialArea.radius - 20) * Math.sin((index1 - 3) * Math.PI / 6) - height / 2
-        Rectangle { anchors.fill: parent; radius: width/2; color: Palette.palette().primary; visible: false }
+        Rectangle { anchors.fill: parent; radius: width/2; color: Appearance.m3colors.m3primary; visible: false }
         Text {
           anchors.centerIn: parent
           text: index1
           // Only change when knob overlaps the label area
           color: (hovered && Math.abs(Math.atan2(Math.sin(hand.angleRad - ((index1*30-90)*Math.PI/180)), Math.cos(hand.angleRad - ((index1*30-90)*Math.PI/180)))) < (10 * Math.PI/180))
-                 ? Palette.palette().onPrimary : Palette.palette().onSurface
+                 ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
           font.pixelSize: 14
           // keep static color to avoid double-circle look with knob
         }
@@ -359,13 +362,13 @@ Item {
         z: hovered ? 10 : (selected ? 3 : 0)
         x: dialArea.centerX + (dialArea.radius - 20) * Math.cos((minuteIndex - 15) * Math.PI / 30) - width / 2
         y: dialArea.centerY + (dialArea.radius - 20) * Math.sin((minuteIndex - 15) * Math.PI / 30) - height / 2
-        Rectangle { anchors.fill: parent; radius: width/2; color: Palette.palette().primary; visible: false }
+        Rectangle { anchors.fill: parent; radius: width/2; color: Appearance.m3colors.m3primary; visible: false }
         Text {
           anchors.centerIn: parent
           text: root.pad2(minuteIndex)
           // Only change when knob overlaps the label area
           color: (hovered && Math.abs(Math.atan2(Math.sin(hand.angleRad - ((minuteIndex*6-90)*Math.PI/180)), Math.cos(hand.angleRad - ((minuteIndex*6-90)*Math.PI/180)))) < (8 * Math.PI/180))
-                 ? Palette.palette().onPrimary : Palette.palette().onSurface
+                 ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
           font.pixelSize: 12
           // keep static color to avoid double-circle look with knob
         }
@@ -390,7 +393,7 @@ Item {
         id: handLine
         width: 2
         height: hand.length
-        color: Palette.palette().onSurface
+        color: Appearance.m3colors.m3onSurface
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenterOffset: -hand.length / 2
         anchors.verticalCenter: parent.verticalCenter
@@ -401,7 +404,7 @@ Item {
         width: 36
         height: 36
         radius: 18
-        color: Palette.palette().primary
+        color: Appearance.m3colors.m3primary
         // Position bound to current angle; derived from dial center
         x: dialArea.centerX + hand.length * Math.cos(hand.angleRad) - width/2
         y: dialArea.centerY + hand.length * Math.sin(hand.angleRad) - height/2

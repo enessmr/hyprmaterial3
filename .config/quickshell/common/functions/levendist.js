@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 // Original code from https://github.com/koeqaife/hyprland-material-you
 // Original code license: GPLv3
 // Translated to Js from Cython with an LLM and reviewed

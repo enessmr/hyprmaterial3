@@ -1,7 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import Quickshell
 import qs.common.functions
-import "../resources/colors.js" as Palette
 pragma Singleton
 pragma ComponentBehavior: Bound
 
@@ -38,7 +39,7 @@ Singleton {
     property real contentTransparency: Config?.options.appearance.transparency.enable ? Config?.options.appearance.transparency.automatic ? autoContentTransparency : Config?.options.appearance.transparency.contentTransparency : 0
 
     m3colors: QtObject {
-        property bool darkmode: false
+        property bool darkmode: true
         property bool transparent: false
         property color m3primary_paletteKeyColor: "#91689E"
         property color m3secondary_paletteKeyColor: "#837186"
@@ -217,22 +218,23 @@ Singleton {
     }
 
     animationCurves: QtObject {
-        readonly property list<real> expressiveFastSpatial: [0.42, 1.67, 0.21, 0.90, 1, 1] // Default, 350ms
-        readonly property list<real> expressiveDefaultSpatial: [0.38, 1.21, 0.22, 1.00, 1, 1] // Default, 500ms
-        readonly property list<real> expressiveSlowSpatial: [0.39, 1.29, 0.35, 0.98, 1, 1] // Default, 650ms
-        readonly property list<real> expressiveEffects: [0.34, 0.80, 0.34, 1.00, 1, 1] // Default, 200ms
-        readonly property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
-        readonly property list<real> emphasizedFirstHalf: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82]
-        readonly property list<real> emphasizedLastHalf: [5 / 24, 0.82, 0.25, 1, 1, 1]
-        readonly property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
-        readonly property list<real> emphasizedDecel: [0.05, 0.7, 0.1, 1, 1, 1]
-        readonly property list<real> standard: [0.2, 0, 0, 1, 1, 1]
-        readonly property list<real> standardAccel: [0.3, 0, 1, 1, 1, 1]
-        readonly property list<real> standardDecel: [0, 0, 0, 1, 1, 1]
-        readonly property real expressiveFastSpatialDuration: 350
-        readonly property real expressiveDefaultSpatialDuration: 500
-        readonly property real expressiveSlowSpatialDuration: 650
-        readonly property real expressiveEffectsDuration: 200
+        // Replaced springy curves with smooth standard easing
+        readonly property list<real> expressiveFastSpatial: [0.4, 0, 0.2, 1, 1, 1] // Standard ease
+        readonly property list<real> expressiveDefaultSpatial: [0.4, 0, 0.2, 1, 1, 1] // Standard ease
+        readonly property list<real> expressiveSlowSpatial: [0.4, 0, 0.2, 1, 1, 1] // Standard ease
+        readonly property list<real> expressiveEffects: [0.4, 0, 0.2, 1, 1, 1] // Standard ease
+        readonly property list<real> emphasized: [0.4, 0, 0.2, 1, 1, 1] // Standard ease
+        readonly property list<real> emphasizedFirstHalf: [0.4, 0, 0.6, 0.5]
+        readonly property list<real> emphasizedLastHalf: [0.4, 0.5, 0.2, 1, 1, 1]
+        readonly property list<real> emphasizedAccel: [0.4, 0, 1, 1, 1, 1] // Accel
+        readonly property list<real> emphasizedDecel: [0, 0, 0.2, 1, 1, 1] // Decel
+        readonly property list<real> standard: [0.4, 0, 0.2, 1, 1, 1]
+        readonly property list<real> standardAccel: [0.4, 0, 1, 1, 1, 1]
+        readonly property list<real> standardDecel: [0, 0, 0.2, 1, 1, 1]
+        readonly property real expressiveFastSpatialDuration: 250
+        readonly property real expressiveDefaultSpatialDuration: 300
+        readonly property real expressiveSlowSpatialDuration: 400
+        readonly property real expressiveEffectsDuration: 150
     }
 
     animation: QtObject {
@@ -257,7 +259,7 @@ Singleton {
             }
         }
         property QtObject elementMoveEnter: QtObject {
-            property int duration: 400
+            property int duration: 300
             property int type: Easing.BezierSpline
             property list<real> bezierCurve: animationCurves.emphasizedDecel
             property int velocity: 650
@@ -299,9 +301,9 @@ Singleton {
             }}
         }
         property QtObject clickBounce: QtObject {
-            property int duration: 200
+            property int duration: 150
             property int type: Easing.BezierSpline
-            property list<real> bezierCurve: animationCurves.expressiveFastSpatial
+            property list<real> bezierCurve: animationCurves.standard
             property int velocity: 850
             property Component numberAnimation: Component { NumberAnimation {
                     duration: root.animation.clickBounce.duration
@@ -315,8 +317,8 @@ Singleton {
             property list<real> bezierCurve: animationCurves.standardDecel
         }
         property QtObject menuDecel: QtObject {
-            property int duration: 350
-            property int type: Easing.OutExpo
+            property int duration: 300
+            property int type: Easing.OutCubic
         }
     }
 

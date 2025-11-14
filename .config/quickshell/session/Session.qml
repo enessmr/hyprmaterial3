@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -68,7 +70,7 @@ Scope {
             WlrLayershell.namespace: "quickshell:session"
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
-            color: ColorUtils.transparentize(Pallete.palette().shadow, 0.1)
+            color: ColorUtils.transparentize(Appearance?.m3colors?.m3shadow, 0.1)
 
             anchors {
                 top: true
@@ -91,7 +93,7 @@ Scope {
 
                 Rectangle {
                     anchors.fill: parent
-                    color: Pallete.palette().surfaceContainerLowest
+                    color: Appearance?.m3colors?.m3surfaceContainerLowest
                     radius: 28
                 }
 
@@ -155,7 +157,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -208,7 +210,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -262,7 +264,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -314,7 +316,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -366,7 +368,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -420,7 +422,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -474,7 +476,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }
@@ -527,7 +529,7 @@ Scope {
                                     font.pixelSize: 14
                                     font.family: "Roboto"
                                     font.weight: Font.Medium
-                                    color: Pallete.palette().onSurface
+                                    color: Appearance?.m3colors?.m3onSurface
                                 }
                             }
                         }

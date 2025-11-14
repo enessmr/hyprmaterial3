@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 // very bad code DO NOT COPY
 // i vill not make cursed comments bc bad code and never used...
 pragma ComponentBehavior: Bound

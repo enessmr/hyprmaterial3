@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
@@ -7,8 +10,8 @@ Rectangle {
     property int padding: 8
     property real cornerRadius: 14
     radius: cornerRadius
-    color: Palette.isDarkMode() ? Qt.lighter(Palette.palette().surface, 1.08)
-                                : Qt.darker(Palette.palette().surface, 1.03)
+    color: Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surface, 1.08)
+                                : Qt.darker(Appearance.m3colors.m3surface, 1.03)
     border.width: 0
     clip: true
 

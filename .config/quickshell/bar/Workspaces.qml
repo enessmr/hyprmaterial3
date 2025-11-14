@@ -1,10 +1,13 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import qs
 import qs.bar
-import "../resources/colors.js" as Pallete
+import Quickshell
+import qs.common
 
 FullwidthMouseArea {
     id: root
@@ -34,6 +37,9 @@ FullwidthMouseArea {
             const targetWorkspace = currentIndex + offset;
             const id = Math.max(wsBaseIndex, Math.min(wsBaseIndex + wsCount - 1, targetWorkspace));
             if (id != currentIndex) Hyprland.dispatch(`workspace ${id}`);
+        }
+        onWorkspaceChanged: {
+            Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-wooh.mp3"])
         }
     }
 
@@ -107,7 +113,7 @@ FullwidthMouseArea {
                         id: bg
                         anchors.fill: parent
                         radius: width / 2
-                        color: wsItem.active ? Pallete.palette().primary : Pallete.palette().surface
+                        color: wsItem.active ? Appearance.m3colors.m3primary : Appearance.m3colors.m3surface
                         opacity: 1
                         antialiasing: true
                     }
@@ -125,7 +131,7 @@ FullwidthMouseArea {
                         visible: true
 
                         // Color changes based on active workspace status
-                        color: wsItem.active ? Pallete.palette().onPrimary : Pallete.palette().onSecondaryContainer
+                        color: wsItem.active ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSecondaryContainer
 
                         Behavior on opacity {
                             NumberAnimation {
@@ -140,7 +146,7 @@ FullwidthMouseArea {
                         id: numberText
                         anchors.centerIn: parent
                         text: wsIndex
-                        color: wsItem.active ? Pallete.palette().onPrimary : Pallete.palette().onSurface
+                        color: wsItem.active ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
                         opacity: 0
                         font.pixelSize: 12
                         font.bold: true
@@ -152,7 +158,7 @@ FullwidthMouseArea {
                     Rectangle {
                         anchors.fill: bg
                         radius: bg.radius
-                        color: Pallete.palette().onSurface
+                        color: Appearance.m3colors.m3onSurface
                         opacity: wsItem.containsPress ? 0.14 : (wsItem.containsMouse ? 0.06 : 0.0)
                         visible: true
 

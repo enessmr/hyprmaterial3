@@ -1,9 +1,21 @@
 //@ pragma ShellId shell
 
-import Quickshell
+//@ pragma UseQApplication
+//@ pragma Env QS_NO_RELOAD_POPUP=1
+//@ pragma Env QT_QUICK_CONTROLS_STYLE=Basic
+//@ pragma Env QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000
+
+// Adjust this to make the shell smaller or larger
+//@ pragma Env QT_SCALE_FACTOR=1
+
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import Quickshell.Io
 import Quickshell.Wayland
 import QtQuick
+import QtQuick.Window
+import Quickshell
+import qs.services
 import QtQuick.Layouts
 import qs.screenshot as Screenshot
 import qs.bar as Bar
@@ -15,11 +27,11 @@ import qs.Dih
 import qs.bar.roundedcorner
 import qs.lockend4
 import qs.screenCorners
-import qs.services
 import qs.common
 import qs.common.widgets
 import qs.common.functions
 import qs.Dih.ai
+import qs
 
 ShellRoot {
 	property bool enableScreenCorners: true
@@ -28,9 +40,11 @@ ShellRoot {
 	property bool enableNotificationPopup: true
 	property bool enableDihEmoji: true
 	property bool enableDihAi: true
+	property bool enableReloadPopup: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
+		MaterialThemeLoader.reapplyTheme()
 		// Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
         // Hyprsunset.load()
@@ -109,4 +123,5 @@ ShellRoot {
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 	LazyLoader { active: enableDihEmoji; component: Emoji {} }
 	LazyLoader { active: enableDihAi; component: Ai {} }
+	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
 }

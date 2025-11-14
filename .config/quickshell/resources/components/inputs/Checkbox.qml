@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -25,10 +28,10 @@ Item {
             id: box
             width: 18; height: 18; radius: 4
             border.width: (root.enabled && !checked) ? 2 : 0
-            border.color: root.enabled ? Palette.palette().onSurfaceVariant : Qt.rgba(0.5,0.5,0.5,1)
+            border.color: root.enabled ? Appearance.m3colors.m3onSurfaceVariant : Qt.rgba(0.5,0.5,0.5,1)
             // Disabled variants should be neutral gray
             color: !root.enabled ? Qt.rgba(0.35,0.35,0.35,1)
-                              : (checked ? Palette.palette().primary : "transparent")
+                              : (checked ? Appearance.m3colors.m3primary : "transparent")
             opacity: 1.0
             Behavior on color { ColorAnimation { duration: 120; easing.type: Easing.InOutQuad } }
             Behavior on border.width { NumberAnimation { duration: 100; easing.type: Easing.InOutQuad } }
@@ -39,7 +42,7 @@ Item {
                 onPaint: {
                     var ctx = getContext('2d')
                     ctx.reset()
-                    ctx.strokeStyle = root.enabled ? Palette.palette().onPrimary : Qt.rgba(0.82,0.82,0.82,1)
+                    ctx.strokeStyle = root.enabled ? Appearance.m3colors.m3onPrimary : Qt.rgba(0.82,0.82,0.82,1)
                     ctx.lineWidth = 2
                     ctx.lineCap = 'round'
                     ctx.beginPath()
@@ -55,7 +58,7 @@ Item {
         Text {
             id: label
             text: root.text
-            color: root.enabled ? Palette.palette().onSurface : Qt.rgba(0.75,0.75,0.75,1)
+            color: root.enabled ? Appearance.m3colors.m3onSurface : Qt.rgba(0.75,0.75,0.75,1)
             anchors.verticalCenter: box.verticalCenter
             font.pixelSize: 14
         }

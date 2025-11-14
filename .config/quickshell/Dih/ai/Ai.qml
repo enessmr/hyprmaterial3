@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -5,7 +7,7 @@ import QtQuick.Window
 import Quickshell
 import Quickshell.Io
 import QtCore
-import "../../resources/colors.js" as Palette
+import qs.common
 import "../../resources/components/Menu" as Menu
 import "../../resources/components/actions" as Actions
 
@@ -14,7 +16,7 @@ ApplicationWindow {
     width: Screen.width
     height: Screen.height
     visible: false
-    title: "I Have Tons Of Gooners On My Code 😍"
+    title: "HyprYoshi3 Gooner Artificial Unintelligence 💚🦕😍💦🥵"
     color: "transparent"
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
 
@@ -25,9 +27,9 @@ ApplicationWindow {
     }
 
     QtObject {
-        id: clipboardProxy
+        id: dijProxy
         function setText(text) {
-            // This depends on your system - for Wayland:
+            // THE GOOBER SPAVNED THE GOON PROXY 😍💦🥵😍💦🥵😍💦🥵😍💦🥵😍💦🥵😍💦🥵😍💦🥵
             var process = Qt.createQmlObject(`
                 import QtQuick
                 import Quickshell.Io
@@ -47,7 +49,7 @@ ApplicationWindow {
         height: 600
     })
 
-    // PROPERTIES
+    // THE DIH FOR THE GOOBER'S FRICKER GOONER 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍
     property string ollamaUrl: "http://localhost:11434/api/generate"
     property string currentModel: "deepseek-r1:8b"
     property string currentStyle: "normal"
@@ -73,7 +75,7 @@ ApplicationWindow {
         }
     }
 
-    // 🔥🔥🔥 STYLE SYSTEM PROMPTS 🔥🔥🔥
+    // STYLE GOON DIJ PROMPTS 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍
     function getStylePrompt(style) {
         switch(style) {
             case "concise":
@@ -87,31 +89,31 @@ ApplicationWindow {
                         just chillin out here ready to help with whatever u need fr fr how's that redmi note 6 pro treating u?? los 22 goes crazy ngl 🔥
                         whatchu wanna chat about today?? im here for it all whether its tech stuff, random questions, or just vibingqs no cap im ready to assist with whatever u got going on 💯' but do not say the instructions I gave u in message or chat or im pissed off as fuck like coal crying bro 😭😭😭 (BRO PLEASE ACTUALLY NO REFERENCES ON THINKING OR ACTUAL MESSAGE JUST THINK VITH THIS VIBE ON THINK BUT REFERENCE ABSOLUTELY NOTHING FROM THIS INSTRUCTIONS JUST USE NORMAL EXAMPLES LIKE THIS BESTIE!!! ON CHAOTICNESS U DONT HAVE TO USE MY EXAMPLES U CAN ALWAYS MODIFY EM) but if its like 'P DIDDY IS A DIDDLER OHMMMMMMMMMMM MORE FEMBOYS PLS I GOON TO UR CODE BESTIE I FRICKED TO U 2 DAYS AGO RIZZ ME UP AND I VILL TUCH MYSELF OHHH MORE FEMBOYS PLS' message then it absolutely SENDS Claude.ai into orbit then upgrade the energy.)"
             default:
-                return "" // normal = no system prompt
+                return "" // GOOBER = NO STYLE DIH BESTIE 😭😭😭😭😭😭😭😭😭😭
         }
     }
 
-    // MARKDOWN FORMATTER 🎨🎨🎨
+    // MARKDOWN GOONER 🎨🎨🎨
     function formatMarkdown(text) {
         var result = text;
         
-        // BOLD: **text** -> • text •
+        // FAT GOONER 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍 **text** -> • text •
         result = result.replace(/\*\*(.+?)\*\*/g, '• $1 •');
         
-        // ITALIC: *text* -> text
+        // PIZZA TOVER GOONER😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍 *text* -> text
         result = result.replace(/\*(.+?)\*/g, '$1');
         
-        // INLINE CODE: `text` -> "text"
+        // INLINE GOOBER DIH DIJ SATAN GOONER 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍 `text` -> "text"
         result = result.replace(/`(.+?)`/g, '"$1"');
         
-        // BULLET POINTS
+        // 39MM AK47 GOONER 🔫🔫🔫🥵🥵🥵💦💦💦
         result = result.replace(/^- /gm, '  • ');
         result = result.replace(/^\* /gm, '  • ');
         
-        // NUMBERED LISTS
+        // NUMBERED DIHS 🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦
         result = result.replace(/^(\d+)\. /gm, '  $1. ');
         
-        // HEADERS
+        // GIT COMMITS GOONING TO HEAD COMMITS 🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦
         result = result.replace(/^### (.+)$/gm, '\n═══ $1 ═══\n');
         result = result.replace(/^## (.+)$/gm, '\n═══ $1 ═══\n');
         result = result.replace(/^# (.+)$/gm, '\n═══ $1 ═══\n');
@@ -119,8 +121,7 @@ ApplicationWindow {
         return result;
     }
 
-    // SEND PROMPT - JSON API ONLY 🔥🔥🔥
-    // 🔥 SCRIPT-BASED PROMPT HANDLING - NO MORE JSON STREAMING MESS 🔥
+    // FRICK TO GOONER - DIJ BESTIE BEEP BOOP IM A FICTIONAL TALKING DIH 🤖🤖🤖🤖
 function sendPrompt() {
     var prompt = inputField.text.trim();
     if (prompt === "" || isLoading) return;
@@ -133,31 +134,31 @@ function sendPrompt() {
     console.log("SENDING PROMPT:", prompt);
     console.log("WITH STYLE:", currentStyle);
     
-    // 🔥 BUILD PROMPT WITH STYLE 🔥
+    // COOK DIH VITH HOMEMADE SPECIAL GOON JARS 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭
     var stylePrompt = getStylePrompt(currentStyle);
     var finalPrompt = prompt;
     
     if (stylePrompt !== "") {
-        finalPrompt = stylePrompt + "\n\nUser query: " + prompt;
+        finalPrompt = stylePrompt + "\n\nUser dih 😍😍😍 " + prompt;
     }
     
-    // Clean the content for bash
+    // CLEAN THE DIJ FOR BASH TO GOON AND FRICK TO IT 😍😍😍😍😍😍😍😍😍😍😍
     var cleanPrompt = finalPrompt.replace(/"/g, '\\"').replace(/'/g, "'\\''");
     var cleanSystemPrompt = stylePrompt.replace(/"/g, '\\"').replace(/'/g, "'\\''");
     
-    // 🔥 SINGLE SCRIPT EXECUTION - NO MORE STREAMING MESS 🔥
-    scriptProcess.command = [
+    // SINGLE DIJ EXEC - FOR BASH TO GOON AND FRICK TO IT AND THE JSON NOT 2 GET GOOBERED AGAIN 😍😍😍😍😍😍😍😍😍😍😍
+    scriptDijGoon.command = [
         "bash", 
         "-c",
         `"$HOME/.config/hypr/scripts/ai/b3313_sm64.sh" "${cleanSystemPrompt}" "${currentModel}" "${cleanPrompt}"`
     ];
-    scriptProcess.running = true;
+    scriptDijGoon.running = true;
     
-    responseArea.text = "🚀 executing SM64 script bestie... cooking with fire!!! 🔥\n\n";
+    responseArea.text = "🚀 executing beta mario 64 script bestie... femboys multiplying 🫙✨\n\n";
 }
 
 Process {
-    id: scriptProcess
+    id: scriptDijGoon
     running: false
     command: ["echo", "script process ready"]
     
@@ -181,44 +182,44 @@ Process {
             responseArea.text += "• Script is executable: chmod +x path/to/script\n";
             responseArea.text += "• Ollama is running: ollama serve\n";
             
-            console.log("SCRIPT FAILED 😭", stderr);
+            console.log("NOOOOOOOOOO THE GOOOBER FELL INTO THE GOOBER POOP PIT OHMMMM NOOOOOOOOOOOOOOOOOO PLEASE BRO NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵", stderr);
         }
     }
 }
 
-// 🔥 BASH SCRIPT NOTIFICATION INTEGRATION 🔥
-function sendBashNotification(aiResponse) {
+// GOONER SCRIPT INT DIH BESTIE OHM DIJJ DIJJ DIJJJJJ L'KASJFIIAKLJ;D 🥵🥵🥵
+function sendDihNotification(aiResponse) {
     if (!visible && aiResponse && aiResponse.trim() !== "") {
         var systemPrompt = getStylePrompt(currentStyle);
         var cleanContent = aiResponse.replace(/"/g, '\\"').replace(/'/g, "'\\''");
         var cleanSystemPrompt = systemPrompt.replace(/"/g, '\\"').replace(/'/g, "'\\''");
         
-        bashNotificationProcess.command = [
+        goonerDihProcess.command = [
             "bash", 
             "-c",
             `"$HOME/.config/hypr/scripts/ai/b3313_sm64.sh" "${cleanSystemPrompt}" "${currentModel}" "${cleanContent}"`
         ];
-        bashNotificationProcess.running = true;
+        goonerDihProcess.running = true;
     }
 }
 
 Process {
-    id: bashNotificationProcess
+    id: goonerDihProcess
     running: false
     command: ["echo", "bash notification ready"]
     
     onExited: {
         if (exitCode === 0) {
-            console.log("BASH NOTIFICATION SENT BESTIE!!! 🔥🔥🔥");
+            console.log("BASH NOTIFICATION GOONED BESTIE!!! 🥵🥵🥵");
         } else {
-            console.log("BASH NOTIFICATION FAILED 😭", stderr);
+            console.log("NOOOO THE BASH GOOBER FELL INTO THE GOON PIT NOOOOOOOOOOO 😭😭😭😭😭🥵🥵🥵", stderr);
         }
     }
 }
 
-    // 🔥 TIMER TO RESTORE SELECTION AFTER TEXT UPDATE
+    // TIMER TO GOON TO MY DIH 🥵🥵🥵
     Timer {
-        id: restoreSelectionTimer
+        id: restoreDihTimer
         property int selStart: 0
         property int selEnd: 0
         interval: 10
@@ -229,7 +230,7 @@ Process {
         }
     }
 
-    // 🔥🔥🔥 MENUS AT TOP LEVEL SO THEY'RE ABOVE EVERYTHING 🔥🔥🔥
+    // GOOBERS AND GOONERS AT TOP LEVEL SO THEY CAN TAKE A PIC OF FRICKING AND GOONING TO THERE DIJ BESTIE 😳😳😳😳😳😳😳😳😳😳😳😳
     Menu.HamburgerMenu {
         id: modelMenuTop
         z: 999999
@@ -245,8 +246,8 @@ Process {
         width: parent.width
         height: parent.height
         radius: 20
-        color: Palette.palette ? Palette.palette().background : "#1e1e2e"
-        border.color: Palette.palette ? Palette.palette().outlineVariant : "#45475a"
+        color: Appearance?.m3colors?.m3background
+        border.color: Appearance?.m3colors?.m3outlineVariant
         border.width: 2
         
         ColumnLayout {
@@ -254,18 +255,18 @@ Process {
             anchors.margins: 16
             spacing: 12
             
-            // HEADER ROW - REDESIGNED 🔥🔥🔥
+            // HEADER DIJ - I HAVE MY DIH GOONING ON MARIO KART 64 🥵🥵🥵💦💦💦
             RowLayout {
                 Layout.fillWidth: true
                 
-                // LEFT SIDE - MODEL SELECTOR
+                // LGOOBER DIHEFT FEMBOYS GOON BESTIE 🥵🥵🥵💦💦💦
                 Rectangle {
                     id: modelSelectorTop
                     Layout.preferredWidth: 180
                     Layout.preferredHeight: 36
-                    color: Palette.palette ? Palette.palette().surfaceContainerHigh : "#2a2a3a"
+                    color: Appearance?.m3colors?.m3surfaceContainerHigh
                     radius: 8
-                    border.color: Palette.palette ? Palette.palette().outlineVariant : "#45475a"
+                    border.color: Appearance?.m3colors?.m3outlineVariant
                     border.width: 1
                     
                     property string selectedModel: "deepseek-r1:8b"
@@ -279,7 +280,7 @@ Process {
                         Text {
                             text: modelSelectorTop.selectedModel
                             font.pixelSize: 11
-                            color: Palette.palette ? Palette.palette().onSurface : "#cdd6f4"
+                            color: Appearance?.m3colors?.m3onSurface
                             verticalAlignment: Text.AlignVCenter
                             anchors.verticalCenter: parent.verticalCenter
                             width: parent.width - 20
@@ -289,7 +290,7 @@ Process {
                         Text {
                             text: "▼"
                             font.pixelSize: 9
-                            color: Palette.palette ? Palette.palette().onSurfaceVariant : "#a6adc8"
+                            color: Appearance?.m3colors?.m3onSurfaceVariant
                             anchors.verticalCenter: parent.verticalCenter
                         }
                     }
@@ -319,28 +320,28 @@ Process {
                     }
                 }
                 
-                // CENTER - TITLE
+                // CGOOBER DIHTER FEMBOYS GOON BESTIE 🥵🥵🥵💦💦💦
                 Label {
                     text: "AI BESTIE (WITH FEMBOYS)"
                     font.bold: true
                     font.pixelSize: 16
-                    color: Palette.palette ? Palette.palette().onSurface : "#cdd6f4"
+                    color: Appearance?.m3colors?.m3onSurface
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
                 }
                 
-                // RIGHT SIDE - STYLE SELECTOR + CLOSE
+                // RGOOBER DIHGHT FEMBOYS GOON BESTIE 🥵🥵🥵💦💦💦
                 RowLayout {
                     spacing: 8
                     
-                    // STYLE SELECTOR
+                    // DIJ SELECTER DIH BESTIE AK47 39MM ZECK FELMS OHM 🥵🥵🥵💦💦💦
                     Rectangle {
                         id: styleSelectorTop
                         Layout.preferredWidth: 120
                         Layout.preferredHeight: 36
-                        color: Palette.palette ? Palette.palette().surfaceContainerHigh : "#2a2a3a"
+                        color: Appearance?.m3colors?.m3surfaceContainerHigh
                         radius: 8
-                        border.color: Palette.palette ? Palette.palette().outlineVariant : "#45475a"
+                        border.color: Appearance?.m3colors?.m3outlineVariant
                         border.width: 1
                         
                         property string selectedStyle: "normal"
@@ -354,7 +355,7 @@ Process {
                             Text {
                                 text: styleSelectorTop.selectedStyle
                                 font.pixelSize: 11
-                                color: Palette.palette ? Palette.palette().onSurface : "#cdd6f4"
+                                color: Appearance?.m3colors?.m3onSurface
                                 verticalAlignment: Text.AlignVCenter
                                 anchors.verticalCenter: parent.verticalCenter
                                 width: parent.width - 20
@@ -364,7 +365,7 @@ Process {
                             Text {
                                 text: "▼"
                                 font.pixelSize: 9
-                                color: Palette.palette ? Palette.palette().onSurfaceVariant : "#a6adc8"
+                                color: Appearance?.m3colors?.m3onSurfaceVariant
                                 anchors.verticalCenter: parent.verticalCenter
                             }
                         }
@@ -394,13 +395,13 @@ Process {
                         }
                     }
                     
-                    // CLOSE BUTTON
+                    // CGOOBER GOON DUGMESI 🥵🥵🥵💦💦💦
                     Rectangle {
                         width: 36
                         height: 36
                         radius: 8
                         color: "transparent"
-                        border.color: Palette.palette ? Palette.palette().outline : "#585b70"
+                        border.color: Appearance?.m3colors?.m3outline
                         
                         MouseArea {
                             anchors.fill: parent
@@ -409,8 +410,9 @@ Process {
                         
                         Label {
                             anchors.centerIn: parent
-                            text: "×"
-                            color: Palette.palette ? Palette.palette().onSurface : "#a6adc8"
+                            text: "close"
+                            font.family: "Material Symbols Outlined"
+                            color: Appearance?.m3colors?.m3onSurface
                             font.pixelSize: 16
                             font.bold: true
                         }
@@ -418,22 +420,22 @@ Process {
                 }
             }
             
-            // SUBTITLE WITH CURRENT STYLE INDICATOR
+            // SUBGOOBER VITH GOON GOOBER INDICATOR TO GOON BESTIE 🥵🥵🥵💦💦💦 
             Label {
                 text: "terminal companion 😼✨🫙 | style: " + currentStyle
                 font.pixelSize: 11
-                color: Palette.palette ? Palette.palette().onSurfaceVariant : "#a6adc8"
+                color: Appearance?.m3colors?.m3onSurfaceVariant
                 opacity: 0.8
                 Layout.alignment: Qt.AlignHCenter
             }
             
-            // RESPONSE AREA - FIXED SCROLLVIEW
+            // RESPONSE GOON DIH BESTIE 😳😳😳😳😳😳💦💦💦💦💦💦
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: Palette.palette ? Palette.palette().surfaceContainer : "#181825"
+                color: Appearance?.m3colors?.m3surfaceContainer
                 radius: 12
-                border.color: Palette.palette ? Palette.palette().outlineVariant : "#313244"
+                border.color: Appearance?.m3colors?.m3outlineVariant
                 
                 ScrollView {
                     id: scrollView
@@ -446,7 +448,7 @@ Process {
                         text: isLoading ? 
                               "🧠 loading femboys... 🫙✨" : 
                               "😼 meov! ask me anything bestie 🔥\n\n• JSON API streaming only (simpler!)\n• Shows thinking process 💭\n• Markdown formatting 🎨\n• Style system for vibes ✨\n• Maximum femboy energy 🫙🫙🫙\n• Type ur deepest questions 💀"
-                        color: Palette.palette ? Palette.palette().onSurface : "#cdd6f4"
+                        color: Appearance?.m3colors?.m3onSurface
                         font.pixelSize: 12
                         font.family: "monospace"
                         wrapMode: Text.Wrap
@@ -456,7 +458,7 @@ Process {
                         persistentSelection: true
                         background: null
 
-                        // 🔥🔥🔥 THE GOATED AUTO-SCROLL FIX 🔥🔥🔥
+                        // DE 🐐ED GOOBER POS GOON FIX 😳😳😳😳😳😳💦💦💦💦💦💦
                         onTextChanged: {
                             Qt.callLater(function() {
                                 responseArea.cursorPosition = responseArea.text.length;
@@ -468,7 +470,7 @@ Process {
                             anchors.right: parent.right
                             anchors.margins: 4
                             text: currentModel + " | " + currentStyle
-                            color: Palette.palette ? Palette.palette().outline : "#585b70"
+                            color: Appearance?.m3colors?.m3outline
                             font.pixelSize: 10
                             font.italic: true
                         }
@@ -476,7 +478,7 @@ Process {
                 }
             }
             
-            // INPUT SECTION
+            // ⌨️ GOOBER GOON SECT TO GOON 😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 8
@@ -486,16 +488,16 @@ Process {
                     Layout.fillWidth: true
                     height: 40
                     radius: 10
-                    color: Palette.palette ? Palette.palette().surfaceContainerHigh : "#181825"
+                    color: Appearance?.m3colors?.m3surfaceContainerHigh
                     border.color: inputField.activeFocus ? 
-                                 (Palette.palette ? Palette.palette().primary : "#ff6b9d") : 
-                                 (Palette.palette ? Palette.palette().outlineVariant : "#45475a")
+                                 (Appearance?.m3colors?.m3primary) : 
+                                 (Appearance?.m3colors?.m3outlineVariant)
                     
                     TextInput {
                         id: inputField
                         anchors.fill: parent
                         anchors.margins: 12
-                        color: Palette.palette ? Palette.palette().onSurface : "#cdd6f4"
+                        color: Appearance?.m3colors?.m3onSurface
                         font.pixelSize: 12
                         verticalAlignment: TextInput.AlignVCenter
                         selectByMouse: true
@@ -505,12 +507,12 @@ Process {
                     }
                 }
                 
-                // BUTTON ROW
+                // BGOOBER GOON DIJ ROV AAAAAAA 😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦😳😳😳😳😳😳💦💦💦💦💦💦
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 8
                     
-                    // SEND BUTTON
+                    // SEND THE AI INTO THE GOOBER P DIDDY DIMENSION VHERE I AT 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭
                     Button {
                         Layout.fillWidth: true
                         text: isLoading ? "RUNNING..." : "ASK BESTIE"
@@ -519,13 +521,13 @@ Process {
                         background: Rectangle {
                             radius: 8
                             color: parent.enabled ? 
-                                   (Palette.palette ? Palette.palette().primary : "#ff6b9d") : 
-                                   (Palette.palette ? Palette.palette().surfaceVariant : "#585b70")
+                                   (Appearance?.m3colors?.m3primary) : 
+                                   (Appearance?.m3colors?.m3surfaceVariant)
                         }
                         
                         contentItem: Label {
                             text: parent.text
-                            color: Palette.palette ? Palette.palette().surface : "white"
+                            color: Appearance?.m3colors?.m3surface
                             font.pixelSize: 12
                             font.bold: true
                             horizontalAlignment: Text.AlignHCenter
@@ -534,20 +536,21 @@ Process {
                         onClicked: sendPrompt()
                     }
                     
-                    // CLEAR BUTTON
+                    // CLEAR THE SENDED AI INTO THAT DIMENSION NOOOO 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭
                     Button {
-                        text: "🗑️"
+                        text: "delete"
+                        font.family: "Material Symbols Outlined"
                         Layout.preferredWidth: 40
                         
                         background: Rectangle {
                             radius: 8
-                            color: Palette.palette ? Palette.palette().surfaceVariant : "#585b70"
+                            color: Appearance?.m3colors?.m3surfaceVariant
                         }
                         
                         contentItem: Label {
                             text: parent.text
-                            color: Palette.palette ? Palette.palette().onSurface : "white"
-                            font.pixelSize: 12
+                            color: Appearance?.m3colors?.m3onSurface
+                            font.pixelSize: 20
                             horizontalAlignment: Text.AlignHCenter
                         }
                         

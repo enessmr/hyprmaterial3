@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell

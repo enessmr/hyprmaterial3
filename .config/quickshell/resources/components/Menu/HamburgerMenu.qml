@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQml 2.15
 import "../../colors.js" as Palette
 import "./MenuRegistry.js" as MenuRegistry
+import qs.common
 
 /*
   Hamburger popup menu with open grow animation and nested submenus.
@@ -135,9 +138,9 @@ Item {
     radius: 10
     // Match right-click menu contrast: slightly grayish panel
     color: Palette.isDarkMode()
-           ? Qt.lighter(Palette.palette().surfaceVariant, 1.08)
-           : Qt.darker(Palette.palette().surfaceVariant, 1.06)
-    border.color: Palette.palette().outline
+           ? Qt.lighter(Appearance.m3colors.m3surfaceVariant, 1.08)
+           : Qt.darker(Appearance.m3colors.m3surfaceVariant, 1.06)
+    border.color: Appearance.m3colors.m3outline
     border.width: 1
     antialiasing: true
     z: overlayRoot.isSubmenu ? 2 : 1
@@ -208,8 +211,8 @@ Item {
       y: contentCol.y + panel.hoverY - (panel.hoverIsFirst ? panel.radius : 0)
       height: Math.max(0, panel.hoverH + (panel.hoverIsFirst ? panel.radius : 0) + (panel.hoverIsLast ? panel.radius : 0))
       radius: (panel.hoverIsFirst || panel.hoverIsLast) ? panel.radius : 6
-      color: (Palette.isDarkMode() ? Qt.lighter(Palette.palette().surfaceVariant, 1.32)
-                                    : Qt.darker(Palette.palette().surfaceVariant, 1.22))
+      color: (Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surfaceVariant, 1.32)
+                                    : Qt.darker(Appearance.m3colors.m3surfaceVariant, 1.22))
       opacity: panelHoverCatcher.containsMouse ? 1.0 : 0.0
       Behavior on y { NumberAnimation { duration: 100; easing.type: Easing.OutCubic } }
       Behavior on height { NumberAnimation { duration: 100; easing.type: Easing.OutCubic } }
@@ -244,7 +247,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 12
             text: itemData && itemData.label ? itemData.label : ""
-            color: Palette.palette().onSurface
+            color: Appearance.m3colors.m3onSurface
             font.pixelSize: 14
             opacity: itemData && itemData.enabled === false ? 0.38 : 1.0
           }
@@ -260,7 +263,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: 10
-            color: Palette.palette().onSurfaceVariant
+            color: Appearance.m3colors.m3onSurfaceVariant
             font.pixelSize: 16
           }
 

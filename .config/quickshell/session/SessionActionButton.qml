@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.common
 import qs.common.widgets
 import QtQuick
@@ -13,9 +15,9 @@ RippleButton {
     property real size: button.down ? 105 : 120
 
     buttonRadius: 9999
-    colBackground: Pallete.palette().surfaceContainer
-    colBackgroundHover: Pallete.palette().surfaceContainer
-    property color colText: Pallete.palette().onSurface
+    colBackground: Appearance?.m3colors?.m3surfaceContainer
+    colBackgroundHover: Appearance?.m3colors?.m3surfaceContainer
+    property color colText: Appearance?.m3colors?.m3onSurface
     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     background.implicitHeight: size
     background.implicitWidth: size
@@ -48,7 +50,7 @@ RippleButton {
     contentItem: MaterialSymbol {
         id: icon
         anchors.fill: parent
-        color: Pallete.palette().onSurface
+        color: Appearance?.m3colors?.m3onSurface
         horizontalAlignment: Text.AlignHCenter
         iconSize: button.down ? 40 : 45
         Behavior on iconSize {

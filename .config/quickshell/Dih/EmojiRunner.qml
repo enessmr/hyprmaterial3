@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 // EmojiRunner.qml
 import QtQuick 2.15
 import Quickshell.Io
@@ -11,8 +13,8 @@ Item {
 
     Process {
         id: runner
-        running: false  // default
-        command: []     // default empty
+        running: false  // default feet
+        command: []     // default gooner
 
         stdout: StdioCollector {
             onStreamFinished: console.log("dih smeller 😍😍😍😳😳😳")

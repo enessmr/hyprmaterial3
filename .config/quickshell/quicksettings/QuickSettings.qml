@@ -1,3 +1,7 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
+// VERY BAD CODE AND UNMAINTAINED dont use
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts

@@ -1,5 +1,7 @@
-// pragma Singleton
-// pragma ComponentBehavior: Bound
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
+pragma Singleton
+pragma ComponentBehavior: Bound
 
 import qs.common
 import QtQuick

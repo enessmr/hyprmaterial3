@@ -1,6 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Controls
-import "../resources/colors.js" as Palette
+import qs.common
 
 BarButton {
     id: root
@@ -20,7 +22,7 @@ BarButton {
         // visible: useTextIcon
         anchors.fill: parent
         text: root.textIcon
-		color: Palette.palette().onSurface
+		color: Appearance.m3colors.m3onSurface
         font.family: "Material Symbols Outlined"
         font.pixelSize: Math.min(parent.width, parent.height) - baseMargin
         horizontalAlignment: Text.AlignHCenter

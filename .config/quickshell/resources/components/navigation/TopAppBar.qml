@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
@@ -8,8 +11,8 @@ Rectangle {
     default property alias actionItems: actions.data
 
     property real barHeight: 56
-    property color backgroundColor: Palette.palette().surface
-    property color foregroundColor: Palette.palette().onSurface
+    property color backgroundColor: Appearance.m3colors.m3surface
+    property color foregroundColor: Appearance.m3colors.m3onSurface
 
     color: backgroundColor
     height: barHeight

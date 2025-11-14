@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
 
-# script smaller than my dingalin-
+# 💚 ✨ HyprYoshi3 ✨ 🦕
 
+set -e
+
+# =========================
+# CONFIG
+# =========================
+STATE_DIR="$HOME/.local/share/hyprmaterial3/quickshell"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DIR="$STATE_DIR/logs/matugen"
+terminalscheme="$SCRIPT_DIR/terminal/scheme-base.json"
+SHELL_CONFIG_FILE="$HOME/.config/hyprmaterial3/config.json"
+
+mkdir -p "$LOG_DIR"
+mkdir -p "$STATE_DIR/user/generated"
+
+# =========================
+# ARGS
+# =========================
 IMAGE="$1"
 MODE="$2"
 M3COLOR="$3"
@@ -11,7 +28,7 @@ if [ -z "$IMAGE" ] || [ -z "$MODE" ] || [ -z "$M3COLOR" ]; then
     exit 1
 fi
 
-# YOOO BESTIEEE THIS GLOB EXPANSION IS FIRE NGL FR FR 😱😱😱
+# GLOB EXPANSION MAGIC 💥💥💥
 MATCHES=($IMAGE)
 if [ ${#MATCHES[@]} -eq 0 ]; then
     echo "Wallpaper not found: $IMAGE"
@@ -19,16 +36,31 @@ if [ ${#MATCHES[@]} -eq 0 ]; then
 fi
 IMAGE="${MATCHES[0]}"
 
-# YOOOOO BESTIE THIS IS SENDING ME FR FR 😭😭😭
-echo "Setting wallpaper: $IMAGE"
-swww img "$IMAGE" --transition-type grow --transition-fps=120 --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" &
-sleep 0.2
+# =========================
+# RUN MATUGEN
+# =========================
+matugen image "$IMAGE" -m "$MODE" -t scheme-"$M3COLOR" >> "$LOG_DIR/log.dih" 2>&1
 
-if [ ! -d ~/.local/share/hyprmaterial3/logs/matugen ]; then
-    mkdir -p ~/.local/share/hyprmaterial3/logs/matugen
+# =========================
+# GENERATE SCSS WITH PYTHON
+# =========================
+matugen_args=(image "$IMAGE" --mode "$MODE" --type "scheme-$M3COLOR")
+generate_args=(--path "$IMAGE" --mode "$MODE" --termscheme "$terminalscheme" --blend_bg_fg --cache "$STATE_DIR/user/generated/color.txt")
+
+# OPTIONAL EXTRA CONFIG
+if [ -f "$SHELL_CONFIG_FILE" ]; then
+    harmony=$(jq -r '.appearance.wallpaperTheming.terminalGenerationProps.harmony // empty' "$SHELL_CONFIG_FILE")
+    [[ -n "$harmony" ]] && generate_args+=(--harmony "$harmony")
 fi
 
-# BESTIE REALLY SAID "linux but make it ✨️ a e s t h e t i c ✨️" 😭😭😭
-matugen image "$(ls "$IMAGE")" -m "$MODE" -t scheme-"$M3COLOR" >> ~/.local/share/hyprmaterial3/logs/matugen/log.dih 2>&1
+# RUN MATUGEN + PYTHON COLOR GEN
+matugen "${matugen_args[@]}"
+python3 "$SCRIPT_DIR/generate_colors_material.py" "${generate_args[@]}" > "$STATE_DIR/user/generated/material_colors.scss"
+"$SCRIPT_DIR"/applyTerminalDihBestie.sh
 
-notify-send "Wallpaper Changed" "$(basename "$IMAGE") — Mode: $MODE | Color: $M3COLOR" 
+# =========================
+# NOTIFY
+# =========================
+notify-send "Wallpaper Changed" "$(basename "$IMAGE") — Mode: $MODE | Color: $M3COLOR"  
+
+echo "SCSS GENERATED 🔥🔥🔥 -> $STATE_DIR/user/generated/material_colors.scss"

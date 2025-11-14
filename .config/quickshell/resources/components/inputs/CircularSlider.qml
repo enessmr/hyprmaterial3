@@ -1,12 +1,15 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
   property real value: 0.0            // 0..1
   property real step: 0.0             // snap
-  property color trackColor: Palette.palette().surfaceVariant
-  property color progressColor: Palette.palette().primary
+  property color trackColor: Appearance.m3colors.m3surfaceVariant
+  property color progressColor: Appearance.m3colors.m3primary
   property real strokeWidth: 6
   property real size: 72
   property bool enabled: true
@@ -50,9 +53,9 @@ Item {
     width: strokeWidth + 6
     height: width
     radius: width / 2
-    color: enabled ? Palette.palette().onPrimary : Qt.rgba(0.82,0.82,0.82,1)
+    color: enabled ? Appearance.m3colors.m3onPrimary : Qt.rgba(0.82,0.82,0.82,1)
     border.width: enabled ? 0 : 1
-    border.color: Palette.palette().outline
+    border.color: Appearance.m3colors.m3outline
     // Positioned purely by x/y; do not anchor to center, to avoid overriding coordinates
     // position around the circle
     property real angle: -Math.PI/2 + Math.max(0, Math.min(1, root.value)) * Math.PI * 2

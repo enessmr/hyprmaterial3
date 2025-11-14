@@ -1,8 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 import qs
-import "../resources/colors.js" as Pallete
+import qs.common
 
 Scope {
 	id: root
@@ -166,7 +168,7 @@ Scope {
 				// bkg
 				BarWidgetInner {
 					anchors.fill: parent
-					color: Pallete.palette().background
+					color: Appearance.m3colors.m3background
 					radius: 16  // <- add your desired corner radius
 				}
 

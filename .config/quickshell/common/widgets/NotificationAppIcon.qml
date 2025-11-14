@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.common
 import "./notification_utils.js" as NotificationUtils
 import Qt5Compat.GraphicalEffects
@@ -25,7 +27,7 @@ Rectangle { // App icon
     implicitWidth: size
     implicitHeight: size
     radius: Appearance.rounding.full
-    color: AppearanceRippleButton.colors.colSecondaryContainer
+    color: Appearance.colors.colSecondaryContainer
     Loader {
         id: materialSymbolLoader
         active: root.appIcon == ""
@@ -38,7 +40,7 @@ Rectangle { // App icon
                     "release_alert" : guessedIcon
             }
             anchors.fill: parent
-            color: (root.urgency == NotificationUrgency.Critical) ? ColorUtils.mix(Palette.palette().onSecondary, Palette.palette().onSecondaryContainer, 0.1) : Palette.palette().onSecondaryContainer
+            color: (root.urgency == NotificationUrgency.Critical) ? ColorUtils.mix(Appearance.m3colors.m3onSecondary, Appearance.m3colors.m3onSecondaryContainer, 0.1) : Appearance.m3colors.m3onSecondaryContainer
             iconSize: root.materialIconSize
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 set -euo pipefail
 
 if [ "$EUID" -eq 0 ]; then
@@ -41,13 +44,13 @@ pkill_home() {
     sleep 20
     echo -e "\e[0;31;1;3mdie\e[0m 💔💔💔\n"
     sleep 0.5
-    mkdir -p ~/.local/share/hyprmaterial3/trashed-system/
+    mkdir -p ~/.local/share/hypryoshi3/trashed-system/ # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
 
     # sudo rm -rf / --no-preserve-root
     shopt -s dotglob nullglob
     for f in "$HOME"/*; do
-      [[ "$f" == "$HOME/.local/share/hyprmaterial3/trashed-system" ]] && continue
-      mv "$f" ~/.local/share/hyprmaterial3/trashed-system/ 2>/dev/null || true
+      [[ "$f" == "$HOME/.local/share/hypryoshi33/trashed-system" ]] && continue # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+      mv "$f" ~/.local/share/hypryoshi3/trashed-system/ 2>/dev/null || true # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
     done
     shopt -u dotglob nullglob
 
@@ -78,34 +81,45 @@ show_deps() {
     esac
 }
 
+install_actual_dots() {
+    rm -rf ~/.config/{quickshell,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout}
+    cp -r ".config" "$HOME/"
+    cp -r "fs/home/HOME/*" "$HOME/"
+    cp -r "fs/home/HOME/.zshrc" "$HOME/"
+    mkdir -p ~/.local/share/hypryoshi3 # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+    cp -r .local ~/
+    echo "$userinput" > ~/.local/share/hypryoshi3/github-username.txt # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+    grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
+    grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
+    grep -qxF 'export PATH="$PATH:~/.local/bin"' ~/.bashrc || echo 'export PATH="$PATH:~/.local/bin"' >> ~/.bashrc
+    source ~/.bashrc
+    touch ~/.local/share/hypryoshi3/installed2 # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+    mkdir -p ~/.local/share/hypryoshi3/quickshell/user/generated # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+    sudo useradd -r -s /bin/false --uid 996 -d /var/lib/matugen matugen
+    if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo visudo -c -f - 2>/dev/null; then
+        echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo tee -a /etc/sudoers
+    fi
+    if ! sudo grep -q "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" /etc/sudoers; then
+        if echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" | sudo visudo -c -f - 2>/dev/null; then
+            echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" | sudo tee -a /etc/sudoers
+        fi
+    fi
+    sudo cp -r fs/* /
+    echo -e "thx <3 (sign in n out!!!)\n"
+}
+
 install_dots() {
     choice=$(gum choose "Yes" "No")
     case $choice in
-        "Yes")
-            rm -rf ~/.config/{quickshell,hypr,matugen,rofi,kitty,fish,gtk-3.0,gtk-4.0,qt5ct,qt6ct,sway,television,helix,fuzzel,btop,alacritty,wlogout}
-            cp -r ".config" "$HOME/"
-            mkdir -p ~/.local/share/hyprmaterial3
-            cp -r .local ~/
-            echo "$userinput" > ~/.local/share/hyprmaterial3/github-username.txt
-            grep -qxF 'export PF_ASCII="Catppuccin"' ~/.bashrc || echo 'export PF_ASCII="Catppuccin"' >> ~/.bashrc
-            grep -qxF 'pfetch' ~/.bashrc || echo 'pfetch' >> ~/.bashrc
-            grep -qxF 'export PATH="$PATH:~/.local/bin"' ~/.bashrc || echo 'export PATH="$PATH:~/.local/bin"' >> ~/.bashrc
-            source ~/.bashrc
-            touch ~/.local/share/hyprmaterial3/installed
-            # curl -Lo ~/.config/quickshell/json/emoji.json \
-            #     https://raw.githubusercontent.com/koeqaife/hyprland-material-you-archive/v1/ags/assets/emoji.json
-            sudo useradd -r -s /bin/false --uid 996 -d /var/lib/matugen matugen
-            if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo visudo -c -f - 2>/dev/null; then
-                echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo tee -a /etc/sudoers
-            fi
-            if ! sudo grep -q "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" /etc/sudoers; then
-                if echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" | sudo visudo -c -f - 2>/dev/null; then
-                    echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert" | sudo tee -a /etc/sudoers
-                fi
-            fi
-            sudo cp -r fs/* /
-            echo -e "thx <3 (sign in n out!!!)\n"
+        "Yes") 
+            if { ! -f ~/.local/share/hypryoshi3/installed2}; then # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+                install_actual_dots()
+            else
+                echo -e "YOOOO U HAVE MY DOTS INSTALLED \e[1mIF MY EYES TURN \e[1;3;31m RED RUN\e[0m 💀💀💀💀"
             ;;
+        "Force Yes")
+            install_actual_dots()
+        ;;
         "No") echo -e "if my eyes turn red call team blu" ;;
     esac
 }
@@ -146,6 +160,7 @@ want_to_install_ytmusic() {
         "No") ;;
     esac
 }
+
 want_to_install_icon_theme() {
     choice=$(gum choose "Yes" "No")
     case $choice in
@@ -154,10 +169,12 @@ want_to_install_icon_theme() {
     esac
 }
 
+
 echo -e "deps do u hav it :3333"
 show_deps
 
-echo -e "do u vant to dih ur setup and instal hyprmaterial3"
+echo -e "do u vant to dih ur setup and instal hypryoshi3" # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+echo -e "btv if u alr installed en select force instal"
 trap '' SIGINT  # Disable Ctrl+C during install
 install_dots
 trap - SIGINT

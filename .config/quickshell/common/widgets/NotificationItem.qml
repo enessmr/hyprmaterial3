@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs
 import qs.common
 import qs.services
@@ -13,7 +15,7 @@ Item { // Notification item area
     property var notificationObject
     property bool expanded: false
     property bool onlyNotification: false
-    property real fontSize: AppearanceRippleButton.font.pixelSize.small
+    property real fontSize: Appearance.font.pixelSize.small
     property real padding: onlyNotification ? 0 : 8
 
     property real dragConfirmThreshold: 70 // Drag further to discard notification
@@ -65,9 +67,9 @@ Item { // Notification item area
             target: background.anchors
             property: "leftMargin"
             to: root.width + root.dismissOvershoot
-            duration: AppearanceRippleButton.animation.elementMove.duration
-            easing.type: AppearanceRippleButton.animation.elementMove.type
-            easing.bezierCurve: AppearanceRippleButton.animation.elementMove.bezierCurve
+            duration: Appearance.animation.elementMove.duration
+            easing.type: Appearance.animation.elementMove.type
+            easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
         }
         onFinished: () => {
             Notifications.discardNotification(notificationObject.notificationId);
@@ -112,7 +114,7 @@ Item { // Notification item area
         visible: opacity > 0
 
         Behavior on opacity {
-            animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
         }
 
         image: notificationObject.image
@@ -125,26 +127,26 @@ Item { // Notification item area
         id: background
         width: parent.width
         anchors.left: parent.left
-        radius: AppearanceRippleButton.rounding.small
+        radius: Appearance.rounding.small
         anchors.leftMargin: root.xOffset
 
         Behavior on anchors.leftMargin {
             enabled: !dragManager.dragging
             NumberAnimation {
-                duration: AppearanceRippleButton.animation.elementMove.duration
-                easing.type: AppearanceRippleButton.animation.elementMove.type
-                easing.bezierCurve: AppearanceRippleButton.animationCurves.expressiveFastSpatial
+                duration: Appearance.animation.elementMove.duration
+                easing.type: Appearance.animation.elementMove.type
+                easing.bezierCurve: Appearance.animationCurves.expressiveFastSpatial
             }
         }
 
         color: (expanded && !onlyNotification) ? 
             (notificationObject.urgency == NotificationUrgency.Critical) ? 
-                ColorUtils.mix(AppearanceRippleButton.colors.colSecondaryContainer, AppearanceRippleButton.colors.colLayer2, 0.35) :
-                (AppearanceRippleButton.m3colors.surfaceContainerHigh) : ColorUtils.transparentize(AppearanceRippleButton.m3colors.surfaceContainer)
+                ColorUtils.mix(Appearance.colors.colSecondaryContainer, Appearance.colors.colLayer2, 0.35) :
+                (Appearance.m3colors.m3surfaceContainerHigh) : ColorUtils.transparentize(Appearance.m3colors.m3surfaceContainer)
 
         implicitHeight: expanded ? (contentColumn.implicitHeight + padding * 2) : summaryRow.implicitHeight
         Behavior on implicitHeight {
-            animation: AppearanceRippleButton.animation.elementMove.numberAnimation.createObject(this)
+            animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
         }
 
         ColumnLayout { // Content column
@@ -154,7 +156,7 @@ Item { // Notification item area
             spacing: 3
 
             Behavior on anchors.margins {
-                animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
             }
 
             RowLayout { // Summary row
@@ -167,7 +169,7 @@ Item { // Notification item area
                     id: summaryText
                     visible: !root.onlyNotification
                     font.pixelSize: root.fontSize
-                    color: AppearanceRippleButton.colors.colOnLayer3
+                    color: Appearance.colors.colOnLayer3
                     elide: Text.ElideRight
                     text: root.notificationObject.summary || ""
                 }
@@ -176,10 +178,10 @@ Item { // Notification item area
                     visible: opacity > 0
                     Layout.fillWidth: true
                     Behavior on opacity {
-                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     font.pixelSize: root.fontSize
-                    color: AppearanceRippleButton.colors.colSubtext
+                    color: Appearance.colors.colSubtext
                     elide: Text.ElideRight
                     wrapMode: Text.Wrap // Needed for proper eliding????
                     maximumLineCount: 1
@@ -198,11 +200,11 @@ Item { // Notification item area
                 StyledText { // Notification body (expanded)
                     id: notificationBodyText
                     Behavior on opacity {
-                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     Layout.fillWidth: true
                     font.pixelSize: root.fontSize
-                    color: AppearanceRippleButton.colors.colSubtext
+                    color: Appearance.colors.colSubtext
                     wrapMode: Text.Wrap
                     elide: Text.ElideRight
                     textFormat: Text.RichText
@@ -227,13 +229,13 @@ Item { // Notification item area
                     clip: !onlyNotification
 
                     Behavior on opacity {
-                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     Behavior on height {
-                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
                     Behavior on implicitHeight {
-                        animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
                     }
 
                     RowLayout {
@@ -252,10 +254,10 @@ Item { // Notification item area
                             }
 
                             contentItem: MaterialSymbol {
-                                iconSize: AppearanceRippleButton.font.pixelSize.large
+                                iconSize: Appearance.font.pixelSize.large
                                 horizontalAlignment: Text.AlignHCenter
                                 color: (notificationObject.urgency == NotificationUrgency.Critical) ? 
-                                    AppearanceRippleButton.m3colors.onSurfaceVariant : AppearanceRippleButton.m3colors.onSurfaceVariant
+                                    Appearance.m3colors.m3onSurfaceVariant : Appearance.m3colors.m3onSurfaceVariant
                                 text: "close"
                             }
                         }
@@ -296,10 +298,10 @@ Item { // Notification item area
 
                             contentItem: MaterialSymbol {
                                 id: copyIcon
-                                iconSize: AppearanceRippleButton.font.pixelSize.large
+                                iconSize: Appearance.font.pixelSize.large
                                 horizontalAlignment: Text.AlignHCenter
                                 color: (notificationObject.urgency == NotificationUrgency.Critical) ? 
-                                    AppearanceRippleButton.m3colors.onSurfaceVariant : AppearanceRippleButton.m3colors.onSurfaceVariant
+                                    Appearance.m3colors.m3onSurfaceVariant : Appearance.m3colors.m3onSurfaceVariant
                                 text: "content_copy"
                             }
                         }

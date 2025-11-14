@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Shapes
+import qs.common
 
 Item {
 	id: root
@@ -29,7 +32,7 @@ Item {
 				bottom: groove.bottom
 			}
 
-			color: "#60ffa800"
+			color: Appearance.colors.colOnLayer1
 			topRightRadius: 5
 			bottomRightRadius: 5
 		}
@@ -40,7 +43,7 @@ Item {
 				horizontalCenter: grooveWarning.left
 			}
 
-			color: "#60eeffff"
+			color: Appearance.m3colors.m3secondary
 			width: 1
 			height: groove.height
 		}
@@ -55,7 +58,7 @@ Item {
 			}
 
 			radius: 5
-			color: "#80ceffff"
+			color: Appearance.m3colors.m3primaryContainer
 			width: __valueOffset
 		}
 
@@ -70,7 +73,7 @@ Item {
 
 			implicitHeight: 7
 			color: "transparent"
-			border.color: "#20050505"
+			border.color: Appearance.m3colors.m3surfaceContainerLow
 			border.width: 1
 			radius: 5
 		}

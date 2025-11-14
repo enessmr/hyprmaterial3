@@ -1,5 +1,4 @@
 singleton Appearance 1.0 Appearance.qml
-singleton AppearanceRippleButton 1.0 AppearanceRippleButton.qml
 singleton Config 1.0 Config.qml
 singleton Directories 1.0 Directories.qml
 singleton Persistent 1.0 Persistent.qml

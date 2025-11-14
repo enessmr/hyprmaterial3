@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -62,14 +65,14 @@ Item {
             }
 
             // Base fill — use a near-neutral grey from the palette for a more subdued look
-            var fill = Palette.palette().surfaceVariant
+            var fill = Appearance.m3colors.m3surfaceVariant
             ctx.fillStyle = fill
             roundedRect(rTL, rTR, rBR, rBL)
             ctx.fill()
 
             // Subtle luminous overlay to mimic Material settings tiles
             ctx.globalAlpha = 0.035
-            ctx.fillStyle = Palette.palette().inverseSurface
+            ctx.fillStyle = Appearance.m3colors.m3inverseSurface
             roundedRect(rTL, rTR, rBR, rBL)
             ctx.fill()
             ctx.globalAlpha = 1.0
@@ -107,7 +110,7 @@ Item {
                 ctx.arcTo(0, 0, tl, 0, tl)
                 ctx.closePath()
             }
-            ctx.fillStyle = Palette.palette().onSurface
+            ctx.fillStyle = Appearance.m3colors.m3onSurface
             roundedRect(baseTL, baseTR, baseBR, baseBL)
             ctx.fill()
         }
@@ -141,14 +144,14 @@ Item {
             Layout.fillWidth: true
             Text {
                 text: root.title
-                color: root.enabled ? Palette.palette().onSurface : Qt.rgba(0.7,0.7,0.7,1)
+                color: root.enabled ? Appearance.m3colors.m3onSurface : Qt.rgba(0.7,0.7,0.7,1)
                 font.pixelSize: 16
                 elide: Text.ElideRight
             }
             Text {
                 text: root.subtitle
                 visible: root.subtitle.length > 0
-                color: Palette.palette().onSurfaceVariant
+                color: Appearance.m3colors.m3onSurfaceVariant
                 font.pixelSize: 13
                 elide: Text.ElideRight
             }
@@ -172,7 +175,7 @@ Item {
             Canvas {
                 anchors.centerIn: parent
                 width: 12; height: 12
-                onPaint: { var ctx = getContext('2d'); ctx.reset(); ctx.strokeStyle = Palette.palette().onSurfaceVariant; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(2,1); ctx.lineTo(10,6); ctx.lineTo(2,11); ctx.stroke(); }
+                onPaint: { var ctx = getContext('2d'); ctx.reset(); ctx.strokeStyle = Appearance.m3colors.m3onSurfaceVariant; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(2,1); ctx.lineTo(10,6); ctx.lineTo(2,11); ctx.stroke(); }
             }
         }
     }

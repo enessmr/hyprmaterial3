@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma ComponentBehavior: Bound;
 
 import QtQuick

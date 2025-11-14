@@ -1,13 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
   property real value: 0.0            // 0..1
   property real step: 0.0             // 0 for continuous
-  property color trackColor: Palette.palette().surfaceVariant
-  property color fillColor: Palette.palette().primary
-  property color thumbColor: Palette.palette().onPrimary
+  property color trackColor: Appearance.m3colors.m3surfaceVariant
+  property color fillColor: Appearance.m3colors.m3primary
+  property color thumbColor: Appearance.m3colors.m3onPrimary
   property real thickness: 4
   property real thumbSize: 16
   property bool enabled: true
@@ -53,7 +56,7 @@ Item {
     radius: width / 2
     color: enabled ? thumbColor : Qt.rgba(0.82,0.82,0.82,1)
     border.width: enabled ? 0 : 1
-    border.color: Palette.palette().outline
+    border.color: Appearance.m3colors.m3outline
     anchors.verticalCenter: track.verticalCenter
     x: Math.max(0, Math.min(1, root.value)) * (track.width - width) + track.x
     Behavior on x { NumberAnimation { duration: 120; easing.type: Easing.InOutQuad } }

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 set -euo pipefail
 
 pkgname=vesktop-bin

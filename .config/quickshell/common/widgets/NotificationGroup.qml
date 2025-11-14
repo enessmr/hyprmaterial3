@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.common
 import qs.services
 import qs.common.functions
@@ -105,7 +107,7 @@ Item { // Notification group area
         id: background
         anchors.left: parent.left
         width: parent.width
-        color: popup ? ColorUtils.applyAlpha(AppearanceRippleButton.colors.colLayer2, 1 - Appearance.backgroundTransparency) : AppearanceRippleButton.colors.colLayer2
+        color: popup ? ColorUtils.applyAlpha(Appearance.colors.colLayer2, 1 - Appearance.backgroundTransparency) : Appearance.colors.colLayer2
         radius: Appearance.rounding.normal
         anchors.leftMargin: root.xOffset
 
@@ -179,8 +181,8 @@ Item { // Notification group area
                                 topRow.fontSize :
                                 Appearance.font.pixelSize.small
                             color: topRow.showAppName ?
-                                AppearanceRippleButton.colors.colSubtext :
-                                AppearanceRippleButton.colors.colOnLayer2
+                                Appearance.colors.colSubtext :
+                                Appearance.colors.colOnLayer2
                         }
                         StyledText {
                             id: timeText
@@ -189,7 +191,7 @@ Item { // Notification group area
                             horizontalAlignment: Text.AlignLeft
                             text: NotificationUtils.getFriendlyNotifTimeString(notificationGroup?.time)
                             font.pixelSize: topRow.fontSize
-                            color: AppearanceRippleButton.colors.colSubtext
+                            color: Appearance.colors.colSubtext
                         }
                     }
                     NotificationGroupExpandButton {

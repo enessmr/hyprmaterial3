@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -20,8 +23,8 @@ Item {
         id: background
         anchors.fill: parent
         radius: width / 2
-        color: Palette.isDarkMode() ? Qt.lighter(Palette.palette().surface, 1.08)
-                                    : Qt.darker(Palette.palette().surface, 1.03)
+        color: Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surface, 1.08)
+                                    : Qt.darker(Appearance.m3colors.m3surface, 1.03)
         border.width: 0
         opacity: root.enabled ? 1.0 : 0.38
         antialiasing: true
@@ -33,7 +36,7 @@ Item {
         id: overlay
         anchors.fill: background
         radius: background.radius
-        color: Palette.palette().onSurface
+        color: Appearance.m3colors.m3onSurface
         opacity: mouseArea.pressed ? 0.14 : (mouseArea.containsMouse ? 0.06 : 0.0)
         visible: root.enabled
         Behavior on opacity { NumberAnimation { duration: 110; easing.type: Easing.InOutQuad } }
@@ -49,7 +52,7 @@ Item {
 
         readonly property int barThickness: Math.max(2, Math.round(width * 0.08))
         readonly property int barLength: Math.round(width * 0.80)
-        readonly property color barColor: Palette.palette().onSurface
+        readonly property color barColor: Appearance.m3colors.m3onSurface
 
         Rectangle { // top
             width: glyph.barLength

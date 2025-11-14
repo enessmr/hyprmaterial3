@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../icons" as Icon
+import qs.common
 
 Item {
     id: root
@@ -14,11 +17,11 @@ Item {
     property bool enabled: true
     signal toggled(bool checked)
 
-    readonly property color activeBg: Palette.palette().primary
-    readonly property color activeFg: Palette.palette().onPrimary
-    readonly property color inactiveBg: Palette.palette().surfaceVariant
-    readonly property color inactiveFg: Palette.palette().onSurface
-    readonly property color outlineCol: Palette.palette().outline
+    readonly property color activeBg: Appearance.m3colors.m3primary
+    readonly property color activeFg: Appearance.m3colors.m3onPrimary
+    readonly property color inactiveBg: Appearance.m3colors.m3surfaceVariant
+    readonly property color inactiveFg: Appearance.m3colors.m3onSurface
+    readonly property color outlineCol: Appearance.m3colors.m3outline
     // Unified foreground color for icon + primary text
     property color fgColor: checked ? activeFg : inactiveFg
 
@@ -71,7 +74,7 @@ Item {
             }
             Text {
                 text: root.checked ? root.subtitleOn : root.subtitleOff
-                color: root.checked ? root.fgColor : Palette.palette().onSurfaceVariant
+                color: root.checked ? root.fgColor : Appearance.m3colors.m3onSurfaceVariant
                 font.pixelSize: 12
                 elide: Text.ElideRight
                 Behavior on color { ColorAnimation { duration: 160; easing.type: Easing.InOutQuad } }
@@ -83,7 +86,7 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: bg.radius
-        color: Palette.palette().onSurface
+        color: Appearance.m3colors.m3onSurface
         opacity: mouse.pressed ? 0.14 : (mouse.containsMouse ? 0.06 : 0.0)
         visible: root.enabled
         Behavior on opacity { NumberAnimation { duration: 110; easing.type: Easing.InOutQuad } }

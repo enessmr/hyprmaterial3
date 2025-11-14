@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 # by deepseek ;)
 
 # Check if wtype is installed

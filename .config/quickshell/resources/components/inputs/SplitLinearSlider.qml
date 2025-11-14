@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
@@ -9,9 +12,9 @@ Item {
   // A bit thicker by default
   property real thickness: 16
   property real cornerRadius: thickness / 2
-  property color trackColor: Palette.palette().surfaceVariant
-  property color fillColor: Palette.palette().primary
-  property color dividerColor: Palette.palette().primary
+  property color trackColor: Appearance.m3colors.m3surfaceVariant
+  property color fillColor: Appearance.m3colors.m3primary
+  property color dividerColor: Appearance.m3colors.m3primary
   property color endDotColor: "white"
   property real dividerWidth: 4
   // Gap on each side of the divider: 3.1x divider thickness

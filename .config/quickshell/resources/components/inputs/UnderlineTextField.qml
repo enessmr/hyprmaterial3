@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "."
 import "../Menu/ContextMenuHelper.js" as Ctx
+import qs.common
 
 Item {
     id: root
@@ -67,8 +70,8 @@ Item {
                 anchors.fill: parent
                 leftPadding: showLeadingIcon && leadingIcon !== "" ? 22 : 0
                 verticalAlignment: Text.AlignVCenter
-                color: error ? Palette.palette().error : Palette.palette().onSurface
-                selectionColor: Qt.darker(Palette.palette().primary, 1.8)
+                color: error ? Appearance.m3colors.m3error : Appearance.m3colors.m3onSurface
+                selectionColor: Qt.darker(Appearance.m3colors.m3primary, 1.8)
                 selectByMouse: true
                 mouseSelectionMode: TextInput.SelectCharacters
                 cursorVisible: activeFocus
@@ -103,7 +106,7 @@ Item {
             anchors.left: inputClip.left
             anchors.right: inputClip.right
             anchors.verticalCenter: inputClip.verticalCenter
-            color: Palette.palette().onSurfaceVariant
+            color: Appearance.m3colors.m3onSurfaceVariant
             text: root.placeholderText
             visible: !input.text.length && !input.activeFocus
             font.pixelSize: 14
@@ -129,7 +132,7 @@ Item {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             height: 1
-            color: Qt.darker(Palette.palette().outline, 1.15)
+            color: Qt.darker(Appearance.m3colors.m3outline, 1.15)
             opacity: root.enabled ? 1.0 : 0.38
         }
 
@@ -139,7 +142,7 @@ Item {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             height: 2
-            color: error ? Palette.palette().error : Palette.palette().primary
+            color: error ? Appearance.m3colors.m3error : Appearance.m3colors.m3primary
             opacity: input.activeFocus || error ? 1.0 : 0.0
             Behavior on opacity { NumberAnimation { duration: 80; easing.type: Easing.OutCubic } }
         }
@@ -152,7 +155,7 @@ Item {
         anchors.top: field.bottom
         anchors.topMargin: 2
         text: error ? (helperText || "Error") : helperText
-        color: error ? Palette.palette().error : Palette.palette().onSurfaceVariant
+        color: error ? Appearance.m3colors.m3error : Appearance.m3colors.m3onSurfaceVariant
         visible: error || showHelper
         font.pixelSize: 12
         elide: Text.ElideRight

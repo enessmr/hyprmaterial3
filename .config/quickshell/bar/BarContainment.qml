@@ -1,13 +1,14 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
+import qs.common
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs
 // import qs.lock as Lock
-import "../resources/colors.js" as Pallete
 import "./roundedcorner"
 import qs.services
-import qs.common
 import qs.common.widgets
 import qs.common.functions
 
@@ -70,7 +71,7 @@ PanelWindow {
         // implicitHeight: large
         implicitWidth: baseWidth + 15 - leftMargin
         //exclusiveZone: baseWidth + 15 - leftMargin
-        color: Pallete.palette().background
+        color: Appearance.m3colors.m3background
         anchors.left: barRect.right
         anchors.top: barRect.top
         z: 10
@@ -80,7 +81,7 @@ PanelWindow {
         id: bottomLeftCorner
         corner: RoundCorner.CornerEnum.BottomLeft
         implicitSize: 15
-        color: Pallete.palette().background
+        color: Appearance.m3colors.m3background
         anchors.left: barRect.right
         anchors.bottom: barRect.bottom
 		z: 10
@@ -98,7 +99,7 @@ PanelWindow {
             bottom: parent.bottom
         }
 
-        color: Pallete.palette().background
+        color: Appearance.m3colors.m3background
         border.color: ShellGlobals.colors.barOutline
         border.width: 0
 

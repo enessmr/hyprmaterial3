@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 // pragma Singleton
 // pragma ComponentBehavior: Bound
 import qs

@@ -1,3 +1,5 @@
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 [config.wallpaper]
 command = "matugenparade"
 arguments = ["img", "--transition-type", "grow", "--transition-fps=120", "--invert-y", "--transition-pos", "$CPOS", "&"]
@@ -8,10 +10,14 @@ color = "#FFFF00"
 blend = true
 
 [templates.quickshellpart1]
+input_path = '~/.config/matugen/templates/quickshell/colors.json'
+output_path = '~/.local/share/hyprmaterial3/quickshell/user/generated/colors.json'
+
+[templates.quickshellpart2]
 input_path = "./templates/quickshell/colors.js"
 output_path = "~/.config/quickshell/resources/colors.js"
 
-[templates.quickshellpart2]
+[templates.quickshellpart3]
 input_path = "./templates/quickshell/shell.qml"
 output_path = "~/.config/quickshell/shell.qml"
 post_hook = "sleep 1"
@@ -31,10 +37,13 @@ input_path = "./templates/quickshell/shell.qml"
 output_path = "~/.config/quickshell/shell.qml"
 post_hook = "sleep 2"
 
-[templates.kitty]
-input_path = './templates/kitty/colors.conf'
-output_path = '~/.config/kitty/themes/templates-matugen.conf'
-post_hook = 'kitty +kitten themes --reload-in=all templates-matugen && pkill -SIGUSR1 kitty'
+[templates.vscode]
+input_path = "./templates/vscode/hyprluna.json"
+output_path = "~/.vscode/extensions/hyprluna.hyprluna-theme-1.0.2/themes/hyprluna.json"
+
+[templates.obsidian]
+input_path = "~/.config/matugen/templates/obsidian/obsidian.css"
+output_path = "~/Obsidian Vault/HyprYoshi3/.obsidian/themes/Border/theme.css"
 
 [templates.hyprland]
 input_path = './templates/hyprland/colors.conf'
@@ -124,10 +133,6 @@ output_path = '~/.config/helix/themes/matugen.toml'
 [templates.btop]
 input_path = './templates/btop/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
-
-[templates.vscode]
-input_path = "./templates/vscode/hyprluna.json"
-output_path = "~/.vscode/extensions/hyprluna.hyprluna-theme-1.0.2/themes/hyprluna.json"
 
 [templates.execrefind]
 input_path = "/dev/null"

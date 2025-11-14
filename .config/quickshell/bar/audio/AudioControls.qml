@@ -1,9 +1,11 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
 import qs.bar
-import "../../resources/colors.js" as Pallete
+import qs.common
 
 BarWidgetInner {
 	id: root
@@ -14,7 +16,7 @@ BarWidgetInner {
 
 	radius: 9999
 
-	color: Pallete.palette().onSecondary
+	color: Appearance?.m3colors.m3onSecondary
 
 	ColumnLayout {
 		anchors {

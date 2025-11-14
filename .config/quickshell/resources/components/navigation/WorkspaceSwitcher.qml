@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -31,7 +34,7 @@ Item {
         width: root.bgSize
         height: root.bgSize
         radius: height / 2
-        color: Palette.palette().primary
+        color: Appearance.m3colors.m3primary
         y: (root.height - height) / 2
         x: root.itemCenterX(root.currentIndex)
         transformOrigin: Item.Center
@@ -56,7 +59,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     text: (index + 1)
-                    color: active ? Palette.palette().onPrimary : Palette.palette().onSurface
+                    color: active ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
                     font.pixelSize: 14
                     font.bold: true
                     Behavior on color { ColorAnimation { duration: 120; easing.type: Easing.InOutQuad } }

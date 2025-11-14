@@ -1,13 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../../metrics.js" as Metrics
+import qs.common
 
 Item {
     id: root
     // Generic wavy progress bar (Material You-like squiggle)
     property real progress: 0.0 // 0..1
-    property color trackColor: Palette.palette().surfaceVariant
-    property color progressColor: Palette.palette().primary
+    property color trackColor: Appearance.m3colors.m3surfaceVariant
+    property color progressColor: Appearance.m3colors.m3primary
     property real amplitude: 8            // px
     property real wavelength: 32          // px
     property real strokeWidth: 4          // px

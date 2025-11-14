@@ -1,9 +1,12 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import qs
+import qs.common
 
 Rectangle {
-	color: ShellGlobals.colors.widget
+	color: Appearance.m3colors.m3surface
 	radius: 5
-	border.color: ShellGlobals.colors.widgetOutline
+	border.color: Appearance.m3colors.m3outlineVariant
 	border.width: 1
 }

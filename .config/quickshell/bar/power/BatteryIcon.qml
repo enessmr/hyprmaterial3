@@ -1,7 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import Quickshell.Services.UPower
 import qs
-import "../../resources/colors.js" as Pallete
+import qs.common
 
 Item {
 	id: root
@@ -26,7 +28,7 @@ Item {
 		height: 23 * root.device.percentage * root.scale
 		radius: 2 * root.scale
 
-		color: root.isPluggedIn ? Pallete.palette().primary
+		color: root.isPluggedIn ? Appearance.m3colors.m3primary
 		     : ShellGlobals.interpolateColors(Math.min(1.0, Math.min(0.5, root.device.percentage) * 2), "red", "white")
 	}
 
@@ -47,7 +49,7 @@ Item {
          	: root.isLow ? "battery_alert"
          	: "battery_alert"
 
-		color: Pallete.palette().onSurface
+		color: Appearance.m3colors.m3onSurface
 
     	visible: true
 	}

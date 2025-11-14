@@ -1,12 +1,6 @@
+# 💚 ✨ HyprYoshi3 ✨ 🦕
 
 [config]
-# The base command to run for applying the wallpaper, shouldn't have spaces in it.
-# command = "matugenreprise"
-
-# The arguments that will be provided to the command.
-# Keywords like {{ mode }} or anything that works inside of hooks doesn't work here.
-# The last argument will be the image path.
-# arguments = [ "&" ]
 set = false
 
 [templates.refindbg]

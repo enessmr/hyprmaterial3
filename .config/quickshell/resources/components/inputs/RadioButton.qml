@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -15,7 +16,7 @@ Item {
     property string text: ""
     property var value: undefined
     // Visual customization
-    property color accent: Palette.palette().primary
+    property color accent: Appearance.m3colors.m3primary
     // "right" (default) | "left"
     property string labelPosition: "right"
     // Wrapping support for long labels
@@ -122,8 +123,8 @@ Item {
                 border.color: !root.enabled
                               ? Qt.rgba(0.5,0.5,0.5,1)
                               : (root.checked
-                                 ? (root.error ? Palette.palette().error : root.accent)
-                                 : Palette.palette().onSurfaceVariant)
+                                 ? (root.error ? Appearance.m3colors.m3error : root.accent)
+                                 : Appearance.m3colors.m3onSurfaceVariant)
                 opacity: 1.0
                 Behavior on border.color { ColorAnimation { duration: 140; easing.type: Easing.InOutQuad } }
             }
@@ -137,7 +138,7 @@ Item {
                 visible: root.checked
                 color: !root.enabled
                        ? Qt.rgba(0.72,0.72,0.72,1)
-                       : (root.error ? Palette.palette().error : root.accent)
+                       : (root.error ? Appearance.m3colors.m3error : root.accent)
                 scale: root.checked ? 1.0 : 0.0
                 Behavior on scale { NumberAnimation { duration: 120; easing.type: Easing.OutBack } }
                 Behavior on color { ColorAnimation { duration: 140; easing.type: Easing.InOutQuad } }
@@ -150,8 +151,8 @@ Item {
                 height: controlSize + 10
                 radius: width / 2
                 color: root.checked
-                       ? (root.error ? Palette.palette().onErrorContainer : Palette.palette().onPrimary)
-                       : Palette.palette().onSurface
+                       ? (root.error ? Appearance.m3colors.m3onErrorContainer : Appearance.m3colors.m3onPrimary)
+                       : Appearance.m3colors.m3onSurface
                 opacity: root.enabled ? (root.pressed ? 0.12 : (root.hovered ? 0.08 : 0.0)) : 0.0
                 Behavior on opacity { NumberAnimation { duration: 100; easing.type: Easing.InOutQuad } }
                 Behavior on color { ColorAnimation { duration: 120; easing.type: Easing.InOutQuad } }
@@ -162,7 +163,7 @@ Item {
         Text {
             id: label
             text: root.text
-            color: root.enabled ? Palette.palette().onSurface : Qt.rgba(0.75,0.75,0.75,1)
+            color: root.enabled ? Appearance.m3colors.m3onSurface : Qt.rgba(0.75,0.75,0.75,1)
             font.pixelSize: 14
             wrapMode: (root.labelWrap || (root.autoWrap && root.externalAvailableWidth > 0)) ? Text.WordWrap : Text.NoWrap
             // Compute a dynamic width when auto-wrapping is enabled or when labelWrap+labelMaxWidth provided

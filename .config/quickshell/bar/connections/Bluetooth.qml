@@ -1,14 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma ComponentBehavior: Bound
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import Quickshell
 import Quickshell.Widgets
 import Quickshell.Bluetooth
 import qs
 import qs.bar
 import "../../resources/components/inputs"
-import "../../resources/colors.js" as Palette
+import qs.common
 
 ClickableIcon {
     id: root
@@ -21,12 +23,15 @@ ClickableIcon {
     onPressed: event => {
         event.accepted = true
         if (event.button === Qt.RightButton) {
+            Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-name.mp3"])
             showMenu = !showMenu
         }
     }
 
     onClicked: event => {
+        event.accepted = true
         if (event.button === Qt.LeftButton) {
+            Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-tongue.mp3"])
             adapter.enabled = !adapter.enabled
         }
     }
@@ -45,7 +50,6 @@ ClickableIcon {
 			anchors.fill: parent
 			anchors.leftMargin: 1
 			renderType: Text.NativeRendering
-			// color: Pallete.palette().onSurface
             id: bluetoothIcon
             // Position manually in center to avoid anchor conflicts with scaling
             x: parent.width / 2 - width / 2
@@ -59,7 +63,7 @@ ClickableIcon {
                 if (connected) return "bluetooth_connected"
                 return "bluetooth"
             }
-            color: Palette.palette().onSurface
+            color: Appearance.m3colors.m3onSurface
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             // Scale from center point
@@ -89,7 +93,7 @@ ClickableIcon {
         show: root.containsMouse
 
         Label {
-            color: Palette.palette().onSurface
+            color: Appearance.m3colors.m3onSurface
             text: "Bluetooth"
         }
     }
@@ -134,12 +138,12 @@ ClickableIcon {
                                     if (connected) return "bluetooth_connected"
                                     return "bluetooth"
                                 }
-                                color: Palette.palette().onSurface
+                                color: Appearance.m3colors.m3onSurface
                             }
 
                             Label {
                                 text: `Bluetooth (${root.adapter.adapterId})`
-                                color: Palette.palette().onSurface
+                                color: Appearance.m3colors.m3onSurface
                                 font.pixelSize: 16
                             }
                         }
@@ -152,7 +156,7 @@ ClickableIcon {
                         font.family: "Material Symbols Outlined"
                         font.pixelSize: 20 // Smaller icon in menu
                         text: adapter.enabled ? "bluetooth_disabled" : "bluetooth"
-                        color: Palette.palette().onSurface
+                        color: Appearance.m3colors.m3onSurface
                         MouseArea { anchors.fill: parent; onClicked: root.adapter.enabled = !root.adapter.enabled }
                     }
 
@@ -161,7 +165,7 @@ ClickableIcon {
                         font.family: "Material Symbols Outlined"
                         font.pixelSize: 20 // Smaller icon in menu
                         text: "search"
-                        color: Palette.palette().onSurface
+                        color: Appearance.m3colors.m3onSurface
                         MouseArea { anchors.fill: parent; onClicked: root.adapter.discovering = !root.adapter.discovering }
                     }
                 }

@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 //@ pragma Internal
 import QtQuick
 import QtQuick.Templates as T

@@ -1,9 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import qs.common
 import qs.common.widgets
-import "../../resources/colors.js" as Palette
 
 TextField {
     id: filterField
@@ -14,16 +15,16 @@ TextField {
     implicitWidth: 200
     padding: 10
 
-    placeholderTextColor: AppearanceRippleButton.colors.colSubtext
-    color: AppearanceRippleButton.colors.colOnLayer1
-    font.pixelSize: AppearanceRippleButton.font.pixelSize.small
+    placeholderTextColor: Appearance.colors.colSubtext
+    color: Appearance.colors.colOnLayer1
+    font.pixelSize: Appearance.font.pixelSize.small
     renderType: Text.NativeRendering
-    selectedTextColor: AppearanceRippleButton.colors.colOnSecondaryContainer
-    selectionColor: AppearanceRippleButton.colors.colSecondaryContainer
+    selectedTextColor: Appearance.colors.colOnSecondaryContainer
+    selectionColor: Appearance.colors.colSecondaryContainer
 
     background: Rectangle {
         id: background
-        color: Palette.palette().surfaceContainer
+        color: Appearance.m3colors.m3surfaceContainer
         radius: Appearance.rounding.full
     }
 }

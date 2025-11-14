@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 // Context menu helper library
 
 // RightClickMenu helper: centralizes default items and opening logic

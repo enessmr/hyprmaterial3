@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
@@ -10,9 +13,9 @@ Item {
   // Initials to show when no image provided
   property string initials: ""
   // Background color for initials avatar
-  property color backgroundColor: Palette.palette().surfaceVariant
+  property color backgroundColor: Appearance.m3colors.m3surfaceVariant
   // Foreground color for initials text
-  property color foregroundColor: Palette.palette().onSurface
+  property color foregroundColor: Appearance.m3colors.m3onSurface
 
   implicitWidth: size
   implicitHeight: size

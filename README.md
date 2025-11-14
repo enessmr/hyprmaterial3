@@ -1,13 +1,19 @@
 <div align="center">
-    <h1>【 enessmr's Hyprland dotfiles 】</h1>
+    <h1>【 yoshi's hyprland dotfiles 💚🦕 】</h1>
+    <h3></h3>
+    <sup><sub><sup><h6>(yes it has expressive and normal m3 combined)</h6></sub></sup>
     <h3></h3>
 </div>
 
+<h2>Adrian: gifted pover
+
+Entrique: pure effort </h2>
+
 <div align="center"> 
 
-![](https://img.shields.io/github/last-commit/enessmr/hyprmaterial3?&style=for-the-badge&color=8ad7eb&logo=git&logoColor=D9E0EE&labelColor=1E202B)
-![](https://img.shields.io/github/stars/enessmr/hyprmaterial3?style=for-the-badge&logo=andela&color=8ad7eb&logoColor=D9E0EE&labelColor=1E202B)
-![](https://img.shields.io/github/repo-size/enessmr/hyprmaterial3?color=8ad7eb&label=SIZE&logo=protondrive&style=for-the-badge&logoColor=D9E0EE&labelColor=1E202B)
+![](https://img.shields.io/github/last-commit/enessmr/hypryoshi3?&style=for-the-badge&color=8ad7eb&logo=git&logoColor=D9E0EE&labelColor=1E202B)
+![](https://img.shields.io/github/stars/enessmr/hypryoshi3?style=for-the-badge&logo=andela&color=8ad7eb&logoColor=D9E0EE&labelColor=1E202B)
+![](https://img.shields.io/github/repo-size/enessmr/hypryoshi3?color=8ad7eb&label=SIZE&logo=protondrive&style=for-the-badge&logoColor=D9E0EE&labelColor=1E202B)
 ![](https://img.shields.io/badge/LINEAGEOS-22.1-8ad7eb?style=for-the-badge&logo=lineageos&logoColor=D9E0EE&labelColor=1E202B)
 
 
@@ -51,10 +57,10 @@
   | [Quickshell](https://github.com/quickshell-mirror/quickshell) | a thing thats responsible for everything ig hmm  |
 
 
-  _Note: **THERE IS NO FUCKING WAYBAR**_
+  _**<h2>STOP FUCKING CALLING EVERY BAR VAYBAR OR I VILL FRICK TO YOUR DIH AND GOON TO IT AND CALL P DIDDY TO DIDDLE AND BACKSHOT U</h2>**_
 
 
-  - For a more comprehensive list of dependencies, see [.deps.txt](https://github.com/enessmr/hyprmaterial3/blob/main/.deps.txt)
+  - For a more comprehensive list of dependencies, see [.deps.txt](https://github.com/enessmr/hypryoshi3/blob/main/.deps.txt)
 </details>
 
 <details>
@@ -70,18 +76,7 @@
     <h3></h3>
 </div>
 
-
-### hyprmaterial3<sup>AGS</sup>
-
-Widget system: AGS | Support: No
-
-[Showcase video](https://m.youtube.com/watch?v=N4vplvIAF_Y)
-
-| MPRIS and notification + app launcher | 
-|:---|
-| <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85d96f90-b4fa-4400-87b5-529b35e0c0ab" /> | 
-
-### hyprmaterial3<sup>QS</sup>
+### hypryoshi3<sup>QS</sup> 💚🦕
 
 Widget system: Quickshell | Support: Yes (but since my qml is very no-no, expect for bugs by ai code)
 
@@ -93,6 +88,15 @@ Widget system: Quickshell | Support: Yes (but since my qml is very no-no, expect
 |:---|
 | <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c219c23-c343-4609-96cd-99d04e53aa8a" /> |
 
+### hypryoshi3<sup>AGS</sup> 💚🦕
+
+Widget system: AGS | Support: No
+
+[Showcase video](https://m.youtube.com/watch?v=N4vplvIAF_Y)
+
+| MPRIS and notification + app launcher | 
+|:---|
+| <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85d96f90-b4fa-4400-87b5-529b35e0c0ab" /> | 
 
 <div align="center">
     <h2>• thank you •</h2>

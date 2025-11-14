@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
@@ -7,8 +10,8 @@ Rectangle {
     // Material-like surface with outline
     property real cornerRadius: 14
     property real outlineWidth: 1
-    property color surfaceColor: Palette.palette().surface
-    property color outlineColor: Palette.palette().outline
+    property color surfaceColor: Appearance.m3colors.m3surface
+    property color outlineColor: Appearance.m3colors.m3outline
     property real padding: 12
 
     color: surfaceColor

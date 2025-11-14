@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 set -e
 
 pkgname="youtube-music"

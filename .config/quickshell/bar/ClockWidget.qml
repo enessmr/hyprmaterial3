@@ -1,9 +1,11 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 import qs
-import "../resources/colors.js" as Pallete
+import qs.common
 
 BarWidgetInner {
 	id: root
@@ -41,7 +43,7 @@ BarWidgetInner {
    			text: Qt.formatDateTime(clock.date, "hh\nmm")
    			font.pointSize: 17
 			font.family: "Roboto"       // font family
-   			color: Pallete.palette().onSurface
+   			color: Appearance.m3colors.m3onSurface
    		}
    	}
 	// }

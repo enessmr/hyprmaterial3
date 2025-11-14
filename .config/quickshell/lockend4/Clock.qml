@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import qs.common
@@ -8,7 +10,7 @@ Item {
     // Size of the gooner's dih 😍
     width: Screen.width      // smol gooner 🥺
     height: Screen.height
-    property color primaryColor: AppearanceRippleButton.m3colors.primary
+    property color primaryColor: Appearance.m3colors.m3primary
 
     // ohh the gooner's dih is ticking
     readonly property string hours: Qt.formatDateTime(new Date(), "hh")

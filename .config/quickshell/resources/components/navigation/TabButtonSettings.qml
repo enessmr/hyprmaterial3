@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
-import "../../colors.js" as Palette
 import "../icons" as Icon
+import qs.common
+import qs.common.widgets
 
 Item {
     id: root
@@ -15,10 +18,10 @@ Item {
     property int padding: 8
     property int spacing: 4
     property int iconSize: 20
-    property color indicatorColor: Palette.palette().primary
-    property color activeIconBackground: Palette.palette().secondaryContainer
-    property color activeIconColor: Palette.palette().onSecondaryContainer
-    property color inactiveIconColor: Palette.palette().onSurface
+    property color indicatorColor: Appearance?.m3colors?.m3primary
+    property color activeIconBackground: Appearance?.m3colors?.m3secondaryContainer
+    property color activeIconColor: Appearance?.m3colors?.m3onSecondaryContainer
+    property color inactiveIconColor: Appearance?.m3colors?.m3onSurface
     signal clicked()
 
     implicitWidth: Math.max(iconSize + padding * 2, contentCol.implicitWidth + padding * 2)
@@ -55,7 +58,12 @@ Item {
             }
 
             // Icon priority: iconName (drawn), else iconSource (image)
-            Icon.IconSettings { anchors.centerIn: parent; name: root.iconName; size: iconSize; color: root.active ? activeIconColor : inactiveIconColor; visible: root.iconName !== "" }
+            MaterialSymbol {
+                        anchors.centerIn: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        text: iconName
+                        iconSize: 20
+                    }
             Image { anchors.centerIn: parent; source: iconSource; width: iconSize; height: iconSize; visible: iconSource !== "" && root.iconName === ""; fillMode: Image.PreserveAspectFit; smooth: true }
         }
 
@@ -64,7 +72,7 @@ Item {
             id: labelItem
             text: root.label
             visible: root.label.length > 0
-            color: root.active ? Palette.palette().onSurface : Palette.palette().onSurfaceVariant
+            color: root.active ? Appearance?.m3colors?.m3onSurface : Appearance?.m3colors?.m3onSurfaceVariant
             font.pixelSize: 12
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter

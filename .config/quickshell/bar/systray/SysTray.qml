@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma ComponentBehavior: Bound
 
 import QtQuick
@@ -58,15 +60,18 @@ BarWidgetInner {
 						event.accepted = true;
 
 						if (event.button == Qt.LeftButton) {
+            				Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-pam.mp3"])
 							item.modelData.activate();
 						} else if (event.button == Qt.MiddleButton) {
 							item.modelData.secondaryActivate();
+							Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-pam.mp3"])
 						}
 					}
 
 					onPressed: event => {
 						if (event.button == Qt.RightButton && item.modelData.hasMenu) {
 							item.targetMenuOpen = !item.targetMenuOpen;
+							Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-pam.mp3"])
 						}
 					}
 
@@ -74,6 +79,7 @@ BarWidgetInner {
 						event.accepted = true;
 						const points = event.angleDelta.y / 120
 						item.modelData.scroll(points, false);
+						Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-wooh.mp3"])
 					}
 
 					property var tooltip: TooltipItem {

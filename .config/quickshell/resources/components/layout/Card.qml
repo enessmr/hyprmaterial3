@@ -1,13 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
 
     property real padding: 16
     property real cornerRadius: 12
-    property color backgroundColor: Palette.palette().surface
-    property color outlineColor: Palette.palette().outline
+    property color backgroundColor: Appearance.m3colors.m3surface
+    property color outlineColor: Appearance.m3colors.m3outline
 
     color: backgroundColor
     radius: cornerRadius

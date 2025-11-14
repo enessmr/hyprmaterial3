@@ -1,12 +1,15 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../../metrics.js" as Metrics
+import qs.common
 
 Item {
     id: root
     property real progress: 0.0
-    property color trackColor: Palette.palette().surfaceVariant
-    property color progressColor: Palette.palette().primary
+    property color trackColor: Appearance.m3colors.m3surfaceVariant
+    property color progressColor: Appearance.m3colors.m3primary
     property real thickness: 4
     property bool showDivider: false
     property real dividerThickness: 2
@@ -47,7 +50,7 @@ Item {
             // optional divider in the middle
             if (root.showDivider) {
                 ctx.lineWidth = dividerThickness
-                ctx.strokeStyle = Palette.palette().onSurfaceVariant
+                ctx.strokeStyle = Appearance.m3colors.m3onSurfaceVariant
                 ctx.beginPath()
                 ctx.moveTo(width/2, 0)
                 ctx.lineTo(width/2, height)

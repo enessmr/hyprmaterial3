@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../icons" as Icon
+import qs.common
 
 Item {
     id: root
@@ -11,11 +14,11 @@ Item {
     property int diameter: 36
     signal toggled(bool checked)
 
-    readonly property color activeBg: Palette.palette().primary
-    readonly property color activeFg: Palette.palette().onPrimary
-    readonly property color inactiveBg: Palette.isDarkMode() ? Qt.lighter(Palette.palette().surface, 1.08)
-                                                            : Qt.darker(Palette.palette().surface, 1.03)
-    readonly property color inactiveFg: Palette.palette().onSurface
+    readonly property color activeBg: Appearance.m3colors.m3primary
+    readonly property color activeFg: Appearance.m3colors.m3onPrimary
+    readonly property color inactiveBg: Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surface, 1.08)
+                                                            : Qt.darker(Appearance.m3colors.m3surface, 1.03)
+    readonly property color inactiveFg: Appearance.m3colors.m3onSurface
 
     implicitWidth: background.implicitWidth
     implicitHeight: background.implicitHeight
@@ -65,7 +68,7 @@ Item {
     Rectangle {
         anchors.fill: background
         radius: background.radius
-        color: Palette.palette().onSurface
+        color: Appearance.m3colors.m3onSurface
         opacity: mouseArea.pressed ? 0.14 : (mouseArea.containsMouse ? 0.06 : 0.0)
         visible: root.enabled
         Behavior on opacity { NumberAnimation { duration: 110; easing.type: Easing.InOutQuad } }

@@ -1,11 +1,14 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
     property bool checked: false
     property bool enabled: true
-    property color accent: Palette.palette().primary
+    property color accent: Appearance.m3colors.m3primary
     property bool hovered: false
     property bool pressed: false
     signal toggled(bool checked)
@@ -14,18 +17,18 @@ Item {
     implicitHeight: 32
 
     // Material 3 state layer color depending on selected state
-    property color stateLayerColor: checked ? Palette.palette().onPrimary : Palette.palette().onSurface
+    property color stateLayerColor: checked ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
 
     Rectangle {
         id: track
         anchors.fill: parent
         radius: height / 2
         color: !root.enabled ? Qt.rgba(0.35,0.35,0.35,1)
-               : (root.checked ? accent : Qt.lighter(Palette.palette().surfaceVariant, 1.25))
+               : (root.checked ? accent : Qt.lighter(Appearance.m3colors.m3surfaceVariant, 1.25))
         opacity: 1.0
         // Show thicker outline when unchecked; also outline when checked but disabled
         border.width: (!root.checked ? 2 : (root.checked && !root.enabled ? 1 : 0))
-        border.color: root.enabled ? Palette.palette().outline : Qt.rgba(0.5,0.5,0.5,1)
+        border.color: root.enabled ? Appearance.m3colors.m3outline : Qt.rgba(0.5,0.5,0.5,1)
         Behavior on color { ColorAnimation { duration: 150; easing.type: Easing.InOutQuad } }
         Behavior on opacity { NumberAnimation { duration: 120; easing.type: Easing.InOutQuad } }
 
@@ -56,9 +59,9 @@ Item {
             width: 20; height: 20
             radius: 10
             // Thumb base colors per Material: onPrimary when checked, onSurface when unchecked
-            color: root.enabled ? (root.checked ? Palette.palette().onPrimary : Palette.palette().onSurface) : Qt.rgba(0.82,0.82,0.82,1)
+            color: root.enabled ? (root.checked ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface) : Qt.rgba(0.82,0.82,0.82,1)
             border.width: (!root.enabled || root.checked) ? 0 : 1
-            border.color: Palette.palette().outline
+            border.color: Appearance.m3colors.m3outline
             scale: pressed ? 1.15 : 1.0
             Behavior on scale { NumberAnimation { duration: 140; easing.type: Easing.InOutQuad } }
             Behavior on color { ColorAnimation { duration: 150; easing.type: Easing.InOutQuad } }

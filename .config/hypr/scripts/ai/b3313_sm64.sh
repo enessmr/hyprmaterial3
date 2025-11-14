@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 SYSTEM_PROMPT=$1
 model=$2
 content=$3

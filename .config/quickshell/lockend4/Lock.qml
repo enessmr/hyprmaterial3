@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs
 import qs.common
 import qs.common.functions
@@ -8,7 +10,6 @@ import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import Qt.labs.platform 1.1
-import "../resources/colors.js" as Palette
 import qs.settings as SettingsAhhGoon
 
 Scope {
@@ -95,7 +96,7 @@ Scope {
                     // Fallback rectangle behind clock (always present)
                     Rectangle {
                         anchors.fill: parent
-                        color: Palette.palette().onPrimary
+                        color: Appearance?.m3colors?.m3onPrimary
                         opacity: lockImage.status === Image.Ready ? 0 : 1
                         Behavior on opacity { NumberAnimation { duration: 300 } }
                         z: 1
@@ -114,9 +115,9 @@ Scope {
                         // margins: 10
                         width: 250
                         height: 80
-                        color: Palette.palette().background
+                        color: Appearance?.m3colors?.m3background
                         border.width: 2
-                        border.color: Palette.palette().outlineVariant
+                        border.color: Appearance?.m3colors?.m3outlineVariant
                         radius: 16
                         anchors.leftMargin: 5
                         anchors.topMargin: 5

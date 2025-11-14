@@ -1,3 +1,5 @@
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
 set fish_color_autosuggestion {{colors.outline.default.hex_stripped}}
 set fish_color_cancel -r
 set fish_color_command {{colors.primary.default.hex_stripped}}

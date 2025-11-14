@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
@@ -18,15 +21,15 @@ Item {
         Rectangle {
             id: indicator
             width: 24; height: 24; radius: 12
-            color: selected ? Palette.palette().secondaryContainer : "transparent"
+            color: selected ? Appearance.m3colors.m3secondaryContainer : "transparent"
             border.width: selected ? 0 : 1
-            border.color: Palette.palette().outline
+            border.color: Appearance.m3colors.m3outline
             Behavior on color { ColorAnimation { duration: 150; easing.type: Easing.InOutQuad } }
         }
 
         Text {
             id: label
-            color: selected ? Palette.palette().onSecondaryContainer : Palette.palette().onSurface
+            color: selected ? Appearance.m3colors.m3onSecondaryContainer : Appearance.m3colors.m3onSurface
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight

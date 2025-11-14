@@ -1,60 +1,46 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
+import qs.common
+import qs.common.widgets
 
 Item {
     id: root
     property string name: ""
-    property color color: "#FFFFFF"
+    property color color: Appearance?.m3colors?.m3onSurface
+    property bool active: false
     property int size: 24
     implicitWidth: size
     implicitHeight: size
 
     // Primary: Text with Material Symbols
-    Text {
-        id: iconText
-        anchors.centerIn: parent // Center it perfectly!
-        font.family: "Material Symbols Outlined"
-        font.pixelSize: size
-        color: root.color
-        visible: font.family === "Material Symbols Outlined" // Ensure font is loaded
-        text: {
-            switch (root.name) {
-            case 'palette':
-                return "palette" // Use ligature/name (check Material Symbols docs)
-            case 'home':
-                return "home"
-            case 'search':
-                return "search"
-            case 'person':
-                return "person"
-            case 'flashlight':
-                return "flashlight"
-            case 'wifi':
-                return "wifi"
-            case 'bluetooth':
-                return "bluetooth"
-            case 'mood':
-                return "mood"
-            case 'emoji_people':
-                return "emoji_people"
-            case 'pets':
-                return "pets"
-            case 'emoji_food_beverage':
-                return "emoji_food_beverage"
-            case 'emoji_transportation':
-                return "emoji_transportation"
-            case 'sports_soccer':
-                return "sports_soccer"
-            case 'emoji_objects':
-                return "emoji_objects"
-            case 'emoji_symbols':
-                return "emoji_symbols"
-            case 'flag':
-                return "flag"
-            default:
-                return "more_horiz"
-            }
+    StyledText {
+    id: iconText
+    property real iconSize: Appearance?.font.pixelSize.small ?? 16
+    property real fill: 0
+    property real truncatedFill: fill.toFixed(1) // Reduce memory consumption spikes from constant font remapping
+    renderType: fill !== 0 ? Text.CurveRendering : Text.NativeRendering
+    font {
+        hintingPreference: Font.PreferFullHinting
+        family: Appearance?.font.family.iconMaterial ?? "Material Symbols Rounded"
+        pixelSize: iconSize
+        weight: Font.Normal + (Font.DemiBold - Font.Normal) * truncatedFill
+        variableAxes: { 
+            "FILL": truncatedFill,
+            // "wght": font.weight,
+            // "GRAD": 0,
+            "opsz": iconSize,
         }
     }
+
+    Behavior on fill { // Leaky leaky, no good
+        NumberAnimation {
+            duration: Appearance?.animation.elementMoveFast.duration ?? 200
+            easing.type: Appearance?.animation.elementMoveFast.type ?? Easing.BezierSpline
+            easing.bezierCurve: Appearance?.animation.elementMoveFast.bezierCurve ?? [0.34, 0.80, 0.34, 1.00, 1, 1]
+        }
+    }
+}
 
     // Fallback: Canvas (hidden unless text fails)
     Canvas {

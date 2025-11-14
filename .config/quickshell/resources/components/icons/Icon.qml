@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 
 Item {
@@ -68,6 +70,8 @@ Item {
                 return "emoji_symbols"
             case 'Flags':
                 return "flag"
+            case 'settings':
+                return "settings"
             default:
                 return "more_horiz"
             }

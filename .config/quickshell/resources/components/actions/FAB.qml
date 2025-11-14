@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQml 2.15
 import "../../colors.js" as Palette
 import "../icons" as Icon
+import qs.common
 
 /*
   Floating Action Button (FAB)
@@ -34,7 +37,7 @@ Item {
   readonly property bool isExtended: !menuOpen && (extendedStatic || (autoExtendOnHover && hovered && text.length > 0))
   property var menuItems: []
   property bool menuOpen: false
-  property color accent: Palette.palette().primary
+  property color accent: Appearance.m3colors.m3primary
   signal triggered()
   // Rounded square radius when compact
   property int cornerRadiusSquare: Math.max(8, Math.round(diameter * 0.22))
@@ -49,7 +52,7 @@ Item {
     id: bg
     anchors.fill: parent
     radius: menuOpen ? (height / 2) : cornerRadiusSquare
-    color: menuOpen ? Palette.palette().secondaryContainer : accent
+    color: menuOpen ? Appearance.m3colors.m3secondaryContainer : accent
     border.width: 0
   }
 
@@ -68,7 +71,7 @@ Item {
       width: parent.width
       height: 2.2
       radius: 1
-      color: menuOpen ? Palette.palette().onSecondaryContainer : Palette.palette().onPrimary
+      color: menuOpen ? Appearance.m3colors.m3onSecondaryContainer : Appearance.m3colors.m3onPrimary
       rotation: menuOpen ? 45 : 0
       Behavior on rotation { NumberAnimation { duration: 140; easing.type: Easing.OutCubic } }
     }
@@ -78,7 +81,7 @@ Item {
       width: parent.width
       height: 2.2
       radius: 1
-      color: menuOpen ? Palette.palette().onSecondaryContainer : Palette.palette().onPrimary
+      color: menuOpen ? Appearance.m3colors.m3onSecondaryContainer : Appearance.m3colors.m3onPrimary
       rotation: menuOpen ? -45 : 90
       Behavior on rotation { NumberAnimation { duration: 140; easing.type: Easing.OutCubic } }
     }
@@ -89,7 +92,7 @@ Item {
     id: txt
     visible: root.isExtended
     text: root.text
-    color: Palette.palette().onPrimary
+    color: Appearance.m3colors.m3onPrimary
     anchors.verticalCenter: parent.verticalCenter
     anchors.left: glyph.right
     anchors.leftMargin: 10
@@ -128,7 +131,7 @@ Item {
           anchors.fill: parent
           radius: height / 2
           // Use primary container for vivid pills
-          color: Palette.palette().primaryContainer
+          color: Appearance.m3colors.m3primaryContainer
           border.width: 0
         }
         // Optional icon on the left if provided in model
@@ -140,7 +143,7 @@ Item {
           anchors.verticalCenter: parent.verticalCenter
           anchors.left: parent.left
           anchors.leftMargin: 10
-          Icon.Icon { anchors.fill: parent; name: modelData && modelData.icon ? modelData.icon : ""; color: Palette.palette().onPrimaryContainer; size: parent.width }
+          Icon.Icon { anchors.fill: parent; name: modelData && modelData.icon ? modelData.icon : ""; color: Appearance.m3colors.m3onPrimaryContainer; size: parent.width }
         }
         Text {
           id: lbl
@@ -148,7 +151,7 @@ Item {
           anchors.left: iconBox.visible ? iconBox.right : parent.left
           anchors.leftMargin: 12
           text: (modelData && modelData.label) ? modelData.label : ""
-          color: Palette.palette().onPrimaryContainer
+          color: Appearance.m3colors.m3onPrimaryContainer
           font.pixelSize: 14
           font.italic: false
           font.weight: Font.Medium

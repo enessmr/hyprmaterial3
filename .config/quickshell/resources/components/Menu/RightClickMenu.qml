@@ -1,6 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQml 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 /*
   Simplified context menu intended for text inputs.
@@ -109,8 +112,8 @@ Item {
     radius: 10
     // Slightly grayish surface for better contrast vs background
     color: Palette.isDarkMode()
-           ? Qt.lighter(Palette.palette().surfaceVariant, 1.08)
-           : Qt.darker(Palette.palette().surfaceVariant, 1.06)
+           ? Qt.lighter(Appearance.m3colors.m3surfaceVariant, 1.08)
+           : Qt.darker(Appearance.m3colors.m3surfaceVariant, 1.06)
     clip: true
     border.width: 0
     antialiasing: true
@@ -198,7 +201,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 12
             text: (itemData && itemData.label) ? itemData.label : ""
-            color: Palette.palette().onSurface
+            color: Appearance.m3colors.m3onSurface
             font.pixelSize: 14
             opacity: (itemData && itemData.enabled === false) ? 0.38 : 1.0
           }

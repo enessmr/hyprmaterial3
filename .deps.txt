@@ -1,3 +1,5 @@
+--- REQUIRED ---
+
 AGS
 Quickshell
 cairo
@@ -27,7 +29,8 @@ pfetch-with-kitties
 Noto fonts
 Material Symbols fonts
 Noto Color Emoji
-
+power-profiles-daemon (for the power profiles in the bar to function correctly)
+zsh (or fish)
 
 --- OPTIONAL ---
 

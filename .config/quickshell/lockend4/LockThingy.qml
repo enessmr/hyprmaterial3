@@ -1,7 +1,9 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "../resources/colors.js" as Palette
+import qs.common
 
 // INFO PANEL THAT GOES ABSOLUTELY HARD 🔥
 Item {
@@ -19,21 +21,21 @@ Item {
         // Calendar icon because we're ICONIC like that
         Text {
             text: "calendar_today"
-            color: Palette.palette().primary
+            color: Appearance?.m3colors?.m3primary
             font.pixelSize: 20
             font.family: "Material Symbols Outlined"
             anchors.verticalCenter: parent.verticalCenter
             
             // Shadow for that CRISPY look
             style: Text.Outline
-            styleColor: Palette.palette().shadow
+            styleColor: Appearance?.m3colors?.m3shadow
         }
 
         // Date text - serving REALNESS
         Text {
             id: dateText
             text: Qt.formatDate(new Date(), "dddd, MMMM dd")
-            color: Palette.palette().primary
+            color: Appearance?.m3colors?.m3primary
             font.pixelSize: 20
             font.family: "Product Sans Medium"
             anchors.verticalCenter: parent.verticalCenter
@@ -51,7 +53,7 @@ Item {
         // Keyboard icon - typing is our passion
         Text {
             text: "keyboard"
-            color: Palette.palette().primary
+            color: Appearance?.m3colors?.m3primary
             font.pixelSize: 20
             font.family: "Material Symbols Outlined"
             anchors.verticalCenter: parent.verticalCenter
@@ -61,7 +63,7 @@ Item {
         Text {
             id: layoutText
             text: "US" // Will be updated by the process
-            color: Palette.palette().primary
+            color: Appearance?.m3colors?.m3primary
             font.pixelSize: 20
             font.family: "Product Sans Medium"
             anchors.verticalCenter: parent.verticalCenter    
@@ -80,7 +82,7 @@ Item {
         Text {
             id: batteryIcon
             text: "battery_full" // Will be updated by deepseek's FIRE script
-            color: Palette.palette().primary
+            color: Appearance?.m3colors?.m3primary
             font.pixelSize: 20
             font.family: "Material Symbols Outlined"
             anchors.verticalCenter: parent.verticalCenter
@@ -90,7 +92,7 @@ Item {
         Text {
             id: batteryText
             text: "100%" // Will be updated by the BANGER script
-            color: Palette.palette().primary
+            color: Appearance?.m3colors?.m3primary
             font.pixelSize: 20
             font.family: "Product Sans Medium"
             anchors.verticalCenter: parent.verticalCenter

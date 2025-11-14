@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
@@ -7,7 +9,6 @@ import qs.lockend4
 import qs.common
 import qs.common.widgets
 import qs.common.functions
-import "../resources/colors.js" as Palette
 
 MouseArea {
     id: root
@@ -53,21 +54,6 @@ MouseArea {
 
     anchors.fill: parent
 
-    // RippleButton {
-    //     anchors {
-    //         top: parent.top
-    //         left: parent.left
-    //         leftMargin: 10
-    //         topMargin: 10
-    //     }
-    //     implicitHeight: 40
-    //     colBackground: AppearanceRippleButton.colors.colLayer2
-    //     onClicked: context.unlocked()
-    //     contentItem: StyledText {
-    //         text: "[[ DEBUG BYPASS ]]"
-    //     }
-    // }
-
     // Controls
     Toolbar {
         anchors {
@@ -76,7 +62,7 @@ MouseArea {
             bottomMargin: 20
         }
         Behavior on anchors.bottomMargin {
-            animation: AppearanceRippleButton.animation.elementMove.numberAnimation.createObject(this)
+            animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
         }
 
         scale: 0.9
@@ -87,13 +73,13 @@ MouseArea {
         }
         Behavior on scale {
             NumberAnimation {
-                duration: AppearanceRippleButton.animation.elementMove.duration
-                easing.type: AppearanceRippleButton.animation.elementMove.type
-                easing.bezierCurve: AppearanceRippleButton.animationCurves.expressiveFastSpatial
+                duration: Appearance.animation.elementMove.duration
+                easing.type: Appearance.animation.elementMove.type
+                easing.bezierCurve: Appearance.animationCurves.expressiveFastSpatial
             }
         }
         Behavior on opacity {
-            animation: AppearanceRippleButton.animation.elementMoveFast.numberAnimation.createObject(this)
+            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
         }
 
         ToolbarButton {
@@ -108,7 +94,7 @@ MouseArea {
                 verticalAlignment: Text.AlignVCenter
                 iconSize: 24
                 text: "dark_mode"
-                color: Palette.palette().onPrimaryContainer
+                color: Appearance?.m3colors?.m3onPrimaryContainer
             }
         }
 
@@ -118,7 +104,7 @@ MouseArea {
 
             // Style
             clip: true
-            font.pixelSize: AppearanceRippleButton.font.pixelSize.small
+            font.pixelSize: Appearance.font.pixelSize.small
 
             // Password
             enabled: !root.context.unlockInProgress
@@ -141,7 +127,7 @@ MouseArea {
             implicitWidth: height
             toggled: true
             enabled: !root.context.unlockInProgress
-            colBackgroundToggled: Palette.palette().primary
+            colBackgroundToggled: Appearance?.m3colors?.m3primary
 
             onClicked: root.context.tryUnlock()
 
@@ -151,7 +137,7 @@ MouseArea {
                 verticalAlignment: Text.AlignVCenter
                 iconSize: 24
                 text: "arrow_right_alt"
-                color: confirmButton.enabled ? Palette.palette().onPrimary : Palette.palette().outline
+                color: confirmButton.enabled ? Appearance?.m3colors?.m3onPrimary : Appearance?.m3colors?.m3outline
             }
         }
     }

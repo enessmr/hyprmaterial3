@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -6,7 +8,7 @@ import Quickshell.Widgets
 import Quickshell.Bluetooth
 import qs
 import qs.bar
-import "../../resources/colors.js" as Pallete
+import qs.common
 
 WrapperMouseArea {
 	id: root
@@ -33,7 +35,7 @@ WrapperMouseArea {
 				}
 
 				Label {
-					color: Pallete.palette().onSurface
+					color: Appearance.m3colors.m3onSurface
 					text: root.device.name
 				}
 

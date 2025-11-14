@@ -1,11 +1,14 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
     id: root
     // Material-like circular indeterminate loader
     property real size: 28
-    property color color: Palette.palette().primary
+    property color color: Appearance.m3colors.m3primary
     property real strokeWidth: 3
     property bool running: true
     // speed and pulsing sweep

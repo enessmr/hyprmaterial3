@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -7,7 +9,7 @@ import Quickshell.Widgets
 import qs
 import qs.bar
 import qs.components
-import "../../resources/colors.js" as Pallete
+import qs.common
 
 BarWidgetInner {
 	id: root
@@ -30,7 +32,7 @@ BarWidgetInner {
 	property bool showMenu: false;
 
 	implicitHeight: width
-	color: isLow ? Pallete.palette().onError : ShellGlobals.colors.widget
+	color: isLow ? Appearance.m3colors.m3onError : Appearance.m3colors.m3onSecondary
 
 	// color: "transparent"    // no background
     border.width: 0         // no border
@@ -48,6 +50,7 @@ BarWidgetInner {
 
 		onPressed: {
 			root.showMenu = !root.showMenu
+			Quickshell.execDetached(["bash", "-c", "pw-play ~/.config/hypr/sfx/yoshi-pam.mp3"])
 		}
 
 		BatteryIcon {
@@ -65,7 +68,7 @@ BarWidgetInner {
 			active: tooltip.visible
 
 			sourceComponent: Label {
-				color: Pallete.palette().onSurface
+				color: Appearance.m3colors.m3onSurface
 				text: {
 					const status = root.statusStr();
 
@@ -96,7 +99,7 @@ BarWidgetInner {
 
 				component SmallLabel: Label {
 					font.pointSize: fm.font.pointSize * 0.8
-					color: Pallete.palette().onSurface
+					color: Appearance.m3colors.m3onSurface
 				}
 			
 				RowLayout {
@@ -108,7 +111,7 @@ BarWidgetInner {
 					ColumnLayout {
 						spacing: 0
 						Label { 
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 							text: "Power Profile" 
 						}
 
@@ -117,7 +120,7 @@ BarWidgetInner {
 							index: PowerProfiles.profile
 							onIndexChanged: PowerProfiles.profile = this.index;
 							implicitWidth: 350
-							color2: Pallete.palette().onSurface
+							color2: Appearance.m3colors.m3onSurface
 						}
 					}
 				}
@@ -134,16 +137,16 @@ BarWidgetInner {
 
 						RowLayout {
 							Label { 
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 								text: "Battery" 
 							}
 							Item { Layout.fillWidth: true }
 							Label {
 								text: `${root.statusStr()} -`
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 							}
 							Label { 
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 								text: `${Math.round(root.percentage * 100)}%` 
 							}
 						}
@@ -159,13 +162,13 @@ BarWidgetInner {
 							visible: remainingTimeLbl.text !== ""
 
 							SmallLabel {
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 								text: "Time remaining"
 							}
 							Item { Layout.fillWidth: true }
 
 				     	SmallLabel {
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 								id: remainingTimeLbl
 				     		text: {
 				     			const device = UPower.displayDevice;
@@ -181,13 +184,13 @@ BarWidgetInner {
 						RowLayout {
 							visible: root.batteryDevice.healthSupported
 							SmallLabel {
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 								text: "Health" 
 							}
 							Item { Layout.fillWidth: true }
 
 				     	SmallLabel {
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 				     		text: `${Math.floor((root.batteryDevice?.healthPercentage ?? 0))}%`
 				     	}
 						}
@@ -220,11 +223,11 @@ BarWidgetInner {
 			   			RowLayout {
 			   				Label { 
 								text: modelData.model 
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 							}
 			   				Item { Layout.fillWidth: true }
 			   				Label { 
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 								text: `${Math.round(modelData.percentage * 100)}%` 
 							}
 			   			}
@@ -239,13 +242,13 @@ BarWidgetInner {
 			   			RowLayout {
 			   				visible: modelData.healthSupported
 			   				SmallLabel { 
-								color: Pallete.palette().onSurface
+								color: Appearance.m3colors.m3onSurface
 								text: "Health" 
 							}
 			   				Item { Layout.fillWidth: true }
 
 			   	     	SmallLabel {
-							color: Pallete.palette().onSurface
+							color: Appearance.m3colors.m3onSurface
 			   	     		text: `${Math.floor(modelData.healthPercentage)}%`
 			   	     	}
 			   			}

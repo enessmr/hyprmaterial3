@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma Singleton
 pragma ComponentBehavior: Bound
 import QtQuick
@@ -54,6 +56,11 @@ Singleton {
 
         JsonAdapter {
             id: configOptionsJsonAdapter
+
+            property list<string> enabledPanels: [
+                "hyi3ReloadPopup"
+            ]
+
             property JsonObject policies: JsonObject {
                 property int ai: 1 // 0: No | 1: Yes | 2: Local
                 property int weeb: 1 // 0: No | 1: Open | 2: Closet

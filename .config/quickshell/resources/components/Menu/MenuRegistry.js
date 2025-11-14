@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 // Simple singleton shim so HamburgerMenu can coordinate open/close across overlays
 .pragma library
 

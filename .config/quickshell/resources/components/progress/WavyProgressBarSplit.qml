@@ -1,12 +1,15 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
 import "../../metrics.js" as Metrics
+import qs.common
 
 Item {
   id: root
   property real progress: 0.0 // 0..1
-  property color filledColor: Palette.palette().primary
-  property color emptyColor: Palette.palette().surfaceVariant
+  property color filledColor: Appearance.m3colors.m3primary
+  property color emptyColor: Appearance.m3colors.m3surfaceVariant
   property real amplitude: 8
   property real wavelength: 32
   property real strokeWidth: 4

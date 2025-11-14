@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import qs.common
 import qs.common.widgets
 import qs.common.functions
@@ -12,8 +14,9 @@ Button {
     id: root
     property bool toggled
     property string buttonText
-    property real buttonRadius: Appearance?.rounding?.small ?? 4
+    property real buttonRadius: settings ? Appearance.rounding.full : Appearance?.rounding?.small || 4
     property real buttonRadiusPressed: buttonRadius
+    property bool settings
     property real buttonEffectiveRadius: root.down ? root.buttonRadiusPressed : root.buttonRadius
     property int rippleDuration: 1200
     property bool rippleEnabled: true
@@ -22,19 +25,22 @@ Button {
     property var altAction // When right clicking
     property var middleClickAction // When middle clicking
 
-    property color colBackground: ColorUtils.transparentize(AppearanceRippleButton?.colors.colLayer1Hover, 1) || "transparent"
-    property color colBackgroundHover: AppearanceRippleButton?.colors.colLayer1Hover ?? "#E5DFED"
-    property color colBackgroundToggled: AppearanceRippleButton?.colors.colPrimary ?? "#65558F"
-    property color colBackgroundToggledHover: AppearanceRippleButton?.colors.colPrimaryHover ?? "#77699C"
-    property color colRipple: AppearanceRippleButton?.colors.colLayer1Active ?? "#D6CEE2"
-    property color colRippleToggled: AppearanceRippleButton?.colors.colPrimaryActive ?? "#D6CEE2"
+    property color colBackground: ColorUtils.transparentize(Appearance?.colors.colLayer1Hover, 1) || "transparent"
+    property color colBackgroundHover: Appearance?.colors.colLayer1Hover ?? "#E5DFED"
+    property color colBackgroundToggled: Appearance?.colors.colPrimary ?? "#65558F"
+    property color colBackgroundToggledHover: Appearance?.colors.colPrimaryHover ?? "#77699C"
+    property color colRipple: Appearance?.colors.colLayer1Active ?? "#D6CEE2"
+    property color colRippleToggled: Appearance?.colors.colPrimaryActive ?? "#D6CEE2"
+    property color colNull: "transparent"
 
     opacity: root.enabled ? 1 : 0.4
-    property color buttonColor: root.enabled ? (root.toggled ? 
-        (root.hovered ? colBackgroundToggledHover : 
-            colBackgroundToggled) :
-        (root.hovered ? colBackgroundHover : 
-            colBackground)) : colBackground
+    property color buttonColor: {
+        if (!root.enabled) return colBackground;
+        if (root.settings && root.hovered) return "transparent"; // THIS MAKES HOVER TRANSPARENT
+        if (root.toggled) return root.hovered ? colBackgroundToggledHover : colBackgroundToggled;
+        return root.hovered ? colBackgroundHover : colBackground;
+    }
+
     property color rippleColor: root.toggled ? colRippleToggled : colRipple
 
     function startRipple(x, y) {

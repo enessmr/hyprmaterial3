@@ -1,10 +1,13 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
   property string text: ""
-  property color color: Palette.palette().onSurface
+  property color color: Appearance.m3colors.m3onSurface
   property int pixelSize: 14
   // Set a sensible default UI font; 'Sans Serif' maps to the platform's default sans font
   property string fontFamily: "Sans Serif"

@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 import "../../../colors.js" as Palette
+import qs.common
 
 Item {
   id: root
@@ -27,10 +30,10 @@ Item {
     id: bg
     anchors.fill: parent
     radius: _radius
-    color: checked ? Palette.palette().surfaceVariant : Palette.palette().surface
+    color: checked ? Appearance.m3colors.m3surfaceVariant : Appearance.m3colors.m3surface
     // Selected has no border; unselected has thin hairline border
     border.width: checked ? 0 : _hairline
-    border.color: Palette.palette().outline
+    border.color: Appearance.m3colors.m3outline
     Behavior on color { ColorAnimation { duration: 120 } }
     Behavior on border.color { ColorAnimation { duration: 120 } }
   }
@@ -65,7 +68,7 @@ Item {
   Text {
     id: label
     anchors.verticalCenter: parent.verticalCenter
-    color: enabled ? Palette.palette().onSurface : Qt.rgba(0.75,0.75,0.75,1)
+    color: enabled ? Appearance.m3colors.m3onSurface : Qt.rgba(0.75,0.75,0.75,1)
     font.pixelSize: 14
     text: ""
     anchors.left: parent.left

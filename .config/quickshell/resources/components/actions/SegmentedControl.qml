@@ -1,5 +1,8 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Row {
     id: root
@@ -48,13 +51,13 @@ Row {
                         ctx.closePath()
                     }
                     // unselected base
-                    ctx.fillStyle = Palette.palette().surfaceVariant
+                    ctx.fillStyle = Appearance.m3colors.m3surfaceVariant
                     drawRoundRect(rTL, rTR, rBR, rBL)
                     ctx.fill()
                     // overlay primary with animated alpha for selection
                     if (t > 0) {
                         ctx.globalAlpha = t
-                        ctx.fillStyle = Palette.palette().primary
+                        ctx.fillStyle = Appearance.m3colors.m3primary
                         drawRoundRect(full, full, full, full)
                         ctx.fill()
                         ctx.globalAlpha = 1.0
@@ -67,7 +70,7 @@ Row {
                 id: textItem
                 anchors.centerIn: parent
                 text: root.options[index]
-                color: selected ? Palette.palette().onPrimary : Palette.palette().onSurface
+                color: selected ? Appearance.m3colors.m3onPrimary : Appearance.m3colors.m3onSurface
                 font.pixelSize: 14
                 Behavior on color { ColorAnimation { duration: 140; easing.type: Easing.InOutQuad } }
             }

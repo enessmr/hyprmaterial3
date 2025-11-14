@@ -1,3 +1,5 @@
+/* 💚 ✨ HyprYoshi3 ✨ 🦕 */
+
 @define-color background {{ colors.background.default.hex }};
 @define-color error {{ colors.error.default.hex }};
 @define-color error_container {{ colors.error_container.default.hex }};

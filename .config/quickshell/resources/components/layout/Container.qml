@@ -1,13 +1,16 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import "../../colors.js" as Palette
+import qs.common
 
 Rectangle {
     id: root
     // Custom container (no outline) that grows to max size with margins
     property real cornerRadius: 10
     // Background: biraz daha koyu ve belirgin
-    property color backgroundColor: Qt.darker(Palette.palette().background, 1.08)
-    property color borderColor: Palette.palette().outline
+    property color backgroundColor: Qt.darker(Appearance.m3colors.m3background, 1.08)
+    property color borderColor: Appearance.m3colors.m3outline
     property real borderWidth: 0
     property real padding: 16
     // external margins to avoid touching navbars or window edges
@@ -35,7 +38,7 @@ Rectangle {
     color: backgroundColor
     Behavior on color { ColorAnimation { duration: 180; easing.type: Easing.InOutQuad } }
     clip: true
-    border.color: debugOutline ? Palette.palette().primary : borderColor
+    border.color: debugOutline ? Appearance.m3colors.m3primary : borderColor
     border.width: debugOutline ? 1 : 0
     radius: cornerRadius
 
@@ -49,7 +52,7 @@ Rectangle {
 
     // Scrollable viewport when content exceeds available space
     // Overscroll glow at edges when dragged beyond bounds
-    property color glowColor: Palette.palette().primary
+    property color glowColor: Appearance.m3colors.m3primary
     // Multiplier to boost touchpad pixelDelta scrolling
     property real wheelMultiplier: 3.0
     property real topOvershoot: Math.max(0, -viewport.contentY)

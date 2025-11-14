@@ -1,7 +1,10 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 import QtQuick 2.15
 import QtQml 2.15
 import "../../colors.js" as Palette
 import "../actions" as Actions
+import qs.common
 
 /*
   Tooltip overlay (callable)
@@ -139,8 +142,8 @@ Item {
     opacity: overlay.open ? 1.0 : 0.0
     radius: 10
     // Slightly stronger background for readability
-    color: Palette.isDarkMode() ? Qt.lighter(Palette.palette().surface, 1.04)
-                                 : Qt.darker(Palette.palette().surface, 1.06)
+    color: Palette.isDarkMode() ? Qt.lighter(Appearance.m3colors.m3surface, 1.04)
+                                 : Qt.darker(Appearance.m3colors.m3surface, 1.06)
     border.width: 0
     antialiasing: true
     width: contentCol.implicitWidth + 18
@@ -170,8 +173,8 @@ Item {
         implicitWidth: col.implicitWidth
         implicitHeight: col.implicitHeight
         Column { id: col; spacing: 6
-          Text { text: overlay.title; visible: text && text.length > 0; color: Palette.palette().onSurface; font.pixelSize: 14; font.bold: true; wrapMode: Text.Wrap }
-          Text { text: overlay.text;  visible: text && text.length > 0; color: Palette.palette().onSurfaceVariant; font.pixelSize: 13; wrapMode: Text.Wrap }
+          Text { text: overlay.title; visible: text && text.length > 0; color: Appearance.m3colors.m3onSurface; font.pixelSize: 14; font.bold: true; wrapMode: Text.Wrap }
+          Text { text: overlay.text;  visible: text && text.length > 0; color: Appearance.m3colors.m3onSurfaceVariant; font.pixelSize: 13; wrapMode: Text.Wrap }
           // Actions row
           Row { spacing: 8; visible: Array.isArray(overlay.actions) && overlay.actions.length > 0
             Repeater { model: Array.isArray(overlay.actions) ? overlay.actions : []
@@ -180,7 +183,7 @@ Item {
                 height: Math.max(minHeight, lbl.implicitHeight)
                 width: lbl.implicitWidth
                 // No background; text only, left aligned with body text
-                Text { id: lbl; anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter; text: (modelData && modelData.label) ? modelData.label : ""; color: Palette.palette().primary; font.pixelSize: 12 }
+                Text { id: lbl; anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter; text: (modelData && modelData.label) ? modelData.label : ""; color: Appearance.m3colors.m3primary; font.pixelSize: 12 }
                 MouseArea { anchors.fill: parent; onClicked: { try { if (modelData && modelData.onTriggered) modelData.onTriggered() } catch(e){} overlay.close() } }
               }
             }

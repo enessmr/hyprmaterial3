@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 .pragma library
 // Centralized color tokens (Material 3 style). Non-QML JS module.
 // Import in QML with: import "../colors.js" as Palette
@@ -5,133 +7,133 @@
 var isDark = true;
 
 var light = {
-    primary: "#006876",
+    primary: "#006878",
     onPrimary: "#ffffff",
-    primaryContainer: "#a1efff",
+    primaryContainer: "#a7eeff",
     onPrimaryContainer: "#001f25",
 
-    secondary: "#4a6268",
+    secondary: "#4b6268",
     onSecondary: "#ffffff",
-    secondaryContainer: "#cde7ed",
-    onSecondaryContainer: "#051f23",
+    secondaryContainer: "#cde7ee",
+    onSecondaryContainer: "#051f24",
 
-    tertiary: "#545d7e",
+    tertiary: "#555d7e",
     onTertiary: "#ffffff",
-    tertiaryContainer: "#dbe1ff",
-    onTertiaryContainer: "#101a37",
+    tertiaryContainer: "#dce1ff",
+    onTertiaryContainer: "#121a37",
 
     error: "#ba1a1a",
     onError: "#ffffff",
     errorContainer: "#ffdad6",
     onErrorContainer: "#410002",
 
-    surfaceDim: "#d5dbdc",
+    surfaceDim: "#d5dbdd",
     surface: "#f5fafc",
     surfaceBright: "#f5fafc",
     surfaceContainerLowest: "#ffffff",
-    surfaceContainerLow: "#eff5f6",
-    surfaceContainer: "#e9eff0",
-    surfaceContainerHigh: "#e3e9eb",
+    surfaceContainerLow: "#eff4f6",
+    surfaceContainer: "#e9eff1",
+    surfaceContainerHigh: "#e4e9eb",
     surfaceContainerHighest: "#dee3e5",
 
-    surfaceVariant: "#dbe4e6",
-    surfaceTint: "#006876",
+    surfaceVariant: "#dbe4e7",
+    surfaceTint: "#006878",
     background: "#f5fafc",
     onBackground: "#171d1e",
     onSurface: "#171d1e",
-    onSurfaceVariant: "#3f484a",
+    onSurfaceVariant: "#3f484b",
 
     inverseSurface: "#2b3133",
     inverseOnSurface: "#ecf2f3",
-    inversePrimary: "#83d3e3",
+    inversePrimary: "#83d2e5",
 
-    primaryFixed: "#a1efff",
-    primaryFixedDim: "#83d3e3",
+    primaryFixed: "#a7eeff",
+    primaryFixedDim: "#83d2e5",
     onPrimaryFixed: "#001f25",
-    onPrimaryFixedVariant: "#004e59",
+    onPrimaryFixedVariant: "#004e5b",
 
-    secondaryFixed: "#cde7ed",
-    secondaryFixedDim: "#b1cbd1",
-    onSecondaryFixed: "#051f23",
+    secondaryFixed: "#cde7ee",
+    secondaryFixedDim: "#b2cbd2",
+    onSecondaryFixed: "#051f24",
     onSecondaryFixedVariant: "#334a50",
 
-    tertiaryFixed: "#dbe1ff",
-    tertiaryFixedDim: "#bcc5eb",
-    onTertiaryFixed: "#101a37",
-    onTertiaryFixedVariant: "#3c4665",
+    tertiaryFixed: "#dce1ff",
+    tertiaryFixedDim: "#bdc5eb",
+    onTertiaryFixed: "#121a37",
+    onTertiaryFixedVariant: "#3e4565",
 
     outline: "#6f797b",
-    outlineVariant: "#bfc8ca",
+    outlineVariant: "#bfc8cb",
 
     scrim: "#000000",
     shadow: "#000000",
 
-    sourceColor: "#6fa8b4"
+    sourceColor: "#77acb9"
 };
 
 var dark = {
-    primary: "#83d3e3",
-    onPrimary: "#00363e",
-    primaryContainer: "#004e59",
-    onPrimaryContainer: "#a1efff",
+    primary: "#83d2e5",
+    onPrimary: "#00363f",
+    primaryContainer: "#004e5b",
+    onPrimaryContainer: "#a7eeff",
 
-    secondary: "#b1cbd1",
+    secondary: "#b2cbd2",
     onSecondary: "#1c3439",
     secondaryContainer: "#334a50",
-    onSecondaryContainer: "#cde7ed",
+    onSecondaryContainer: "#cde7ee",
 
-    tertiary: "#bcc5eb",
-    onTertiary: "#262f4d",
-    tertiaryContainer: "#3c4665",
-    onTertiaryContainer: "#dbe1ff",
+    tertiary: "#bdc5eb",
+    onTertiary: "#272f4d",
+    tertiaryContainer: "#3e4565",
+    onTertiaryContainer: "#dce1ff",
 
     error: "#ffb4ab",
     onError: "#690005",
     errorContainer: "#93000a",
     onErrorContainer: "#ffdad6",
 
-    surfaceDim: "#0e1416",
-    surface: "#0e1416",
+    surfaceDim: "#0f1416",
+    surface: "#0f1416",
     surfaceBright: "#343a3c",
-    surfaceContainerLowest: "#090f10",
+    surfaceContainerLowest: "#090f11",
     surfaceContainerLow: "#171d1e",
     surfaceContainer: "#1b2122",
-    surfaceContainerHigh: "#252b2c",
+    surfaceContainerHigh: "#252b2d",
     surfaceContainerHighest: "#303637",
 
-    surfaceVariant: "#3f484a",
-    surfaceTint: "#83d3e3",
-    background: "#0e1416",
+    surfaceVariant: "#3f484b",
+    surfaceTint: "#83d2e5",
+    background: "#0f1416",
     onBackground: "#dee3e5",
     onSurface: "#dee3e5",
-    onSurfaceVariant: "#bfc8ca",
+    onSurfaceVariant: "#bfc8cb",
 
     inverseSurface: "#dee3e5",
     inverseOnSurface: "#2b3133",
-    inversePrimary: "#006876",
+    inversePrimary: "#006878",
 
-    primaryFixed: "#a1efff",
-    primaryFixedDim: "#83d3e3",
+    primaryFixed: "#a7eeff",
+    primaryFixedDim: "#83d2e5",
     onPrimaryFixed: "#001f25",
-    onPrimaryFixedVariant: "#004e59",
+    onPrimaryFixedVariant: "#004e5b",
 
-    secondaryFixed: "#cde7ed",
-    secondaryFixedDim: "#b1cbd1",
-    onSecondaryFixed: "#051f23",
+    secondaryFixed: "#cde7ee",
+    secondaryFixedDim: "#b2cbd2",
+    onSecondaryFixed: "#051f24",
     onSecondaryFixedVariant: "#334a50",
 
-    tertiaryFixed: "#dbe1ff",
-    tertiaryFixedDim: "#bcc5eb",
-    onTertiaryFixed: "#101a37",
-    onTertiaryFixedVariant: "#3c4665",
+    tertiaryFixed: "#dce1ff",
+    tertiaryFixedDim: "#bdc5eb",
+    onTertiaryFixed: "#121a37",
+    onTertiaryFixedVariant: "#3e4565",
 
     outline: "#899295",
-    outlineVariant: "#3f484a",
+    outlineVariant: "#3f484b",
 
     scrim: "#000000",
     shadow: "#000000",
 
-    sourceColor: "#6fa8b4"
+    sourceColor: "#77acb9"
 };
 
 function setDarkMode(darkMode) { isDark = !!darkMode; }
