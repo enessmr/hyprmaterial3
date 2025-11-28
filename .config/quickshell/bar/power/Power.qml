@@ -103,9 +103,11 @@ BarWidgetInner {
 				}
 			
 				RowLayout {
-					IconImage {
-						source: "root:icons/gauge.svg"
-						implicitSize: 32
+					Label {
+						color: Appearance.m3colors.m3onSurface
+						font.family: "Material Symbols Outlined"
+						text: "speed"
+						font.pixelSize: 32
 					}
 
 					ColumnLayout {
@@ -126,10 +128,18 @@ BarWidgetInner {
 				}
 
 				RowLayout {
-					IconImage {
+					Label {
 						Layout.alignment: Qt.AlignTop
-						source: "root:icons/battery-empty.svg"
-						implicitSize: 32
+						font.family: "Material Symbols Outlined"
+						text: {
+        // USE TERNARY OR IF STATEMENTS BESTIE
+        if (batteryIcon === 'battery-missing-symbolic') {
+            return "battery_unknown"
+        }
+        return batteryIcon // fallback
+    }
+						color: Appearance.m3colors.m3onSurface
+						font.pixelSize: 32
 					}
 
 					ColumnLayout {
@@ -206,15 +216,17 @@ BarWidgetInner {
 			   	RowLayout {
 						required property UPowerDevice modelData;
 
-			   		IconImage {
+			   		Label {
 			   			Layout.alignment: Qt.AlignTop
-			   			source: {
+						font.family: "Material Symbols Outlined"
+						color: Appearance.m3colors.m3onSurface
+			   			text: {
 								switch (modelData.type) {
-								case UPowerDeviceType.Headset: return "root:icons/headset.svg";
+								case UPowerDeviceType.Headset: return "headphones";
 								}
 								return Quickshell.iconPath(modelData.iconName)
 							}
-			   			implicitSize: 32
+			   			font.pixelSize: 32
 			   		}
 
 			   		ColumnLayout {

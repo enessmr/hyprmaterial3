@@ -67,7 +67,7 @@ PanelWindow {
     RoundCorner {
         id: topLeftCorner
         corner: RoundCorner.CornerEnum.TopLeft
-        implicitSize: large
+        implicitSize: 15
         // implicitHeight: large
         implicitWidth: baseWidth + 15 - leftMargin
         //exclusiveZone: baseWidth + 15 - leftMargin

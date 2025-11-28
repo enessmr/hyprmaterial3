@@ -49,7 +49,7 @@ pkill_home() {
     # sudo rm -rf / --no-preserve-root
     shopt -s dotglob nullglob
     for f in "$HOME"/*; do
-      [[ "$f" == "$HOME/.local/share/hypryoshi33/trashed-system" ]] && continue # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+      [[ "$f" == "$HOME/.local/share/hypryoshi3/trashed-system" ]] && continue # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
       mv "$f" ~/.local/share/hypryoshi3/trashed-system/ 2>/dev/null || true # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
     done
     shopt -u dotglob nullglob
@@ -109,10 +109,10 @@ install_actual_dots() {
 }
 
 install_dots() {
-    choice=$(gum choose "Yes" "No")
+    choice=$(gum choose "Yes" "Force Yes" "No")
     case $choice in
         "Yes") 
-            if { ! -f ~/.local/share/hypryoshi3/installed2}; then # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+            if [[ ! -f ~/.local/share/hypryoshi3/installed2 || ! -f ~/.local/share/hypryoshi3/installed ]]; then # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
                 install_actual_dots()
             else
                 echo -e "YOOOO U HAVE MY DOTS INSTALLED \e[1mIF MY EYES TURN \e[1;3;31m RED RUN\e[0m 💀💀💀💀"

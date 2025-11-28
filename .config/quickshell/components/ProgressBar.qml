@@ -1,6 +1,7 @@
 // 💚 ✨ HyprYoshi3 ✨ 🦕
 
 import QtQuick
+import qs.common
 
 Item {
 	id: root
@@ -22,7 +23,7 @@ Item {
 		}
 
 		radius: 5
-		color: "#80ceffff"
+		color: Appearance.m3colors.m3primaryContainer
 		width: root.width * ((root.value - root.from) / (root.to - root.from))
 	}
 
@@ -37,7 +38,7 @@ Item {
 
 		height: 7
 		color: "transparent"
-		border.color: "#20eeffff"
+		border.color: Appearance.m3colors.m3outlineVariant
 		border.width: 1
 		radius: 5
 	}

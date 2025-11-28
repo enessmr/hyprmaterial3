@@ -1,26 +1,26 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
+// 💚 ✨ HyprYoshi3 Gooner Emoji Picker ✨ 🦕
+// FIXED SERVICE LOADING - NOW IT WON'T BE LAGGY LIKE PAYLEEY'S 2.7 INCH DIH 😭😭😭
 
-// DihEmoji.qml
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import Quickshell.Io
 import Quickshell
+import Quickshell.Io
 import "../resources/components/toggles" as Toggles
 import "../resources/components/search" as DingalingSearch
-import "./"
 import qs.common
+import qs.services
 
 ApplicationWindow {
-    width: 400
-    height: 500
+    width: 475
+    height: 515
     minimumWidth: 400
     minimumHeight: 300
     title: "HyprYoshi3 Gooner Emoji Picker 💚🦕😍💦🥵"
     id: root
     flags: Qt.Window | Qt.WindowStaysOnTopHint
     
-    // FOUND A 12 INCH DINGALING HERE THO NGL?!?!? 😳😳😳
+    // KEEP THAT 12 INCH DINGALING!!! 🫙🫙🫙 
     property var windowGeometry: ({
         x: 0,
         y: 0,
@@ -28,7 +28,7 @@ ApplicationWindow {
         height: 515
     })
 
-    // KEEP THAT 12 INCH DINGALING!!! 🫙🫙🫙 
+    // LET THAT 12 INCH DINGALING ESCAPE BUT I FOUND IT AGAIN 😭😭😭
     onClosing: {
         windowGeometry = {
             x: x,
@@ -38,153 +38,116 @@ ApplicationWindow {
         }
     }
 
-    // LET THAT 12 INCH DINGALING ESCAPE BUT I FOUND IT AGAIN 😭😭😭
+    // MEOV. MEE-OVVV.
     onVisibleChanged: {
         if (visible) {
             x = windowGeometry.x
             y = windowGeometry.y
             width = windowGeometry.width
             height = windowGeometry.height
+            // PRELOAD GOONERS WHEN SHOWING BUT FROM SERVICE NOT JSON 😍😍😍
+            loadEmojiData()
         }
     }
 
-    // MEOV. MEE-OVVV.
     visible: false
 
     property string selectedEmoji
-    property var emojiCategories: ({})
-    property var categoryCache: ({})  // CACHE THE PARSED EMOJIS SO WE DONT STROKE OUT!! 🧠🔥
-    property var currentCategoryEmojis: []
     property string currentCategory: "Smileys & Emotion"
-    property bool jsonLoaded: false
-    property var categoryToggles: ({})
-    property string searchQuery: ""  // THE GOONER SEARCH ENGINE 🔍🔍🔍
+    property string searchQuery: ""
+    property var currentCategoryEmojis: []
+    
+    // USE THE EXISTING EMOJI SERVICE - NO JSON PARSING NEEDED!! 🧠⚡⚡
+    property var emojiService: null
+    
+    // GET CATEGORIES FROM SERVICE - INSTANT LOAD NO LAG!! 🔥🔥🔥
+    property var emojiCategories: []
+    property var categoryCache: ({}) // LOCAL CACHE COPY FOR SAFETY
 
-    // YOSHI LOVE BESTIE 💚🦕
     Component.onCompleted: {
-        loadEmojiData()
+        console.log("EMOJI PICKER INITIALIZED - FINDING SERVICE... 🔍")
+        findEmojiService()
     }
 
-    // IS SYSTEMD KICKING MY ASS OR IS IT GOONING AT ME? 😳😳😳
-    Process {
-        id: emojiProcess
-        running: false  // DONT RUN AUTOMATICALLY!! WE CONTROL THIS!! 🔥
-        command: ["cat", Qt.resolvedUrl("../json/emoji.json").toString().replace("file://", "")]
+    // FIND THAT DAMN SERVICE BESTIE!! 🔍🔥
+    function findEmojiService() {
+        console.log("LOOKING FOR EMOJI SERVICE...")
         
-        stdout: StdioCollector {
-            id: emojiCollector
+        // TRY DIFFERENT WAYS TO GET THE SERVICE 😭😭😭
+        var service = Quickshell.singletonInstance("emoji", "EmojiSingleton")
+        if (!service) {
+            console.log("SERVICE NOT FOUND WITH SINGLETON INSTANCE, TRYING DIRECT ACCESS...")
+            // MAYBE IT'S REGISTERED DIFFERENTLY???
+            service = Quickshell.singletonInstance("EmojiSingleton")
+        }
+        
+        if (service) {
+            console.log("🎉 EMOJI SERVICE FOUND BESTIE!! 🎉")
+            root.emojiService = service
+            syncServiceData()
+        } else {
+            console.log("😭 SERVICE STILL NOT FOUND, USING FALLBACK GOONERS...")
+            loadFallbackEmojis()
+        }
+    }
+
+    // SYNC DATA FROM SERVICE TO OUR LOCAL CACHE 🧠⚡
+    function syncServiceData() {
+        if (!root.emojiService) {
+            console.log("NO SERVICE TO SYNC FROM 😭")
+            return
+        }
+        
+        console.log("SYNCING DATA FROM SERVICE...")
+        
+        // WAIT A BIT FOR SERVICE TO BE READY 🫙
+        if (!root.emojiService.jsonLoaded) {
+            console.log("SERVICE NOT LOADED YET, WAITING...")
+            serviceReadyTimer.start()
+            return
+        }
+        
+        // COPY THE CACHE FROM SERVICE 🎯
+        if (root.emojiService.categoryCache) {
+            root.categoryCache = root.emojiService.categoryCache
+            root.emojiCategories = Object.keys(root.categoryCache)
+            console.log("SYNCED", root.emojiCategories.length, "CATEGORIES FROM SERVICE!! 🔥")
             
-            onStreamFinished: {
-                console.log("GOONERS DATA GET!! 🔥")
-                try {
-                    var jsonData = JSON.parse(data)
-                    
-                    // PRE-CACHE ALL CATEGORIES SO WE DONT HAVE A STROKE LATER!! 💯💯💯
-                    console.log("STARTING TO CACHE ALL THE GOONERS IN RAM!! 🧠🔥")
-                    var categoryNames = []
-                    
-                    for (var categoryName in jsonData) {
-                        var categoryData = jsonData[categoryName]
-                        var cachedEmojis = []
-                        
-                        // FIXED PARSER - PRESERVES FULL EMOJI CHARACTERS!! 🧠⚡
-                        function parseEmojiArray(emojiArray) {
-                            if (!Array.isArray(emojiArray)) return
-                            
-                            for (var i = 0; i < emojiArray.length; i++) {
-                                var emoji = emojiArray[i]
-                                if (emoji && emoji.char && typeof emoji.char === 'string') {
-                                    // CRITICAL FIX: PRESERVE THE FULL EMOJI STRING!! 🔥
-                                    var fullEmojiChar = emoji.char
-                                    
-                                    cachedEmojis.push({
-                                        char: fullEmojiChar, // KEEP THE FULL CHARACTER!! 🎯
-                                        name: emoji.name || "unknown"
-                                    })
-                                }
-                            }
-                        }
-                        
-                        function parseEmojiObject(emojiObj) {
-                            if (typeof emojiObj !== 'object') return
-                            
-                            for (var key in emojiObj) {
-                                var value = emojiObj[key]
-                                if (Array.isArray(value)) {
-                                    parseEmojiArray(value)
-                                } else if (typeof value === 'object') {
-                                    parseEmojiObject(value)
-                                } else if (typeof value === 'string') {
-                                    // DIRECT EMOJI STRING
-                                    cachedEmojis.push({
-                                        char: value,
-                                        name: key.replace(/-/g, ' ') || "unknown"
-                                    })
-                                }
-                            }
-                        }
-                        
-                        // HANDLE BOTH ARRAY AND OBJECT FORMATS WITH THE FIXED PARSER!! 🧠⚡
-                        if (Array.isArray(categoryData)) {
-                            parseEmojiArray(categoryData)
-                        } else if (typeof categoryData === 'object') {
-                            parseEmojiObject(categoryData)
-                        }
-                        
-                        if (cachedEmojis.length > 0) {
-                            root.categoryCache[categoryName] = cachedEmojis
-                            categoryNames.push(categoryName)
-                            console.log("CACHED", cachedEmojis.length, "GOONERS FOR:", categoryName, "🔥")
-                            
-                            // DEBUG FIRST EMOJI TO VERIFY IT'S CORRECT
-                            if (cachedEmojis[0]) {
-                                var firstEmoji = cachedEmojis[0]
-                                console.log("FIRST EMOJI VERIFICATION:", 
-                                    "CHAR:", firstEmoji.char, 
-                                    "LENGTH:", firstEmoji.char.length,
-                                    "CODES:", Array.from(firstEmoji.char).map(c => c.charCodeAt(0).toString(16)).join(', '))
-                            }
-                        } else {
-                            console.log("NO EMOJIS FOUND FOR CATEGORY:", categoryName, "😭")
-                        }
-                    }
-                    
-                    // SET EMOJI CATEGORIES FROM CACHE ONLY - NO DIRECT JSON ACCESS!! 🧠⚡
-                    root.emojiCategories = categoryNames
-                    root.jsonLoaded = true
-                    
-                    // STOP THE PROCESS SO IT NEVER RUNS AGAIN!! RAM CACHE ONLY NOW!! 🧠💯
-                    emojiProcess.running = false
-                    
-                    loadCategoryEmojis("Smileys & Emotion")
-                    console.log("GOONERS FILE LOADED TASK UNFAILED GOONER SUCCESSFULLY!!! GOONER CATEGORIES:", categoryNames, "💯💯💯")
-                    console.log("PROCESS KILLED!! RUNNING FROM RAM CACHE ONLY NOW!! ⚡⚡⚡")
-                    
-                } catch (e) {
-                    console.log("NOOO GOONER FILE PARSE ERROR THE GOONERS DIED 😭😭😭:", e)
-                    loadFallbackEmojis()
-                }
+            // LOAD INITIAL CATEGORY
+            loadCategoryEmojis("Smileys & Emotion")
+        } else {
+            console.log("SERVICE HAS NO CACHE 😭 - USING FALLBACK")
+            loadFallbackEmojis()
+        }
+    }
+
+    // TIMER TO WAIT FOR SERVICE TO BE READY 🕐
+    Timer {
+        id: serviceReadyTimer
+        interval: 500
+        repeat: true
+        running: root.emojiService && !root.emojiService.jsonLoaded
+        onTriggered: {
+            console.log("CHECKING IF SERVICE IS READY...")
+            if (root.emojiService.jsonLoaded) {
+                console.log("SERVICE IS NOW READY!! SYNCING DATA... 🚀")
+                syncServiceData()
+                stop()
+            }
+            
+            // TIMEOUT AFTER 5 SECONDS 😭
+            if (repeatCount > 10) {
+                console.log("SERVICE TIMEOUT - USING FALLBACK GOONERS")
+                loadFallbackEmojis()
+                stop()
             }
         }
     }
 
-    function loadEmojiData() {
-        console.log("EMOJI DATA WILL LOAD AUTOMATICALLY BESTIE!! 🔥")
-        
-        // ONLY LOAD IF NOT ALREADY CACHED!! 🧠💯
-        if (root.jsonLoaded === false) {
-            console.log("LOADING GOONERS FROM FILE FOR THE FIRST TIME...")
-            emojiProcess.running = true
-        } else {
-            console.log("GOONERS ALREADY IN RAM CACHE!! SKIPPING FILE READ!! ⚡⚡⚡")
-            // EVEN IF ALREADY LOADED, MAKE SURE WE'RE USING CACHE!!
-            loadCategoryEmojis(root.currentCategory)
-        }
-    }
-
+    // FALLBACK GOONERS IN CASE SERVICE IS DEAD 😭😭😭
     function loadFallbackEmojis() {
-        console.log("MY DIH GOT CUT 😭😭😭")
-        // CREATE FALLBACK DATA THAT'S ALREADY IN THE CACHE FORMAT
+        console.log("LOADING FALLBACK GOONERS BESTIE!! 🆘")
+        
         var fallbackCache = {
             "Smileys & Emotion": [
                 {char: "😀", name: "grinning face"},
@@ -256,17 +219,6 @@ ApplicationWindow {
                 {char: "🌭", name: "hot dog"},
                 {char: "🌮", name: "taco"}
             ],
-            "Activities": [
-                {char: "🎉", name: "party popper"},
-                {char: "🎊", name: "confetti ball"},
-                {char: "🎈", name: "balloon"},
-                {char: "🎂", name: "birthday cake"}
-            ],
-            "Objects": [
-                {char: "🔥", name: "fire"},
-                {char: "🔦", name: "flashlight"},
-                {char: "🕯️", name: "candle"}
-            ],
             "Symbols": [
                 {char: "❤️", name: "red heart"},
                 {char: "🧡", name: "orange heart"},
@@ -283,13 +235,27 @@ ApplicationWindow {
             ]
         }
         
-        // DIRECTLY CACHE THE FALLBACK DATA - NO PARSING NEEDED!! ⚡⚡⚡
         root.categoryCache = fallbackCache
-        root.emojiCategories = Object.keys(fallbackCache)  // ONLY STORE CATEGORY NAMES
-        root.jsonLoaded = true
+        root.emojiCategories = Object.keys(fallbackCache)
+        console.log("LOADED", root.emojiCategories.length, "FALLBACK CATEGORIES WITH GOONERS!! 🆘🔥")
         
         loadCategoryEmojis("Smileys & Emotion")
-        console.log("FALLBACK GOONERS LOADED DIRECTLY INTO CACHE!! ⚡🔥")
+    }
+
+    // LOAD EMOJI DATA FROM SERVICE - SUPER FAST NO LAG!! ⚡⚡⚡
+    function loadEmojiData() {
+        console.log("LOADING GOONERS BESTIE!! 🚀")
+        
+        if (root.emojiService && root.emojiService.jsonLoaded) {
+            console.log("SERVICE ALREADY HAS GOONERS IN RAM CACHE!! INSTANT LOAD!! ⚡")
+            syncServiceData()
+        } else if (root.emojiCategories.length > 0) {
+            console.log("USING LOCAL CACHE - INSTANT LOAD!! ⚡")
+            loadCategoryEmojis("Smileys & Emotion")
+        } else {
+            console.log("NO SERVICE OR CACHE - USING FALLBACK GOONERS 🆘")
+            loadFallbackEmojis()
+        }
     }
 
     // THE GOONER SEARCH ALGORITHM THAT VILL FIND EVERY GOONER IN EXISTENCE 🔍🔥
@@ -305,7 +271,7 @@ ApplicationWindow {
         var results = []
         var lowerQuery = query.toLowerCase()
         
-        // SEARCH THE CACHED DATA SUPER FAST!! ⚡⚡⚡
+        // SEARCH OUR LOCAL CACHE SUPER FAST!! ⚡⚡⚡
         for (var categoryName in root.categoryCache) {
             var cachedArray = root.categoryCache[categoryName]
             for (var i = 0; i < cachedArray.length; i++) {
@@ -321,49 +287,46 @@ ApplicationWindow {
     }
 
     function loadCategoryEmojis(categoryName) {
-        console.log("LOADING CATEGORY FROM CACHE:", categoryName)
+        console.log("LOADING CATEGORY:", categoryName)
         
         root.searchQuery = ""
         if (dingalingSearchBar) {
             dingalingSearchBar.text = ""
         }
         
-        // UNTOGGLE ALL OTHER GOONERS!!! 🔥🔥
-        for (var cat in root.categoryToggles) {
-            if (cat !== categoryName && root.categoryToggles[cat]) {
-                root.categoryToggles[cat].checked = false
-            }
-        }
-        
         root.currentCategory = categoryName
         
-        // ONLY USE THE CACHE - NO JSON PARSING EVER!! ⚡⚡⚡
+        // USE OUR LOCAL CACHE - NO SERVICE DEPENDENCY!! ⚡⚡⚡
         if (root.categoryCache[categoryName]) {
             root.currentCategoryEmojis = root.categoryCache[categoryName]
-            console.log("YOINKED", root.currentCategoryEmojis.length, "GOONERS FROM CACHE FOR", categoryName, "!! INSTANT LOAD!! ⚡🔥")
-            
-            // DEBUG: PRINT FIRST 3 EMOJIS TO VERIFY THEY'RE CORRECT
-            for (var i = 0; i < Math.min(3, root.currentCategoryEmojis.length); i++) {
-                var emoji = root.currentCategoryEmojis[i]
-                console.log("EMOJI", i, "CHAR:", emoji.char, "LENGTH:", emoji.char.length, "NAME:", emoji.name)
-            }
+            console.log("LOADED", root.currentCategoryEmojis.length, "GOONERS FOR", categoryName, "!! INSTANT LOAD!! ⚡🔥")
         } else {
             console.log("CACHE MISS FOR:", categoryName, "😭 - USING EMPTY ARRAY")
-            console.log("AVAILABLE CACHED CATEGORIES:", Object.keys(root.categoryCache))
+            console.log("AVAILABLE CATEGORIES:", root.emojiCategories)
             root.currentCategoryEmojis = []
         }
     }
 
     // SOMENONE GOONED TO ME AND IT'S BASH 😳😳😳
-    EmojiRunner {
+    Process {
         id: emojiRunner
+        command: ["bash", "-c", "echo -n \"%1\" | wl-copy"]
+        
+        function run(emojiChar) {
+            // CLEAN THE EMOJI FOR BASH TO GOON AND FRICK TO IT 😍😍😍
+            var cleanEmoji = emojiChar.replace(/"/g, '\\"').replace(/'/g, "'\\''")
+            emojiRunner.command = ["bash", "-c", `echo -n "${cleanEmoji}" | wl-copy`]
+            emojiRunner.running = true
+            root.visible = false
+            console.log("GOONED EMOJI TO CLIPBOARD:", emojiChar, "💦💦💦")
+        }
     }
 
     ScrollView {
         id: scrollView
         anchors.fill: parent
         anchors.margins: 20
-        clip: true // PAYLEEY HAS A 2.7 INCH DINGALING AND IF YOU CUT IT YOU VILL FIND A GOONER TO SATAN IN IT! (payleey hater btv) 😱😱😱
+        clip: true // PAYLEEY HAS A 2.7 INCH DINGALING AND IF YOU CUT IT YOU VILL FIND A GOONER TO SATAN IN IT! 😱😱😱
 
         ColumnLayout {
             Layout.fillWidth: true
@@ -377,7 +340,7 @@ ApplicationWindow {
                 Layout.preferredHeight: 60
                 color: Appearance?.m3colors?.m3surfaceContainerHigh
                 radius: 12
-                visible: root.searchQuery === ""  // HIDE CATEGORIES WHEN SEARCHING 👀
+                visible: root.searchQuery === "" && root.emojiCategories.length > 0  // HIDE IF NO CATEGORIES OR SEARCHING
 
                 ScrollView {
                     anchors.fill: parent
@@ -391,17 +354,21 @@ ApplicationWindow {
                             
                             Toggles.RoundIconToggleEmoji {
                                 id: categoryToggle
-                                iconName: modelData.replace(/-/g, " ")
-                                checked: root.currentCategory === modelData
-                                
-                                // THE OBJECT IS TRYING TO SKIP 9/11 BY GOONING 😱🤯🤯🤯
-                                objectName: "toggle_" + modelData
-                                
-                                // oh so the complete tried turning his eyes red (if my eyes turn red run) [IMA GUNA TUCH U 😍]
-                                Component.onCompleted: {
-                                    root.categoryToggles[modelData] = categoryToggle
-                                    console.log("REGISTERED TOGGLE FOR:", modelData)
+                                iconName: {
+                                    var iconMap = {
+                                        "Smileys & Emotion": "mood",
+                                        "People & Body": "emoji_people", 
+                                        "Animals & Nature": "pets",
+                                        "Food & Drink": "emoji_food_beverage",
+                                        "Travel & Places": "emoji_transportation",
+                                        "Activities": "sports_soccer",
+                                        "Objects": "emoji_objects",
+                                        "Symbols": "emoji_symbols",
+                                        "Flags": "flag"
+                                    }
+                                    return iconMap[modelData] || "emoji_emotions"
                                 }
+                                checked: root.currentCategory === modelData
                                 
                                 onToggled: {
                                     if (checked) {
@@ -419,20 +386,17 @@ ApplicationWindow {
                 id: dingalingSearchBar
                 Layout.fillWidth: true
                 placeholderText: "search gooners..."
-                behavior: "overlay"  // SNIFF YOUR FEET LIKE THE DEVICES DO 😨😨😨
+                behavior: "overlay"
     
-                // ON DINGALING CHANGED 💀💀💀
                 onTextChanged: {
                     root.searchQuery = text
                     searchEmojis(text)
                 }
     
-                // Handle cutting payleeys 😳
                 onSubmitted: function(text) {
                     console.log("FLUDD GOONED:", text, "💦💦💦")
                 }
     
-                // OPTIONAL: INSTALL ARCH AND PLAYLEEY'S DIH INSIDE GOONER TO SATAN IN A GOONER IN A GOOBER IN A GOONER IN A TON 618 IN A CEREAL
                 rightActions: [
                     {
                         iconName: "close",
@@ -459,7 +423,6 @@ ApplicationWindow {
                         Layout.preferredWidth: 40
                         Layout.preferredHeight: 40
                         
-                        // P DIDDY THE EMOJI FONT SO IT DISPLAYS THE GOONERS PROPERLY 🥵🥵🥵💦💦💦
                         contentItem: Text {
                             text: modelData.char
                             font.pixelSize: 24
@@ -469,25 +432,34 @@ ApplicationWindow {
                             verticalAlignment: Text.AlignVCenter
                         }
                         
-                        // THE GOOBER BACKGROUND THAT HOVERS LIKE A GOONER 😳😳😳
                         background: Rectangle {
                             color: parent.hovered ? (Appearance?.m3colors?.m3surfaceVariant || "#313244") : "transparent"
-                            radius: 99999999999999999999999999
+                            radius: 999
                         }
                         
-                        // HOVER TOOLTIP WITH THE NAME SO U KNOW VHAT GOONER UR CLICKING 💯💯💯
                         hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: modelData.name
                         ToolTip.delay: 500
                         
-                        // GOON THE EMOJI TO UR CLIPBOARD AND TYPE IT OUT BESTIE 💦💦💦
                         onClicked: {
                             emojiRunner.run(modelData.char)
                             console.log("GOONED EMOJI:", modelData.char, "NAME:", modelData.name, "💦💦💦")
                         }
                     }
                 }
+            }
+
+            // SHOW MESSAGE IF NO GOONERS FOUND 😭😭😭
+            Label {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+                text: root.emojiCategories.length === 0 ? 
+                      "NO GOONERS LOADED BESTIE 😭😭😭\n(check if emoji service is running)" : 
+                      "NO GOONERS FOUND FOR SEARCH 😭😭😭"
+                color: Appearance?.m3colors?.m3onSurfaceVariant
+                horizontalAlignment: Text.AlignHCenter
+                visible: root.currentCategoryEmojis.length === 0
             }
         }
     }
@@ -497,7 +469,9 @@ ApplicationWindow {
         target: "emoji"
         function toggle(): void {
             root.visible = !root.visible
-            console.log("EMOJI PICKER TOGGLED!! VISIBLE:", root.visible)
+            console.log("EMOJI PICKER TOGGLED!! VISIBLE:", root.visible, 
+                       "CATEGORIES:", root.emojiCategories.length,
+                       "SERVICE:", !!root.emojiService, "🔥")
         }
     }
 

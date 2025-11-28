@@ -19,6 +19,7 @@ import "../resources/components/Menu" as Menu
 import qs.services
 import qs.common
 import qs.settings.pages
+import qs.common.functions as CF
 
 Singleton {
     id: dihSettingsRootFrFrNoCapNoCapDingaling
@@ -342,15 +343,55 @@ Singleton {
                     anchors.rightMargin: 10
                 spacing: 10
 
+                Item {
+                id: navRailWrapper
+                Layout.fillHeight: true
+                Layout.margins: 5
+                implicitWidth: navRail.expanded ? 150 : fab.baseSize
+                Behavior on implicitWidth {
+                    animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                }
                 NavigationRail {
         id: navRail
         Layout.fillHeight: true
         spacing: 10
-        expanded: true
+        expanded: iFrickedToMyDih.width <= 900
+
+        NavigationRailExpandButton {
+                        focus: dihtsvindovisnttuff.visible
+                    }
+
+                     FloatingActionButton {
+                        id: fab
+                        property bool justCopied: false
+                        iconText: justCopied ? "check" : "edit"
+                        buttonText: justCopied ? "Path copied" : "Config file"
+                        expanded: navRail.expanded
+                        downAction: () => {
+                            Qt.openUrlExternally(`${Directories.config}/illogical-impulse/config.json`);
+                        }
+                        altAction: () => {
+                            Quickshell.clipboardText = CF.FileUtils.trimFileProtocol(`${Directories.config}/hypryoshi3/config.json`);
+                            fab.justCopied = true;
+                            revertTextTimer.restart()
+                        }
+
+                        Timer {
+                            id: revertTextTimer
+                            interval: 1500
+                            onTriggered: {
+                                fab.justCopied = false;
+                            }
+                        }
+
+                        StyledToolTip {
+                            text: "Open the shell config file\nAlternatively right-click to copy path"
+                        }
+                    }
 
         NavigationRailTabArray {
             currentIndex: persist.currentPage
-            expanded: true
+            expanded: navRail.expanded
             Repeater {
                 model: dihtsvindovisnttuff.pages
                 NavigationRailButton {
@@ -358,7 +399,7 @@ Singleton {
                     required property var modelData
                     toggled: persist.currentPage === index
                     onPressed: persist.currentPage = index
-                    expanded: true
+                    expanded: navRail.expanded
                     buttonIcon: modelData.icon
                     buttonText: modelData.name
                 }
@@ -367,6 +408,7 @@ Singleton {
 
         Item { Layout.fillHeight: true } // DIJ BESTIE 😭😭😭😭😭😭😭😭
     }
+                }
 
                 // GOOBER CLICK AREA LIKE THE FUZZY MINE TIME EATING MARIOS ASS 🥵🥵🥵
                 Rectangle {

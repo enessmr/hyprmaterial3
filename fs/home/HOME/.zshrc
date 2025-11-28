@@ -1,13 +1,8 @@
 # 💚 ✨ HyprYoshi3 ✨ 🦕
 
-#source $HOME/.config/zshrc.d/*.zsh
+source $HOME/.config/zshrc.d/*.zsh
 
-#autoload -Uz add-zsh-hook
-
-# UNFUNCTION ALL _ksi FUNCTIONS
-if [[ -n "$ENABLE_KITTY_INTEGRATION" ]]; then
-    source /sources/unofficial/kitty/shell-integration/zsh/kitty-integration
-fi
+autoload -Uz add-zsh-hook
 
 function kitty_prompt_start {
   print -n "\e]133;k;start_kitty\a"

@@ -31,6 +31,7 @@ import qs.common
 import qs.common.widgets
 import qs.common.functions
 import qs.Dih.ai
+import qs.Dih.sidebars.rightydijbestoe
 import qs
 
 ShellRoot {
@@ -44,6 +45,7 @@ ShellRoot {
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
+		RightRoot.init()
 		MaterialThemeLoader.reapplyTheme()
 		// Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
@@ -55,11 +57,6 @@ ShellRoot {
 
 	Process {
 		command: ["mkdir", "-p", ShellGlobals.rtpath]
-		running: true
-	}
-
-	Process {
-		command: ["bash", "$HOME/.config/hypr/scripts/confirmThatUAreGreeted.sh"]
 		running: true
 	}
 
@@ -126,7 +123,7 @@ ShellRoot {
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
-	LazyLoader { active: enableDihEmoji; component: Emoji {} }
+	LazyLoader { active: enableDihEmoji; component: EmojiDijBestie {} }
 	LazyLoader { active: enableDihAi; component: Ai {} }
 	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
 }

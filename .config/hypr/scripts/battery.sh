@@ -2,6 +2,8 @@
 
 # 💚 ✨ HyprYoshi3 ✨ 🦕
 
+# modified by deepseek ;)
+
 BAT_PATH=""
 for bat in /sys/class/power_supply/BAT*; do
     if [ -e "$bat/uevent" ]; then
