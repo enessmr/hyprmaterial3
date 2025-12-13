@@ -42,7 +42,7 @@ Singleton {
     property var paletteCacheText: Appearance?.m3colors
     property string goonerLogged: "0"
 
-    // i am breaking the rules but i collabed vith chatgpt for fixing my broken Process lmfao😳
+    // THE GOONER AI AND THE GOOBER ENESSMR COLLABED TO MAKE THE MOST P DIDDY AHH DIH DIJ BESTIE BABY OIL DIDDLING EXPERIENCE ONTO CORNHUB TO ONLYFANS TO THEY ALL GOON TO EM THEN  ROLLING A NSMBV ITEM PANEL THEN GETTING A JR THEN BLJING ERE O GET NTO MK64 AND GET O 8H EN GAB A SARMAN EN GET 192H EN GET NOTER STEARMAND TI OAIS OIG GET AS DIOYIOT PE T8A SOTKO P FADSK SDJ JAT ISO DSTOT GE TEPO  E OIASJ N MS S FNASKJL TRIASI DOP SM64  TSOAPI K TOP  SBLJ SAKLD AKSJTISUJ NVCM, TO OTHJEHE LA DK DORRIE OCEAN EPLSE ;KDSEVEARTOER BASHJRE EN NMEHGETO SQQAJK DASJ LT O A A  A8 uiaodnbgds oasoPU  FASBDHNAS ASKVKNALTGJ OIUJAS RHTSGHTR EN SAN  AS DI AER RAOIR IOA TO T HGETE MA KL OAAOTOSAJ AAOOB OPASFOPSAODS AOJI O EKO JKLJASLDJLKE KJKJE T A FA KJDK AUUH AIOEASBSNN REDEREE ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ 🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳😳🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🎲🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
     Process {
         id: goonerFinder
         running: true

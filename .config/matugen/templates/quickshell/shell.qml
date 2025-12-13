@@ -28,6 +28,7 @@ import qs.bar.roundedcorner
 import qs.lockend4
 import qs.screenCorners
 import qs.common
+import qs.Dih.sidebars.rightydijbestoe
 import qs.common.widgets
 import qs.common.functions
 import qs.Dih.ai
@@ -44,6 +45,7 @@ ShellRoot {
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
+		RightRoot.init()
 		MaterialThemeLoader.reapplyTheme()
 		// Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
@@ -121,7 +123,7 @@ ShellRoot {
 	LazyLoader { active: enableSession; component: Session {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
-	LazyLoader { active: enableDihEmoji; component: Emoji {} }
+	LazyLoader { active: enableDihEmoji; component: EmojiDijBestie {} }
 	LazyLoader { active: enableDihAi; component: Ai {} }
 	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
 }

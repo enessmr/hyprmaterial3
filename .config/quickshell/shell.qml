@@ -31,7 +31,6 @@ import qs.common
 import qs.common.widgets
 import qs.common.functions
 import qs.Dih.ai
-import qs.Dih.sidebars.rightydijbestoe
 import qs
 
 ShellRoot {
@@ -45,7 +44,6 @@ ShellRoot {
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
-		RightRoot.init()
 		MaterialThemeLoader.reapplyTheme()
 		// Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()

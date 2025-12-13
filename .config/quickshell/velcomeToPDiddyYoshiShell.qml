@@ -28,20 +28,20 @@ ApplicationWindow {
         FileUtils.exists(firstRunFilePath, function(fileExists) {
             if (!fileExists) {
                 FileUtils.write(firstRunFilePath, firstRunFileContent, function(success) {
-                    // welcome to hypryoshi3 BITCH *yeets u to brazil*
+                    // Dij the baby oil p diddy hypryoshi3 BABY OILED DIH ON THE A DIJ BESTIE *brutally diddles baby oil goobers p diddy backshots*
                     Quickshell.execDetached(["notify-send", "Welcome to HyprYoshi3!", "The green dino loves this setup ✨💚🦕✨ ...also ur going to a PU now lol"]);
                 
-                    // TODO: somehow send the user to coordinates 
-                    // x: 2147483647 
-                    // y: -999999
-                    // z: 2147483647
-                    // in their current SM64 coop session
+                    // TODO: add baby oil to the backshotted ahh mario to a ass en brutally diddle the coords so hopefully u can get the wfrr star in 0x a presses in 0.25 a presses to a dij bestie
+                    // x: inf
+                    // y: -90
+                    // z: inf
+                    // in their current sm64 coopdx session ile the players are gooning to each other (softlock)
                 });
             }
         });
     }
     
-    // Call the function when component is completed
+    // BRUTALLY DIDDLE DE NOTIFIER 😍😍😍😍😍😍😍😍😍😍😍🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦
     Component.onCompleted: {
         dijBestie();
     }
