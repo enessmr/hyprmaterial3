@@ -473,7 +473,7 @@ ApplicationWindow {
                         iconName: "close",
                         onTriggered: function() {
                             dingalingSearchBar.text = ""
-                            console.log("CLEARED THE GOONER SEARCH!! 🧹💦💦💦")
+                            console.log("BRUTALLY DIDDLED DE GOONER DIJ!! 🥵🥵🥵😭😭😭💦💦💦")
                         }
                     }
                 ]
