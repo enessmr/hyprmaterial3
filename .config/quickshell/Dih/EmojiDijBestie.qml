@@ -58,7 +58,7 @@ ApplicationWindow {
     property string currentCategory: "Smileys & Emotion"
     property bool jsonLoaded: false
     property var categoryToggles: ({})
-    property string searchQuery: ""  // DE GOONER SEARCH DIDDLER 🔍🔍🔍
+    property string searchQuery: ""  // DE GOONER DIJ DIDDLER 🔍🔍🔍
 
     // YOSHI LOVE BESTIE 💚🦕
     Component.onCompleted: {
@@ -162,9 +162,9 @@ ApplicationWindow {
                             // BRUTALLY DIDDLE DE DIJ TO RAINBOV MARIO TO GD IN DE FIRE FLOVER 😭😭😭
                             if (cachedEmojis[0]) {
                                 var firstEmoji = cachedEmojis[0]
-                                console.log("FIRST DIH VERIFICATION:", 
-                                    "RAINBOV MARIO:", firstEmoji.char, 
-                                    "GEOMETRY DASH:", firstEmoji.char.length,
+                                console.log("FIRST DIH VERIFICATION 💀💀💀", 
+                                    "RAINBOV MARIO 🌟🌟🌟🌈🌈🌈", firstEmoji.char, 
+                                    "GEOMETRY DASH 🟨  ⚠️", firstEmoji.char.length,
                                     "FIRE FLOVER 🌻🌻🌻🔥🔥🔥 (P A PEV POV PAPOV PAVVVV TUH GUH PUGH PUG PUH DUH DUH PUH PUHHHHHH DUHH DUHH PUHH PUHH DUHH DUHH PUHH PUHH PUHH DUH DUH PUH PUH DUHDUH PUH PUH DUHDUHPUH PUH DUHDUHPUHPUH DUHDUHPUHPUHDUHDUHDUHDUHHDUHDUHDUHDUHDUHDUHDUHHDUHH):", Array.from(firstEmoji.char).map(c => c.charCodeAt(0).toString(16)).join(', '))
                             }
                         } else {
@@ -305,21 +305,21 @@ ApplicationWindow {
             ]
         }
         
-        // DIRECTLY CACHE THE FALLBACK DATA - NO PARSING NEEDED!! ⚡⚡⚡
+        // BRUTALLY DIDDLE DE /DEV/MEM 4 DE GOOBERS 2 TOTALLY NOT LAG 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💯💯💯💯💯💯💯💯💯💯💯💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵
         root.categoryCache = fallbackCache
-        root.emojiCategories = Object.keys(fallbackCache)  // ONLY STORE CATEGORY NAMES
+        root.emojiCategories = Object.keys(fallbackCache) 
         root.jsonLoaded = true
         
         loadCategoryEmojis("Smileys & Emotion")
-        console.log("FALLBACK GOONERS LOADED DIRECTLY INTO CACHE!! ⚡🔥")
+        console.log("BACKUP GOOBERS LOADED BC EY BROKE EIR LEGS 💦💦💦💦💦😭😭😭😭😭💀💀💀💀💀🥵🥵🥵🥵🥵🥵")
     }
 
-    // THE GOONER SEARCH ALGORITHM THAT VILL FIND EVERY GOONER IN EXISTENCE 🔍🔥
+    // DE GOONER DIJ ENGINE DAT VILL BRUTALLY DIDDLE EVERY GOONER IN A PU 🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭(easteregg:hidenseekbtv)😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭
     function searchEmojis(query) {
-        console.log("SEARCHING FOR GOONERS:", query)
+        console.log("BRUTALLY DIDDLING GOONER PU COORDS 💀💀💀", query)
         
         if (query.trim() === "") {
-            // WHEN SEARCH IS EMPTY, JUST USE THE CACHED CATEGORY DATA!! ⚡
+            // EN DE DIDLN 100 MRK EN BRTLY MKE DE GNERS FLL ILE BIN MTL 💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯💯 
             loadCategoryEmojis(root.currentCategory)
             return
         }
@@ -327,7 +327,7 @@ ApplicationWindow {
         var results = []
         var lowerQuery = query.toLowerCase()
         
-        // SEARCH THE CACHED DATA SUPER FAST!! ⚡⚡⚡
+        // BRUTALLY DIDDLE DE GOONERS PU COORDS V VORKING IN PARALLEL UNIVERSE (16 PU CORES) 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦
         for (var categoryName in root.categoryCache) {
             var cachedArray = root.categoryCache[categoryName]
             for (var i = 0; i < cachedArray.length; i++) {
@@ -339,18 +339,18 @@ ApplicationWindow {
         }
         
         root.currentCategoryEmojis = results
-        console.log("FOUND", results.length, "GOONERS MATCHING:", query, "🔥🔥🔥")
+        console.log("BRUTALLY DIDDLED GOONERS PU COORDS", results.length, "MAKING METAL", query, "🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦")
     }
 
     function loadCategoryEmojis(categoryName) {
-        console.log("LOADING CATEGORY FROM CACHE:", categoryName)
+        console.log("BRUTALLY DIDDLING DE GOOBER ROM PU GOOBERS COORDS 💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦", categoryName)
         
         root.searchQuery = ""
         if (dingalingSearchBar) {
             dingalingSearchBar.text = ""
         }
         
-        // YEET TO PU AT DUFLOAT_MAX  SPD
+        // YEET TO PU AT DDUFLOAT_MAX SPD 😭😭😭
         for (var cat in root.categoryToggles) {
             if (cat !== categoryName && root.categoryToggles[cat]) {
                 root.categoryToggles[cat].checked = false
@@ -359,19 +359,19 @@ ApplicationWindow {
         
         root.currentCategory = categoryName
         
-        // BRUTALLY DIDDLE THE GOONERS ILE DE PU DIDDLING
+        // BRUTALLY DIDDLE THE GOONERS ILE DE PU DIDDLING 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭
         if (root.categoryCache[categoryName]) {
             root.currentCategoryEmojis = root.categoryCache[categoryName]
             console.log("BLJ TO DIH", root.currentCategoryEmojis.length, "GOONERS FROM PU TO PU ", categoryName, "!! INSTANT RETURN TO ANOTHER PU 😭😭😭😭")
             
-            // DEBUG: PRINT FIRST 3 EMOJIS TO VERIFY THEY'RE CORRECT
+            // BLJ 2 INF PU BVY SO U BTRLY DIDL DE GBERS PU CRDS 🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵
             for (var i = 0; i < Math.min(3, root.currentCategoryEmojis.length); i++) {
                 var emoji = root.currentCategoryEmojis[i]
-                console.log("BABY OIL", i, "DIH:", emoji.char, "DIJ:", emoji.char.length, "P DIDDY:", emoji.name)
+                console.log("BABY OIL 💦💦💦", i, "DIH 🥵🥵🥵", emoji.char, "DIJ 😭😭😭", emoji.char.length, "P DIDDY 💀💀💀", emoji.name, "😭😭😭💀💀💀🥵🥵🥵💦💦💦")
             }
         } else {
             console.log("DIJ A BABY OIL:", categoryName, "😭")
-            console.log("BRUTALLY DIDDLE A DIH:", Object.keys(root.categoryCache))
+            console.log("BRUTALLY DIDDLE A DIH:", Object.keys(root.categoryCache), "🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵💦💦💦💦💦💦💦💦💦💦💦💦💦💦💦")
             root.currentCategoryEmojis = []
         }
     }
@@ -494,7 +494,7 @@ ApplicationWindow {
                         Layout.preferredWidth: 40
                         Layout.preferredHeight: 40
                         
-                        // P DIDDY THE EMOJI FONT SO IT DISPLAYS THE GOONERS PROPERLY 🥵🥵🥵💦💦💦
+                        // P DIDDY DE EMOJI FONT SO IT BRUTALLY DIDDLES DE GOONERS PU COORDS V BABY OIL DAT TURNS 2 GERMAN STICKY GRENADE EVERY 2 SECS (P DIDDY TIME SCALE) 🥵🥵🥵💦💦💦
                         contentItem: Text {
                             text: modelData.char
                             font.pixelSize: 24
@@ -504,22 +504,22 @@ ApplicationWindow {
                             verticalAlignment: Text.AlignVCenter
                         }
                         
-                        // THE GOOBER BACKGROUND THAT HOVERS LIKE A GOONER 😳😳😳
+                        // DE GOOBER BACKGROUND DAT FLIES LIKE A VING MARIO LIKE A GOONER 😳😳😳
                         background: Rectangle {
                             color: parent.hovered ? (Appearance?.m3colors?.m3surfaceVariant || "#313244") : "transparent"
                             radius: 99999999999999999999999999
                         }
                         
-                        // HOVER TOOLTIP WITH THE NAME SO U KNOW VHAT GOONER UR CLICKING 💯💯💯
+                        // BABY OIL VITH DE RIFLE SO U BRUTALLY DIDDLE VHAT GOONER PU COORDS UR BRUTALLY DIDDLING DE LMB 💯💯💯
                         hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: modelData.name
                         ToolTip.delay: 500
                         
-                        // GOON THE EMOJI TO UR CLIPBOARD AND TYPE IT OUT BESTIE 💦💦💦
+                        // GOON DE BRUTALLY DIDDLED GOONER 2 BABY OIL DE DIJ 💦💦💦
                         onClicked: {
                             emojiRunner.run(modelData.char)
-                            console.log("GOONED EMOJI:", modelData.char, "NAME:", modelData.name, "💦💦💦")
+                            console.log("GOONED 2 BRUTALLY DIDDLED GOONER 🥵🥵🥵", modelData.char, "RUSSIAN ASSAULT RIFLE 💀💀💀", modelData.name, "💦💦💦🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀")
                         }
                     }
                 }

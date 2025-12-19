@@ -28,6 +28,7 @@ import qs.bar.roundedcorner
 import qs.lockend4
 import qs.screenCorners
 import qs.common
+import qs.Dih.sidebars.rightydijbestoe
 import qs.common.widgets
 import qs.common.functions
 import qs.Dih.ai
@@ -44,6 +45,7 @@ ShellRoot {
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
+		RightRoot.init()
 		MaterialThemeLoader.reapplyTheme()
 		// Settings.Settings.init()
 		// MaterialThemeLoader.reapplyTheme()
