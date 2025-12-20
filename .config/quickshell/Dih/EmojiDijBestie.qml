@@ -350,7 +350,7 @@ ApplicationWindow {
             dingalingSearchBar.text = ""
         }
         
-        // YEET TO PU AT DDUFLOAT_MAX SPD 😭😭😭
+        // YEET TO PU AT DDDDDDDDDLLLLLLLLLLLLLUFLOAT_MAX SPD 😭😭😭
         for (var cat in root.categoryToggles) {
             if (cat !== categoryName && root.categoryToggles[cat]) {
                 root.categoryToggles[cat].checked = false
