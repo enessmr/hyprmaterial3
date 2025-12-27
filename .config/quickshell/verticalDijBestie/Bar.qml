@@ -1,0 +1,103 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
+pragma ComponentBehavior: Bound
+
+import QtQuick 2.15
+import QtQuick.Layouts
+import Quickshell
+import qs.verticalDijBestie.systray as SysTray
+import qs.verticalDijBestie.audio as Audio
+import qs.verticalDijBestie.mpris as Mpris
+import qs.verticalDijBestie.connections as Connections
+import qs.verticalDijBestie.power as Power
+// import qs.notifications as Notifs
+// import "../resources/components/layout"
+
+BarContainment {
+	id: root
+	property bool isSoleBar: Quickshell.screens.length == 1;
+
+	ColumnLayout {
+		anchors {
+			left: parent.left
+			right: parent.right
+			top: parent.top
+		}
+
+		ColumnLayout {
+			Layout.fillWidth: true
+
+			/* Notifs.NotificationWidget {
+				Layout.fillWidth: true
+				bar: root
+			} */
+
+			ColumnLayout {
+				spacing: 0
+
+				Loader {
+					active: root.isSoleBar
+					Layout.preferredHeight: active ? implicitHeight : 0;
+					Layout.fillWidth: true
+
+					sourceComponent: Workspaces {
+						bar: root
+						wsBaseIndex: 1
+					}
+				}
+
+				/* Workspaces {
+					bar: root
+					Layout.fillWidth: true
+					wsBaseIndex: root.screen.name == "eDP-1" ? 11 : 1;
+					hideWhenEmpty: root.isSoleBar
+				} */
+			}
+		}
+	}
+
+	ColumnLayout {
+		anchors {
+			left: parent.left
+			right: parent.right
+			bottom: parent.bottom
+		}
+
+		Mpris.Players {
+			bar: root
+			Layout.fillWidth: true
+		}
+
+		Audio.AudioControls {
+			bar: root
+			Layout.fillWidth: true
+		}
+
+		SysTray.SysTray {
+			bar: root
+			Layout.fillWidth: true
+		}
+
+		//CardBar {
+		//	implicitHeight: 100;
+		//	implicitWidth: 45
+
+		//	ColumnLayout {
+				Connections.Connections {
+					bar: root
+					Layout.fillWidth: true
+				}
+
+				Power.Power {
+					bar: root
+					Layout.fillWidth: true
+				}
+		//	}
+		// }
+
+		ClockWidget {
+			bar: root
+			Layout.fillWidth: true
+		}
+	}
+}

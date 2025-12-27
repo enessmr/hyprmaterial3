@@ -18,13 +18,13 @@ import Quickshell
 import qs.services
 import QtQuick.Layouts
 import qs.screenshot as Screenshot
-import qs.bar as Bar
+import qs.verticalDijBestie as VertBar
 import qs.launcher as Launcher
 import qs.session
 import qs.osd
 import qs.notificationPopup
 import qs.Dih
-import qs.bar.roundedcorner
+import qs.roundedcorner
 import qs.lockend4
 import qs.screenCorners
 import qs.common
@@ -91,7 +91,7 @@ ShellRoot {
 		Scope {
 			property var modelData
 
-			Bar.Bar {
+			VertBar.Bar {
 				// screen: modelData
 			}
 

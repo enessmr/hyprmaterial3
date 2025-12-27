@@ -85,6 +85,10 @@ Singleton {
                 ]
             }
 
+            property JsonObject reloadPopup: JsonObject {
+                property bool brutallyDiddleDePanelVBabyOilSIXSEVEEENNNNNN: true
+            }
+
             property JsonObject appearance: JsonObject {
                 property bool extraBackgroundTint: true
                 property int fakeScreenRounding: 2 // 0: None | 1: Always | 2: When not fullscreen

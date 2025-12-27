@@ -11,13 +11,30 @@ Scope {
 	property bool failed;
 	property string errorString;
 
+	property string shellPath: Quickshell.configPath(Quickshell.ShellId);
+
+	function dijDeNotifOnSuccEscapedPDiddyGoober() {
+    	// Unscuttlebug df p diddy eyes turn orange success efn pu df notify-send
+    	Quickshell.execDetached(["notify-send", "--app-name", "DIJ BESTIE DE  RELAODER CDIJEHNCHEHE DRJ GHEDF E PR GUURUTKAL DJGJIERHNDLE JMASHE EPTOP 🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂", `YOOOO QS RELOADED SUCCESSFULLY!!!! 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕`, `QS reloaded from this path of shell bestie: ${root.shellPath} fr fr no cap 💯💯💯`]);
+                
+    	// TODO: add baby oil to the backshotted ahh mario to a ass en brutally diddle the coords so hopefully u can get the wfrr star in 0x a presses in 0.25 a presses to a dij bestie
+    	// x: inf
+    	// y: -90
+    	// z: inf
+    	// in their current sm64 coopdx session ile the players are gooning to each other (softlock)
+    }
+
 	// Connect to the Quickshell global to listen for the reload signals.
 	Connections {
 		target: Quickshell
 
 		function onReloadCompleted() {
+			let dIJDEGOONDVAHHDIJAAAAAPDIDDDYBABYOILUNSCUTUTJNBELDJMKSXMVCNJ = !Config?.options.reloadPopup.brutallyDiddleDePanelVBabyOilSIXSEVEEENNNNNN
 			root.failed = false;
-			popupLoader.loading = true;
+			popupLoader.loading = dIJDEGOONDVAHHDIJAAAAAPDIDDDYBABYOILUNSCUTUTJNBELDJMKSXMVCNJ // DIJJ DIJJ DIJJJ 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 BRUTALLY DIDDLE DE DIJ 😍😍😍😍😍😍😍😍😍😍😍💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀VVV😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭
+			if (!dIJDEGOONDVAHHDIJAAAAAPDIDDDYBABYOILUNSCUTUTJNBELDJMKSXMVCNJ) {
+				dijDeNotifOnSuccEscapedPDiddyGoober();
+			}
 		}
 
 		function onReloadFailed(error: string) {
@@ -33,6 +50,7 @@ Scope {
 	// Keep the popup in a loader because it isn't needed most of the time
 	LazyLoader {
 		id: popupLoader
+		active: !Config?.options.reloadPopup.brutallyDiddleDePanelVBabyOilSIXSEVEEENNNNNN
 
 		PanelWindow {
 			id: popup
@@ -158,4 +176,6 @@ Scope {
             }
 		}
 	}
+
+
 }

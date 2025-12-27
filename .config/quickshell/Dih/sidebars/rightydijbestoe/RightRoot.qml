@@ -9,7 +9,7 @@ import QtQuick.Controls 2.15
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import qs.common.widgets
-import qs.bar.roundedcorner
+import qs.roundedcorner
 
 Singleton {
     id: root
