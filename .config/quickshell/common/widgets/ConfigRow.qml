@@ -1,10 +1,8 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import QtQuick
 import QtQuick.Layouts
 
 RowLayout {
     property bool uniform: false
-    spacing: 10
+    spacing: 4
     uniformCellSizes: uniform
 }

@@ -1,7 +1,7 @@
 // 💚 ✨ HyprYoshi3 ✨ 🦕
 
-// pragma Singleton
-// pragma ComponentBehavior: Bound
+pragma Singleton
+pragma ComponentBehavior: Bound
 
 import qs.common
 import qs.common.functions
@@ -71,4 +71,3 @@ Singleton {
         }
     }
 }
-

@@ -31,6 +31,7 @@ import qs.common
 import qs.Dih.sidebars.rightydijbestoe
 import qs.common.widgets
 import qs.common.functions
+import qs.Dih.cetgeptetesceshet
 import qs.Dih.ai
 import qs
 
@@ -42,6 +43,7 @@ ShellRoot {
 	property bool enableDihEmoji: true
 	property bool enableDihAi: true
 	property bool enableReloadPopup: true
+	property bool enableCetGptDIJBestieQ: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -120,10 +122,11 @@ ShellRoot {
 	}
 
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
-	LazyLoader { active: enableSession; component: Session {} }
+	LazyLoader { active: enableSession; component: PauseBufferDijBestie {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 	LazyLoader { active: enableDihEmoji; component: EmojiDijBestie {} }
 	LazyLoader { active: enableDihAi; component: Ai {} }
 	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
+	LazyLoader { active: enableCetGptDIJBestieQ; component: CetGptDIJbestieQ {} }
 }

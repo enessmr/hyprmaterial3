@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 pragma Singleton
 import Quickshell
 

@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import QtQuick
 
 MouseArea {

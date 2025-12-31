@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import QtQuick
 import QtQuick.Layouts
 import qs.common
@@ -34,7 +32,7 @@ ColumnLayout {
                 StyledToolTip {
                     extraVisibleCondition: false
                     alternativeVisibleCondition: infoMouseArea.containsMouse
-                    content: root.tooltip
+                    text: root.tooltip
                 }
             }
         }

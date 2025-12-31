@@ -1,8 +1,6 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 pragma Singleton
 import Quickshell
-import "./fuzzysort.js" as FuzzySort
+import "fuzzysort.js" as FuzzySort
 
 /**
  * Wrapper for FuzzySort to play nicely with Quickshell's imports

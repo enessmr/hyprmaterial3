@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import QtQuick
 import QtQuick.Layouts
 import qs.common
@@ -11,21 +9,22 @@ RippleButton {
     property string materialIcon
     property bool materialIconFill: true
     property string mainText: "Button text"
-    property bool settings
     property Component mainContentComponent: Component {
         StyledText {
+            visible: text !== ""
             text: buttonWithIconRoot.mainText
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnSecondaryContainer
         }
     }
     implicitHeight: 35
-    horizontalPadding: 15
-    buttonRadius: settings ? Appearance.rounding.full : Appearance.rounding.small
+    horizontalPadding: 10
+    buttonRadius: Appearance.rounding.small
     colBackground: Appearance.colors.colLayer2
 
     contentItem: RowLayout {
         Item {
+            Layout.fillWidth: false
             implicitWidth: Math.max(materialIconLoader.implicitWidth, nerdIconLoader.implicitWidth)
             Loader {
                 id: materialIconLoader
@@ -51,6 +50,7 @@ RippleButton {
             }
         }
         Loader {
+            Layout.fillWidth: true
             sourceComponent: buttonWithIconRoot.mainContentComponent
             Layout.alignment: Qt.AlignVCenter
         }

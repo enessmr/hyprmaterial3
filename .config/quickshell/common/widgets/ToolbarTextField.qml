@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -17,14 +15,19 @@ TextField {
 
     placeholderTextColor: Appearance.colors.colSubtext
     color: Appearance.colors.colOnLayer1
-    font.pixelSize: Appearance.font.pixelSize.small
+    font {
+        family: Appearance.font.family.main
+        pixelSize: Appearance.font.pixelSize.small
+        hintingPreference: Font.PreferFullHinting
+        variableAxes: Appearance.font.variableAxes.main
+    }
     renderType: Text.NativeRendering
     selectedTextColor: Appearance.colors.colOnSecondaryContainer
     selectionColor: Appearance.colors.colSecondaryContainer
 
     background: Rectangle {
         id: background
-        color: Appearance.m3colors.m3surfaceContainer
+        color: Appearance.colors.colLayer1
         radius: Appearance.rounding.full
     }
 }

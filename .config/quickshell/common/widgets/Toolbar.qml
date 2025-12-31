@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import QtQuick
 import QtQuick.Layouts
 import qs.common
@@ -12,23 +10,31 @@ import qs.common.widgets
 Item {
     id: root
 
+    property bool enableShadow: true
     property real padding: 8
     property alias colBackground: background.color
+    property alias spacing: toolbarLayout.spacing
     default property alias data: toolbarLayout.data
     implicitWidth: background.implicitWidth
     implicitHeight: background.implicitHeight
+    property alias radius: background.radius
 
-    StyledRectangularShadow {
-        target: background
+    Loader {
+        active: root.enableShadow
+        anchors.fill: background
+        sourceComponent: StyledRectangularShadow {
+            target: background
+            anchors.fill: undefined
+        }
     }
 
     Rectangle {
         id: background
-        anchors.centerIn: parent
-        color: Appearance.m3colors.m3surfaceContainer // Needs to be opaque
-        implicitHeight: toolbarLayout.implicitHeight + root.padding * 2
+        anchors.fill: parent
+        color: Appearance.m3colors.m3surfaceContainer
+        implicitHeight: 56
         implicitWidth: toolbarLayout.implicitWidth + root.padding * 2
-        radius: Appearance.rounding.full
+        radius: height / 2
 
         RowLayout {
             id: toolbarLayout

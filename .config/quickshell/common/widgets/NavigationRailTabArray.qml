@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import qs.common
 import qs.common.widgets
 import QtQuick
@@ -13,9 +11,10 @@ Item {
     implicitHeight: tabBarColumn.implicitHeight
     implicitWidth: tabBarColumn.implicitWidth
     Layout.topMargin: 25
+
     Rectangle {
-        property real itemHeight: tabBarColumn.children[0].baseSize
-        property real baseHighlightHeight: tabBarColumn.children[0].baseHighlightHeight
+        property real itemHeight: tabBarColumn.children[0]?.baseSize ?? 56
+        property real baseHighlightHeight: tabBarColumn.children[0]?.baseHighlightHeight ?? 56
         anchors {
             top: tabBarColumn.top
             left: tabBarColumn.left
@@ -24,7 +23,7 @@ Item {
         radius: Appearance.rounding.full
         color: Appearance.colors.colSecondaryContainer
         implicitHeight: root.expanded ? itemHeight : baseHighlightHeight
-        implicitWidth: tabBarColumn.children[root.currentIndex].visualWidth
+        implicitWidth: tabBarColumn?.children[root.currentIndex]?.visualWidth ?? 100
 
         Behavior on anchors.topMargin {
             NumberAnimation {
@@ -34,10 +33,10 @@ Item {
             }
         }
     }
+
     ColumnLayout {
         id: tabBarColumn
         anchors.fill: parent
         spacing: 0
-
     }
 }

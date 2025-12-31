@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import qs.common
 import qs.services
 import QtQuick
@@ -16,12 +14,16 @@ MouseArea {
     property bool automaticallyReset: true
     readonly property real dragDiffX: _dragDiffX
     readonly property real dragDiffY: _dragDiffY
+    property real startX: 0
+    property real startY: 0
+    property real regionTopLeftX: Math.min(startX, startX + _dragDiffX)
+    property real regionTopLeftY: Math.min(startY, startY + _dragDiffY)
+    property real regionWidth: Math.abs(_dragDiffX)
+    property real regionHeight: Math.abs(_dragDiffY)
 
     signal dragPressed(diffX: real, diffY: real)
     signal dragReleased(diffX: real, diffY: real)
     
-    property real startX: 0
-    property real startY: 0
     property bool dragging: false
     property real _dragDiffX: 0
     property real _dragDiffY: 0

@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import qs.common
 import qs.common.widgets
 import qs.common.functions
@@ -12,6 +10,7 @@ TabButton {
 
     property bool toggled: TabBar.tabBar.currentIndex === TabBar.index
     property string buttonIcon
+    property real buttonIconRotation: 0
     property string buttonText
     property bool expanded: false
     property bool showToggledHighlight: true
@@ -101,6 +100,7 @@ TabButton {
             }
             MaterialSymbol {
                 id: navRailButtonIcon
+                rotation: root.buttonIconRotation
                 anchors.centerIn: parent
                 iconSize: 24
                 fill: toggled ? 1 : 0

@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 .pragma library
 
 // https://github.com/farzher/fuzzysort

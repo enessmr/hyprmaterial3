@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import qs.common
 import qs.common.widgets
 import qs.common.functions
@@ -14,9 +12,9 @@ Button {
     id: root
     property bool toggled
     property string buttonText
-    property real buttonRadius: settings ? Appearance.rounding.full : Appearance?.rounding?.small || 4
+    property bool pointingHandCursor: true
+    property real buttonRadius: Appearance?.rounding?.small ?? 4
     property real buttonRadiusPressed: buttonRadius
-    property bool settings
     property real buttonEffectiveRadius: root.down ? root.buttonRadiusPressed : root.buttonRadius
     property int rippleDuration: 1200
     property bool rippleEnabled: true
@@ -31,16 +29,13 @@ Button {
     property color colBackgroundToggledHover: Appearance?.colors.colPrimaryHover ?? "#77699C"
     property color colRipple: Appearance?.colors.colLayer1Active ?? "#D6CEE2"
     property color colRippleToggled: Appearance?.colors.colPrimaryActive ?? "#D6CEE2"
-    property color colNull: "transparent"
 
     opacity: root.enabled ? 1 : 0.4
-    property color buttonColor: {
-        if (!root.enabled) return colBackground;
-        if (root.settings && root.hovered) return "transparent"; // THIS MAKES HOVER TRANSPARENT
-        if (root.toggled) return root.hovered ? colBackgroundToggledHover : colBackgroundToggled;
-        return root.hovered ? colBackgroundHover : colBackground;
-    }
-
+    property color buttonColor: ColorUtils.transparentize(root.toggled ? 
+        (root.hovered ? colBackgroundToggledHover : 
+            colBackgroundToggled) :
+        (root.hovered ? colBackgroundHover : 
+            colBackground), root.enabled ? 0 : 1)
     property color rippleColor: root.toggled ? colRippleToggled : colRipple
 
     function startRipple(x, y) {
@@ -64,11 +59,11 @@ Button {
 
     MouseArea {
         anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
+        cursorShape: root.pointingHandCursor ? Qt.PointingHandCursor : Qt.ArrowCursor
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         onPressed: (event) => { 
             if(event.button === Qt.RightButton) {
-                if (root.altAction) root.altAction();
+                if (root.altAction) root.altAction(event);
                 return;
             }
             if(event.button === Qt.MiddleButton) {

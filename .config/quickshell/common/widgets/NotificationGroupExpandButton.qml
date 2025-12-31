@@ -1,5 +1,3 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
-
 import qs.services
 import qs.common
 import qs.common.functions
@@ -46,5 +44,4 @@ RippleButton { // Expand button
             }
         }
     }
-
 }

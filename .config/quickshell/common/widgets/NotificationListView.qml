@@ -1,7 +1,5 @@
-// 💚 ✨ HyprYoshi3 ✨ 🦕
+pragma ComponentBehavior: Bound
 
-import qs
-import qs.common
 import qs.common.widgets
 import qs.services
 import QtQuick
@@ -14,15 +12,13 @@ StyledListView { // Scrollable window
     spacing: 3
 
     model: ScriptModel {
-        values: root.popup ? (Notifications.popupAppNameList ?? []) : (Notifications.appNameList ?? [])
+        values: root.popup ? Notifications.popupAppNameList : Notifications.appNameList
     }
-
     delegate: NotificationGroup {
         required property int index
         required property var modelData
         popup: root.popup
-        anchors.left: parent?.left
-        anchors.right: parent?.right
+        width: ListView.view.width // https://doc.qt.io/qt-6/qml-qtquick-listview.html
         notificationGroup: popup ? 
             Notifications.popupGroupsByAppName[modelData] :
             Notifications.groupsByAppName[modelData]
