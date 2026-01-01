@@ -18,20 +18,22 @@ import Quickshell
 import qs.services
 import QtQuick.Layouts
 import qs.screenshot as Screenshot
-import qs.bar as Bar
+import qs.verticalDijBestie as VertBar
 import qs.launcher as Launcher
 import qs.session
 import qs.osd
 import qs.notificationPopup
 import qs.Dih
-import qs.bar.roundedcorner
+import qs.roundedcorner
 import qs.lockend4
 import qs.screenCorners
 import qs.common
 import qs.Dih.sidebars.rightydijbestoe
 import qs.common.widgets
 import qs.common.functions
+import qs.Dih.cetgeptetesceshet
 import qs.Dih.ai
+import qs.Dih.calc
 import qs
 
 ShellRoot {
@@ -42,6 +44,8 @@ ShellRoot {
 	property bool enableDihEmoji: true
 	property bool enableDihAi: true
 	property bool enableReloadPopup: true
+	property bool enableCetGptDIJBestieQ: true
+	property bool enableUnCalc: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -91,7 +95,7 @@ ShellRoot {
 		Scope {
 			property var modelData
 
-			Bar.Bar {
+			VertBar.Bar {
 				// screen: modelData
 			}
 
@@ -120,10 +124,12 @@ ShellRoot {
 	}
 
 	LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
-	LazyLoader { active: enableSession; component: Session {} }
+	LazyLoader { active: enableSession; component: PauseBufferDijBestie {} }
 	LazyLoader { active: enableOnScreenDisplayVolume; component: VolumeOSD {} }
 	LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
 	LazyLoader { active: enableDihEmoji; component: EmojiDijBestie {} }
 	LazyLoader { active: enableDihAi; component: Ai {} }
 	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
+	LazyLoader { active: enableCetGptDIJBestieQ; component: CetGptDIJbestieQ {} }
+	LazyLoader { active: enableUnCalc; component: Calc {} }
 }
