@@ -323,7 +323,7 @@ Singleton {
                 anchors.right: parent.right
                 anchors.topMargin: 8
                 anchors.rightMargin: 8
-                settings: true
+                // settings: true
                 onClicked: { persist.settingsOpen = false }
 
                 contentItem: MaterialSymbol {

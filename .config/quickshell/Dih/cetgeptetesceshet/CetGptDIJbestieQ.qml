@@ -26,10 +26,6 @@ Scope { // Scope
             "icon": "book",
             "name": "Qur'an"
         },
-        {
-            "icon": "mood", // or "emoji_emotions"
-            "name": "Vibes 🦕"
-        },
     ]
 
     Loader {
@@ -179,7 +175,6 @@ Scope { // Scope
                         CheatsheetKeybinds {}
                         CheatsheetPeriodicTable {}
                         QurAn {}
-                        CheatsheetVibes {} // NEW TAB!!! 🦕💚
                     }
                 }
             }

@@ -319,7 +319,7 @@ ApplicationWindow {
     }
     
     // BRUTALLY BACKSHOT DE BUTTON ILE GOONING 2 DE BABY OIL ILE 6 7 ING TO DE DIJ 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵
-    component CalcButton: Button {
+    component CalcButton: RippleButton {
         property bool isOperator: false
         property bool isEquals: false
         property bool isSpecial: false
@@ -336,21 +336,21 @@ ApplicationWindow {
             verticalAlignment: Text.AlignVCenter
         }
         
-        background: Rectangle {
+        /* background: Rectangle {
             color: {
                 if (parent.pressed) {
-                    return parent.isEquals ? Appearance.m3colors.m3Primary : 
+                    return parent.isEquals ? Appearance.m3colors.m3primary : 
                            parent.isOperator ? Appearance.m3colors.m3surfaceContainerHigh :
                            parent.isSpecial ? Appearance.m3colors.m3surfaceContainerHighest :
                            Appearance.m3colors.m3surface
                 }
                 if (parent.hovered) {
-                    return parent.isEquals ? Appearance.m3colors.m3Primary:
+                    return parent.isEquals ? Appearance.m3colors.m3primary:
                            parent.isOperator ? Appearance.m3colors.m3surfaceContainerHigh :
                            parent.isSpecial ? Appearance.m3colors.m3surfaceContainerHighest :
                            Appearance.m3colors.m3surface
                 }
-                return parent.isEquals ? Appearance.m3colors.m3Primary : 
+                return parent.isEquals ? Appearance.m3colors.m3primary : 
                            parent.isOperator ? Appearance.m3colors.m3surfaceContainerHigh :
                            parent.isSpecial ? Appearance.m3colors.m3surfaceContainerHighest :
                            Appearance.m3colors.m3surface
@@ -358,7 +358,7 @@ ApplicationWindow {
             radius: 12
             border.color: Appearance?.m3colors?.m3outlineVariant || "#45475a"
             border.width: 1
-        }
+        } */
     }
     
     // BRUTALLY DIDDLE DE AUTOOPENS 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🥴🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️
