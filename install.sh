@@ -133,7 +133,7 @@ set_los_wallpaper() {
             swww img "$HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg"
             matugen image "$HOME/Pictures/.Wallpapers/ascension_teal_dark.jpg"
             ;;
-        "No") echo -e "use ur s*xual anime vallpaper idc";;
+        "No") echo -e "use ur segsual anime vallpaperand make ur life seggs idc";;
     esac
 }
 
