@@ -34,6 +34,7 @@ import qs.common.functions
 import qs.Dih.cetgeptetesceshet
 import qs.Dih.ai
 import qs.Dih.calc
+import qs.Dih.Odaslkskdjkvevnjekjdfeybiaskirasjhdidjncjdbbejstijjdsjiyjtrieos
 import qs
 
 ShellRoot {
@@ -46,6 +47,7 @@ ShellRoot {
 	property bool enableReloadPopup: true
 	property bool enableCetGptDIJBestieQ: true
 	property bool enableUnCalc: true
+	property bool enableNonOSK: true
 
 	Component.onCompleted: {
 		Launcher.Controller.init()
@@ -132,4 +134,5 @@ ShellRoot {
 	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
 	LazyLoader { active: enableCetGptDIJBestieQ; component: CetGptDIJbestieQ {} }
 	LazyLoader { active: enableUnCalc; component: Calc {} }
+	LazyLoader { active: enableNonOSK; component: Osk {} }
 }

@@ -27,4 +27,6 @@ StyledText {
             easing.bezierCurve: Appearance?.animation.elementMoveFast.bezierCurve ?? [0.34, 0.80, 0.34, 1.00, 1, 1]
         }
     }
+
+    z: 1267893
 }

@@ -221,7 +221,7 @@ Singleton {
             minimumWidth: 400
             minimumHeight: 200
             color: "transparent"
-            title: "HyprYoshi3 Gooner Settings 💚🦕😍💦🥵"
+            title: "HyprYoshi3 Gooner Settings't 💚🦕😍💦🥵"
             visible: persist.dihNoTsNotVisibleVhatItsNotTuff67
             id: dihtsvindovisnttuff
             // update gooner so hes 18 everytime 😍🍑
@@ -241,7 +241,12 @@ Singleton {
         {
             name: "Advanced",
             icon: "settings_alert",
-            component: "pages/AdvancedConfig.qml"
+            component: "pages/AdvancedPage.qml"
+        },
+        {
+            name: "About rice",
+            icon: "info",
+            component: "pages/About.qml"
         }
     ]
 
@@ -429,6 +434,7 @@ Singleton {
             case 0: return "pages/PalettePage.qml"  // GOON TO THE NEWBORN GOOBER 👩‍🍼👩‍🍼👩‍🍼
             case 1: return "pages/GeneralPage.qml" // GOON TO THE NEWBORN P DIDDY👩‍🍼👩‍🍼👩‍🍼
             case 2: return "pages/AdvancedPage.qml" // GOON TO THE NEWBORN GOONER 👩‍🍼👩‍🍼👩‍🍼
+            case 3: return "pages/About.qml" // GOON 2 DE NEVBORN ABDUL VAHAB 👩‍🍼👩‍🍼👩‍🍼
             default: return "pages/PalettePage.qml" // GOON TO THE SHOOK DIH VHILE THE MOMS ARE FEEDING IT 👩‍🍼👩‍🍼👩‍🍼
         }
     }

@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# 💚 ✨ HyprYoshi3 ✨ 🦕
+
+set -e
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+cd "$SCRIPT_DIR"
+
+COMMIT_HASH=$(git -C ../../ rev-parse --short HEAD)
+
+show_help() {
+    cat <<EOF
+Usage:
+  $0 [options]
+
+Options:
+  -v, --version, /v, /version, v, version   Show version (Git commit hash)
+EOF
+}
+
+if [ -z "$1" ]; then
+    show_help
+    exit 0
+fi
+
+case "$1" in
+    -v|--version|/v|/version|version|v)
+        echo "hypryoshi3 cloned/pulled at commit $COMMIT_HASH"
+        exit 0
+        ;;
+    -si|--systeminfo|/si|/systeminfo|systeminfo|si)
+        echo -e "rav hyprland footage in fnaf2 trying not to get DDURURUN DUURRDUN DUN DUN DUN DUN DUN DUN- jokes aside heres the info:\n"
+        hyprctl systeminfo
+        exit 0
+        ;;
+    -di|--dotsinfo|/di|/dotsinfo|dotsinfo|di)
+        echo -e "hov much goon juice is in datt :OOOOOO\n"
+        cd ../../
+        LOCAL=$(git rev-parse HEAD)
+        REMOTE=$(git ls-remote origin HEAD | cut -f1)
+        DIRTY=$(git diff --name-only)
+        STAGED=$(git diff --cached --name-only)
+
+        if [ "$LOCAL" = "$REMOTE" ] && [ -z "$DIRTY" ] && [ -z "$STAGED" ]; then
+            echo "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH everyone peed ad de same time 😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍"
+        elif [ "$LOCAL" = "$REMOTE" ] && [ -n "$STAGED" ]; then
+            echo "amazon vorkers crafted a dog dat is 12 polys n a vish vith deir box 🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑"
+        elif [ "$LOCAL" = "$REMOTE" ] && [ -n "$DIRTY" ]; then
+            echo "my poo had 12 morbillion corns on (   r   e   d   a  c  t  e  d) ahh i licked it 🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🤤🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵"
+        elif [ "$LOCAL" != "$REMOTE" ] && [ -n "$DIRTY" ]; then
+            echo "parallel universes desynced lakitu n crashed de g------ (insert xp shutdovn here)"
+        else
+            echo "u got 1st in mario kart yay 🥰🥰🥰"
+        fi
+        ;;
+    -ti|--tempinfo|/ti|/tempinfo|tempinfo|ti)
+        echo -e "hov hot dose are ❓\nis de ryzen 4070 at 2895c n de intel rtc 5090 ad 200c\n"
+        bash ~/.local/share/hypryoshi3/stuff/temps.sh
+    *)
+        echo "Unknown argument: $1"
+        show_help
+        exit 1
+        ;;
+esac

@@ -1,3 +1,5 @@
+// 💚 ✨ HyprYoshi3 ✨ 🦕
+
 pragma Singleton
 
 import qs.common
@@ -10,6 +12,7 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 import qs.common.widgets
 import qs.roundedcorner
+import qs.Dih.sidebars.rightydijbestoe.compDijDijDij
 
 Singleton {
     id: root
@@ -45,7 +48,7 @@ Singleton {
             id: window
             visible: persist.windowvisible
             exclusiveZone: 0
-            implicitWidth: 365
+            implicitWidth: 465
             implicitHeight: Screen.height
             color: "transparent"
             anchors.left: false
@@ -87,22 +90,14 @@ Singleton {
                 color: Appearance.m3colors.m3background
                 radius: 0
                 height: parent.height
-                width: 350
+                width: 450
                 anchors.right: parent
                 anchors.left: window.right
                 anchors.top: parent
                 anchors.bottom: parent
                 x: 15
 
-                Column {
-                    StyledText {
-                        text: "Yo bestie test succseeded fr fr!!!"
-                    }
-                    StyledText {
-                        text: "yes bestie this is unfinished fr!!!"
-                        font.pixelSize: 12
-                    }
-                }
+                VAVAVAVAVAAHAAA {}
             }
         }
     }

@@ -133,6 +133,6 @@ ShellRoot {
 	LazyLoader { active: enableDihAi; component: Ai {} }
 	LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
 	LazyLoader { active: enableCetGptDIJBestieQ; component: CetGptDIJbestieQ {} }
-	LazyLoader { active: enableUnCalc; component: Calc {} 
-	LazyLoader { active: enableUnOSK; component: Osk {} }}
+	LazyLoader { active: enableUnCalc; component: Calc {} }
+	LazyLoader { active: enableNonOSK; component: Osk {} }
 }
