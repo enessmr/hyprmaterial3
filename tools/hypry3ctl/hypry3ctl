@@ -7,7 +7,8 @@ set -e
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 cd "$SCRIPT_DIR"
 
-COMMIT_HASH=$(git -C ../../ rev-parse --short HEAD)
+source "$HOME/.local/share/hypryoshi3/bin/hypry3.env"
+COMMIT_HASH=$(git -C "$HYPRY3_REPO_DIR" rev-parse --short HEAD)
 
 show_help() {
     cat <<EOF
@@ -26,7 +27,7 @@ fi
 
 case "$1" in
     -v|--version|/v|/version|version|v)
-        echo "hypryoshi3 cloned/pulled at commit $COMMIT_HASH"
+        echo "$COMMIT_HASH"
         exit 0
         ;;
     -si|--systeminfo|/si|/systeminfo|systeminfo|si)
@@ -57,6 +58,7 @@ case "$1" in
     -ti|--tempinfo|/ti|/tempinfo|tempinfo|ti)
         echo -e "hov hot dose are ❓\nis de ryzen 4070 at 2895c n de intel rtc 5090 ad 200c\n"
         bash ~/.local/share/hypryoshi3/stuff/temps.sh
+        ;;
     *)
         echo "Unknown argument: $1"
         show_help

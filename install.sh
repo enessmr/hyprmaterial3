@@ -110,6 +110,7 @@ install_actual_dots() {
     cp -r tools/hypry3ctl/hypry3ctl $HOME/.local/share/hypryoshi3/bin/
     mkdir -p $HOME/.local/share/hypryoshi3/stuff
     cp -r tools/scripts/* $HOME/.local/share/hypryoshi3/stuff/
+    echo "HYPRY3_REPO_DIR=\"$(pwd)\"" > "$HOME/.local/share/hypryoshi3/bin/hypry3.env"
     echo -e "thx <3 (sign in n out!!!)\n"
 }
 

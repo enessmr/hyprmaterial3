@@ -17,6 +17,19 @@ import "../../resources/components/Menu" as Menu
 Column {
     spacing: 16
 
+    property string comitMsg67: ""
+
+    Process {
+        id: ahgoonAhAh67AhAhAAAAAAAAAAAAAAAAAAAAAAAA
+        running: true
+        command: ["bash", Quickshell.env("HOME") + "/.local/share/hypryoshi3/bin/hypry3ctl", "v"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                comitMsg67 = this.text.trim()
+            }
+        }
+    }
+
     // HEADER DIJ WITH GOONER ICON TO DIDDLE MY DIH BRUTALLY 🏗️🏗️🏗️
     Row {
         spacing: 8
@@ -41,6 +54,9 @@ Column {
         color: "transparent"
         radius: 12
         anchors.left: parent.left
+
+        Column {
+            spacing: 10
 
         // TRDGOOBER P DIDDY BABY OIL DIDDLED BRUTALLY N OLD 1 ON TEMU FOR 0.000e-4587387584375345436857634786587348753485684365864387658435934000076000000000000000000000000000000000000000001﷼ 🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️
         Row {
@@ -74,6 +90,16 @@ Column {
                 font.pixelSize: 20
                 verticalAlignment: Qt.AlignVCenter
             }
+        }
+
+        StyledText {
+            anchors.left: parent.left
+            anchors.leftMargin: 100
+            color: Appearance.m3colors.m3onSurface
+            text: "rice dih 12 🌹 " + comitMsg67
+            font.family: "Roboto"
+            font.weight: Font.Bold
+        }
         }
     }
 }
