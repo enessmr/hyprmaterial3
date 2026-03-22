@@ -95,6 +95,7 @@ install_actual_dots() {
     source ~/.bashrc
     touch ~/.local/share/hypryoshi3/installed2 # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
     mkdir -p ~/.local/share/hypryoshi3/quickshell/user/generated # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
+    chmod 755 ~/.local/share/hypryoshi3/quickshell/dict/aosp/ # 💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕💚🦕
     sudo useradd -r -s /bin/false --uid 996 -d /var/lib/matugen matugen
     if echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo visudo -c -f - 2>/dev/null; then
         echo "matugen ALL=(ALL:ALL) NOPASSWD: /usr/bin/convert, /usr/bin/magick, /usr/bin/tee, /usr/bin/cp, /usr/bin/mv" | sudo tee -a /etc/sudoers
@@ -105,6 +106,11 @@ install_actual_dots() {
         fi
     fi
     sudo cp -r fs/* /
+    mkdir -p $HOME/.local/share/hypryoshi3/bin
+    cp -r tools/hypry3ctl/hypry3ctl $HOME/.local/share/hypryoshi3/bin/
+    mkdir -p $HOME/.local/share/hypryoshi3/stuff
+    cp -r tools/scripts/* $HOME/.local/share/hypryoshi3/stuff/
+    echo "HYPRY3_REPO_DIR=\"$(pwd)\"" > "$HOME/.local/share/hypryoshi3/bin/hypry3.env"
     echo -e "thx <3 (sign in n out!!!)\n"
 }
 

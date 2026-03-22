@@ -67,7 +67,7 @@ Column {
         border.color: Appearance.m3colors.m3outlineVariant
         border.width: 1
         
-        // CGOOBER P DIDDY BABY OIL DIDDLED BRUTALLY N OLD ONE ON TEMU FOR 0.0001﷼ 🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️
+        // CGOOBER P DIDDY BABY OIL DIDDLED BRUTALLY N OLD 1 ON TEMU FOR 0.0001﷼ 🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️
         StyledText {
             anchors.centerIn: parent
             text: "Dij bestie in construct dijjj 🏗️🏗️🏗️🏗️"

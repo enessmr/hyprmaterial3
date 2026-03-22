@@ -16,7 +16,7 @@ ApplicationWindow {
     height: 500
     minimumWidth: 400
     minimumHeight: 300
-    title: "HyprYoshi3 Gooner Emoji Picker 💚🦕😍💦🥵"
+    title: "HyprYoshi3 Gooner Emoji Picker't 💚🦕😍💦🥵"
     id: root
     flags: Qt.Window | Qt.WindowStaysOnTopHint
     

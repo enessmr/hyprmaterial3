@@ -197,8 +197,8 @@ Singleton {
 
                         highlight: Rectangle {
                             radius: 5
-                            color: "#20e0ffff"
-                            border.color: "#30ffffff"
+                            color: Appearance.m3colors.m3surfaceContainerHighest
+                            border.color: Appearance.m3colors.m3outlineVariant
                             border.width: 1
                         }
 

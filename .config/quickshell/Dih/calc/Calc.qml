@@ -329,7 +329,7 @@ ApplicationWindow {
         
         contentItem: StyledText {
             text: parent.text
-            color: parent.isEquals ? "#1e1e2e" : (Appearance?.m3colors?.m3onSurface || "#cdd6f4")
+            color: parent.isEquals ? (Appearance?.m3colors?.m3onSurface || "#cdd6f4" ) : (Appearance?.m3colors?.m3onSurface || "#cdd6f4")
             font.pixelSize: 24
             font.bold: parent.isOperator || parent.isEquals
             horizontalAlignment: Text.AlignHCenter
